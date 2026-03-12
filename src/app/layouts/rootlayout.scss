@@ -1,0 +1,7 @@
+.layout {
+    position: relative;
+    &__content {
+        position: relative;
+        z-index: 1;
+    }
+}

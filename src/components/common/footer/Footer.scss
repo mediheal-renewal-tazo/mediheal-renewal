@@ -1,0 +1,116 @@
+.footer {
+    background: #151789;
+    color: #f2f4fb;
+    overflow: hidden;
+
+    &__inner {
+        width: 100%;
+        padding: 440px 30px 18px;
+        box-sizing: border-box;
+    }
+
+    &__top {
+        display: grid;
+        grid-template-columns: 220px 1.4fr 1.6fr 220px;
+        gap: 40px;
+        align-items: start;
+        margin-bottom: 80px;
+    }
+
+    &__col {
+        min-width: 0;
+    }
+
+    &__label {
+        margin: 0 0 4px;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+    &__text {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.3;
+        word-break: keep-all;
+
+        &--strong {
+            font-size: 31px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+    }
+
+    &__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 10px;
+        margin-top: 8px;
+
+        a {
+            position: relative;
+            color: inherit;
+            font-size: 15px;
+            text-decoration: none;
+
+            &:not(:last-child)::after {
+                content: '|';
+                margin-left: 10px;
+            }
+        }
+    }
+
+    &__col--copy {
+        text-align: right;
+    }
+
+    &__logo {
+        font-family: 'PP Mori';
+        font-size: clamp(90px, 18vw, 340px);
+        font-weight: 700;
+        line-height: 0.85;
+        letter-spacing: 0.01em;
+        color: #d9deea;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1200px) {
+    .footer {
+        &__top {
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        &__label,
+        &__text,
+        &__links a {
+            font-size: 13px;
+        }
+
+        &__text--strong {
+            font-size: 24px;
+        }
+        &__col--copy {
+            text-align: left;
+        }
+
+        &__logo {
+            font-size: clamp(80px, 18vw, 220px);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        &__inner {
+            padding: 440px 20px 16px;
+        }
+
+        &__logo {
+            line-height: 0.9;
+        }
+    }
+}

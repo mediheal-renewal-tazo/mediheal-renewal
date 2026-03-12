@@ -1,0 +1,25 @@
+.home {
+    &__hero,
+    &__visual {
+        opacity: 0;
+        // transform: translateY(20px);
+        filter: blur(5px);
+        transition:
+            opacity 0.7s ease,
+            transform 0.7s ease,
+            filter 0.7s ease;
+    }
+
+    &.is-visible {
+        .home__hero,
+        .home__visual {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .home__visual {
+            transition-delay: 0.25s;
+        }
+    }
+}
