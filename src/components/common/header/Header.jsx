@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HEADER_NAV_ITEMS, ROUTE_PATHS } from '@/app/routes/paths';
-import { RxHamburgerMenu } from 'react-icons/rx';
+import { GiHamburgerMenu } from "react-icons/gi";
 import logoImg1 from '@/assets/logos/logo_1.png';
 import logoImg2 from '@/assets/logos/logo_2.png';
 import './Header.scss';
@@ -31,7 +31,7 @@ const Header = ({ theme = 'light' }) => {
                         aria-expanded={isMenuOpen}
                         onClick={() => setIsMenuOpen((prev) => !prev)}
                     >
-                        <RxHamburgerMenu className="header__menu-line" />
+                        <GiHamburgerMenu className="header__menu-line" />
                     </button>
                     <Link className="header__logo" to={ROUTE_PATHS.HOME} aria-label="MEDIHEAL Home">
                         <img className="header__logo-img" src={logoSrc} alt="MEDIHEAL" />
