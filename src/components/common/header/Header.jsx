@@ -42,11 +42,7 @@ const Header = ({ theme = 'light' }) => {
                     <button className="header__icon-btn" type="button" aria-label="Search">
                         <div className="header__search-btn">SEARCH</div>
                     </button>
-                    <Link
-                        className="header__icon-btn"
-                        to={ROUTE_PATHS.MY_PAGE}
-                        aria-label="My page"
-                    >
+                    <Link className="header__icon-btn" to={ROUTE_PATHS.LOGIN} aria-label="My page">
                         <div className="header__login-btn">LOGIN</div>
                     </Link>
                     <div className="header__cart-wrap">

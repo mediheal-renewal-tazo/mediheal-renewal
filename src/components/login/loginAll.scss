@@ -1,0 +1,303 @@
+// =====================
+// Variables
+// =====================
+$grey-50: #e0e0e0;
+$grey-800: #272727;
+$grey-500: #474747;
+$grey-200: #aaaaaa;
+$grey-100: #c6c6c6;
+$bg-white: #ffffff;
+$primary-blue: #151789;
+$primary-blue-hover: #2022ac;
+$kakao-yellow: #fee500;
+$white: #ffffff;
+
+$font-size-body: 15px;
+$font-size-h2: 32px;
+
+// =====================
+
+.login {
+    background-color: $bg-white;
+    height: auto;
+    padding: 60px clamp(16px, 18vw, 260px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--no-nav {
+        padding-top: calc(60px + 64px);
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 20px 0;
+
+        &-back,
+        &-home {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: $grey-800;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__title {
+        color: $grey-800;
+        font-family: 'Pretendard-Bold', Helvetica;
+        font-size: $font-size-h2;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    &__tabs {
+        display: flex;
+        width: 100%;
+        max-width: 340px;
+        border-bottom: 1px solid $grey-100;
+        margin-bottom: 40px;
+    }
+
+    &__tab {
+        flex: 1;
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        color: $grey-200;
+        cursor: pointer;
+        font-size: $font-size-body;
+        padding: 12px 0;
+        margin-bottom: -1px;
+        text-align: center;
+
+        &--active {
+            border-bottom-color: $primary-blue;
+            color: $primary-blue;
+            font-weight: 700;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        max-width: 340px;
+    }
+
+    &__input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__input {
+        border: 1px solid $grey-100;
+        border-radius: 4px;
+        box-sizing: border-box;
+        color: $grey-800;
+        font-family: 'Pretendard', sans-serif;
+        font-size: $font-size-body;
+        height: 52px;
+        outline: none;
+        padding: 0 16px;
+        width: 100%;
+
+        &::placeholder {
+            color: $grey-200;
+        }
+
+        &:focus {
+            border-color: $primary-blue;
+        }
+    }
+
+    &__utils {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__find {
+        background: none;
+        border: none;
+        color: $grey-500;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    &__save {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: $grey-500;
+        cursor: pointer;
+        font-size: 13px;
+
+        input[type='radio'] {
+            accent-color: $primary-blue;
+            cursor: pointer;
+            height: 16px;
+            width: 16px;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    &__btn {
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        flex: 1;
+        font-family: 'Pretendard', sans-serif;
+        font-size: $font-size-body;
+        font-weight: 700;
+        height: 52px;
+        text-align: center;
+
+        &--signup {
+            background-color: $grey-100;
+            color: $grey-800;
+            &:hover {
+                background-color: $grey-50;
+            }
+        }
+
+        &--submit {
+            background-color: $primary-blue;
+            color: $white;
+            &:hover {
+                background-color: $primary-blue-hover;
+            }
+        }
+
+        &--full {
+            width: 100%;
+            flex: none;
+        }
+    }
+
+    &__divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 40px 0 16px;
+        width: 100%;
+        max-width: 340px;
+        color: $grey-200;
+        font-size: 13px;
+
+        &::before,
+        &::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: $grey-100;
+        }
+    }
+
+    &__social {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        max-width: 340px;
+    }
+
+    &__social-btn {
+        align-items: center;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        font-family: 'Pretendard', sans-serif;
+        font-size: $font-size-body;
+        font-weight: 700;
+        height: 52px;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+
+        &--kakao {
+            background-color: $kakao-yellow;
+            color: $grey-800;
+        }
+
+        &--google {
+            background-color: $bg-white;
+            border: 1px solid $grey-100;
+            color: $grey-800;
+        }
+    }
+
+    &__social-icon {
+        font-size: 20px;
+    }
+
+    &__back-link {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 24px;
+        color: $grey-500;
+        font-size: 13px;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__register {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 40px;
+        width: 100%;
+        max-width: 340px;
+
+        &-title {
+            color: $grey-800;
+            font-size: $font-size-body;
+            font-weight: 700;
+        }
+
+        &-desc {
+            color: $grey-500;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        &-btn {
+            background-color: $grey-100;
+            border: none;
+            border-radius: 4px;
+            color: $grey-800;
+            cursor: pointer;
+            font-family: 'Pretendard', sans-serif;
+            font-size: $font-size-body;
+            font-weight: 700;
+            height: 52px;
+            margin-top: 8px;
+            text-align: center;
+            transition: background-color 0.2s ease;
+            width: 100%;
+
+            &:hover {
+                background-color: $grey-50;
+            }
+        }
+    }
+}
