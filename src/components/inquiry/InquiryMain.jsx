@@ -1,14 +1,14 @@
-import { FiAlertCircle } from "react-icons/fi";
-import { IoIosSearch } from "react-icons/io";
-import "./inquiry.scss";
+import { CiCircleAlert } from 'react-icons/ci';
+import { IoIosSearch } from 'react-icons/io';
+import './inquiry.scss';
 
-const InquiryMain = () => {
+const InquiryMain = ({ onWrite }) => {
     return (
         <div className="inquiry">
             <h2 className="inquiry__title">1:1 상담</h2>
 
             <div className="inquiry__search">
-                <span className="inquiry__search-placeholder">문의사항을 검색하세요</span>
+                <input className="inquiry__search-input" type="text" placeholder="문의사항을 검색하세요" />
                 <div className="inquiry__search-icon">
                     <IoIosSearch />
                 </div>
@@ -35,14 +35,13 @@ const InquiryMain = () => {
 
                 <div className="inquiry__empty">
                     <div className="inquiry__empty-icon">
-                        <FiAlertCircle />
-                        <div className="inquiry__empty-icon-circle" />
+                        <CiCircleAlert />
                     </div>
                     <p className="inquiry__empty-text">문의결과가 없습니다.</p>
                 </div>
             </div>
 
-            <button className="inquiry__write-btn">글쓰기</button>
+            <button className="inquiry__write-btn" onClick={onWrite}>글쓰기</button>
         </div>
     );
 };
