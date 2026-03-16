@@ -144,6 +144,8 @@
 
     &__inner {
         width: 100%;
+        overflow: hidden;
+        position: relative;
     }
 
     &__visual {
@@ -161,6 +163,26 @@
                 text-transform: uppercase;
                 align-items: center;
                 text-align: center;
+            }
+        }
+        &-middle {
+            position: absolute;
+            left: 0;
+            top: 38.3%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2226px;
+            gap: 40px;
+            background: #151789;
+            color: #ffffff;
+            font-family: 'PP Mori';
+            font-size: 90px;
+            font-weight: 600;
+            letter-spacing: -2.7px;
+            span {
+                white-space: nowrap;
+                padding-top: 10px;
             }
         }
         &-line {
@@ -242,11 +264,11 @@
         &-titleBox {
             display: flex;
             flex-direction: column;
-            font-size: 14px;
+            font-size: clamp(11px, 1vw, 14px);
             &-title {
                 display: flex;
                 flex-direction: column;
-                font-size: 24px;
+                font-size: clamp(16px, 1.7vw, 24px);
                 margin-top: 10px;
                 gap: 5px;
             }
@@ -254,6 +276,9 @@
         &-productList {
             display: flex;
             margin-top: 50px;
+            overflow: hidden;
+            gap: 20px;
+            width: calc(597px * 3);
         }
     }
     &__section3 {
@@ -273,11 +298,11 @@
         &-titleBox {
             display: flex;
             flex-direction: column;
-            font-size: 14px;
+            font-size: clamp(11px, 1vw, 14px);
             &-title {
                 display: flex;
                 flex-direction: column;
-                font-size: 24px;
+                font-size: clamp(16px, 1.7vw, 24px);
                 margin-top: 10px;
                 gap: 5px;
             }
@@ -285,7 +310,7 @@
         &-brandBox {
             display: flex;
             margin-top: 50px;
-            gap: 10px;
+            // gap: 10px;
         }
     }
     &__section4 {
@@ -304,11 +329,11 @@
         &-titleBox {
             display: flex;
             flex-direction: column;
-            font-size: 14px;
+            font-size: clamp(11px, 1vw, 14px);
             &-title {
                 display: flex;
                 flex-direction: column;
-                font-size: 24px;
+                font-size: clamp(16px, 1.7vw, 24px);
                 margin-top: 10px;
                 gap: 5px;
             }
@@ -327,6 +352,7 @@
             height: 100%;
             width: 100%;
             position: relative;
+            overflow: hidden;
         }
         &-title {
             width: 100%;
@@ -373,7 +399,7 @@
         }
 
         &-endBanner {
-          margin-top: 30px;
+            margin-top: 30px;
             &-wrap {
                 display: flex;
                 border-top: 1px dashed rgba(21, 23, 137, 0.8);
@@ -413,8 +439,9 @@
             &-3,
             &-4,
             &-5 {
-                width: 597px;
-                height: 671px;
+                width: clamp(200px, 32vw, 597px);
+                height: clamp(300px, 45vw, 671px);
+                flex-shrink: 0;
                 img {
                     width: 100%;
                     height: 100%;
@@ -433,6 +460,7 @@
                 overflow: hidden;
                 background: rgba(255, 255, 255, 0.1);
                 padding: 30px;
+                border: 1px dashed rgba(21, 23, 137, 0.8);
                 img {
                     position: absolute;
                     top: 0;
@@ -440,15 +468,15 @@
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    display: none;
+                    // display: none;
                 }
                 &-title {
-                    font-size: 27px;
+                    font-size: clamp(18px, 3vw, 27px);
                     white-space: pre-line;
                     margin-bottom: 10px;
                 }
                 &-dsc {
-                    font-size: 15px;
+                    font-size: clamp(12px, 2vw, 15px);
                     white-space: pre-line;
                     line-height: 153.333%;
                 }
@@ -459,20 +487,21 @@
             &-2,
             &-3,
             &-4 {
-                width: 465px;
-                padding: 25px 0 25px 25px;
+                width: clamp(200px, 32.3vw, 465px); // 465/1440*100
+                padding: clamp(15px, 1.7vw, 25px) 0 clamp(15px, 1.7vw, 25px)
+                    clamp(15px, 1.7vw, 25px);
                 &-contition {
-                    font-size: 14px;
+                    font-size: clamp(10px, 0.97vw, 14px);
                     font-weight: 600;
                 }
                 &-grade {
                     font-family: 'PP Mori';
-                    font-size: 105px;
                     font-weight: 600;
-                    letter-spacing: -3.15px;
+                    font-size: clamp(48px, 7.3vw, 105px);
+                    letter-spacing: clamp(-1px, -0.22vw, -3.15px);
                 }
                 &-benefit {
-                    font-size: 17px;
+                    font-size: clamp(12px, 1.18vw, 17px);
                     white-space: pre-line;
                 }
             }
@@ -500,7 +529,8 @@
             &-2,
             &-3,
             &-4 {
-                padding: 25px 200px 25px 25px;
+                padding: clamp(5px, 1vw, 25px) clamp(20px, 10vw, 200px) clamp(5px, 1vw, 25px)
+                    clamp(5px, 1vw, 25px);
                 border-right: 1px dashed rgba(21, 23, 137, 0.8);
                 border-left: 1px dashed rgba(21, 23, 137, 0.8);
                 margin-right: -1px;
@@ -517,16 +547,17 @@
                 }
                 &-num {
                     font-family: 'PP Mori';
-                    font-size: 105px;
+                    font-size: clamp(50px, 7vw, 105px);
                     font-weight: 600;
                     line-height: 70px; /* 66.667% */
                     letter-spacing: 4.2px;
                 }
                 &-sub {
-                    font-size: 50px;
+                    font-size: clamp(24px, 3.5vw, 50px);
                     font-weight: 600;
                     line-height: 55px; /* 110% */
                     letter-spacing: 2px;
+                    white-space: nowrap;
                 }
             }
         }
@@ -576,6 +607,35 @@
                 right: 62px;
             }
         }
+        &__section3 {
+            &-brandBox {
+                display: flex;
+                margin-top: 50px;
+                // gap: 10px;
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                img {
+                    display: none;
+                }
+            }
+        }
+
+        &__section4 {
+            &-membershipBox {
+                height: 100%;
+                margin-top: 10px;
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        &__section5 {
+            // endBanner-wrap 자식들을 세로로
+            &-endBanner-wrap {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); // 2x2로 전환
+            }
+        }
         &__productItem {
             &-sec1 {
                 height: clamp(240px, 50vw, 400px);
@@ -587,6 +647,65 @@
                         height: 100%;
                         object-fit: contain;
                     }
+                }
+            }
+            &-sec3 {
+                &-1,
+                &-2,
+                &-3,
+                &-4 {
+                    width: 100%;
+                    height: 220px;
+                }
+            }
+            &-sec4 {
+                &-1,
+                &-2,
+                &-3,
+                &-4 {
+                    height: 100%;
+                    width: 100%;
+                    &-contition {
+                        font-size: clamp(10px, 3vw, 14px);
+                        font-weight: 600;
+                    }
+                    &-grade {
+                        font-family: 'PP Mori';
+                        font-weight: 600;
+                        font-size: clamp(48px, 12vw, 105px);
+                        letter-spacing: clamp(-1px, -0.22vw, -3.15px);
+                    }
+                    &-benefit {
+                        font-size: clamp(12px, 3vw, 17px);
+                        white-space: pre-line;
+                    }
+                }
+            }
+            &-sec5 {
+                &-1,
+                &-2,
+                &-3,
+                &-4 {
+                    padding: 20px;
+                    border-right: none;
+                    border-left: none;
+                    border-bottom: 1px dashed rgba(21, 23, 137, 0.8);
+                    border-right: 1px dashed rgba(21, 23, 137, 0.8);
+                    margin-right: 0;
+                    &-num {
+                    }
+                    &-sub {
+                        width: 100%;
+                    }
+                }
+
+                &-1,
+                &-3 {
+                    border-left: 1px dashed rgba(21, 23, 137, 0.8);
+                }
+                &-3,
+                &4 {
+                    border-bottom: none;
                 }
             }
         }
