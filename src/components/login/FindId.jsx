@@ -5,7 +5,7 @@ const FindId = ({ onFindFwClick, onLoginClick }) => {
     const [method, setMethod] = useState('email');
 
     return (
-        <div className="login">
+        <div className="login login--no-nav">
             <h2 className="login__title">아이디 찾기</h2>
 
             <div className="login__tabs">

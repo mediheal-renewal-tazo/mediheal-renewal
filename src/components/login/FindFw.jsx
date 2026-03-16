@@ -2,7 +2,7 @@ import './loginAll.scss';
 
 const FindFw = ({ onFindIdClick, onLoginClick }) => {
     return (
-        <div className="login">
+        <div className="login login--no-nav">
             <h2 className="login__title">비밀번호 찾기</h2>
 
             <div className="login__tabs">

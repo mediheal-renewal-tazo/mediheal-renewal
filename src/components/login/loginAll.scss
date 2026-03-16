@@ -25,6 +25,10 @@ $font-size-h2: 32px;
     flex-direction: column;
     align-items: center;
 
+    &--no-nav {
+        padding-top: calc(60px + 64px);
+    }
+
     &__nav {
         display: flex;
         justify-content: space-between;

@@ -2,7 +2,7 @@ import './loginAll.scss';
 
 const SignUp = ({ onLoginClick }) => {
     return (
-        <div className="login">
+        <div className="login login--no-nav">
             <h2 className="login__title">일반 회원가입</h2>
 
             <form className="login__form">
