@@ -12,6 +12,7 @@
     CART: '/cart',
     INQUIRY: '/inquiry',
     READY: '/ready',
+    LOGIN: '/login',
 };
 
 export const HEADER_NAV_ITEMS = [

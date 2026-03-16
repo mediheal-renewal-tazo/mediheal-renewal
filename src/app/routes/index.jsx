@@ -2,15 +2,16 @@
 import { ROUTE_PATHS } from '@/app/routes/paths';
 import RootLayout from '@/app/layouts/RootLayout';
 import Home from '@/pages/home/Home';
-import Ready from '../../pages/ready/Ready';
-import Products from '../../pages/shop/Products';
-import Brand from '../../pages/brand/Brand';
-import Membership from '../../pages/membership/Membership';
-import Notice from '../../pages/notice/Notice';
-import Kediheal from '../../pages/kediheal/Kediheal';
-import MyPage from '../../pages/myPage/MyPage';
-import Cart from '../../pages/cart/Cart';
-import Inquiry from '../../pages/inquiry/Inquiry';
+import Ready from '@/pages/ready/Ready';
+import Products from '@/pages/shop/Products';
+import Brand from '@/pages/brand/Brand';
+import Membership from '@/pages/membership/Membership';
+import Notice from '@/pages/notice/Notice';
+import Kediheal from '@/pages/kediheal/Kediheal';
+import MyPage from '@/pages/myPage/MyPage';
+import Cart from '@/pages/cart/Cart';
+import Inquiry from '@/pages/inquiry/Inquiry';
+import Login from '@/pages/login/Login';
 
 const AppRoutes = () => {
     return (
@@ -27,6 +28,7 @@ const AppRoutes = () => {
                 <Route path={ROUTE_PATHS.INQUIRY} element={<Inquiry />} />
                 <Route path={ROUTE_PATHS.READY} element={<Ready />} />
             </Route>
+            <Route path={ROUTE_PATHS.LOGIN} element={<Login />} />
         </Routes>
     );
 };
