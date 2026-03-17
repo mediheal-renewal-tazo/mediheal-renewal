@@ -20,6 +20,25 @@ const Header = ({ theme = 'light' }) => {
         return () => cancelAnimationFrame(frame);
     }, []);
 
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') setIsMenuOpen(false);
+        };
+        const handleClickOutside = (e) => {
+            if (!e.target.closest('.header')) setIsMenuOpen(false);
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isMenuOpen]);
+
     return (
         <header className={headerClassName}>
             <div className="header__inner">
