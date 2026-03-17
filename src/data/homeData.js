@@ -5,11 +5,17 @@ import sec1_img02 from '@/assets/images/home/pd_img02.png';
 import sec1_img03 from '@/assets/images/home/pd_img03.png';
 import sec1_img04 from '@/assets/images/home/pd_img04.png';
 
-import sec2_img01 from '@/assets/images/home/pd1_img01.png';
-import sec2_img02 from '@/assets/images/home/pd1_img02.png';
-import sec2_img03 from '@/assets/images/home/pd1_img03.png';
-import sec2_img04 from '@/assets/images/home/pd1_img04.png';
-import sec2_img05 from '@/assets/images/home/pd1_img05.png';
+import sec2_img01 from '@/assets/images/home/pd1_img01.jpg';
+import sec2_img02 from '@/assets/images/home/pd1_img02.jpg';
+import sec2_img03 from '@/assets/images/home/pd1_img03.jpg';
+import sec2_img04 from '@/assets/images/home/pd1_img04.jpg';
+import sec2_img05 from '@/assets/images/home/pd1_img05.jpg';
+
+import sec2_img01_hover from '@/assets/images/home/pd1_img01_hover.jpg';
+import sec2_img02_hover from '@/assets/images/home/pd1_img02_hover.jpg';
+import sec2_img03_hover from '@/assets/images/home/pd1_img03_hover.jpg';
+import sec2_img04_hover from '@/assets/images/home/pd1_img04_hover.jpg';
+import sec2_img05_hover from '@/assets/images/home/pd1_img05_hover.jpg';
 
 import sec3_img01 from '@/assets/images/home/sec3_card_img01.jpg';
 import sec3_img02 from '@/assets/images/home/sec3_card_img02.jpg';
@@ -24,11 +30,46 @@ export const sectionData1 = [
 ];
 
 export const sectionData2 = [
-    { id: 1, img: sec2_img01, addr: '#' },
-    { id: 2, img: sec2_img02, addr: '#' },
-    { id: 3, img: sec2_img03, addr: '#' },
-    { id: 4, img: sec2_img04, addr: '#' },
-    { id: 5, img: sec2_img05, addr: '#' },
+    {
+        id: 1,
+        img: sec2_img01,
+        hoverImg: sec2_img01_hover,
+        addr: '#',
+        productName: '마데카소사이드 흔적 토너패드 100매',
+        price: '26,000원',
+    },
+    {
+        id: 2,
+        img: sec2_img02,
+        hoverImg: sec2_img02_hover,
+        addr: '#',
+        productName: '피디알엔 모공 탄력 세럼 40ml',
+        price: '22,000원',
+    },
+    {
+        id: 3,
+        img: sec2_img03,
+        hoverImg: sec2_img03_hover,
+        addr: '#',
+        productName: '마데카소사이드 흔적 리페어 세럼 40ml',
+        price: '22,000원',
+    },
+    {
+        id: 4,
+        img: sec2_img04,
+        hoverImg: sec2_img04_hover,
+        addr: '#',
+        productName: '레티놀 콜라겐 크림 윤곽 마스크 10매',
+        price: '40,000원',
+    },
+    {
+        id: 5,
+        img: sec2_img05,
+        hoverImg: sec2_img05_hover,
+        addr: '#',
+        productName: '티트리 에센셜 마스크 진정 수분 10매',
+        price: '20,000원',
+    },
 ];
 
 export const sectionData3 = [
