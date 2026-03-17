@@ -4,10 +4,12 @@ import { HEADER_NAV_ITEMS, ROUTE_PATHS } from '@/app/routes/paths';
 import { GiHamburgerMenu } from "react-icons/gi";
 import logoImg1 from '@/assets/logos/logo_1.png';
 import logoImg2 from '@/assets/logos/logo_2.png';
+import HeaderSearch from './HeaderSearch';
 import './Header.scss';
 
 const Header = ({ theme = 'light' }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const logoSrc = theme === 'dark' ? logoImg1 : logoImg2;
     const headerClassName = `header header--${theme}${isMenuOpen ? ' header--menu-open' : ''}${isVisible ? ' header--visible' : ''}`;
@@ -58,7 +60,12 @@ const Header = ({ theme = 'light' }) => {
                 </div>
 
                 <div className="header__actions">
-                    <button className="header__icon-btn" type="button" aria-label="Search">
+                    <button
+                        className="header__icon-btn"
+                        type="button"
+                        aria-label="Search"
+                        onClick={() => setIsSearchOpen((prev) => !prev)}
+                    >
                         <div className="header__search-btn">SEARCH</div>
                     </button>
                     <Link className="header__icon-btn" to={ROUTE_PATHS.LOGIN} aria-label="My page">
@@ -74,6 +81,8 @@ const Header = ({ theme = 'light' }) => {
                     </div>
                 </div>
             </div>
+
+            <HeaderSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
             {isMenuOpen ? (
                 <nav className="header__mobile-menu" aria-label="Primary menu mobile">
