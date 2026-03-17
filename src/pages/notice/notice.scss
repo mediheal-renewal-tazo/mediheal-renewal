@@ -1,0 +1,17 @@
+.notice {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 20px;
+
+    &__header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    &__title {
+        font-size: 40px;
+        font-weight: 700;
+        color: #272727;
+        letter-spacing: -0.5px;
+    }
+}
