@@ -226,14 +226,14 @@
             cursor: default;
 
             &--ko-headline {
-                font-size: 60px;
+                font-size: clamp(21px, 4.2vw, 60px);
                 font-weight: 700;
-                line-height: 100px;
+                line-height: 1.67;
                 letter-spacing: -0.6px;
             }
 
             &--ko-body {
-                font-size: 30px;
+                font-size: clamp(11px, 2.1vw, 30px);
                 font-weight: 500;
                 line-height: 130%;
                 letter-spacing: -0.3px;
@@ -388,15 +388,15 @@
 
             &--ko-headline {
                 text-align: right;
-                font-size: 60px;
+                font-size: clamp(21px, 4.2vw, 60px);
                 font-weight: 700;
-                line-height: 100px;
+                line-height: 1.67;
                 letter-spacing: -0.6px;
             }
 
             &--ko-body {
                 text-align: right;
-                font-size: 30px;
+                font-size: clamp(11px, 2.1vw, 30px);
                 font-weight: 500;
                 line-height: 130%;
                 letter-spacing: -0.3px;
@@ -692,7 +692,22 @@
             height: 1200px;
             &-title {
                 font-size: clamp(40px, 8.5vw, 90px);
+                &--ko-headline {
+                    font-size: clamp(21px, 5.2vw, 60px);
+                    font-weight: 700;
+                    line-height: 1.67;
+                    letter-spacing: -0.6px;
+                }
+
+                &--ko-body {
+                    font-size: clamp(11px, 3.1vw, 30px);
+                    font-weight: 500;
+                    line-height: 130%;
+                    letter-spacing: -0.3px;
+                    white-space: pre-line;
+                }
             }
+
             &-productList {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
