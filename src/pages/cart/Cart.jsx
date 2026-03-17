@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import CartItem from '../../components/common/cart/CartItem';
-import OrderComplete from '../../components/common/cart/OrderComplete';
-import CartSummary from '../../components/common/cart/CartSummary';
-import CartTotal from '../../components/common/cart/CartTotal';
-import OrderStep from '../../components/common/cart/OrderStep';
-import OrderDetail from '../../components/common/cart/order-detail/OrderDetail';
+import CartItem from '../../components/cart/CartItem';
+import OrderComplete from '../../components/cart/OrderComplete';
+import CartSummary from '../../components/cart/CartSummary';
+import CartTotal from '../../components/cart/CartTotal';
+import OrderStep from '../../components/cart/OrderStep';
+import OrderDetail from '../../components/cart/order-detail/OrderDetail';
 
 // API 모킹 함수 (필요시 활성화)
 // import { getCart, updateCartItem, removeCartItem } from '../../api/cart.api';
