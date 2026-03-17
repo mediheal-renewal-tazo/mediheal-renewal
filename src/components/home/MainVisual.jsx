@@ -77,7 +77,7 @@ const MainVisual = () => {
                     >
                         {rightKo ? (
                             <>
-                                <span>진자 피부 회복이</span>
+                                <span>진짜 피부 회복이</span>
                                 <span>시작된다</span>
                             </>
                         ) : (
