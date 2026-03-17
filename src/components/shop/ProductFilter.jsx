@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { categoryList } from '@/data/productsFilterData';
 
 const ProductFilter = () => {
     const [selectedFilters, setSelectedFilters] = useState([]);
@@ -13,52 +14,116 @@ const ProductFilter = () => {
         <div className="product__filter">
             <div className="product__category">
                 <ul>
-                    <li>
-                        <img src="@/assets/images/products/category/ma_icon1.png" alt="" />
-                        전제품
-                    </li>
-                    <li>
-                        <img src="@/assets/images/products/category/ma_icon2.png" alt="" />
-                        NEW
-                    </li>
-                    <li>
-                        <img src="@/assets/images/products/category/ma_icon3.png" alt="" />
-                        ONLY
-                    </li>
-                    <li>
-                        <img src="@/assets/images/products/category/ma_icon4.png" alt="" />
-                        마스크팩
-                    </li>
-                    <li>
-                        <img src="@/assets/images/products/category/ma_icon5.png" alt="" />
-                        패드
-                    </li>
-                    <li>
-                        <img src="@/assets/images/products/category/ma_icon6.png" alt="" />
-                        스킨케어
-                    </li>
-                    <li>
-                        <img src="@/assets/images/products/category/ma_icon7.png" alt="" />
-                        클렌징
-                    </li>
-                    <li>
-                        <img src="@/assets/images/products/category/ma_icon8.png" alt="" />
-                        선케어
-                    </li>
+                    {categoryList.map((item) => (
+                        <li key={item.value}>
+                            <img src={item.icon} alt={item.label} />
+                            <span>{item.label}</span>
+                        </li>
+                    ))}
                 </ul>
+
                 <div className="product__filter-floor">
                     <div className="products__function">
+                        <div className="filter-title">기능별</div>
+
                         <ul>
-                            <li onClick={() => toggleFilter('진정')}>진정</li>
-                            <li onClick={() => toggleFilter('수분보습')}>수분보습</li>
-                            <li onClick={() => toggleFilter('탄력')}>탄력</li>
+                            <li
+                                className={selectedFilters.includes('진정') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('진정')}
+                            >
+                                진정
+                            </li>
+                            <li
+                                className={selectedFilters.includes('수분보습') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('수분보습')}
+                            >
+                                수분보습
+                            </li>
+                            <li
+                                className={selectedFilters.includes('흔적') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('흔적')}
+                            >
+                                흔적
+                            </li>
+                            <li
+                                className={selectedFilters.includes('모공') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('모공')}
+                            >
+                                모공
+                            </li>
+                            <li
+                                className={selectedFilters.includes('미백') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('미백')}
+                            >
+                                미백
+                            </li>
+                            <li
+                                className={selectedFilters.includes('영양') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('영양')}
+                            >
+                                영양
+                            </li>
+                            <li
+                                className={
+                                    selectedFilters.includes('자외선차단') ? 'is-active' : ''
+                                }
+                                onClick={() => toggleFilter('자외선차단')}
+                            >
+                                자외선차단
+                            </li>
+                            <li
+                                className={selectedFilters.includes('레티놀') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('레티놀')}
+                            >
+                                레티놀
+                            </li>
                         </ul>
                     </div>
 
                     <div className="products__line">
+                        <div className="filter-title">라인별</div>
+
                         <ul>
-                            <li onClick={() => toggleFilter('티트리')}>티트리</li>
-                            <li onClick={() => toggleFilter('콜라겐')}>콜라겐</li>
+                            <li
+                                className={selectedFilters.includes('티트리') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('티트리')}
+                            >
+                                티트리
+                            </li>
+                            <li
+                                className={selectedFilters.includes('콜라겐') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('콜라겐')}
+                            >
+                                콜라겐
+                            </li>
+                            <li
+                                className={selectedFilters.includes('비타민') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('비타민')}
+                            >
+                                비타민
+                            </li>
+                            <li
+                                className={
+                                    selectedFilters.includes('마데카소사이드') ? 'is-active' : ''
+                                }
+                                onClick={() => toggleFilter('마데카소사이드')}
+                            >
+                                마데카소사이드
+                            </li>
+                            <li
+                                className={selectedFilters.includes('레티놀') ? 'is-active' : ''}
+                                onClick={() => toggleFilter('레티놀')}
+                            >
+                                레티놀
+                            </li>
+                            <li
+                                className={
+                                    selectedFilters.includes('워터마이드') ? 'is-active' : ''
+                                }
+                                onClick={() => toggleFilter('워터마이드')}
+                            >
+                                워터마이드
+                            </li>
                         </ul>
                     </div>
 
@@ -69,7 +134,8 @@ const ProductFilter = () => {
                                 className="chip"
                                 onClick={() => toggleFilter(filter)}
                             >
-                                {filter} ✕
+                                <span className="chip__label">{filter}</span>
+                                <span className="chip__close">✕</span>
                             </span>
                         ))}
                     </div>

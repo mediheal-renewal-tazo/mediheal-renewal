@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import ProductsCard from '@/pages/shop/ProductsList';
+import ProductsCard from '@/components/shop/ProductsCard';
 import productsData from '@/data/productsData';
-import ProductsPagination from '@/components/ProductsPagination';
+import ProductsPagination from '@/components/shop/ProductsPagination';
 
 const ProductsMain = () => {
     const [sortType, setSortType] = useState('new');

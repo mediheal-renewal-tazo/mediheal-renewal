@@ -1,0 +1,172 @@
+.product__wrap {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 160px 0;
+}
+
+.product__inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+    .product__wrap {
+        padding: 80px 0;
+    }
+
+    .product__inner {
+        padding: 0 16px;
+    }
+}
+
+.product__filter {
+    .product__category {
+        > ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        > ul > li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        > ul > li img {
+            width: clamp(80px, 6vw, 120px);
+            height: clamp(80px, 6vw, 120px);
+            object-fit: contain;
+            display: block;
+        }
+
+        > ul > li span {
+            margin-top: 8px;
+            color: #1e1e1e;
+            text-align: center;
+            font-family: 'Pretendard', sans-serif;
+            font-size: clamp(13px, 1vw, 17px);
+            font-style: normal;
+            font-weight: 600;
+            line-height: 150%;
+        }
+    }
+
+    .product__filter-floor {
+        display: flex;
+        flex-direction: column;
+        margin-top: 32px;
+    }
+
+    .products__function,
+    .products__line {
+        display: flex;
+        align-items: stretch;
+    }
+
+    /* 기능별: 위 + 아래 */
+    .products__function {
+        border-top: 1px solid var(--grey-scale-grey-200, #aaa);
+        border-bottom: 1px solid var(--grey-scale-grey-200, #aaa);
+    }
+
+    /* 라인별: 아래만 */
+    .products__line {
+        border-bottom: 1px solid var(--grey-scale-grey-200, #aaa);
+    }
+
+    .filter-title {
+        width: clamp(140px, 14vw, 217px);
+        min-width: clamp(140px, 14vw, 217px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: clamp(18px, 2vw, 30px) 0;
+        background: #f4f6fa;
+
+        color: var(--grey-scale-grey-900, #1e1e1e);
+        font-family: 'Pretendard', sans-serif;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 150%;
+        box-sizing: border-box;
+        flex-shrink: 0;
+    }
+
+    .products__function ul,
+    .products__line ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+        gap: 24px;
+        padding: clamp(18px, 2vw, 30px) 0 clamp(18px, 2vw, 30px) 32px;
+        margin: 0;
+        list-style: none;
+        flex: 1;
+        box-sizing: border-box;
+    }
+
+    .products__function li,
+    .products__line li {
+        cursor: pointer;
+        color: var(--grey-scale-grey-200, #aaa);
+        font-family: 'Pretendard', sans-serif;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%;
+        letter-spacing: 0;
+        transition:
+            color 0.2s ease,
+            font-weight 0.2s ease;
+    }
+
+    .products__function li.is-active,
+    .products__line li.is-active {
+        color: var(--primary-blue, #151789);
+        font-family: 'Pretendard', sans-serif;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+    }
+
+    .product__selected-chip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .product__selected-chip .chip {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 4px 10px;
+        border-radius: 60px;
+        background: var(--primary-blue, #151789);
+
+        color: var(--Bk_Wh-Wh, #fff);
+        font-family: 'Pretendard', sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .product__selected-chip .chip:hover {
+        opacity: 0.85;
+    }
+}
