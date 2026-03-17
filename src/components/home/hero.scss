@@ -156,7 +156,9 @@
 
             .left,
             .right {
+                flex: 1;
                 font-family: 'PP Mori';
+                font-weight: 600;
                 display: flex;
                 flex-direction: column;
                 font-size: clamp(28px, 4vw, 58px);
@@ -180,6 +182,7 @@
             font-size: 90px;
             font-weight: 600;
             letter-spacing: -2.7px;
+            display: none; //인터렉션 넣어줘야 함
             span {
                 white-space: nowrap;
                 padding-top: 10px;
