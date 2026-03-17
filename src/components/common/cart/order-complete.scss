@@ -1,0 +1,191 @@
+.order-complete {
+    padding: 100px 0;
+
+    .inner {
+        width: 926px;
+        margin: auto;
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    &__title {
+        color: #272727;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 150%;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    &__subtitle {
+        color: #474747;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    &__list {
+    }
+
+    &__list-head {
+        display: flex;
+        align-items: center;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--GreyScale-grey-700, #323232);
+
+        .order-complete__col {
+            color: var(--GreyScale-grey-700, #323232);
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 150%;
+
+            &--info {
+                text-align: left;
+            }
+        }
+    }
+
+    &__list-body {
+        border-bottom: 1px solid #c6c6c6;
+    }
+
+    &__row {
+        display: flex;
+        align-items: center;
+        padding: 30px 0;
+        border-bottom: 1px solid #f2f2f2;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .order-complete__col {
+            text-align: center;
+
+            &--qty,
+            &--shipping,
+            &--discount {
+                color: var(--GreyScale-grey-500, #474747);
+                text-align: center;
+                font-size: 19px;
+                font-weight: 400;
+                line-height: 150%;
+            }
+
+            &--total {
+                strong {
+                    color: var(--GreyScale-grey-600, #414141);
+                    text-align: center;
+                    font-size: 19px;
+                    font-weight: 700;
+                    line-height: 150%;
+                }
+            }
+        }
+    }
+
+    &__col {
+        flex-shrink: 0;
+
+        &--info {
+            width: 476px;
+        }
+
+        &--qty {
+            width: 90px;
+        }
+
+        &--shipping,
+        &--discount,
+        &--total {
+            width: 120px;
+        }
+    }
+
+    &__info-head {
+        display: inline-block;
+        width: 98px;
+        /* 썸네일 너비와 동일하게 */
+        text-align: center;
+    }
+
+    &__product {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__thumb {
+        width: 98px;
+        height: 79px;
+        flex-shrink: 0;
+        background-color: #fafafa;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &__name {
+        color: #474747;
+        font-size: 19px;
+        font-weight: 600;
+        line-height: 150%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__summary {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 40px 20px;
+        gap: 30px;
+        border-bottom: 1px solid #e5e5e5;
+
+        &-title {
+            color: #414141;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        &-val {
+            color: #151789;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        &-unit {
+            font-size: 24px;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+    }
+
+    &__actions {
+        margin-top: 60px;
+        text-align: center;
+    }
+
+    &__btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: 60px;
+        background-color: #151789;
+        /* 찐 네이비 */
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: #11126b;
+        }
+    }
+}
