@@ -3,28 +3,22 @@ import './Home.scss';
 
 const FADE_DURATION = 900;
 const TITLES = ['MEET', 'THE INGREDIENTS', 'THE MOST EFFICIENT WAY'];
-const TOTAL_TITLE_LENGTH = TITLES.reduce((total, title) => total + title.length, 0);
 
-const getVisibleCharacterCounts = (count) => {
-    let remaining = Math.floor((Math.min(count, 100) / 100) * TOTAL_TITLE_LENGTH);
-
-    return TITLES.map((title) => {
-        const visibleCount = Math.max(0, Math.min(title.length, remaining));
-        remaining -= visibleCount;
-
-        return visibleCount;
-    });
-};
+// 카운트 100 도달 후 각 타이틀이 등장하기까지의 딜레이(ms)
+const TITLE_DELAYS = [0, 350, 700];
+// 마지막 타이틀 등장 후 페이드아웃 시작까지의 딜레이(ms)
+const FADE_START_DELAY = 1500;
 
 const Intro = ({ onFadeStart, onFinish }) => {
     const [count, setCount] = useState(1);
     const [fade, setFade] = useState(false);
-    const visibleCharacterCounts = getVisibleCharacterCounts(count);
+    const [visibleTitles, setVisibleTitles] = useState([]);
 
     useEffect(() => {
         let current = 1;
         let finishTimeout;
         let fadeFrame;
+        const titleTimeouts = [];
 
         const interval = setInterval(() => {
             current += 1;
@@ -32,13 +26,26 @@ const Intro = ({ onFadeStart, onFinish }) => {
 
             if (current >= 100) {
                 clearInterval(interval);
-                fadeFrame = requestAnimationFrame(() => {
-                    setFade(true);
-                    onFadeStart?.();
-                    finishTimeout = setTimeout(() => {
-                        onFinish();
-                    }, FADE_DURATION);
+
+                // 순서대로 타이틀 등장
+                TITLE_DELAYS.forEach((delay, index) => {
+                    const t = setTimeout(() => {
+                        setVisibleTitles((prev) => [...prev, index]);
+                    }, delay);
+                    titleTimeouts.push(t);
                 });
+
+                // 모든 타이틀 등장 후 페이드아웃
+                const fadeTimer = setTimeout(() => {
+                    fadeFrame = requestAnimationFrame(() => {
+                        setFade(true);
+                        onFadeStart?.();
+                        finishTimeout = setTimeout(() => {
+                            onFinish();
+                        }, FADE_DURATION);
+                    });
+                }, FADE_START_DELAY);
+                titleTimeouts.push(fadeTimer);
             }
         }, 12);
 
@@ -46,6 +53,7 @@ const Intro = ({ onFadeStart, onFinish }) => {
             clearInterval(interval);
             cancelAnimationFrame(fadeFrame);
             clearTimeout(finishTimeout);
+            titleTimeouts.forEach(clearTimeout);
         };
     }, [onFadeStart, onFinish]);
 
@@ -55,37 +63,15 @@ const Intro = ({ onFadeStart, onFinish }) => {
                 <div className="intro__top">
                     <div className="intro__title-group">
                         <div className="intro__count">{String(count).padStart(3, '0')}</div>
-                        {/* <div className="intro__count">{count}</div> */}
-                        <h1 className="intro__title">
-                            {TITLES[0].split('').map((character, index) => (
-                                <span
-                                    key={`${character}-${index}`}
-                                    className={`intro__char ${index < visibleCharacterCounts[0] ? 'is-visible' : ''}`}
-                                >
-                                    {character}
-                                </span>
-                            ))}
+                        <h1 className={`intro__title ${visibleTitles.includes(0) ? 'is-visible' : ''}`}>
+                            {TITLES[0]}
                         </h1>
                     </div>
-                    <h1 className="intro__title">
-                        {TITLES[1].split('').map((character, index) => (
-                            <span
-                                key={`${character}-${index}`}
-                                className={`intro__char ${index < visibleCharacterCounts[1] ? 'is-visible' : ''}`}
-                            >
-                                {character}
-                            </span>
-                        ))}
+                    <h1 className={`intro__title ${visibleTitles.includes(1) ? 'is-visible' : ''}`}>
+                        {TITLES[1]}
                     </h1>
-                    <h1 className="intro__title">
-                        {TITLES[2].split('').map((character, index) => (
-                            <span
-                                key={`${character}-${index}`}
-                                className={`intro__char ${index < visibleCharacterCounts[2] ? 'is-visible' : ''}`}
-                            >
-                                {character}
-                            </span>
-                        ))}
+                    <h1 className={`intro__title ${visibleTitles.includes(2) ? 'is-visible' : ''}`}>
+                        {TITLES[2]}
                     </h1>
                 </div>
             </div>
