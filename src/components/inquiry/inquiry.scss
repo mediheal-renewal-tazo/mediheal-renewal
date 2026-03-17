@@ -3,8 +3,8 @@
 // =====================
 $grey-800: #272727;
 $grey-500: #474747;
-$grey-200: #AAAAAA;
-$grey-100: #C6C6C6;
+$grey-200: #aaaaaa;
+$grey-100: #c6c6c6;
 $bg-white: #ffffff;
 $primary-blue: #151789;
 
@@ -18,8 +18,7 @@ $white: #ffffff;
 
 .inquiry {
     background-color: $bg-white;
-    min-height: 1144px;
-    padding: 160px clamp(16px, 18vw, 260px) 0;
+    padding: 160px clamp(16px, 18vw, 260px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,106 +35,66 @@ $white: #ffffff;
         margin-bottom: 60px;
     }
 
-    &__search {
-        align-items: center;
-        border: 2px solid $grey-100;
-        border-radius: 30px;
-        display: flex;
-        justify-content: space-between;
-        height: 50px;
-        overflow: hidden;
+    &__table {
         width: 100%;
-        max-width: 743px;
-        padding: 0 20px;
-        margin-bottom: 60px;
+        border-collapse: collapse;
+    }
 
-        &-input {
-            border: none;
-            outline: none;
-            color: $grey-800;
-            font-size: $font-size-body;
-            white-space: nowrap;
-            flex: 1;
+    &__th {
+        padding: 0 10px;
+        height: 80px;
+        font-size: clamp(13px, 1.7vw, 20px);
+        font-weight: 700;
+        color: $grey-800;
+        text-align: center;
+        vertical-align: middle;
+        border-bottom: 1px solid $grey-100;
 
-            &::placeholder {
-                color: $grey-200;
-            }
+        &--num {
+            width: 118px;
         }
 
-        &-icon {
-            aspect-ratio: 1;
-            display: flex;
-            height: 24px;
-            width: 24px;
-            font-size: 24px;
+        &--title {
+            text-align: left;
+        }
 
-            svg {
-                flex: 1;
-                width: 17.58px;
-            }
+        &--author {
+            width: 118px;
+        }
+
+        &--date {
+            width: 119px;
+        }
+
+        &--status {
+            width: 118px;
         }
     }
 
-    &__table {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+    &__row {
+        cursor: pointer;
 
-        &-header {
-            align-items: center;
-            border-bottom: 1px solid $grey-100;
-            display: flex;
-            height: 80px;
-            width: 100%;
+        &:hover {
+            background-color: #f9f9f9;
         }
+    }
 
-        &-col {
-            align-items: center;
-            display: flex;
-            gap: 10px;
-            height: 80px;
-            padding: 0 10px;
+    &__td {
+        padding: 0 10px;
+        height: 80px;
+        font-size: clamp(13px, 1.2vw, 17px);
+        color: $grey-500;
+        text-align: center;
+        vertical-align: middle;
+        border-bottom: 1px solid $grey-100;
 
-            &--num {
-                flex-shrink: 0;
-                width: 118px;
-            }
-
-            &--title {
-                flex: 1;
-            }
-
-            &--author {
-                flex-shrink: 0;
-                justify-content: center;
-                width: 118px;
-            }
-
-            &--date {
-                flex-shrink: 0;
-                justify-content: center;
-                width: 119px;
-            }
-
-            &--status {
-                flex-shrink: 0;
-                justify-content: center;
-                width: 118px;
-            }
-        }
-
-        &-label {
+        &--num {
             color: $grey-800;
-            font-size: clamp(13px, 1.7vw, 24px);
+            font-weight: 300;
+        }
 
-            .inquiry__table-col--author &,
-            .inquiry__table-col--status & {
-                text-align: center;
-            }
-
-            .inquiry__table-col--date & {
-                text-align: center;
-            }
+        &--title {
+            text-align: left;
         }
     }
 
@@ -313,7 +272,8 @@ $white: #ffffff;
 
 @media (max-width: 768px) {
     .inquiry {
-        &__table-col {
+        &__th,
+        &__td {
             &--author,
             &--date {
                 display: none;
@@ -322,7 +282,6 @@ $white: #ffffff;
             &--num,
             &--status {
                 width: auto;
-                flex-shrink: 0;
             }
         }
 
