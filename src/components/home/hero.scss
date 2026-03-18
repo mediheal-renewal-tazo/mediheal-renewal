@@ -8,14 +8,13 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    min-height: var(--hero-section-height, 100vh);
+    height: 100vh;
     background: #151789;
-    overflow: clip;
 
     &__sticky {
-        position: sticky;
-        top: 0;
-        height: 100vh;
+        position: relative;
+        width: 100%;
+        height: 100%;
     }
 
     &__inner {
@@ -24,16 +23,28 @@
         height: 100vh;
     }
 
+    &__main-dsc-wrap {
+        position: absolute;
+        inset: 0;
+        z-index: 999;
+        pointer-events: none;
+    }
+
     &__main-dsc {
         position: absolute;
         top: 80px;
         left: 30px;
-        z-index: 999;
-        transform: translate3d(0, var(--hero-main-dsc-offset, 0), 0);
-        will-change: transform;
 
         p {
             margin-bottom: 3px;
+        }
+
+        &--light {
+            color: #ffffff;
+        }
+
+        &--dark {
+            color: #151789;
         }
     }
 
@@ -41,14 +52,22 @@
         position: absolute;
         inset: 0;
         z-index: 99;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &__img-inner {
         width: 100%;
         height: 100vh;
         position: relative;
+        overflow: hidden;
+        background: #fff;
 
         img {
+            position: absolute;
+            top: 0;
+            left: 0;
             display: block;
             width: 100%;
             height: 100%;
@@ -70,34 +89,39 @@
     }
 
     &__description {
+        position: absolute;
+        top: calc(75vh + 24px);
+        left: 50%;
+        transform: translateX(-50%);
         font-size: 15px;
         font-weight: 400;
+        line-height: 22px;
         justify-content: center;
         text-align: center;
         color: #fff;
-        margin-top: 100px;
     }
 
     &__scene {
-        width: 430px;
-        height: 430px;
-        perspective: 1000px;
+        width: 494px;
+        height: 502px;
+        perspective: 50000px;
+        margin-top: 0;
     }
 
     &__cube {
         position: relative;
-        width: 430px;
-        height: 430px;
+        width: 494px;
+        height: 502px;
         transform-style: preserve-3d;
         animation: 8s infinite linear;
     }
 
     &__face {
         position: absolute;
-        width: 430px;
-        height: 430px;
-        border: 2px solid rgba(255, 255, 255, 0.7);
-        background: rgba(90, 160, 255, 0.18);
+        width: 494px;
+        height: 502px;
+        // border: 2px solid rgba(255, 255, 255, 0.7);
+        // background: rgba(90, 160, 255, 0.18);
         backdrop-filter: blur(2px);
         display: flex;
         justify-content: center;
@@ -105,32 +129,41 @@
         color: white;
         font-size: 2px;
         font-weight: bold;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     &__face--front {
-        transform: translateZ(215px);
+        transform: translateZ(247px);
         display: flex;
         flex-direction: column;
+        overflow: hidden;
+        background: #151789;
     }
 
     &__face--back {
-        transform: rotateY(180deg) translateZ(215px);
+        transform: rotateY(180deg) translateZ(247px);
     }
 
     &__face--right {
-        transform: rotateY(90deg) translateZ(215px);
+        transform: rotateY(90deg) translateZ(247px);
+        background: #151789;
     }
 
     &__face--left {
-        transform: rotateY(-90deg) translateZ(215px);
+        transform: rotateY(-90deg) translateZ(247px);
     }
 
     &__face--top {
-        transform: rotateX(90deg) translateZ(215px);
+        transform: rotateX(90deg) translateZ(251px);
     }
 
     &__face--bottom {
-        transform: rotateX(-90deg) translateZ(215px);
+        transform: rotateX(-90deg) translateZ(251px);
     }
 }
 
@@ -693,7 +726,7 @@
             &-title {
                 font-size: clamp(40px, 8.5vw, 90px);
                 &--ko-headline {
-                    font-size: clamp(21px, 5.2vw, 60px);
+                    font-size: clamp(21px, 0.2vw, 60px);
                     font-weight: 700;
                     line-height: 1.67;
                     letter-spacing: -0.6px;
@@ -849,7 +882,7 @@
 }
 
 .ingredients-board {
-    width: 430px;
+    width: 100%;
     aspect-ratio: 1 / 1;
 
     &__inner {
