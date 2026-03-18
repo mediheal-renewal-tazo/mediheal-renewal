@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HEADER_NAV_ITEMS, ROUTE_PATHS } from '@/app/routes/paths';
-import { RxHamburgerMenu } from 'react-icons/rx';
+import { GiHamburgerMenu } from "react-icons/gi";
 import logoImg1 from '@/assets/logos/logo_1.png';
 import logoImg2 from '@/assets/logos/logo_2.png';
+import HeaderSearch from './HeaderSearch';
 import './Header.scss';
 
 const Header = ({ theme = 'light' }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const logoSrc = theme === 'dark' ? logoImg1 : logoImg2;
     const headerClassName = `header header--${theme}${isMenuOpen ? ' header--menu-open' : ''}${isVisible ? ' header--visible' : ''}`;
@@ -20,6 +22,25 @@ const Header = ({ theme = 'light' }) => {
         return () => cancelAnimationFrame(frame);
     }, []);
 
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') setIsMenuOpen(false);
+        };
+        const handleClickOutside = (e) => {
+            if (!e.target.closest('.header')) setIsMenuOpen(false);
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isMenuOpen]);
+
     return (
         <header className={headerClassName}>
             <div className="header__inner">
@@ -31,7 +52,7 @@ const Header = ({ theme = 'light' }) => {
                         aria-expanded={isMenuOpen}
                         onClick={() => setIsMenuOpen((prev) => !prev)}
                     >
-                        <RxHamburgerMenu className="header__menu-line" />
+                        <GiHamburgerMenu className="header__menu-line" />
                     </button>
                     <Link className="header__logo" to={ROUTE_PATHS.HOME} aria-label="MEDIHEAL Home">
                         <img className="header__logo-img" src={logoSrc} alt="MEDIHEAL" />
@@ -39,14 +60,15 @@ const Header = ({ theme = 'light' }) => {
                 </div>
 
                 <div className="header__actions">
-                    <button className="header__icon-btn" type="button" aria-label="Search">
+                    <button
+                        className="header__icon-btn"
+                        type="button"
+                        aria-label="Search"
+                        onClick={() => setIsSearchOpen((prev) => !prev)}
+                    >
                         <div className="header__search-btn">SEARCH</div>
                     </button>
-                    <Link
-                        className="header__icon-btn"
-                        to={ROUTE_PATHS.MY_PAGE}
-                        aria-label="My page"
-                    >
+                    <Link className="header__icon-btn" to={ROUTE_PATHS.LOGIN} aria-label="My page">
                         <div className="header__login-btn">LOGIN</div>
                     </Link>
                     <div className="header__cart-wrap">
@@ -59,6 +81,8 @@ const Header = ({ theme = 'light' }) => {
                     </div>
                 </div>
             </div>
+
+            <HeaderSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
             {isMenuOpen ? (
                 <nav className="header__mobile-menu" aria-label="Primary menu mobile">

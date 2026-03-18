@@ -1,26 +1,49 @@
 import Hero from '../../components/home/Hero';
 import MainVisual from '../../components/home/MainVisual';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Home.scss';
+import Intro from './Intro';
+import MainSection1 from '../../components/home/MainSection1';
+import MainSection2 from '../../components/home/MainSection2';
+import MainSection3 from '../../components/home/MainSection3';
+import MainSection4 from '../../components/home/MainSection4';
+import MainSection5 from '../../components/home/MainSection5';
 
 const Home = () => {
+    const [introFinished, setIntroFinished] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        const frame = requestAnimationFrame(() => {
-            setIsVisible(true);
-        });
-
-        return () => cancelAnimationFrame(frame);
+    const handleFadeStart = useCallback(() => {
+        setIsVisible(true);
     }, []);
 
+    const handleIntroFinish = useCallback(() => {
+        setIntroFinished(true);
+    }, []);
+
+    // home__visual의 scale(1.2) → scale(1) 전환 완료 후 ScrollTrigger 위치 재계산
+    useEffect(() => {
+        if (!isVisible) return;
+        const id = setTimeout(() => ScrollTrigger.refresh(), 1100);
+        return () => clearTimeout(id);
+    }, [isVisible]);
+
     return (
-        <div className={`home ${isVisible ? 'is-visible' : ''}`}>
-            <div className="home__hero">
-                <Hero />
-            </div>
-            <div className="home__visual">
-                <MainVisual />
+        <div>
+            {!introFinished && <Intro onFadeStart={handleFadeStart} onFinish={handleIntroFinish} />}
+            <div className={`home ${isVisible ? 'is-visible' : ''}`}>
+                <div className="home__hero">
+                    <Hero />
+                </div>
+                <div className="home__visual">
+                    <MainVisual />
+                    <MainSection1 />
+                    <MainSection2 />
+                    <MainSection3 />
+                    <MainSection4 />
+                    <MainSection5 />
+                </div>
             </div>
         </div>
     );
