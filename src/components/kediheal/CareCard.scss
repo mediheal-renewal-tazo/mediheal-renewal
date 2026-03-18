@@ -1,0 +1,69 @@
+.care-card {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background: #fafafa;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-sizing: border-box;
+
+    &:last-child {
+        background: #000;
+    }
+
+    &:last-child .care-card__title {
+        color: #fff;
+    }
+
+    &:last-child .care-card__subtitle {
+        color: var(--GreyScale-grey-400, #6C6C6C);
+    }
+
+
+    &__image-wrapper {
+        width: 254px;
+        height: 188px;
+        overflow: hidden;
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    &__media {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    &__title {
+        color: #000;
+        text-align: right;
+        font-family: Pretendard;
+        font-size: 27px;
+        font-weight: 700;
+        line-height: 150%;
+        margin-bottom: 20px;
+    }
+
+    &__subtitle {
+        color: var(--GreyScale-grey-400, #6c6c6c);
+        text-align: right;
+        font-family: Pretendard;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 120%;
+    }
+}

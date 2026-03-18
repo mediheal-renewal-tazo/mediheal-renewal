@@ -1,0 +1,752 @@
+.kediheal {
+    width: 100%;
+    background-color: #fff; // 밝은 회색 톤
+
+    &__section {
+        width: 1920px;
+        height: 1080px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+
+        &--hero {
+            background-color: #fff;
+        }
+
+        &--care {
+            background-color: #fff;
+            display: block;
+            height: auto;
+            min-height: 1080px;
+            padding: 100px 0;
+            margin-bottom: 200px;
+        }
+
+        &--hyaluron {
+            background-color: #fff;
+            width: 1920px;
+            height: 1744px;
+            overflow: hidden;
+            margin-bottom: 200px;
+        }
+
+        &--global {
+            background-color: #fff;
+            height: auto;
+            min-height: 1080px;
+            padding: 120px 0;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 200px;
+        }
+
+        &--latest {
+            width: 1920px;
+            height: 1080px;
+            background: url('../../assets/images/kediheal/latest_bg.png') no-repeat center / cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: #000;
+        }
+    }
+
+    &__latest-inner {
+        width: 1920px;
+        height: 1000px;
+        margin: 0 auto;
+        padding: 80px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__latest-main-title {
+        color: var(--primary-blue, #151789);
+        font-family: 'PP Mori';
+        font-size: 200px;
+        font-weight: 600;
+        line-height: 200px;
+        letter-spacing: -6px;
+        margin: 0;
+        padding-left: 270px;
+    }
+
+    &__latest-content-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: -20px;
+    }
+
+    &__latest-left-block {
+        width: 639px;
+        height: 397px;
+        color: var(--primary-blue, #151789);
+        font-family: 'PP Mori';
+        font-size: 96px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 110px;
+        /* 114.583% */
+        letter-spacing: -2.88px;
+        margin-left: 8px;
+        padding-left: 270px;
+
+        span {
+            color: #fff;
+        }
+    }
+
+    &__latest-right-block {
+        width: 580px;
+        height: 350px;
+        text-align: center;
+        opacity: 0.6;
+        background: #fff;
+        margin-top: 40px;
+    }
+
+    &__latest-pdrn-title {
+        font-family: 'PP Mori';
+        font-size: 150px;
+        font-weight: 600;
+        line-height: 110px;
+        letter-spacing: -4.5px;
+        margin-bottom: 24px;
+        text-align: center;
+        padding-top: 70px;
+        color: var(--GreyScale-grey-500, #474747);
+        text-decoration: opacify($color: #474747, $amount: 0.1);
+    }
+
+    &__latest-description {
+        color: var(--GreyScale-grey-500, #474747);
+        text-decoration: opacify($color: #474747, $amount: 0.1);
+        font-family: Pretendard;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 30px;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &__latest-products {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        padding-right: 70px;
+        margin-bottom: 10px;
+    }
+
+    &__latest-product-item {
+        width: 320px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateY(-10px);
+            }
+        }
+    }
+
+    .latest-btn {
+        position: relative;
+        left: 750px;
+        bottom: 70px;
+        display: flex;
+        width: 335px;
+        height: 60px;
+        padding: 10px 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 80px;
+        align-items: center;
+        background: transparent;
+        flex-shrink: 0;
+        border: 1px solid var(--GreyScale-grey-500, #474747);
+
+        &__text {
+            color: var(--GreyScale-grey-500, #474747);
+            font-family: Pretendard;
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 150%;
+        }
+
+        &__arrow {
+            color: #000;
+            width: 12px;
+            height: 24px;
+            aspect-ratio: 1/2;
+        }
+    }
+    // Final CTA Section
+    &__section--final-cta {
+        margin-top: 120px;
+        width: 1920px;
+        height: 618px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .kediheal__final-cta-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 59px;
+        }
+
+        .kediheal__final-cta-title {
+            padding-top: 80px;
+            color: #fff;
+            font-family: Pretendard;
+            font-size: 40px;
+            font-weight: 500;
+            line-height: normal;
+            margin: 0;
+        }
+
+        .kediheal__final-cta-form {
+            display: flex;
+            width: 900px;
+            height: 90px;
+            border: 1px solid #fff;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .kediheal__final-cta-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0 40px;
+            color: #fff;
+            font-family: Pretendard;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            outline: none;
+
+            &::placeholder {
+                color: #fff;
+                font-family: Pretendard;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: normal;
+            }
+        }
+
+        .kediheal__final-cta-button {
+            width: 178px;
+            height: 100%;
+            background: #fff;
+            border: none;
+            color: #000;
+            font-family: Pretendard;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: normal;
+            cursor: pointer;
+            transition: background 0.3s ease;
+
+            &:hover {
+                background: #f0f0f0;
+            }
+        }
+    }
+
+    // Hyaluron Section
+    &__hyaluron-inner {
+        width: 1400px;
+        height: 1774px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    &__hyaluron-block {
+        position: absolute;
+        z-index: 10;
+
+        &--top-left {
+            top: 200px;
+            left: 150px;
+        }
+
+        &--bottom-right {
+            bottom: 250px;
+            right: 160px;
+            width: 400px;
+            text-align: right;
+        }
+    }
+
+    &__hyaluron-title {
+        color: var(--Foundation-Blue-Darker, #050923);
+        font-family: Pretendard;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 130%;
+        letter-spacing: 1px;
+        margin-bottom: 24px;
+    }
+
+    &__hyaluron-subtitle {
+        color: #6c6c6c;
+        font-family: Pretendard;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 30px;
+    }
+
+    &__hyaluron-image-wrap {
+        position: absolute;
+        z-index: 2;
+
+        &--toner {
+            top: 107px;
+            right: 90px;
+            width: 500px;
+            height: 452px;
+            transform: rotate(8.142deg);
+            aspect-ratio: 125/113;
+        }
+
+        &--mask {
+            top: 1000px;
+            left: 180px;
+            width: 371px;
+            height: 670px;
+            transform: rotate(-15.917deg);
+        }
+    }
+
+    &__hyaluron-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__hyaluron-wrap {
+        position: absolute;
+        top: 733px; // 상단으로 올림
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        z-index: 3;
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__hyaluron-track {
+        width: 1622px; // 텍스트 너비 고정
+        text-align: center;
+    }
+
+    &__hyaluron-text {
+        display: block;
+        color: var(--Foundation-Blue-Darker, #050923);
+        font-family: 'PP Mori';
+        font-size: 274px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 100%;
+        letter-spacing: -8.22px;
+    }
+
+    // Global Section
+    &__global-inner {
+        width: 926px;
+        min-height: 1040px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__global-header {
+        margin-bottom: 60px;
+    }
+
+    &__global-main-title {
+        color: var(--Bk_Wh-Bk, #000);
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 64px;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 30px;
+    }
+
+    &__global-main-desc {
+        color: var(--GreyScale-grey-400, #6c6c6c);
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 30px;
+        margin-bottom: 117px;
+    }
+
+    &__global-list {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; // 나라들 사이 간격 조정
+    }
+
+    &__global-row {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s ease;
+        padding-bottom: 5px;
+
+        &.is-active {
+            .kediheal__global-name-kr {
+                display: none;
+            }
+
+            .kediheal__global-name-en {
+                display: block;
+            }
+        }
+    }
+
+    &__global-city-name {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        color: var(--primary-blue, #151789);
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 115px;
+        font-weight: 700;
+        line-height: 100px;
+    }
+
+    &__global-name-kr {
+        display: block;
+    }
+
+    &__global-name-en {
+        display: none;
+    }
+
+    &__global-stat {
+        color: var(--primary-blue, #151789);
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 40px;
+        font-weight: 500;
+        line-height: normal;
+        margin-top: -4px;
+    }
+
+    &__global-city-desc {
+        color: #151789;
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 1.4;
+        margin-top: 9px;
+    }
+
+    &__global-search {
+        margin-top: 80px;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    &__global-search-label {
+        color: var(--GreyScale-grey-400, #6c6c6c);
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 24px;
+    }
+
+    &__global-search-form {
+        display: flex;
+        border: 1px solid #151789;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: #fff;
+    }
+
+    &__global-search-input {
+        flex: 1;
+        border: none;
+        padding: 15px 20px;
+        font-size: 18px;
+        color: #000;
+        outline: none;
+
+        &::placeholder {
+            color: var(--grey-scale-grey-100, #c6c6c6);
+            text-align: left;
+            font-family: Pretendard;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: normal;
+        }
+    }
+
+    &__global-search-btn {
+        background: none;
+        border: none;
+        padding: 0 30px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        color: var(--primary-blue, #151789);
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: normal;
+
+        &:hover {
+            background-color: #f0f4ff;
+        }
+    }
+
+    &__care-inner {
+        width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    &__care-left {
+        width: 662px;
+        height: 808px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__care-title {
+        color: var(--Bk_Wh-Bk, #000);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: -1px;
+        margin-bottom: 26px;
+    }
+
+    &__care-desc {
+        color: #474747;
+        font-family: Pretendard;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 120%;
+        letter-spacing: -1px;
+        margin-bottom: 40px;
+    }
+
+    &__care-main-image {
+        width: 100%;
+        height: 564px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    &__care-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    &__care-right {
+        width: 690px;
+        height: 808px;
+        overflow-y: auto;
+        padding-right: 10px;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+    }
+
+    &__care-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    // Hero Section
+    &__hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .kediheal {
+        &__hero-title {
+            width: 572px;
+            height: 90px;
+            color: #000;
+            font-family: 'PP Mori', sans-serif;
+            font-size: 100px;
+            font-weight: 600;
+            line-height: normal;
+            margin-bottom: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        &__hero-letter-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 0.95em;
+            flex-shrink: 0;
+        }
+
+        &__hero-letter {
+            display: inline-block;
+            will-change: transform, opacity, filter;
+        }
+
+        &__hero-rest {
+            display: inline-block;
+            margin-left: -0.1em;
+        }
+    }
+
+    &__hero-subtitle {
+        color: #1e1e1e;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 150%;
+        margin-bottom: 37px;
+    }
+
+    &__hero-image-wrapper {
+        width: 266px;
+        height: 543px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__dropper-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    // Transition Section(텍스트 세션)
+    &__section--transition {
+        height: 980px;
+        background-color: #fff;
+        z-index: 5;
+    }
+
+    &__transition-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__transition-line {
+        color: var(--grey-scale-grey-900, #1e1e1e);
+        text-align: center;
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 100px;
+        letter-spacing: -0.64px;
+        white-space: pre-wrap;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        &--intro {
+            position: absolute;
+        }
+
+        &--statement-1,
+        &--statement-2 {
+            display: flex;
+            min-height: 1.4em;
+        }
+    }
+
+    &__transition-statement-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__transition-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 0.8em;
+        background-color: #1e1e1e;
+        margin-left: 4px;
+        animation: kediheal-cursor-blink 0.8s infinite;
+        vertical-align: middle;
+    }
+
+    @keyframes kediheal-cursor-blink {
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+
+    &__point-text {
+        color: #151789; // 메디힐 브랜드 컬러 유지
+    }
+}
