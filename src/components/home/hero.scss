@@ -90,7 +90,7 @@
 
     &__description {
         position: absolute;
-        top: calc(75vh + 24px);
+        top: calc(50vh + 239px);
         left: 50%;
         transform: translateX(-50%);
         font-size: 15px;
@@ -102,16 +102,16 @@
     }
 
     &__scene {
-        width: 494px;
-        height: 502px;
+        width: 430px;
+        height: 430px;
         perspective: 50000px;
         margin-top: 0;
     }
 
     &__cube {
         position: relative;
-        width: 494px;
-        height: 502px;
+        width: 430px;
+        height: 430px;
         transform-style: preserve-3d;
         animation: 8s infinite linear;
     }

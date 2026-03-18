@@ -84,7 +84,7 @@ const Hero = () => {
             // ────────────────────────────────────
             let vw = window.innerWidth;
             let vh = window.innerHeight;
-            let squareSize = vh * 0.5;
+            let squareSize = Math.min(vh * 0.5, 430);
 
             images.forEach((img, i) => {
                 gsap.set(img, { opacity: i === 0 ? 1 : 0, scale: 1, y: 0 });
@@ -295,7 +295,7 @@ const Hero = () => {
             const handleResize = () => {
                 vw = window.innerWidth;
                 vh = window.innerHeight;
-                squareSize = vh * 0.5;
+                squareSize = Math.min(vh * 0.5, 430);
                 setCubeSize(squareSize);
                 ScrollTrigger.refresh();
             };
