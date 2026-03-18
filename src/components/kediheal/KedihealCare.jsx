@@ -1,0 +1,77 @@
+import React from 'react';
+import CareCard from './CareCard';
+import hyaluronCareMainImg from '../../assets/images/kediheal/care_main.png';
+// import poreCareImg from '../../assets/images/kediheal/pore_care.png';
+import heatCareImg from '../../assets/images/kediheal/heat_care.png';
+import gauzePadVideo from '../../assets/videos/kediheal/kediheal_care.mp4';
+
+const KedihealCare = () => {
+    const careData = [
+        {
+            title: '모공 케어',
+            subtitle:
+                '모공 결 정돈과 매끈한 피부결을 위한 케어모공<br />결 정돈과 매끈한 피부결을 위한 케어모공 결',
+            mediaType: 'image',
+            mediaSource: 'https://placehold.co/254x188/e0e0e0/414141?text=Pore+Care',
+        },
+        {
+            title: '열감 반응 케어',
+            subtitle:
+                '모공 결 정돈과 매끈한 피부결을 위한 케어모공<br />결 정돈과 매끈한 피부결을 위한 케어모공 결',
+            mediaType: 'image',
+            mediaSource: heatCareImg,
+        },
+        {
+            title: '저자극 거즈 패드',
+            subtitle:
+                '모공 결 정돈과 매끈한 피부결을 위한 케어모공<br />결 정돈과 매끈한 피부결을 위한 케어모공 결',
+            mediaType: 'video',
+            mediaSource: gauzePadVideo,
+        },
+    ];
+
+    return (
+        <section className="kediheal__section kediheal__section--care">
+            <div className="kediheal__care-inner">
+                <div className="kediheal__care-left">
+                    <div className="kediheal__care-intro">
+                        <h2 className="kediheal__care-title">
+                            자극은 낮추고
+                            <br />
+                            진정감은 높이는 케어 구성
+                        </h2>
+                        <p className="kediheal__care-desc">
+                            메디힐의 기록은 세계가 인정한 메디힐 더마 케어의 증명입니다.
+                            <br />
+                            모든 피부 고민의 해답을 찾는 그날까지
+                            <br />
+                            메디힐의 연구는 계속됩니다.
+                        </p>
+                    </div>
+                    <div className="kediheal__care-main-image">
+                        <img
+                            src={hyaluronCareMainImg}
+                            alt="Care Main"
+                            className="kediheal__care-img"
+                        />
+                    </div>
+                </div>
+                <div className="kediheal__care-right">
+                    <div className="kediheal__care-list">
+                        {careData.map((item, index) => (
+                            <CareCard
+                                key={index}
+                                title={item.title}
+                                subtitle={item.subtitle}
+                                mediaType={item.mediaType}
+                                mediaSource={item.mediaSource}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default KedihealCare;
