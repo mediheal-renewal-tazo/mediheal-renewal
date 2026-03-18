@@ -77,6 +77,7 @@ const Hero = () => {
 
             const images = gsap.utils.toArray('.gallery-img', containerRef.current);
             const totalImages = images.length;
+            const mainDscs = gsap.utils.toArray('.hero__main-dsc', containerRef.current);
 
             // ────────────────────────────────────
             // 3. 초기 상태 설정
@@ -93,6 +94,7 @@ const Hero = () => {
             gsap.set(darkWrap, { clipPath: 'inset(0px 0px)' });
             gsap.set(chars, { opacity: 0 });
             gsap.set(description, { opacity: 0 });
+            gsap.set(mainDscs, { y: 0 });
 
             // 큐브 6면을 마스크 최종 크기(squareSize)로 초기 설정
             const setCubeSize = (size) => {
@@ -158,6 +160,10 @@ const Hero = () => {
                     // Phase 1: 마스크 축소 + 이미지 교체 (0 ~ 0.4)
                     // ────────────────────────────────
                     const phase1Progress = Math.min(p / PHASE1_END, 1);
+
+                    // main-dsc 텍스트: 스크롤 시 위로 사라짐
+                    gsap.set(mainDscs, { y: -200 * phase1Progress });
+
                     const currentW = vw - (vw - squareSize) * phase1Progress;
                     const currentH = vh - (vh - squareSize) * phase1Progress;
 
