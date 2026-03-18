@@ -170,7 +170,7 @@
 .main {
     background: #fff;
     width: 100%;
-    height: 1320px;
+    height: 1000px;
     display: flex;
     align-items: center;
     color: #151789;
@@ -183,9 +183,14 @@
 
     &__visual {
         &-text {
-            min-height: 792px;
+            min-height: 650px;
             display: flex;
             justify-content: center;
+
+            .main__visual-anim-wrap {
+                flex: 1;
+                display: flex;
+            }
 
             .left,
             .right {
@@ -215,7 +220,7 @@
             font-size: 90px;
             font-weight: 600;
             letter-spacing: -2.7px;
-            display: none; //인터렉션 넣어줘야 함
+            display: none; //수정
             span {
                 white-space: nowrap;
                 padding-top: 10px;
@@ -224,7 +229,7 @@
         &-line {
             border: 1px dashed #151789;
             align-self: stretch;
-            min-height: 792px;
+            min-height: 650px;
             margin: 0 clamp(16px, 11.8vw, 168px);
         }
 

@@ -1,6 +1,7 @@
 import Hero from '../../components/home/Hero';
 import MainVisual from '../../components/home/MainVisual';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Home.scss';
 import Intro from './Intro';
 import MainSection1 from '../../components/home/MainSection1';
@@ -20,6 +21,13 @@ const Home = () => {
     const handleIntroFinish = useCallback(() => {
         setIntroFinished(true);
     }, []);
+
+    // home__visual의 scale(1.2) → scale(1) 전환 완료 후 ScrollTrigger 위치 재계산
+    useEffect(() => {
+        if (!isVisible) return;
+        const id = setTimeout(() => ScrollTrigger.refresh(), 1100);
+        return () => clearTimeout(id);
+    }, [isVisible]);
 
     return (
         <div>
