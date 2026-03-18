@@ -1,0 +1,639 @@
+/* 1. 마이페이지 전체 레이아웃 (Layout Block) */
+.mypage-wrapper {
+    width: 100%;
+    padding: 160px 0;
+    background-color: #fff; // 전체 배경색 (필요시 조절)
+    box-sizing: border-box;
+
+    &__inner {
+        max-width: 1420px;
+        margin: 0 auto;
+        padding: 0;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 60px;
+        color: #272727;
+    }
+
+    &__content {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        width: 1400px;
+        margin-top: 60px;
+    }
+
+    &__side {
+        flex: 0 0 335px;
+        width: 335px;
+    }
+
+    &__main {
+        flex: 0 0 1045px;
+        width: 1045px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    
+}
+
+/* 2. 마이 프로필 컴포넌트 (Top Bar) */
+.mypage-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 42px 40px;
+    background-color: #fff;
+    border: 1px solid #c6c6c6;
+    margin-bottom: 20px;
+    width: 1400px;
+    height: 156px;
+    box-sizing: border-box;
+
+    &__user {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__avatar {
+        width: 72px;
+        height: 72px;
+        background-color: #f2f2f2;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__name-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    &__name {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.5;
+        color: #272727;
+
+        &-suffix {
+            font-weight: 700;
+            color: #474747;
+        }
+    }
+
+    &__badge {
+        width: 67px;
+        height: 25px;
+        padding: 2px 12px;
+        border-radius: 40px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+
+        /* 2. 정렬: 글자를 박스 정중앙에 배치 */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        &--blue {
+            background-color: #151789;
+        }
+    }
+
+    &__link {
+        font-size: 14px;
+        color: #888;
+        text-decoration: none;
+    }
+
+    &__assets {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__asset-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 50px;
+        position: relative;
+
+        &:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 50px;
+            background-color: #fff;
+        }
+    }
+
+    &__label {
+        font-size: 17px;
+        color: #848484;
+        margin-bottom: 10px;
+    }
+
+    &__count {
+        font-size: 24px;
+        font-weight: 700;
+        color: #272727;
+    }
+}
+
+/* 3. 사이드바 메뉴 컴포넌트 (Left Menu) */
+.mypage-menu {
+    width: 335px;
+    min-height: 600px;
+    box-sizing: border-box;
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #c6c6c6;
+        background-color: #fff;
+    }
+
+    &__item {
+        border-bottom: 1px solid #c6c6c6;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__link {
+        display: block;
+        /* 피그마의 top: 24px, left: 40px 수치를 패딩으로 적용 */
+        padding: 24px 40px;
+
+        text-decoration: none;
+        cursor: pointer;
+
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 1.5;
+        color: #474747;
+
+
+        &:hover {
+            background-color: transparent;
+            color: #474747;
+        }
+    }
+}
+
+/* 4. 주문 현황 컴포넌트 (Main Content) */
+.mypage-orders {
+    &__title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #272727;
+        margin: 0 0 40px;
+    }
+
+    &__box {
+        width: 1045px;
+        height: 351px;
+        border: 1px solid #c6c6c6;
+        background-color: #fff;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+
+        /* 내부 레이아웃: 주문 상태와 요약 영역을 수직으로 배치 */
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 24px;
+    }
+
+    &__status-list {
+        display: flex;
+        justify-content: center;
+        gap: 104px;
+        padding: 60px 40px;
+        margin: 0;
+        list-style: none;
+    }
+
+    &__status-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+
+        /* 마지막 아이템 제외하고 오른쪽에 선 추가 */
+        &:not(:last-child)::after {
+            content: '';
+            position: absolute;
+
+            /* 1. 수직 위치: 원형 중앙 */
+            top: 55px;
+
+            /* 원형 끝(110px)에서 15px 더 뒤에서 시작 */
+            left: 117px;
+
+            width: 90px;
+
+            height: 1px;
+            background-color: #c6c6c6;
+        }
+    }
+
+    &__circle {
+        width: 110px;
+        height: 110px;
+        border: 1px solid #c6c6c6;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+
+        .mypage-orders__number {
+            font-size: 22px;
+            font-weight: 700;
+            color: #272727;
+        }
+
+        img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 4px;
+        }
+    }
+
+    &__label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #272727;
+    }
+
+    /* 하단 요약 및 상세보기 영역 */
+    &__summary {
+        width: 849px;
+        height: 80px;
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border-top: 1px solid #c6c6c6;
+
+        padding: 0 4px;
+    }
+
+    &__summary-left {
+        display: flex;
+        gap: 41px;
+    }
+
+    &__summary-text {
+        font-size: 17px;
+        color: #aaa;
+        font-weight: 400;
+
+        strong {
+            color: #474747;
+            margin-left: 5px;
+            font-weight: 500;
+            font-size: 17px;
+        }
+    }
+
+    &__detail-link {
+        font-size: 17px;
+        font-weight: 400;
+        color: #474747;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+
+    &__empty {
+        /* 전체 주문 박스 너비와 동일하게 설정 */
+        width: 1045px;
+        padding: 120px 0; // 시안의 높이감을 고려한 상하 패딩
+        border: 1px solid #c6c6c6;
+        background-color: #fff;
+
+        /* 중앙 정렬 레이아웃 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+
+        &-icon {
+            width: 44px;
+            height: 34px;
+            margin-bottom: 21px;
+        }
+
+        &-text {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #aaaaaa;
+
+            text-align: center;
+            margin: 0;
+        }
+    }
+}
+
+/* 1. 태블릿 (max-width: 800px) */
+@media screen and (max-width: 800px) {
+    .mypage-wrapper {
+        padding: 80px 0;
+
+        &__inner {
+            padding: 0 60px;
+        }
+
+        // 피그마 Screen Margin 60
+        &__content {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        &__side,
+        &__main {
+            width: 100%;
+            flex: none;
+        }
+    }
+
+    .mypage-profile {
+        width: 100%;
+        height: auto;
+        padding: 30px;
+        margin-bottom: 8px;
+    }
+
+    .mypage-orders__box {
+        width: 100%;
+        height: auto;
+        padding: 30px;
+    }
+
+    .mypage-profile__asset-item {
+        padding: 0 20px;
+    }
+
+    .mypage-orders__status-list {
+        justify-content: space-around;
+        gap: 20px;
+        padding: 40px 20px;
+        // 태블릿에서도 너무 좁으면 가로스크롤 활성화
+        overflow-x: auto;
+    }
+
+    .mypage-orders__status-item:not(:last-child)::after {
+        display: none;
+    }
+
+    // 선 제거 (복잡함 방지)
+    .mypage-orders__summary {
+        width: 100%;
+    }
+
+    .mypage-orders__empty {
+
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 80px 20px !important;
+        box-sizing: border-box;
+    }
+
+    /* 태블릿/모바일: 사이드 메뉴를 4행 2열 그리드로 변환 */
+    .mypage-menu {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .mypage-menu__list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid #c6c6c6;
+        border-left: 1px solid #c6c6c6;
+    }
+
+    .mypage-menu__item {
+        border-bottom: 1px solid #c6c6c6;
+        border-right: 1px solid #c6c6c6;
+
+
+        &:nth-child(4n) {
+            border-right: none;
+        }
+
+
+        &:nth-last-child(-n+4) {
+            border-bottom: none;
+        }
+    }
+
+    .mypage-menu__link {
+        padding: 16px 20px;
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+/* 2. 모바일 (max-width: 360px) */
+@media screen and (max-width: 360px) {
+    body .mypage-wrapper {
+        padding: 60px 0;
+
+        .mypage-wrapper__inner {
+            padding: 0 16px;
+        }
+
+        // 피그마 Screen Margin 16
+        .mypage-wrapper__title {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .mypage-profile {
+            flex-direction: column;
+            gap: 24px;
+            text-align: center;
+
+            &__user {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            &__assets {
+                width: 100%;
+                border-top: 1px solid #eee;
+                padding-top: 20px;
+                justify-content: space-around;
+            }
+
+            &__asset-item {
+                padding: 0;
+
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        /* 모바일: 사이드 메뉴를 4행 2열 그리드로 변환 */
+        // .mypage-menu {
+        //     width: 100%;
+        //     min-height: auto;
+
+        //     &__list {
+        //         display: grid;
+        //         grid-template-columns: repeat(2, 1fr);
+        //     }
+
+        //     &__item {
+        //         border-bottom: 1px solid #c6c6c6;
+
+        //         &:nth-child(odd) {
+        //             border-right: 1px solid #c6c6c6;
+        //         }
+
+        //         &:nth-last-child(-n+2) {
+        //             border-bottom: none;
+        //         }
+        //     }
+
+        //     &__link {
+        //         padding: 16px 20px;
+        //         font-size: 14px;
+        //         text-align: center;
+        //     }
+        // }
+
+
+        .mypage-menu__link {
+            font-size: 12px;
+            padding: 14px 16px;
+
+        }
+
+        .mypage-orders {
+            &__box {
+                width: 100% !important;
+                overflow: hidden !important;
+            }
+
+            &__status-list {
+                padding: 30px 5px !important;
+                justify-content: space-between !important;
+            }
+
+            &__status-item {
+                flex: 1;
+
+                &:not(:last-child)::after {
+                    content: '' !important;
+                    display: block !important;
+                    top: 25px !important;
+                    left: calc(50% + 25px) !important;
+                    width: calc(100% - 50px) !important;
+                    background: #c6c6c6 !important;
+                }
+            }
+
+            &__circle {
+                // 🌟 원형 크기 축소 
+                width: 50px !important;
+                height: 50px !important;
+                min-width: 50px !important;
+                min-height: 50px !important;
+
+                img {
+                    width: 16px !important;
+                    height: 16px !important;
+                }
+
+                .mypage-orders__number {
+                    font-size: 11px !important;
+                }
+            }
+
+            &__label {
+                font-size: 10px !important;
+                white-space: nowrap;
+                margin-top: 8px !important;
+            }
+
+            &__summary {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 10px;
+                gap: 12px;
+
+                &-left {
+                    gap: 15px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                &-text,
+                &-text strong,
+                .mypage-orders__detail-link {
+                    font-size: 14px !important;
+                }
+            }
+
+            body .mypage-wrapper .mypage-orders__empty {
+                width: 100% !important;
+                padding: 60px 16px !important;
+
+                &-icon {
+                    width: 32px !important;
+                    height: auto !important;
+                    margin-bottom: 16px !important;
+                }
+
+                &-text {
+                    font-size: 13px !important;
+                    line-height: 1.4 !important;
+                    word-break: keep-all;
+                }
+            }
+        }
+    }
+}

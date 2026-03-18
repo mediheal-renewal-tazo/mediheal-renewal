@@ -1,0 +1,436 @@
+.brand-intro {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    &__inner {
+        width: 100%;
+
+        max-width: 1860px;
+
+        margin: 0 auto;
+        padding: 100px 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+    }
+
+    &__sub-title {
+        display: block;
+        font-size: 36px;
+        font-weight: 600;
+        color: #151789;
+    }
+
+    &__main-title {
+        color: #151789;
+        font-family: 'PP Mori', sans-serif;
+        font-size: 115px;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -3.45px;
+        text-transform: uppercase;
+
+        margin: 0;
+        max-width: 906px;
+    }
+}
+
+.brand-research {
+    width: 100%;
+    height: 1080px;
+    //   min-height: 100vh;
+    background-color: #151789;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        width: 100%;
+
+        max-width: 1042px;
+        margin: 0 auto; // 가운데 정렬
+
+        // 고정 패딩 대신 최소한의 여백만 줍니다.
+        // padding: 0 20px;
+
+        gap: 40px;
+    }
+
+    &__title {
+        color: #f5f5f5;
+        font-size: 64px;
+        font-weight: 600;
+        line-height: 1.2;
+        word-break: keep-all;
+    }
+
+    &__desc {
+        color: #f5f5f5;
+        font-size: 24px;
+        line-height: normal;
+        font-weight: 400;
+    }
+}
+
+.brand-contents {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 280px 0 250px;
+
+    &__inner {
+        width: 100%;
+        max-width: 1550px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+    }
+
+    // 1. con1 스타일 (상단 영역)
+
+    &__box--primary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .brand-contents__text-wrap {
+            flex: none;
+            width: 661px;
+            gap: 24px;
+        }
+
+        // con1에 들어가는 이미지 리스트만 따로 조절
+        .brand-contents__list {
+            flex: none;
+            width: 818px;
+            gap: 0;
+        }
+
+        .brand-contents__img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    // con1 전용 텍스트 스타일
+    &__sub-title {
+        font-family: 'PP Mori', sans-serif;
+        font-size: 115px;
+        font-weight: 600;
+        color: #151789;
+        line-height: 1;
+        margin-bottom: 0;
+        letter-spacing: -3.45px;
+        display: block;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        font-size: 24px;
+        color: #151789;
+        // line-height: 1.6;
+        font-weight: 400;
+        word-break: keep-all;
+    }
+
+    // 2. con2, con3 레이아웃 
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 30px;
+        width: 100%;
+        margin-top: 336px;
+
+        // con2 (첫 번째 box)
+        >.brand-contents__box:nth-child(1) {
+            .brand-contents__list {
+                gap: 424px;
+            }
+
+            .brand-contents__item:nth-child(1) .brand-contents__img {
+                width: 731px;
+                height: 420px;
+            }
+
+            .brand-contents__item:nth-child(2) .brand-contents__img {
+                width: 549px;
+                height: 835px;
+            }
+        }
+
+        // con3 (두 번째 box)
+        >.brand-contents__box:nth-child(2) {
+            margin-top: 341px;
+            text-align: right;
+
+            .brand-contents__list {
+                align-items: flex-end;
+                gap: 328px;
+            }
+
+            .brand-contents__item:nth-child(1) .brand-contents__img {
+                width: 646px;
+                height: 888px;
+            }
+
+            .brand-contents__item:nth-child(2) .brand-contents__img {
+                width: 731px;
+                height: 420px;
+            }
+        }
+
+        // container 안의 이미지 기본 스타일
+        .brand-contents__img {
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    }
+
+    &__box {
+        flex: 1;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    &__text-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+        &-title {
+            color: #151789;
+            font-family: 'Pretendard', sans-serif;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+
+        &-desc {
+            color: #151789;
+            font-family: 'Pretendard', sans-serif;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 30px;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+}
+
+
+
+.brand-banner {
+    width: 100%;
+    height: 1080px;
+
+
+    background: url('@/assets/images/brand/banner_img.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    &__inner {
+        width: 100%;
+        max-width: 1860px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    &__title {
+        color: #ffffff;
+        font-size: 96px;
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -2.88px;
+        text-transform: uppercase;
+
+    }
+}
+
+.brand-history {
+    background-color: #ffffff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 83px;
+    position: relative;
+    padding: 230px 0;
+
+    &__inner {
+        width: 100%;
+        max-width: 1860px;
+        margin: 0 auto;
+        position: relative; // 사이드 타이틀 고정을 위한 기준점
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    // 상단 헤더 영역
+    &__label {
+        font-family: "PP Mori";
+        display: block;
+        font-size: 24px;
+        font-weight: 600;
+        color: #151789;
+        letter-spacing: -0.72px;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        font-family: "PP Mori";
+        font-size: 115px;
+        font-weight: 600;
+        color: #151789;
+        margin-bottom: 40px;
+        letter-spacing: -3.45px;
+        text-transform: uppercase;
+    }
+
+    &__desc {
+        font-size: 24px;
+        line-height: 1.6;
+        color: #151789;
+        max-width: 720px;
+        line-height: 30px;
+        margin-bottom: 500px;
+        text-align: center;
+        // word-break: keep-all; 
+    }
+
+    // ------------------------------------------
+    // 리스트 및 사이드 타이틀 영역
+    // ------------------------------------------
+    &__list-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 83px;
+        position: relative;
+    }
+
+    // 좌우 세로 고정 타이틀
+    &__side-title {
+        flex: 1;
+        position: sticky;
+        top: 300px;
+        height: fit-content;
+        color: #151789;
+        font-family: "PP Mori";
+        font-size: 115px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -3.45px;
+        text-transform: uppercase;
+        z-index: 1;
+
+        &--left {
+            text-align: right;
+        }
+
+        &--right {
+            text-align: left;
+        }
+
+    }
+
+    // 중앙 히스토리 아이템 리스트
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 150px; // 아이템 간 세로 간격 (피그마 보고 조절)
+        width: 100%;
+        max-width: 600px;
+        z-index: 2;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        text-align: center;
+    }
+
+    &__img {
+        width: 100%;
+        max-width: 500px;
+        height: 611px;
+        object-fit: cover;
+        margin-bottom: 8px;
+
+    }
+
+    &__desc-box {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__year {
+        font-size: 48px;
+        font-weight: 600;
+        color: #151789;
+        font-style: normal;
+        margin-bottom: 20px;
+    }
+
+    &__achievement {
+        font-size: 40px;
+        font-weight: 600;
+        color: #151789;
+        // margin-bottom: 6px;
+    }
+
+    &__detail {
+        font-size: 24px;
+        color: #151789;
+        line-height: 1.5;
+        word-break: keep-all;
+    }
+}
