@@ -41,7 +41,7 @@ const Home = () => {
             {!introFinished && <Intro onFadeStart={handleFadeStart} onFinish={handleIntroFinish} />}
             <div className={`home ${isVisible ? 'is-visible' : ''}`}>
                 <div className="home__hero">
-                    <Hero />
+                    <Hero introFinished={introFinished} />
                 </div>
                 <div className="home__visual">
                     <MainVisual />

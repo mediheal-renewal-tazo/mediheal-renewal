@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 // 새로고침 시 ScrollTrigger가 저장한 스크롤 위치 제거
 ScrollTrigger.clearScrollMemory();
 
-const Hero = () => {
+const Hero = ({ introFinished }) => {
     // ── React Refs ──
     const containerRef = useRef(null);
     const maskRef = useRef(null);
@@ -333,7 +333,7 @@ const Hero = () => {
             <div className="hero__sticky">
                 <div className="hero__inner">
                     {/* Light text (white) — 파란 배경 위 */}
-                    <div className="hero__main-dsc-wrap">
+                    <div className={`hero__main-dsc-wrap${introFinished ? ' hero__main-dsc-wrap--visible' : ''}`}>
                         <span className="hero__main-dsc hero__main-dsc--light">
                             <p>모든 피부를 위해</p>
                             <p>깊이 있는 피부 과학과 성분 연구에서 시작해</p>
@@ -341,7 +341,7 @@ const Hero = () => {
                         </span>
                     </div>
                     {/* Dark text (#151789) — 흰 마스크 위, clip-path로 마스크 영역만 표시 */}
-                    <div className="hero__main-dsc-wrap" ref={darkWrapRef}>
+                    <div className={`hero__main-dsc-wrap${introFinished ? ' hero__main-dsc-wrap--visible' : ''}`} ref={darkWrapRef}>
                         <span className="hero__main-dsc hero__main-dsc--dark">
                             <p>모든 피부를 위해</p>
                             <p>깊이 있는 피부 과학과 성분 연구에서 시작해</p>
