@@ -16,7 +16,7 @@ const Brand = () => {
     return (
         <>
             {/* 1. Brand Story Section (Block: brand-intro) */}
-            <section className="brand-intro">
+            <section className="brand-intro" data-header-theme="light">
                 <div className="brand-intro__inner">
                     <strong className="brand-intro__sub-title">내 손안의 연구소, 메디힐</strong>
                     <h2 className="brand-intro__main-title">MEDIHEAL LAB</h2>
@@ -24,7 +24,7 @@ const Brand = () => {
             </section>
 
             {/* 2. Research Section (Block: brand-research) */}
-            <section className="brand-research">
+            <section className="brand-research" data-header-theme="dark">
                 <div className="brand-research__inner">
                     <h2 className="brand-research__title">수만 번의 테스트로 완성한 정밀 설계</h2>
                     <p className="brand-research__desc">
@@ -36,7 +36,7 @@ const Brand = () => {
 
 
             {/* 3. Contents Section (Block: brand-contents) */}
-            <section className="brand-contents">
+            <section className="brand-contents" data-header-theme="light">
                 <div className="brand-contents__inner">
                     {/* con1 영역: 상단 단독 박스 */}
                     <div className="brand-contents__box brand-contents__box--primary">
@@ -114,7 +114,7 @@ const Brand = () => {
             </section>
 
             {/* 5. History Section (Block: brand-history) */}
-            <section className="brand-history">
+            <section className="brand-history" data-header-theme="light">
                 <div className="brand-history__inner">
                     <strong className="brand-history__label">MEDIHEAL</strong>
                     <h2 className="brand-history__title">HISTORY</h2>
