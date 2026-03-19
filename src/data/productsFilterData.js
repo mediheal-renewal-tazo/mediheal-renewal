@@ -15,5 +15,5 @@ export const categoryList = [
     { label: '패드', icon: icon5, value: 'pad' },
     { label: '스킨케어', icon: icon6, value: 'skincare' },
     { label: '클렌징', icon: icon7, value: 'cleanser' },
-    { label: '선케어', icon: icon8, value: 'suncare' },
+    { label: '선케어', icon: icon8, value: 'sun' },
 ];

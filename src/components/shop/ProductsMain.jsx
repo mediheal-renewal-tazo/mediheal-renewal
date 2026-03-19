@@ -1,22 +1,86 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import ProductFilter from '@/components/shop/ProductFilter';
 import ProductsCard from '@/components/shop/ProductsCard';
-import productsData from '@/data/productsData';
 import ProductsPagination from '@/components/shop/ProductsPagination';
+import productsData from '@/data/productsData';
+import arrowdown from '@/assets/images/products/card/arrow_down.svg';
+import arrowup from '@/assets/images/products/card/arrow_up.svg';
 
 const ProductsMain = () => {
+    const [selectedCategory, setSelectedCategory] = useState('all');
+    const [selectedFilters, setSelectedFilters] = useState([]);
     const [sortType, setSortType] = useState('new');
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedCategory, setSelectedCategory] = useState('all');
+    const [isOpen, setIsOpen] = useState(false);
 
+    const listTopRef = useRef(null);
+    const isFirstRender = useRef(true);
+    const selectRef = useRef(null);
     const itemsPerPage = 16;
-
-    const filteredProducts = useMemo(() => {
-        if (selectedCategory === 'all') {
-            return productsData;
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
         }
 
-        return productsData.filter((product) => product.category === selectedCategory);
-    }, [selectedCategory]);
+        listTopRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        });
+    }, [currentPage]);
+
+    const toggleFilter = (value) => {
+        setSelectedFilters((prev) =>
+            prev.includes(value)
+                ? prev.filter((item) => item !== value)
+                : [...prev, value]
+        );
+    };
+
+    const handleChangeCategory = (category) => {
+        setSelectedCategory(category);
+    };
+
+    const handleChangeSort = (e) => {
+        setSortType(e.target.value);
+        setCurrentPage(1);
+        setIsOpen(false);
+    };
+
+    const handleArrayClick = () => {
+        if (!selectRef.current) return;
+        selectRef.current.focus();
+        selectRef.current.click();
+        setIsOpen(true);
+    };
+
+
+    const filteredProducts = useMemo(() => {
+        let result = [...productsData];
+
+        // 1단계: category
+        if (selectedCategory === 'new') {
+            result = [...result].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        } else if (selectedCategory === 'only') {
+            result = result.filter((product) => product.only === 'yes');
+        } else if (selectedCategory !== 'all') {
+            result = result.filter((product) => product.category === selectedCategory);
+        }
+
+        // 2단계: filter-floor
+        if (selectedFilters.length > 0) {
+            result = result.filter((product) => {
+                const functionList = product.function ?? [];
+                const ingredient = product.ingredient ?? '';
+
+                return selectedFilters.every((filter) => {
+                    return functionList.includes(filter) || ingredient === filter;
+                });
+            });
+        }
+
+        return result;
+    }, [selectedCategory, selectedFilters]);
 
     const sortedProducts = useMemo(() => {
         const copiedProducts = [...filteredProducts];
@@ -62,37 +126,31 @@ const ProductsMain = () => {
         return sortedProducts.slice(startIndex, endIndex);
     }, [sortedProducts, currentPage]);
 
-    const handleChangeSort = (e) => {
-        setSortType(e.target.value);
-        setCurrentPage(1);
-    };
-
-    const handleChangeCategory = (category) => {
-        setSelectedCategory(category);
-        setCurrentPage(1);
-    };
-
+    
     return (
         <div className="product__main">
-            <div className="product__main-top">
-                <span>{sortedProducts.length}개의 상품</span>
+            <ProductFilter
+                selectedCategory={selectedCategory}
+                onCategoryChange={handleChangeCategory}
+                selectedFilters={selectedFilters}
+                toggleFilter={toggleFilter}
+            />
 
-                <div className="product__filter">
-                    <button onClick={() => handleChangeCategory('all')}>전체</button>
-                    <button onClick={() => handleChangeCategory('mask')}>마스크</button>
-                    <button onClick={() => handleChangeCategory('pad')}>패드</button>
-                    <button onClick={() => handleChangeCategory('suncare')}>선케어</button>
-                </div>
+            <div className="product__main-top" ref={listTopRef}>
+                <span className="product__total">{sortedProducts.length}개의 상품</span>
 
-                <div className="product__sort">
-                    <label htmlFor="sort" className="product__sort-label">
-                        정렬
-                    </label>
+                <div
+                    className={`product__array ${isOpen ? 'is-open' : ''}`}
+                    onClick={handleArrayClick}
+                >
                     <select
+                        ref={selectRef}
                         id="sort"
                         className="product__sort-select"
                         value={sortType}
                         onChange={handleChangeSort}
+                        onFocus={() => setIsOpen(true)}
+                        onBlur={() => setIsOpen(false)}
                     >
                         <option value="new">신상품</option>
                         <option value="name">상품명</option>
@@ -102,6 +160,12 @@ const ProductsMain = () => {
                         <option value="popular">인기상품</option>
                         <option value="review">사용후기</option>
                     </select>
+
+                    <img
+                        src={isOpen ? arrowup : arrowdown}
+                        alt=""
+                        className="product__array-icon"
+                    />
                 </div>
             </div>
 

@@ -1,4 +1,120 @@
-﻿const productsData = [
+﻿import img_1 from '@/assets/images/products/mask/mask06_04_00.jpg';
+import img_2 from '@/assets/images/products/mask/mask01_01.jpg';
+import img_3 from '@/assets/images/products/mask/mask01_ape.jpg';
+import img_4 from '@/assets/images/products/mask/mask01_rna.jpg';
+import img_5 from '@/assets/images/products/mask/mask09_01nose.jpg';
+import img_6 from '@/assets/images/products/mask/mask06_02.jpg';
+import img_7 from '@/assets/images/products/mask/mask06_01.jpg';
+import img_8 from '@/assets/images/products/mask/mask06_06_00.jpg';
+import img_9 from '@/assets/images/products/mask/mask06_03.jpg';
+import img_10 from '@/assets/images/products/mask/mask08_00.jpeg';
+import img_11 from '@/assets/images/products/mask/mask02_05.png';
+import img_12 from '@/assets/images/products/mask/mask10_redcamellia.jpg';
+import img_13 from '@/assets/images/products/mask/mask06_00.jpg';
+import img_14 from '@/assets/images/products/mask/mask02_03.jpg';
+import img_15 from '@/assets/images/products/mask/mask02_04.jpg';
+import img_16 from '@/assets/images/products/mask/mask02_02.jpg';
+import img_17 from '@/assets/images/products/mask/mask02_01.jpg';
+import img_18 from '@/assets/images/products/mask/mask05_05.jpg';
+import img_19 from '@/assets/images/products/mask/mask05_01.jpg';
+import img_20 from '@/assets/images/products/mask/mask05_06.jpg';
+import img_21 from '@/assets/images/products/mask/mask01_00.jpg';
+import img_22 from '@/assets/images/products/mask/mask10_propolis.jpg';
+import img_23 from '@/assets/images/products/mask/mask061_06.jpg';
+import img_24 from '@/assets/images/products/mask/mask061_04.jpg';
+import img_25 from '@/assets/images/products/mask/mask061_01.jpg';
+import img_26 from '@/assets/images/products/mask/mask03_13.jpg';
+import img_27 from '@/assets/images/products/mask/mask01_05.jpg';
+import img_28 from '@/assets/images/products/mask/mask01_06.jpg';
+import img_29 from '@/assets/images/products/mask/mask01_03.jpg';
+import img_30 from '@/assets/images/products/mask/mask01_04.jpg';
+import img_31 from '@/assets/images/products/mask/mask01_02.jpg';
+import img_32 from '@/assets/images/products/mask/mask09_04_steam.jpg';
+import img_33 from '@/assets/images/products/mask/mask01_12.jpg';
+import img_34 from '@/assets/images/products/mask/mask07_11.jpg';
+import img_35 from '@/assets/images/products/mask/mask07_04.jpg';
+import img_36 from '@/assets/images/products/mask/mask07_03.jpg';
+import img_37 from '@/assets/images/products/mask/mask01_03.jpg';
+import img_38 from '@/assets/images/products/mask/mask06_06_00.jpg';
+import img_39 from '@/assets/images/products/mask/mask06_02.jpg';
+import img_40 from '@/assets/images/products/mask/mask06_01.jpg';
+import img_41 from '@/assets/images/products/mask/mask03_14.jpg';
+import img_42 from '@/assets/images/products/mask/mask03_15.jpg';
+import img_43 from '@/assets/images/products/mask/mask03_04.jpg';
+import img_44 from '@/assets/images/products/mask/mask10_06.jpg';
+import img_45 from '@/assets/images/products/mask/mask06_04.jpg';
+import img_46 from '@/assets/images/products/mask/mask02_synergy.jpg';
+import img_47 from '@/assets/images/products/mask/mask02_synergy03.jpg';
+import img_48 from '@/assets/images/products/mask/mask09_03_ampoulelifting.jpg';
+import img_49 from '@/assets/images/products/mask/mask09_02_creamlifting.jpg';
+import img_50 from '@/assets/images/products/mask/mask10_aloe.jpg';
+import img_51 from '@/assets/images/products/mask/mask10_birchtree.jpg';
+import img_52 from '@/assets/images/products/mask/mask10_greentanerine.jpg';
+import img_53 from '@/assets/images/products/mask/mask10_cica.jpg';
+import img_54 from '@/assets/images/products/mask/mask02_synergy02.jpg';
+import img_55 from '@/assets/images/products/mask/mask02_synergy04.jpg';
+import img_56 from '@/assets/images/products/mask/mask04_04.jpg';
+import img_57 from '@/assets/images/products/pad/pad_09chestnut.jpg';
+import img_58 from '@/assets/images/products/pad/pad_08carrot.jpg';
+import img_59 from '@/assets/images/products/pad/pad_refill_03.jpg';
+import img_60 from '@/assets/images/products/pad/pad_refill_07.jpg';
+import img_61 from '@/assets/images/products/pad/pad_refill_05.jpg';
+import img_62 from '@/assets/images/products/pad/pad_refill_04.jpg';
+import img_63 from '@/assets/images/products/pad/pad_refill_01.jpg';
+import img_64 from '@/assets/images/products/pad/pad_refill_02.jpg';
+import img_65 from '@/assets/images/products/pad/pad_01madecassoside.jpg';
+import img_66 from '@/assets/images/products/pad/pad07phyto-enzyme.jpg';
+import img_67 from '@/assets/images/products/pad/pad_06hyalluronate.jpg';
+import img_68 from '@/assets/images/products/pad/pad_05pdrn.jpg';
+import img_69 from '@/assets/images/products/pad/pad_04collagen.jpg';
+import img_70 from '@/assets/images/products/pad/pad_03vitamin.jpg';
+import img_71 from '@/assets/images/products/pad/pad_02teatree.jpg';
+import img_72 from '@/assets/images/products/pad/pad_10vitamin.jpg';
+import img_73 from '@/assets/images/products/pad/pad_11retinol.jpg';
+import img_74 from '@/assets/images/products/skincare/oil_02.jpg';
+import img_75 from '@/assets/images/products/skincare/toner_02.jpg';
+import img_76 from '@/assets/images/products/skincare/serum_100_01.jpg';
+import img_77 from '@/assets/images/products/skincare/cream_01.jpg';
+import img_78 from '@/assets/images/products/skincare/patch_capsule.jpg';
+import img_79 from '@/assets/images/products/skincare/patch_stretching.jpg';
+import img_80 from '@/assets/images/products/skincare/serum_40_04.jpg';
+import img_81 from '@/assets/images/products/skincare/serum_40_04.jpg';
+import img_82 from '@/assets/images/products/skincare/serum_40_06.jpg';
+import img_83 from '@/assets/images/products/mask/mask09_05spicule.jpg';
+import img_84 from '@/assets/images/products/skincare/set_00.jpg';
+import img_85 from '@/assets/images/products/skincare/set_01.jpg';
+import img_86 from '@/assets/images/products/skincare/set_02.jpg';
+import img_87 from '@/assets/images/products/skincare/set_03.jpg';
+import img_88 from '@/assets/images/products/skincare/serum02_01.jpg';
+import img_89 from '@/assets/images/products/skincare/serum02_03.jpg';
+import img_90 from '@/assets/images/products/skincare/serum_40_01.jpg';
+import img_91 from '@/assets/images/products/skincare/serum_40_02.jpg';
+import img_92 from '@/assets/images/products/skincare/patch_03.jpg';
+import img_93 from '@/assets/images/products/skincare/patch_02_160.jpg';
+import img_94 from '@/assets/images/products/skincare/patch_01_132.jpg';
+import img_95 from '@/assets/images/products/skincare/patch_01_44.jpg';
+import img_96 from '@/assets/images/products/skincare/patch_02_132.jpg';
+import img_97 from '@/assets/images/products/skincare/patch_02_44.jpg';
+import img_98 from '@/assets/images/products/skincare/serum02_02barrier.jpg';
+import img_99 from '@/assets/images/products/skincare/serum_40_03.jpg';
+import img_100 from '@/assets/images/products/skincare/serum02_02moisture.jpg';
+import img_101 from '@/assets/images/products/cleanser/cleanser_03_02.jpg';
+import img_102 from '@/assets/images/products/cleanser/cleanser_03_02porepowder.jpg';
+import img_103 from '@/assets/images/products/cleanser/cleanser_03_02calmingpowder.jpg';
+import img_104 from '@/assets/images/products/cleanser/cleanser_01_04.jpg';
+import img_105 from '@/assets/images/products/cleanser/cleanser_01_01.jpg';
+import img_106 from '@/assets/images/products/cleanser/cleanser_01_06.jpg';
+import img_107 from '@/assets/images/products/cleanser/cleanser_01_02.jpg';
+import img_108 from '@/assets/images/products/cleanser/cleanser_01_03.jpg';
+import img_109 from '@/assets/images/products/sun/sun_01.jpg';
+import img_110 from '@/assets/images/products/sun/sun_cream_03.jpg';
+import img_111 from '@/assets/images/products/sun/sun_spray_06.jpg';
+import img_112 from '@/assets/images/products/sun/sun_patch_03.jpg';
+import img_113 from '@/assets/images/products/sun/sun_patch_01.jpg';
+import img_114 from '@/assets/images/products/sun/sun_cream_02.jpg';
+import img_115 from '@/assets/images/products/skincare/serum_100_03.jpg';
+
+const productsData = [
     {
         id: 'p001',
         name: '더마 모델링 팩 [콜라겐] 1+1 기획세트',
@@ -9,7 +125,7 @@
         category: 'mask',
         function: ['영양'],
         ingredient: '콜라겐',
-        images: ['@/assets/images/products/mask/mask06_04_00.jpg'],
+        images: [img_1],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-콜라겐-11-기획세트/1730/category/91/display/1/',
@@ -24,7 +140,7 @@
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
         ingredient: '마데카소사이드',
-        images: ['@/assets/images/products/mask/mask01_01.jpg'],
+        images: [img_2],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-더마-앰플-마스크-10매/1029/category/91/display/1/',
@@ -38,7 +154,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['수분보습', '영양'],
-        images: ['@/assets/images/products/'],
+        images: [img_3],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/ape-프로아틴-마스크-10매리뉴얼/510/category/91/display/1/',
@@ -53,7 +169,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['영양', '윤광'],
-        images: ['@/assets/images/products/mask/mask01_rna.jpg'],
+        images: [img_4],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/rna-프로아틴-마스크-10매리뉴얼/509/category/91/display/1/',
@@ -68,7 +184,7 @@
         discountRate: 8,
         category: 'mask',
         function: ['모공', '각질제거', '피지연화'],
-        images: ['@/assets/images/products/mask/mask09_01nose.jpg'],
+        images: [img_5],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/블랙헤드-멜팅-클리어-코팩-4매/1019/category/91/display/1/',
@@ -83,7 +199,7 @@
         discountRate: 22,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/mask/mask06_02.jpg'],
+        images: [img_6],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-티트리-진정/899/category/91/display/1/',
@@ -98,7 +214,7 @@
         discountRate: 22,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/mask/mask06_01.jpg'],
+        images: [img_7],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-마데카소사이드-흔적/898/category/91/display/1/',
@@ -113,7 +229,7 @@
         discountRate: 22,
         category: 'mask',
         function: ['수분보습'],
-        images: ['@/assets/images/products/mask/mask06_06_00.jpg'],
+        images: [img_8],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-히알루론산-속보습/901/category/91/display/1/',
@@ -128,7 +244,7 @@
         discountRate: 22,
         category: 'mask',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/mask/mask06_03.jpg'],
+        images: [img_9],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-비타민-잡티/900/category/91/display/1/',
@@ -143,7 +259,7 @@
         discountRate: 31,
         category: 'mask',
         function: ['진정', '흔적', '수분보습'],
-        images: ['@/assets/images/products/mask/mask08_00.jpg'],
+        images: [img_10],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-365-마스크-30매-4종-택1/1704/category/91/display/1/',
@@ -158,7 +274,7 @@
         discountRate: 37,
         category: 'mask',
         function: ['모공'],
-        images: ['@/assets/images/products/mask/mask02_05.jpg'],
+        images: [img_11],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/피디알엔-랩핑-세럼-마스크-모공-탄력-10매/1620/category/91/display/1/',
@@ -173,7 +289,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['탄력', '영양'],
-        images: ['@/assets/images/products/mask/mask10_redcamellia.jpg'],
+        images: [img_12],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마플러스-동백-마스크-10매-영양리프팅/1601/category/91/display/1/',
@@ -188,7 +304,7 @@
         discountRate: 20,
         category: 'mask',
         function: ['영양', '탄력', '모공', '진정', '흔적', '수분보습'],
-        images: ['@/assets/images/products/mask/mask06_00.jpg'],
+        images: [img_13],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/10회분-기획세트-더마-모델링-팩-파우더-10ea-앰플-10ea-3종-택1/1596/category/91/display/1/',
@@ -203,7 +319,7 @@
         discountRate: 37,
         category: 'mask',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/mask/mask02_03.jpg'],
+        images: [img_14],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민씨-랩핑-세럼-마스크-브라이트닝-10매/1593/category/91/display/1/',
@@ -218,7 +334,7 @@
         discountRate: 37,
         category: 'mask',
         function: ['영양'],
-        images: ['@/assets/images/products/mask/mask02_04.jpg'],
+        images: [img_15],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/콜라겐-랩핑-세럼-마스크-탄력-볼륨-10매/1592/category/91/display/1/',
@@ -233,7 +349,7 @@
         discountRate: 37,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/mask/mask02_02.jpg'],
+        images: [img_16],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-랩핑-세럼-마스크-진정-수분-10매/1591/category/91/display/1/',
@@ -248,7 +364,7 @@
         discountRate: 37,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/mask/mask02_01.jpg'],
+        images: [img_17],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-랩핑-세럼-마스크-흔적-리페어-10매/1590/category/91/display/1/',
@@ -263,7 +379,7 @@
         discountRate: 46,
         category: 'mask',
         function: ['모공'],
-        images: ['@/assets/images/products/mask/mask05_05.jpg'],
+        images: [img_18],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/로제-피디알엔-바이오-세컨덤-마스크-모공탄력-10매/1581/category/91/display/1/',
@@ -278,7 +394,7 @@
         discountRate: 46,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/mask/mask05_01.jpg'],
+        images: [img_19],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-바이오-세컨덤-마스크-흔적진정-10매/1580/category/91/display/1/',
@@ -293,7 +409,7 @@
         discountRate: 46,
         category: 'mask',
         function: ['수분보습'],
-        images: ['@/assets/images/products/mask/mask05_06.jpg'],
+        images: [img_20],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/히알루론산-바이오-세컨덤-마스크-고밀도-수분-10매/1579/category/91/display/1/',
@@ -307,8 +423,8 @@
         discountPrice: 21400,
         discountRate: 46,
         category: 'mask',
-        function: [],
-        images: [''],
+        function: ['수분보습', '탄력', '윤광', '미백', '진정'],
+        images: [img_21],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/11-골라담기-best-에센셜-마스크-7종-교차선택/1538/category/91/display/1/',
@@ -323,7 +439,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['탄력', '윤광', '보습'],
-        images: ['@/assets/images/products/mask10_propolis.jpg'],
+        images: [img_22],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마플러스-프로폴리스-마스크-10매-탄력광채/1527/category/91/display/1/',
@@ -338,7 +454,7 @@
         discountRate: 9,
         category: 'mask',
         function: ['수분보습'],
-        images: ['@/assets/images/products/mask/mask061_06.jpg'],
+        images: [img_23],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/5회분-기획세트-히알루론산-속보습-더마-모델링팩/1485/category/91/display/1/',
@@ -353,7 +469,7 @@
         discountRate: 9,
         category: 'mask',
         function: ['영양'],
-        images: ['@/assets/images/products/mask/mask061_04.jpg'],
+        images: [img_24],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/5회분-기획세트-콜라겐-탄력-더마-모델링팩/1484/category/91/display/1/',
@@ -368,7 +484,7 @@
         discountRate: 9,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/mask/mask061_01.jpg'],
+        images: [img_25],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/5회분-기획세트-마데카소사이드-흔적-더마-모델링팩/1482/category/91/display/1/',
@@ -383,7 +499,7 @@
         discountRate: 22,
         category: 'mask',
         function: ['수분보습', '진정', '영양', '탄력', '흔적'],
-        images: ['@/assets/images/products/mask/mask06_00.jpg'],
+        images: [img_13],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/대용량-더마-모델링-팩-파우더-300g-앰플-10ea-4종-택1/1449/category/91/display/1/',
@@ -398,7 +514,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['수분보습', '탄력'],
-        images: ['@/assets/images/products/mask/mask03_13.jpg'],
+        images: [img_26],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더-nmf-앰플-마스크-오리지널-10매/1419/category/91/display/1/',
@@ -413,7 +529,7 @@
         discountRate: 40,
         category: 'mask',
         function: ['결광', '윤광', '모공', '탄력'],
-        images: ['@/assets/images/products/mask/mask01_05.jpg'],
+        images: [img_27],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/로제-pdrn-에센셜-마스크-모공-결광-10매/1400/category/91/display/1/',
@@ -428,7 +544,7 @@
         discountRate: 40,
         category: 'mask',
         function: ['수분보습'],
-        images: ['@/assets/images/products/mask/mask01_06.jpg'],
+        images: [img_28],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/히알루론산-에센셜-마스크-고밀도-수분-10매/1399/category/91/display/1/',
@@ -443,7 +559,7 @@
         discountRate: 40,
         category: 'mask',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/mask/mask01_03.jpg'],
+        images: [img_29],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민씨-에센셜-마스크-잡티-토닝-10매/1398/category/91/display/1/',
@@ -458,7 +574,7 @@
         discountRate: 40,
         category: 'mask',
         function: ['영양'],
-        images: ['@/assets/images/products/mask/mask01_04.jpg'],
+        images: [img_30],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/콜라겐-에센셜-마스크-코어-탄력-10매/1397/category/91/display/1/',
@@ -473,7 +589,7 @@
         discountRate: 40,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/mask/mask01_02.jpg'],
+        images: [img_31],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-에센셜-마스크-진정-수분-10매/1396/category/91/display/1/',
@@ -488,7 +604,7 @@
         discountRate: 3,
         category: 'mask',
         function: ['수분보습'],
-        images: ['@/assets/images/products/mask/mask09_04_steam.jpg'],
+        images: [img_32],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/메디힐-스파-워터-히알루론산-스팀-마스크-10매/1389/category/91/display/1/',
@@ -503,7 +619,7 @@
         discountRate: 40,
         category: 'mask',
         function: ['보습', '장벽'],
-        images: ['@/assets/images/products/mask/mask01_12.jpg'],
+        images: [img_33],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/세라마이드-에센셜-마스크-보습-장벽-10매/1152/category/91/display/1/',
@@ -518,7 +634,7 @@
         discountRate: 20,
         category: 'mask',
         function: ['미백', '광채', '윤광'],
-        images: ['@/assets/images/products/mask/mask07_11.jpg'],
+        images: [img_34],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-씰-마스크-영양-탄력-10매/1046/category/91/display/1/',
@@ -533,7 +649,7 @@
         discountRate: 20,
         category: 'mask',
         function: ['리프팅', '탄력', '수분보습'],
-        images: ['@/assets/images/products/mask/mask07_04.jpg'],
+        images: [img_35],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-씰-마스크-수분-탄력-10매/1045/category/91/display/1/',
@@ -548,7 +664,7 @@
         discountRate: 20,
         category: 'mask',
         function: ['미백', '탄력', '콜라겐'],
-        images: ['@/assets/images/products/mask/mask07_03.jpg'],
+        images: [img_36],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-씰-마스크-미백-탄력-10매/1044/category/91/display/1/',
@@ -563,7 +679,7 @@
         discountRate: 40,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/mask/mask01_01.jpg'],
+        images: [img_2],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-에센셜-마스크-흔적-리페어-10매/1035/category/91/display/1/',
@@ -578,7 +694,7 @@
         discountRate: 37,
         category: 'mask',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/mask01_03.jpg'],
+        images: [img_37],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민-더마-앰플-마스크-10매/1030/category/91/display/1/',
@@ -593,7 +709,7 @@
         discountRate: 16,
         category: 'mask',
         function: ['수분보습'],
-        images: ['@/assets/images/products/mask06_06_00.jpg'],
+        images: [img_38],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-히알루론산-속보습-11-기획세트/1012/category/91/display/1/',
@@ -608,7 +724,7 @@
         discountRate: 16,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/mask06_02.jpg'],
+        images: [img_39],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-티트리-진정-11-기획세트/1011/category/91/display/1/',
@@ -623,7 +739,7 @@
         discountRate: 16,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/mask06_01.jpg'],
+        images: [img_40],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-마데카소사이드-흔적-11-기획세트/1010/category/91/display/1/',
@@ -638,7 +754,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['매끈', '모공', '윤광'],
-        images: ['@/assets/images/products/mask03_14.jpg'],
+        images: [img_41],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더-hpa-앰플-마스크-10매/1007/category/91/display/1/',
@@ -653,7 +769,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['미백', '광채', '잡티'],
-        images: ['@/assets/images/products/mask03_15.jpg'],
+        images: [img_42],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더-ipi-앰플-마스크-10매/1006/category/91/display/1/',
@@ -668,7 +784,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['영양', '탄력'],
-        images: ['@/assets/images/products/mask/mask03_04.jpg'],
+        images: [img_43],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더-egt-앰플-마스크-10매/1005/category/91/display/1/',
@@ -683,7 +799,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['수분보습'],
-        images: ['@/assets/images/products/mask/mask10_06.jpg'],
+        images: [img_44],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마플러스-저분자-히알루론산-마스크-10매-속보습-충전/995/category/91/display/1/',
@@ -698,7 +814,7 @@
         discountRate: 22,
         category: 'mask',
         function: ['영양'],
-        images: ['@/assets/images/products/mask/mask06_04.jpg'],
+        images: [img_45],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-모델링-팩-콜라겐-탄력/902/category/91/display/1/',
@@ -713,7 +829,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['수분보습', '진정'],
-        images: ['@/assets/images/products/mask/mask02_synergy.jpg'],
+        images: [img_46],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-시너지-랩핑-마스크-흔적토닝-10매/723/category/91/display/1/',
@@ -728,7 +844,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/mask/mask02_synergy03.jpg'],
+        images: [img_47],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-시너지-랩핑-마스크-트러블진정-10매/722/category/91/display/1/',
@@ -743,7 +859,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['보습', '탄력'],
-        images: ['@/assets/images/products/mask/mask09_03_ampoulelifting.jpg'],
+        images: [img_48],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/레티놀-콜라겐-앰플-윤곽-마스크-10매/707/category/91/display/1/',
@@ -758,7 +874,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['보습', '탄력'],
-        images: ['@/assets/images/products/mask/mask09_02_creamlifting.jpg'],
+        images: [img_49],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/레티놀-콜라겐-크림-윤곽-마스크-10매/706/category/91/display/1/',
@@ -773,7 +889,7 @@
         discountRate: 37,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/mask/mask01_02.jpg'],
+        images: [img_31],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-앰플-마스크-10매/540/category/91/display/1/',
@@ -788,7 +904,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['수분보습', '진정'],
-        images: ['@/assets/images/products/mask/mask10_aloe.jpg'],
+        images: [img_50],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마플러스-알로에-마스크-10매-수분진정/529/category/91/display/1/',
@@ -803,7 +919,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['진정', '장벽강화'],
-        images: ['@/assets/images/products/mask/mask10_aloe'],
+        images: [img_50],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마플러스-어성초-마스크-10매-집중진정/528/category/91/display/1/',
@@ -818,7 +934,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['수분보습'],
-        images: ['@/assets/images/products/mask/mask10_birchtree.jpg'],
+        images: [img_51],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마플러스-자작나무-마스크-10매-집중보습/527/category/91/display/1/',
@@ -833,7 +949,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/mask/mask10_greentanerine.jpg'],
+        images: [img_52],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마플러스-청귤-마스크-10매-생기미백/526/category/91/display/1/',
@@ -848,7 +964,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['진정'],
-        images: ['@/assets/images/products/mask/mask10_cica.jpg'],
+        images: [img_53],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마플러스-시카-마스크-10매-예민진정/525/category/91/display/1/',
@@ -863,7 +979,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['영양', '미백', '윤광'],
-        images: ['@/assets/images/products/mask/mask02_synergy02.jpg'],
+        images: [img_54],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-시너지-랩핑-마스크-잡티결광-10매/524/category/91/display/1/',
@@ -878,7 +994,7 @@
         discountRate: 43,
         category: 'mask',
         function: ['모공리프팅', '탄력'],
-        images: ['@/assets/images/products/mask/mask02_synergy04.jpg'],
+        images: [img_55],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-시너지-랩핑-마스크-모공탄력-10매/523/category/91/display/1/',
@@ -893,7 +1009,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['영양', '부스팅'],
-        images: ['@/assets/images/products/mask/mask04_04.jpg'],
+        images: [img_56],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/콜라겐-누드-겔-마스크-10매/482/category/91/display/1/',
@@ -908,7 +1024,7 @@
         discountRate: 50,
         category: 'mask',
         function: ['수분보습', '탄력', '모공리프팅', '부스팅'],
-        images: ['@/assets/images/products/mask/mask03_13.jpg'],
+        images: [img_26],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/엔엠에프-누드-겔-마스크-10매/481/category/91/display/1/',
@@ -923,7 +1039,7 @@
         discountRate: 43,
         category: 'pad',
         function: ['매끈', '각질제거'],
-        images: ['@/assets/images/products/pad/pad_09chestnut.jpg'],
+        images: [img_57],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/율피-각질-매끈결-패드-60매/840/category/91/display/1/',
@@ -938,7 +1054,7 @@
         discountRate: 43,
         category: 'pad',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/pad/pad_08carrot.jpg'],
+        images: [img_58],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/당근-수분-진정-패드-60매/839/category/91/display/1/',
@@ -953,7 +1069,7 @@
         discountRate: 24,
         category: 'pad',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/pad/pad_refill_03.jpg'],
+        images: [img_59],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민씨-잡티-토닝-패드-리필-기획-세트-200매/1716/category/91/display/1/',
@@ -968,7 +1084,7 @@
         discountRate: 24,
         category: 'pad',
         function: ['피지연화', '모공', '각질제거', '매끈'],
-        images: ['@/assets/images/products/pad/pad_refill_07.jpg'],
+        images: [img_60],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/피토엔자임-각질-필링-패드-리필-기획-세트-200매/1715/category/91/display/1/',
@@ -983,7 +1099,7 @@
         discountRate: 24,
         category: 'pad',
         function: ['모공'],
-        images: ['@/assets/images/products/pad/pad_refill_05.jpg'],
+        images: [img_61],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/피디알엔-모공-탄력-패드-리필-기획-세트-200매/1714/category/91/display/1/',
@@ -998,7 +1114,7 @@
         discountRate: 24,
         category: 'pad',
         function: ['영양'],
-        images: ['@/assets/images/products/pad/pad_refill_04.jpg'],
+        images: [img_62],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/콜라겐-탄력-채움-패드-리필-기획-세트-200매/1713/category/91/display/1/',
@@ -1013,7 +1129,7 @@
         discountRate: 24,
         category: 'pad',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/pad/pad_refill_01.jpg'],
+        images: [img_63],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-흔적-패드-리필-기획-세트-200매/1712/category/91/display/1/',
@@ -1028,7 +1144,7 @@
         discountRate: 24,
         category: 'pad',
         function: ['진정', '수분보습'],
-        images: [''],
+        images: [img_64],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-트러블-진정-패드-리필-기획-세트-200매/1711/category/91/display/1/',
@@ -1043,7 +1159,7 @@
         discountRate: 22,
         category: 'pad',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [''],
+        images: [img_65],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-흔적-토너패드-100매/1710/category/91/display/1/',
@@ -1058,7 +1174,7 @@
         discountRate: 22,
         category: 'pad',
         function: ['모공', '매끈', '각질제거', '피지연화'],
-        images: ['@/assets/images/products/pad/pad07phyto-enzyme.jpg'],
+        images: [img_66],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/피토엔자임-각질-필링-토너패드-100매/1680/category/91/display/1/',
@@ -1074,7 +1190,7 @@
         discountRate: 22,
         category: 'pad',
         function: ['수분보습'],
-        images: ['@/assets/images/products/pad/pad_06hyalluronate.jpg'],
+        images: [img_67],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/히알루론산-속보습-토너패드-100매/1679/category/91/display/1/',
@@ -1089,7 +1205,7 @@
         discountRate: 22,
         category: 'pad',
         function: ['모공'],
-        images: ['@/assets/images/products/pad/pad_05pdrn.jpg'],
+        images: [img_68],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/피디알엔-모공-탄력-토너패드-100매/1678/category/91/display/1/',
@@ -1104,7 +1220,7 @@
         discountRate: 22,
         category: 'pad',
         function: ['영양'],
-        images: ['@/assets/images/products/pad/pad_04collagen.jpg'],
+        images: [img_69],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/콜라겐-탄력-채움-토너패드-100매/1677/category/91/display/1/',
@@ -1119,7 +1235,7 @@
         discountRate: 22,
         category: 'pad',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/pad/pad_03vitamin.jpg'],
+        images: [img_70],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민씨-잡티-토닝-토너패드-100매/1676/category/91/display/1/',
@@ -1134,7 +1250,7 @@
         discountRate: 22,
         category: 'pad',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/pad/pad_02teatree.jpg'],
+        images: [img_71],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-트러블-진정-토너패드-100매/1675/category/91/display/1/',
@@ -1149,7 +1265,7 @@
         discountRate: 43,
         category: 'pad',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/pad/pad_10vitamin.jpg'],
+        images: [img_72],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민씨-브라이트닝-패드-60매/1490/category/91/display/1/',
@@ -1164,7 +1280,7 @@
         discountRate: 43,
         category: 'pad',
         function: ['보습', '탄력'],
-        images: ['@/assets/images/products/pad/pad_11retinol.jpg'],
+        images: [img_73],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/레티놀-퍼밍-패드-60매/1489/category/91/display/1/',
@@ -1180,7 +1296,7 @@
         category: 'skincare',
         function: ['진정', '수분보습'],
         ingredient: '티트리',
-        images: ['@/assets/images/products/skincare/oil_02.jpg'],
+        images: [img_74],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-트러블-진정-오일-10ml/843/category/91/display/1/',
@@ -1194,7 +1310,7 @@
         discountRate: 29,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/skincare/toner_02.jpg'],
+        images: [img_75],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-진정-수분-토너-350ml/504/category/91/display/1/',
@@ -1209,7 +1325,7 @@
         discountRate: 34,
         category: 'skincare',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/skincare/serum_100_03.jpg'],
+        images: [img_115],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/대용량-비타민씨-브라이트닝-세럼-100ml/917/category/91/display/1/',
@@ -1224,7 +1340,7 @@
         discountRate: 13,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/skincare/cream_01.jpg'],
+        images: [img_77],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-크림마데카소사이드-흔적-리페어-50ml/1647/category/91/display/1/',
@@ -1239,7 +1355,7 @@
         discountRate: 27,
         category: 'skincare',
         function: ['영양', '탄력'],
-        images: ['@/assets/images/products/skincare/patch_capsule.jpg'],
+        images: [img_78],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/메디힐-콜라겐-캡슐패치-60매-2종-택1/1634/category/91/display/1/',
@@ -1254,7 +1370,7 @@
         discountRate: 16,
         category: 'skincare',
         function: ['탄력', '리프팅'],
-        images: ['@/assets/images/products/skincare/patch_stretching.jpg'],
+        images: [img_79],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/브이티알-스트레칭-패치-4매/1589/category/91/display/1/',
@@ -1269,7 +1385,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['모공'],
-        images: ['@/assets/images/products/skincare/serum_40_04.jpg'],
+        images: [img_80],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/피디알엔-모공-탄력-세럼-40ml/1586/category/91/display/1/',
@@ -1284,7 +1400,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['영양'],
-        images: ['@/assets/images/products/skincare/40_04.jpg'],
+        images: [img_81],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/콜라겐-탄력-볼륨-세럼-40ml/1517/category/91/display/1/',
@@ -1299,7 +1415,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['수분보습'],
-        images: ['@/assets/images/products/skincare/40_06.jpg'],
+        images: [img_82],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/저분자-히알루론산-수분-밀도-세럼-40ml/1496/category/91/display/1/',
@@ -1314,7 +1430,7 @@
         discountRate: 34,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/skincare/serum_100_03.jpg'],
+        images: [img_76],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/대용량-마데카소사이드-흔적-리페어-세럼-100ml/1157/category/91/display/1/',
@@ -1329,7 +1445,7 @@
         discountRate: 15,
         category: 'skincare',
         function: ['모공', '부스팅', '탄력'],
-        images: ['@/assets/images/products/mask/mask09_05spicule.jpg'],
+        images: [img_83],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/스피큘-모공-탄력-시스템2-10매/1154/category/91/display/1/',
@@ -1344,12 +1460,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['간편', '세정'],
-        images: [
-            '@/assets/images/products/skincare/set_00.jpg',
-            '@/assets/images/products/skincare/set_01.jpg',
-            '@/assets/images/products/skincare/set_02.jpg',
-            '@/assets/images/products/skincare/set_03.jpg',
-        ],
+        images: [img_84, img_85, img_86, img_87],
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/트라이얼-키트-세트-3종-택1/1054/category/91/display/1/',
         ingredient: ['마데카소사이드', '티트리', '비타민씨'],
@@ -1363,7 +1474,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/skincare/serum02_01.jpg'],
+        images: [img_88],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-더마-앰플-흔적-리페어-50ml/1032/category/91/display/1/',
@@ -1378,7 +1489,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/skincare/serum02_03.jpg'],
+        images: [img_89],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민-더마-앰플-잡티-미백-50ml/1031/category/91/display/1/',
@@ -1393,7 +1504,7 @@
         discountRate: 20,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/skincare/serum_40_01.jpg'],
+        images: [img_90],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-모공-리페어-세럼-40ml/1014/category/91/display/1/',
@@ -1408,7 +1519,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/skincare/serum_40_02.jpg'],
+        images: [img_91],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-진정-수분-세럼-40ml/957/category/91/display/1/',
@@ -1423,7 +1534,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/skincare/serum_40_01.jpg'],
+        images: [img_90],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-흔적-리페어-세럼-40ml/955/category/91/display/1/',
@@ -1438,7 +1549,7 @@
         discountRate: 26,
         category: 'skincare',
         function: ['영양'],
-        images: ['@/assets/images/products/skincare/patch_03.jpg'],
+        images: [img_92],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타-콜라겐-아이-앰플-패치-60매/941/category/91/display/1/',
@@ -1453,7 +1564,7 @@
         discountRate: 26,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/skincare/patch_02_160.jpg'],
+        images: [img_93],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-클리어-티트리-시카-스팟-패치-160/701/category/91/display/1/',
@@ -1468,7 +1579,7 @@
         discountRate: 26,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/skincare/patch_01_132.jpg'],
+        images: [img_94],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-클리어-마데카소사이드-블레미쉬-스팟패치-132/700/category/91/display/1/',
@@ -1483,7 +1594,7 @@
         discountRate: 20,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/skincare/patch_01_44.jpg'],
+        images: [img_95],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-클리어-마데카소사이드-블레미쉬-스팟패치-44/699/category/91/display/1/',
@@ -1498,7 +1609,7 @@
         discountRate: 26,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/skincare/patch_02_132.jpg'],
+        images: [img_96],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-클리어-티트리-트러블-스팟패치-132/698/category/91/display/1/',
@@ -1513,7 +1624,7 @@
         discountRate: 20,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/skincare/patch_02_44.jpg'],
+        images: [img_97],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-클리어-티트리-트러블-스팟패치-44/697/category/91/display/1/',
@@ -1528,7 +1639,7 @@
         discountRate: 0,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/skincare/serum02_02barrier.jpg'],
+        images: [img_98],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-진정-장벽-앰플-50ml/617/category/91/display/1/',
@@ -1543,7 +1654,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/serum40_03.jpg'],
+        images: [img_99],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민씨-브라이트닝-세럼-40ml/521/category/91/display/1/',
@@ -1558,7 +1669,7 @@
         discountRate: 25,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/serum02_02moisture.jpg'],
+        images: [img_100],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-진정-수분-앰플-50ml/502/category/91/display/1/',
@@ -1574,7 +1685,7 @@
         category: 'cleanser',
         function: ['진정', '수분보습'],
         ingredient: '티트리',
-        images: ['@/assets/images/products/cleanser/cleanser_03_02.jpg'],
+        images: [img_101],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-모공-휘핑-클렌저-200ml50ml/506/category/91/display/1/',
@@ -1588,7 +1699,7 @@
         discountRate: 48,
         category: 'cleanser',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/cleanser/cleanser_03_02porepowder.jpg'],
+        images: [img_102],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더-티트리-포어-파우더-워시-50g/515/category/91/display/1/',
@@ -1603,7 +1714,7 @@
         discountRate: 48,
         category: 'cleanser',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/cleanser/cleanser_03_02calmingpowder.jpg'],
+        images: [img_103],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더-티트리-카밍-파우더-워시-50g/514/category/91/display/1/',
@@ -1618,7 +1729,7 @@
         discountRate: 22,
         category: 'cleanser',
         function: ['모공'],
-        images: ['@/assets/images/products/cleanser/cleanser_01_04.jpg'],
+        images: [img_104],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-크림-팩-클렌저로제-피디알엔-모공-탄력/1660/category/91/display/1/',
@@ -1633,7 +1744,7 @@
         discountRate: 22,
         category: 'cleanser',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/cleanser/cleanser_01_01.jpg'],
+        images: [img_105],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/더마-크림-팩-클렌저마데카소사이드-진정-장벽/1659/category/91/display/1/',
@@ -1648,7 +1759,7 @@
         discountRate: 24,
         category: 'cleanser',
         function: ['수분보습'],
-        images: ['@/assets/images/products/cleanser/cleanser_01_06.jpg'],
+        images: [img_106],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/밀도-보습-히알루론산-클렌저-120ml/1520/category/91/display/1/',
@@ -1663,7 +1774,7 @@
         discountRate: 24,
         category: 'cleanser',
         function: ['영양'],
-        images: ['@/assets/images/products/cleanser/cleanser_01_04.jpg'],
+        images: [img_104],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/탱글-결광-콜라겐-클렌저-120ml/1515/category/91/display/1/',
@@ -1678,7 +1789,7 @@
         discountRate: 24,
         category: 'cleanser',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/cleanser/cleanser_01_02.jpg'],
+        images: [img_107],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/트러블-진정-티트리-클렌저-120ml/1488/category/91/display/1/',
@@ -1693,7 +1804,7 @@
         discountRate: 24,
         category: 'cleanser',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/cleanser/cleanser_01_01.jpg'],
+        images: [img_105],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/수분-진정-마데카소사이드-클렌저-120ml/1487/category/91/display/1/',
@@ -1708,7 +1819,7 @@
         discountRate: 24,
         category: 'cleanser',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/cleanser/cleanser_01_03.jpg'],
+        images: [img_108],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/모공토닝-비타민씨-클렌저-120ml/1486/category/91/display/1/',
@@ -1724,7 +1835,7 @@
         category: 'sun',
         function: ['진정', '수분보습', '흔적', '모공'],
         ingredient: '마데카소사이드',
-        images: ['@/assets/images/products/sun/sun_01.jpg'],
+        images: [img_109],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-수분-선세럼-흔적-리페어/1731/category/91/display/1/',
@@ -1738,7 +1849,7 @@
         discountRate: 1,
         category: 'sun',
         function: ['미백', '영양'],
-        images: ['@/assets/images/products/sun/sun_cream_03.jpg'],
+        images: [img_110],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/비타민씨-수분-톤업-선크림-50ml/910/category/91/display/1/',
@@ -1753,7 +1864,7 @@
         discountRate: 7,
         category: 'sun',
         function: ['자외선차단', '수분보습'],
-        images: ['@/assets/images/products/sun/sun_spray_06.jpg'],
+        images: [img_111],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/수분-유브이-컷-선-스프레이/1575/category/91/display/1/',
@@ -1768,7 +1879,7 @@
         discountRate: 8,
         category: 'sun',
         function: ['자외선차단', '영양'],
-        images: ['@/assets/images/products/sun/sun_patch_03.jpg'],
+        images: [img_112],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/유브이-컷-아웃도어-선-패치-트리플-프로텍션/1563/category/91/display/1/',
@@ -1783,7 +1894,7 @@
         discountRate: 8,
         category: 'sun',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: ['@/assets/images/products/sun/sun_patch_01.jpg'],
+        images: [img_113],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/마데카소사이드-유브이-컷-아웃도어-선-패치-와이드-프로텍션/1523/category/91/display/1/',
@@ -1798,7 +1909,7 @@
         discountRate: 1,
         category: 'sun',
         function: ['진정', '수분보습'],
-        images: ['@/assets/images/products/suncare/sun_cream_02.jpg'],
+        images: [img_114],
         reviewCount: 0,
         createdAt: '2026-03-01',
         url: 'https://medihealshop.com/product/티트리-수분-진정-선크림-50ml/909/category/91/display/1/',

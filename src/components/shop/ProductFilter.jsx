@@ -1,21 +1,22 @@
-import { useState } from 'react';
 import { categoryList } from '@/data/productsFilterData';
+import iconx from '@/assets/images/products/card/icon_x.svg';
 
-const ProductFilter = () => {
-    const [selectedFilters, setSelectedFilters] = useState([]);
-
-    const toggleFilter = (value) => {
-        setSelectedFilters((prev) =>
-            prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
-        );
-    };
-
+const ProductFilter = ({
+    selectedCategory = 'all',
+    onCategoryChange = () => {},
+    selectedFilters = [],
+    toggleFilter = () => {},
+}) => {
     return (
         <div className="product__filter">
             <div className="product__category">
                 <ul>
                     {categoryList.map((item) => (
-                        <li key={item.value}>
+                        <li
+                            key={item.value}
+                            className={selectedCategory === item.value ? 'is-active' : ''}
+                            onClick={() => onCategoryChange(item.value)}
+                        >
                             <img src={item.icon} alt={item.label} />
                             <span>{item.label}</span>
                         </li>
@@ -64,9 +65,7 @@ const ProductFilter = () => {
                                 영양
                             </li>
                             <li
-                                className={
-                                    selectedFilters.includes('자외선차단') ? 'is-active' : ''
-                                }
+                                className={selectedFilters.includes('자외선차단') ? 'is-active' : ''}
                                 onClick={() => toggleFilter('자외선차단')}
                             >
                                 자외선차단
@@ -103,9 +102,7 @@ const ProductFilter = () => {
                                 비타민
                             </li>
                             <li
-                                className={
-                                    selectedFilters.includes('마데카소사이드') ? 'is-active' : ''
-                                }
+                                className={selectedFilters.includes('마데카소사이드') ? 'is-active' : ''}
                                 onClick={() => toggleFilter('마데카소사이드')}
                             >
                                 마데카소사이드
@@ -117,9 +114,7 @@ const ProductFilter = () => {
                                 레티놀
                             </li>
                             <li
-                                className={
-                                    selectedFilters.includes('워터마이드') ? 'is-active' : ''
-                                }
+                                className={selectedFilters.includes('워터마이드') ? 'is-active' : ''}
                                 onClick={() => toggleFilter('워터마이드')}
                             >
                                 워터마이드
@@ -135,7 +130,7 @@ const ProductFilter = () => {
                                 onClick={() => toggleFilter(filter)}
                             >
                                 <span className="chip__label">{filter}</span>
-                                <span className="chip__close">✕</span>
+                                <img src={iconx} alt="" className="chip__close" />
                             </span>
                         ))}
                     </div>
