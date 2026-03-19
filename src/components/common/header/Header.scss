@@ -5,16 +5,10 @@
     height: var(--header-height);
     margin: 0 auto;
     // background: #fff;
-    position: absolute;
+    position: absolute; // 다시 원래대로 복구 (스크롤할 때 따라다니지 않고 맨 위에 박혀 있음)
     left: 0;
     top: 0;
     z-index: 20;
-    opacity: 0;
-    filter: blur(5px);
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease,
-        filter 0.7s ease;
 
     &__inner {
         height: 100%;
@@ -187,12 +181,6 @@
             opacity: 1;
         }
     }
-}
-
-.header--visible {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
 }
 
 .header--menu-open {
