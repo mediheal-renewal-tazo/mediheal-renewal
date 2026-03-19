@@ -92,6 +92,7 @@ const Hero = () => {
 
             gsap.set(mask, { width: vw, height: vh });
             gsap.set(darkWrap, { clipPath: 'inset(0px 0px)' });
+            document.documentElement.style.setProperty('--hero-mask-clip', 'inset(0px 0px)');
             gsap.set(chars, { opacity: 0 });
             gsap.set(description, { opacity: 0 });
             gsap.set(mainDscs, { y: 0 });
@@ -171,7 +172,9 @@ const Hero = () => {
 
                     const clipY = (vh - currentH) / 2;
                     const clipX = (vw - currentW) / 2;
-                    gsap.set(darkWrap, { clipPath: `inset(${clipY}px ${clipX}px)` });
+                    const clipVal = `inset(${clipY}px ${clipX}px)`;
+                    gsap.set(darkWrap, { clipPath: clipVal });
+                    document.documentElement.style.setProperty('--hero-mask-clip', clipVal);
 
                     // 각 이미지 표시 시간 가중치 — 값이 클수록 해당 이미지 hold 시간이 길어짐
                     // hero00: 3, hero01~07: 각 1 → 값을 올리면 hold 증가
@@ -326,7 +329,7 @@ const Hero = () => {
     );
 
     return (
-        <section className="hero" ref={containerRef}>
+        <section className="hero" ref={containerRef} data-header-theme="dark">
             <div className="hero__sticky">
                 <div className="hero__inner">
                     {/* Light text (white) — 파란 배경 위 */}

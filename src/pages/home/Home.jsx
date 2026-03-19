@@ -20,6 +20,13 @@ const Home = () => {
 
     const handleIntroFinish = useCallback(() => {
         setIntroFinished(true);
+        document.body.classList.remove('intro-playing');
+    }, []);
+
+    // 인트로 재생 중 헤더 숨김
+    useEffect(() => {
+        document.body.classList.add('intro-playing');
+        return () => document.body.classList.remove('intro-playing');
     }, []);
 
     // home__visual의 scale(1.2) → scale(1) 전환 완료 후 ScrollTrigger 위치 재계산
@@ -36,7 +43,7 @@ const Home = () => {
                 <div className="home__hero">
                     <Hero />
                 </div>
-                <div className="home__visual">
+                <div className="home__visual" data-header-theme="light">
                     <MainVisual />
                     <MainSection1 />
                     <MainSection2 />
