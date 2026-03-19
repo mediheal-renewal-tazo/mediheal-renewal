@@ -35,10 +35,17 @@ const MainSection2 = () => {
             // item2~5 동시에 이동해 각각 이전 아이템에 50%씩 겹침
             items.forEach((item, i) => {
                 if (i === 0) return;
-                tl.to(item, {
-                    x: -(item.offsetLeft - baseOffset) * 0.5,
-                    ease: 'none',
-                }, 0);
+                tl.to(
+                    item,
+                    {
+                        x: -(item.offsetLeft - baseOffset) * 0.5,
+                        ease: 'none',
+                    },
+                    0
+                );
+
+                // 모션 완료 후 잠깐 멈춤
+                tl.to({}, { duration: 0.3 });
             });
         },
         { scope: sectionRef }
