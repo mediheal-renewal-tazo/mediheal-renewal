@@ -13,18 +13,32 @@ const MainSection2 = () => {
 
     useGSAP(
         () => {
-            // 가로 스크롤: 패널 컨테이너를 왼쪽으로 밀어 가로 페이징 구현
-            gsap.to(panelsRef.current, {
-                xPercent: -75, // 패널 4개 중 3개만큼 이동 (100% - 25% = 75%)
-                ease: 'none',
+            const items = Array.from(panelsRef.current.children);
+            const baseOffset = items[0].offsetLeft;
+
+            // 뒤 아이템일수록 위에 쌓이도록 z-index 설정
+            items.forEach((item, i) => {
+                gsap.set(item, { zIndex: i + 1 });
+            });
+
+            const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     pin: true,
                     pinType: 'transform',
                     scrub: 1,
                     start: 'bottom bottom',
-                    end: () => '+=' + panelsRef.current.offsetWidth,
+                    end: () => `+=${panelsRef.current.scrollWidth - panelsRef.current.offsetWidth}`,
                 },
+            });
+
+            // item2~5 동시에 이동해 각각 이전 아이템에 50%씩 겹침
+            items.forEach((item, i) => {
+                if (i === 0) return;
+                tl.to(item, {
+                    x: -(item.offsetLeft - baseOffset) * 0.5,
+                    ease: 'none',
+                }, 0);
             });
         },
         { scope: sectionRef }

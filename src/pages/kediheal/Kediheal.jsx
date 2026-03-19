@@ -1,4 +1,3 @@
-import React from 'react';
 import './Kediheal.scss';
 
 import KedihealHero from '../../components/kediheal/KedihealHero';
