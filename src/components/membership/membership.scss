@@ -184,7 +184,7 @@
         }
 
         &-label {
-            font-size: 22px;
+            font-size: clamp(13px, 1.15vw, 22px);
             color: #151789;
             line-height: 1.2;
             font-weight: 500;
@@ -192,7 +192,7 @@
         }
 
         &-sub {
-            font-size: 13px;
+            font-size: clamp(10px, 0.68vw, 13px);
             color: #151789;
             line-height: 1.2;
             opacity: 0.75;
