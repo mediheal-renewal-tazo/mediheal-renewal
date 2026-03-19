@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 // 새로고침 시 ScrollTrigger가 저장한 스크롤 위치 제거
 ScrollTrigger.clearScrollMemory();
 
-const Hero = () => {
+const Hero = ({ introFinished }) => {
     // ── React Refs ──
     const containerRef = useRef(null);
     const maskRef = useRef(null);
@@ -92,6 +92,7 @@ const Hero = () => {
 
             gsap.set(mask, { width: vw, height: vh });
             gsap.set(darkWrap, { clipPath: 'inset(0px 0px)' });
+            document.documentElement.style.setProperty('--hero-mask-clip', 'inset(0px 0px)');
             gsap.set(chars, { opacity: 0 });
             gsap.set(description, { opacity: 0 });
             gsap.set(mainDscs, { y: 0 });
@@ -171,7 +172,9 @@ const Hero = () => {
 
                     const clipY = (vh - currentH) / 2;
                     const clipX = (vw - currentW) / 2;
-                    gsap.set(darkWrap, { clipPath: `inset(${clipY}px ${clipX}px)` });
+                    const clipVal = `inset(${clipY}px ${clipX}px)`;
+                    gsap.set(darkWrap, { clipPath: clipVal });
+                    document.documentElement.style.setProperty('--hero-mask-clip', clipVal);
 
                     // 각 이미지 표시 시간 가중치 — 값이 클수록 해당 이미지 hold 시간이 길어짐
                     // hero00: 3, hero01~07: 각 1 → 값을 올리면 hold 증가
@@ -326,11 +329,11 @@ const Hero = () => {
     );
 
     return (
-        <section className="hero" ref={containerRef}>
+        <section className="hero" ref={containerRef} data-header-theme="dark">
             <div className="hero__sticky">
                 <div className="hero__inner">
                     {/* Light text (white) — 파란 배경 위 */}
-                    <div className="hero__main-dsc-wrap">
+                    <div className={`hero__main-dsc-wrap${introFinished ? ' hero__main-dsc-wrap--visible' : ''}`}>
                         <span className="hero__main-dsc hero__main-dsc--light">
                             <p>모든 피부를 위해</p>
                             <p>깊이 있는 피부 과학과 성분 연구에서 시작해</p>
@@ -338,7 +341,7 @@ const Hero = () => {
                         </span>
                     </div>
                     {/* Dark text (#151789) — 흰 마스크 위, clip-path로 마스크 영역만 표시 */}
-                    <div className="hero__main-dsc-wrap" ref={darkWrapRef}>
+                    <div className={`hero__main-dsc-wrap${introFinished ? ' hero__main-dsc-wrap--visible' : ''}`} ref={darkWrapRef}>
                         <span className="hero__main-dsc hero__main-dsc--dark">
                             <p>모든 피부를 위해</p>
                             <p>깊이 있는 피부 과학과 성분 연구에서 시작해</p>

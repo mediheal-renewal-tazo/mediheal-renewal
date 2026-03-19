@@ -4,7 +4,7 @@ import './Footer.scss';
 
 function Footer() {
     return (
-        <footer className="footer">
+        <footer className="footer" data-header-theme="dark">
             <div className="footer__inner">
                 <div className="footer__top">
                     <div className="footer__col footer__col--cs">

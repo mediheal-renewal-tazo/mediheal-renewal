@@ -8,7 +8,7 @@ import './rootlayout.scss';
 const RootLayout = () => {
     return (
         <div className="layout">
-            <Header theme="dark" />
+            <Header />
             <main className="layout__content">
                 <Outlet />
             </main>

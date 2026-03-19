@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { HEADER_NAV_ITEMS, ROUTE_PATHS } from '@/app/routes/paths';
 import { GiHamburgerMenu } from "react-icons/gi";
 import logoImg1 from '@/assets/logos/logo_1.png';
@@ -7,12 +7,20 @@ import logoImg2 from '@/assets/logos/logo_2.png';
 import HeaderSearch from './HeaderSearch';
 import './Header.scss';
 
-const Header = ({ theme = 'light' }) => {
+const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const logoSrc = theme === 'dark' ? logoImg1 : logoImg2;
-    const headerClassName = `header header--${theme}${isMenuOpen ? ' header--menu-open' : ''}${isVisible ? ' header--visible' : ''}`;
+    const [isOverDark, setIsOverDark] = useState(false);
+    const location = useLocation();
+
+    const logoSrc = isOverDark ? logoImg2 : logoImg1;
+    const headerClassName = [
+        'header',
+        isOverDark ? '' : 'header--dark',
+        isMenuOpen ? 'header--menu-open' : '',
+        isVisible ? 'header--visible' : '',
+    ].filter(Boolean).join(' ');
 
     useEffect(() => {
         const frame = requestAnimationFrame(() => {
@@ -41,8 +49,81 @@ const Header = ({ theme = 'light' }) => {
         };
     }, [isMenuOpen]);
 
+    // 현재 헤더 뒤에 있는 배경이 어두운지 밝은지 감지
+    useEffect(() => {
+        const HEADER_H = 80;
+        const sections = document.querySelectorAll('[data-header-theme]');
+
+        if (sections.length === 0) {
+            setIsOverDark(false);
+            return;
+        }
+
+        const getTheme = () => {
+            let currentTheme = null;
+            let maxTop = -Infinity;
+
+            sections.forEach((section) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < HEADER_H && rect.bottom > 0 && rect.top > maxTop) {
+                    maxTop = rect.top;
+                    currentTheme = section.dataset.headerTheme;
+                }
+            });
+
+            // 페이지 최하단 도달 시 footer 감지 fallback
+            // (페이지가 짧아 footer가 헤더 존에 못 닿는 경우)
+            if (currentTheme === null) {
+                const isAtBottom =
+                    Math.ceil(window.scrollY + window.innerHeight) >=
+                    document.documentElement.scrollHeight;
+                if (isAtBottom) {
+                    const sectionsArr = Array.from(sections);
+                    const last = sectionsArr[sectionsArr.length - 1];
+                    if (last) currentTheme = last.dataset.headerTheme;
+                }
+            }
+
+            return currentTheme === 'dark';
+        };
+
+        setIsOverDark(getTheme());
+
+        const handleScroll = () => setIsOverDark(getTheme());
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [location.pathname]);
+
     return (
         <header className={headerClassName}>
+            {/* Hero 위에 있을 때만: 이미지(밝은 배경) 영역에 네이비 버튼을 클립패스로 표시 */}
+            {isOverDark && (
+                <div className="header__clip-overlay" aria-hidden="true">
+                    <div className="header__inner header__inner--dark">
+                        <div className="header__brand">
+                            <button className="header__menu-btn" type="button" tabIndex={-1}>
+                                <GiHamburgerMenu className="header__menu-line" />
+                            </button>
+                            <span className="header__logo">
+                                <img className="header__logo-img" src={logoImg1} alt="" />
+                            </span>
+                        </div>
+                        <div className="header__actions">
+                            <button className="header__icon-btn" type="button" tabIndex={-1}>
+                                <div className="header__search-btn">SEARCH</div>
+                            </button>
+                            <div className="header__icon-btn">
+                                <div className="header__login-btn">LOGIN</div>
+                            </div>
+                            <div className="header__cart-wrap">
+                                <div className="header__icon-btn">
+                                    <div className="header__cart-btn">CART</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
             <div className="header__inner">
                 <div className="header__brand">
                     <button

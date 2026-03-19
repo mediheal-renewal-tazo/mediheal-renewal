@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CartItem from '../../components/cart/CartItem';
 import OrderComplete from '../../components/cart/OrderComplete';
 import CartSummary from '../../components/cart/CartSummary';
@@ -49,6 +49,10 @@ const Cart = () => {
 
     const [cartItems, setCartItems] = useState(initialDummyData);
     const [selectedIds, setSelectedIds] = useState(initialDummyData.map((item) => item.id));
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [step]);
 
     // 전체 선택 / 해제
     const handleToggleAll = (e) => {

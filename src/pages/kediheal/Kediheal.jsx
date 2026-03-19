@@ -1,5 +1,4 @@
-import React from 'react';
-import './kediheal.scss';
+import './Kediheal.scss';
 
 import KedihealHero from '../../components/kediheal/KedihealHero';
 import KedihealTransition from '../../components/kediheal/KedihealTransition';

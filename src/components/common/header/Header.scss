@@ -111,6 +111,35 @@
         gap: 5px;
     }
 
+    &__clip-overlay {
+        position: fixed;
+        inset: 0;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 2001;
+        clip-path: var(--hero-mask-clip, inset(0px 0px));
+    }
+
+    &__inner--dark {
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 clamp(16px, 3vw, 30px);
+        box-sizing: border-box;
+        gap: 24px;
+
+        .header__search-btn,
+        .header__login-btn,
+        .header__cart-btn {
+            color: #151789;
+        }
+
+        .header__menu-line {
+            color: #151789;
+        }
+    }
+
     &__cart-count {
         display: none; // 조건으로 열기
         width: 24px;
@@ -262,6 +291,11 @@
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+}
+
+.intro-playing .header {
+    opacity: 0 !important;
+    pointer-events: none;
 }
 
 .header--menu-open {

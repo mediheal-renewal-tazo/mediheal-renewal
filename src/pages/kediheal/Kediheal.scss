@@ -123,12 +123,12 @@
         text-align: center;
         padding-top: 70px;
         color: var(--GreyScale-grey-500, #474747);
-        text-decoration: opacify($color: #474747, $amount: 0.1);
+        text-decoration: none;
     }
 
     &__latest-description {
         color: var(--GreyScale-grey-500, #474747);
-        text-decoration: opacify($color: #474747, $amount: 0.1);
+        text-decoration: none;
         font-family: Pretendard;
         font-size: 22px;
         font-weight: 400;
