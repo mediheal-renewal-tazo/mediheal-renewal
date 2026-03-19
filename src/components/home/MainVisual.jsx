@@ -62,7 +62,9 @@ const MainVisual = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'center center',
+                    start: 'bottom bottom',
+                    pin: true,
+                    pinType: 'transform',
                     toggleActions: 'play none none reverse',
                 },
                 defaults: { ease: 'power2.out' },
@@ -90,11 +92,7 @@ const MainVisual = () => {
             );
 
             // Phase 3: dsc가 아래에서 위로 등장
-            tl.fromTo(
-                dscRef.current,
-                { y: 60, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6 }
-            );
+            tl.fromTo(dscRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
         },
         { scope: containerRef }
     );
@@ -107,7 +105,10 @@ const MainVisual = () => {
                     <div ref={leftWrapRef} className="main__visual-anim-wrap">
                         <h2
                             className="main__visual-text left"
-                            style={{ opacity: leftVisible ? 1 : 0, transition: `opacity ${FADE_MS}ms ease` }}
+                            style={{
+                                opacity: leftVisible ? 1 : 0,
+                                transition: `opacity ${FADE_MS}ms ease`,
+                            }}
                             onMouseEnter={handleLeftEnter}
                             onMouseLeave={handleLeftLeave}
                         >
@@ -128,7 +129,10 @@ const MainVisual = () => {
                     <div ref={rightWrapRef} className="main__visual-anim-wrap">
                         <h2
                             className="main__visual-text right"
-                            style={{ opacity: rightVisible ? 1 : 0, transition: `opacity ${FADE_MS}ms ease` }}
+                            style={{
+                                opacity: rightVisible ? 1 : 0,
+                                transition: `opacity ${FADE_MS}ms ease`,
+                            }}
                             onMouseEnter={handleRightEnter}
                             onMouseLeave={handleRightLeave}
                         >
