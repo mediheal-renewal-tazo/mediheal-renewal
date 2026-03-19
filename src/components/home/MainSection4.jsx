@@ -18,9 +18,10 @@ const MainSection4 = () => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
-                    pin:true,
-                    pinType:'transform',
-                    start: 'bottom bottom',
+                    pin: true,
+                    pinType: 'transform',
+                    start: 'top top',
+                    end: '+=600',
                     toggleActions: 'play none none reverse',
                 },
             });
@@ -42,7 +43,7 @@ const MainSection4 = () => {
     );
 
     return (
-        <div className="main__section4" ref={sectionRef}>
+        <div className="main__section4" ref={sectionRef} data-header-theme="dark">
             <div className="main__section4__inner">
                 <div className="main__section4-titleBox">
                     <span>MEDIHEAL Membership</span>

@@ -29,7 +29,7 @@ const MainSection5 = () => {
     };
 
     return (
-        <div className="main__section5">
+        <div className="main__section5" data-header-theme="light">
             <div className="main__section5-inner">
                 <div
                     className="main__section5-title"

@@ -43,7 +43,7 @@ const Home = () => {
                 <div className="home__hero">
                     <Hero />
                 </div>
-                <div className="home__visual" data-header-theme="light">
+                <div className="home__visual">
                     <MainVisual />
                     <MainSection1 />
                     <MainSection2 />

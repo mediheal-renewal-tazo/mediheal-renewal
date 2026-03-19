@@ -53,7 +53,7 @@ const MainSection3 = () => {
     );
 
     return (
-        <div className="main__section3" ref={sectionRef}>
+        <div className="main__section3" ref={sectionRef} data-header-theme="dark">
             <div className="main__section3__inner">
                 <div className="main__section3-titleBox">
                     <span>MEDIHEAL PROCESS</span>

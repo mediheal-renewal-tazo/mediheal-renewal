@@ -98,7 +98,7 @@ const MainVisual = () => {
     );
 
     return (
-        <div className="main" ref={containerRef}>
+        <div className="main" ref={containerRef} data-header-theme="light">
             <div className="main__inner">
                 <div className="main__visual-text">
                     {/* GSAP가 wrapper를, React hover가 내부 h2 opacity를 각각 제어 */}

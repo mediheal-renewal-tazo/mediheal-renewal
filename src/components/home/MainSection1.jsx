@@ -62,7 +62,7 @@ const MainSection1 = () => {
     };
 
     return (
-        <div className="main__section1" ref={containerRef}>
+        <div className="main__section1" ref={containerRef} data-header-theme="dark">
             <div className="main__section1-inner">
                 <div
                     className={`main__section1-title${hovered ? ' is-hovered' : ''}`}

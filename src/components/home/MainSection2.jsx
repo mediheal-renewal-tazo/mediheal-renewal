@@ -51,7 +51,7 @@ const MainSection2 = () => {
         { scope: sectionRef }
     );
     return (
-        <div className="main__section2" ref={sectionRef}>
+        <div className="main__section2" ref={sectionRef} data-header-theme="light">
             <div className="main__section2-inner">
                 <div className="main__section2-titleBox">
                     <span>MEDIHEAL BEST</span>
