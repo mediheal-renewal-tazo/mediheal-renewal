@@ -51,7 +51,7 @@ const Header = () => {
 
     // 현재 헤더 뒤에 있는 배경이 어두운지 밝은지 감지
     useEffect(() => {
-        const headerHeight = 80;
+        const HEADER_H = 80;
         const sections = document.querySelectorAll('[data-header-theme]');
 
         if (sections.length === 0) {
@@ -59,22 +59,39 @@ const Header = () => {
             return;
         }
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsOverDark(entry.target.dataset.headerTheme === 'dark');
-                    }
-                });
-            },
-            {
-                rootMargin: `0px 0px -${window.innerHeight - headerHeight - 1}px 0px`,
-                threshold: 0,
-            }
-        );
+        const getTheme = () => {
+            let currentTheme = null;
+            let maxTop = -Infinity;
 
-        sections.forEach((s) => observer.observe(s));
-        return () => observer.disconnect();
+            sections.forEach((section) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < HEADER_H && rect.bottom > 0 && rect.top > maxTop) {
+                    maxTop = rect.top;
+                    currentTheme = section.dataset.headerTheme;
+                }
+            });
+
+            // 페이지 최하단 도달 시 footer 감지 fallback
+            // (페이지가 짧아 footer가 헤더 존에 못 닿는 경우)
+            if (currentTheme === null) {
+                const isAtBottom =
+                    Math.ceil(window.scrollY + window.innerHeight) >=
+                    document.documentElement.scrollHeight;
+                if (isAtBottom) {
+                    const sectionsArr = Array.from(sections);
+                    const last = sectionsArr[sectionsArr.length - 1];
+                    if (last) currentTheme = last.dataset.headerTheme;
+                }
+            }
+
+            return currentTheme === 'dark';
+        };
+
+        setIsOverDark(getTheme());
+
+        const handleScroll = () => setIsOverDark(getTheme());
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [location.pathname]);
 
     return (
