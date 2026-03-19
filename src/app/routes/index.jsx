@@ -11,7 +11,8 @@ import Kediheal from '../../pages/kediheal/Kediheal';
 import MyPage from '../../pages/myPage/MyPage';
 import Cart from '../../pages/cart/Cart';
 import Inquiry from '../../pages/inquiry/Inquiry';
-
+// 임의로 만든거
+import ShopDetail from '../../pages/shop/shopDetail/ShopDetail';
 const AppRoutes = () => {
     return (
         <Routes>
@@ -26,6 +27,8 @@ const AppRoutes = () => {
                 <Route path={ROUTE_PATHS.CART} element={<Cart />} />
                 <Route path={ROUTE_PATHS.INQUIRY} element={<Inquiry />} />
                 <Route path={ROUTE_PATHS.READY} element={<Ready />} />
+                {/* 임의로 만든 거 */}
+                <Route path="/shop/:id" element={<ShopDetail />} />
             </Route>
         </Routes>
     );

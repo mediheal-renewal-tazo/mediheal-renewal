@@ -1,33 +1,47 @@
-﻿import review1_1 from '@/assets/images/review/review1_1.jpg';
-import review1_2 from '@/assets/images/review/review1_2.jpg';
-import review2_1 from '@/assets/images/review/review2_1.jpg';
-import review2_2 from '@/assets/images/review/review2_2.jpg';
-import review3_1 from '@/assets/images/review/review3_1.jpg';
-import review3_2 from '@/assets/images/review/review3_2.jpg';
-import review4_1 from '@/assets/images/review/review4_1.jpg';
-import review4_2 from '@/assets/images/review/review4_2.jpg';
-import review5_1 from '@/assets/images/review/review5_1.jpg';
-import review5_2 from '@/assets/images/review/review5_2.jpg';
-import review6_1 from '@/assets/images/review/review6_1.jpg';
-import review6_2 from '@/assets/images/review/review6_2.jpg';
-import review7_1 from '@/assets/images/review/review7_1.jpg';
-import review7_2 from '@/assets/images/review/review7_2.jpg';
-import review8_1 from '@/assets/images/review/review8_1.jpg';
-import review8_2 from '@/assets/images/review/review8_2.jpg';
-import review9_1 from '@/assets/images/review/review9_1.jpg';
-import review9_2 from '@/assets/images/review/review9_2.jpg';
-import review10_1 from '@/assets/images/review/review10_1.jpg';
-import review10_2 from '@/assets/images/review/review10_2.jpg';
-import review11_1 from '@/assets/images/review/review11_1.jpg';
-import review11_2 from '@/assets/images/review/review11_2.jpg';
-import review12_1 from '@/assets/images/review/review12_1.jpg';
-import review12_2 from '@/assets/images/review/review12_2.jpg';
-import review13_1 from '@/assets/images/review/review13_1.jpg';
-import review13_2 from '@/assets/images/review/review13_2.jpg';
-import review14_1 from '@/assets/images/review/review14_1.jpg';
-import review14_2 from '@/assets/images/review/review14_2.jpg';
-import review15_1 from '@/assets/images/review/review15_1.jpg';
-import review15_2 from '@/assets/images/review/review15_2.jpg';
+﻿import review01_1 from '@/assets/images/product_details/review/pic1.jpg';
+import review01_2 from '@/assets/images/product_details/review/pic2.jpg';
+
+import review02_1 from '@/assets/images/product_details/review/pic3.jpg';
+import review02_2 from '@/assets/images/product_details/review/pic4.jpg';
+
+import review03_1 from '@/assets/images/product_details/review/pic5.jpg';
+import review03_2 from '@/assets/images/product_details/review/pic6.jpg';
+
+import review04_1 from '@/assets/images/product_details/review/pic7.jpg';
+import review04_2 from '@/assets/images/product_details/review/pic8.png';
+
+import review05_1 from '@/assets/images/product_details/review/pic9.webp';
+import review05_2 from '@/assets/images/product_details/review/pic10.webp';
+
+import review06_1 from '@/assets/images/product_details/review/pic11.jpeg';
+import review06_2 from '@/assets/images/product_details/review/pic12.jpg';
+
+import review07_1 from '@/assets/images/product_details/review/pic13.jpg';
+import review07_2 from '@/assets/images/product_details/review/pic14.jpg';
+
+import review08_1 from '@/assets/images/product_details/review/pic15.jpg';
+import review08_2 from '@/assets/images/product_details/review/pic16.jpg';
+
+import review09_1 from '@/assets/images/product_details/review/pic17.jpg';
+import review09_2 from '@/assets/images/product_details/review/pic18.jpg';
+
+import review10_1 from '@/assets/images/product_details/review/pic19.jpg';
+import review10_2 from '@/assets/images/product_details/review/pic20.jpg';
+
+import review11_1 from '@/assets/images/product_details/review/pic21.jpg';
+import review11_2 from '@/assets/images/product_details/review/pic22.jpg';
+
+import review12_1 from '@/assets/images/product_details/review/pic23.jpg';
+import review12_2 from '@/assets/images/product_details/review/pic24.jpeg';
+
+import review13_1 from '@/assets/images/product_details/review/pic25.jpeg';
+import review13_2 from '@/assets/images/product_details/review/pic26.jpg';
+
+import review14_1 from '@/assets/images/product_details/review/pic27.jpeg';
+import review14_2 from '@/assets/images/product_details/review/pic28.jpeg';
+
+import review15_1 from '@/assets/images/product_details/review/pic29.jpeg';
+import review15_2 from '@/assets/images/product_details/review/pic30.jpg';
 
 const reviewData = [
     {
@@ -40,7 +54,7 @@ const reviewData = [
         usagePeriod: '2개월',
         skinType: '지성',
         skinConcern: '트러블',
-        images: [review1_1, review1_2],
+        images: [review01_1, review01_2],
     },
     {
         id: 2,
@@ -52,7 +66,7 @@ const reviewData = [
         usagePeriod: '1년 이상',
         skinType: '복합성',
         skinConcern: '모공/피지',
-        images: [review2_1, review2_2],
+        images: [review02_1, review02_2],
     },
     {
         id: 3,
@@ -64,7 +78,7 @@ const reviewData = [
         usagePeriod: '1주일',
         skinType: '건성',
         skinConcern: '건조함',
-        images: [review3_1, review3_2],
+        images: [review03_1, review03_2],
     },
     {
         id: 4,
@@ -76,7 +90,7 @@ const reviewData = [
         usagePeriod: '6개월',
         skinType: '지성',
         skinConcern: '모공/탄력',
-        images: [review4_1, review4_2],
+        images: [review04_1, review04_2],
     },
     {
         id: 5,
@@ -89,7 +103,7 @@ const reviewData = [
         usagePeriod: '3개월',
         skinType: '민감성',
         skinConcern: '트러블',
-        images: [review5_1, review5_2],
+        images: [review05_1, review05_2],
     },
     {
         id: 6,
@@ -101,7 +115,7 @@ const reviewData = [
         usagePeriod: '1개월',
         skinType: '수부지',
         skinConcern: '속당김/수분부족',
-        images: [review6_1, review6_2],
+        images: [review06_1, review06_2],
     },
     {
         id: 7,
@@ -113,7 +127,7 @@ const reviewData = [
         usagePeriod: '2년 이상',
         skinType: '민감성/복합성',
         skinConcern: '홍조/진정',
-        images: [review7_1, review7_2],
+        images: [review07_1, review07_2],
     },
     {
         id: 8,
@@ -126,7 +140,7 @@ const reviewData = [
         usagePeriod: '2주일',
         skinType: '지성',
         skinConcern: '유분/피지',
-        images: [review8_1, review8_2],
+        images: [review08_1, review08_2],
     },
     {
         id: 9,
@@ -139,7 +153,7 @@ const reviewData = [
         usagePeriod: '4개월',
         skinType: '중성',
         skinConcern: '칙칙함/미백',
-        images: [review9_1, review9_2],
+        images: [review09_1, review09_2],
     },
     {
         id: 10,
