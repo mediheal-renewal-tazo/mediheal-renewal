@@ -67,30 +67,34 @@ const MainSection1 = () => {
                 <div
                     className={`main__section1-title${hovered ? ' is-hovered' : ''}`}
                     style={{ opacity: visible ? 1 : 0, transition: `opacity ${FADE_MS}ms ease` }}
-                    onMouseEnter={handleEnter}
-                    onMouseLeave={handleLeave}
                 >
-                    {showKo ? (
-                        <>
-                            <span className="main__section1-title--ko-headline">
-                                저자극 데일리 흔적 케어 솔루션
-                            </span>
-                            <span className="main__section1-title--ko-body">
-                                메디힐 연구소 테스트를 통과한{'\n'}
-                                정밀 리포좀 기술 기반의 저자극 데일리 흔적 케어 솔루션을 만나보세요.
-                                {'\n'}
-                                메디힐의 데이터로 증명하는 피부의 변화를 느껴보세요.
-                            </span>
-                        </>
-                    ) : (
-                        <>
-                            <span>PRECISE LIPOSOME TECH</span>
-                            <span>SYSTEM</span>
-                            <span>DAILY TRACE CARE</span>
-                            <span>TESTED BY</span>
-                            <span>MEDIHEAL LAB</span>
-                        </>
-                    )}
+                    <div
+                        className="main__section1-title__text"
+                        onMouseEnter={handleEnter}
+                        onMouseLeave={handleLeave}
+                    >
+                        {showKo ? (
+                            <>
+                                <span className="main__section1-title--ko-headline">
+                                    저자극 데일리 흔적 케어 솔루션
+                                </span>
+                                <span className="main__section1-title--ko-body">
+                                    메디힐 연구소 테스트를 통과한{'\n'}
+                                    정밀 리포좀 기술 기반의 저자극 데일리 흔적 케어 솔루션을 만나보세요.
+                                    {'\n'}
+                                    메디힐의 데이터로 증명하는 피부의 변화를 느껴보세요.
+                                </span>
+                            </>
+                        ) : (
+                            <>
+                                <span>PRECISE LIPOSOME TECH</span>
+                                <span>SYSTEM</span>
+                                <span>DAILY TRACE CARE</span>
+                                <span>TESTED BY</span>
+                                <span>MEDIHEAL LAB</span>
+                            </>
+                        )}
+                    </div>
                 </div>
                 <div className="main__section1-productList" ref={listRef}>
                     {sectionData1.map((item) => (

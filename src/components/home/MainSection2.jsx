@@ -38,7 +38,7 @@ const MainSection2 = () => {
                 tl.to(
                     item,
                     {
-                        x: -(item.offsetLeft - baseOffset) * 0.5,
+                        x: -(item.offsetLeft - baseOffset) * 0.48,
                         ease: 'none',
                     },
                     0

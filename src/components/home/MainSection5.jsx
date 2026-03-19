@@ -34,9 +34,12 @@ const MainSection5 = () => {
                 <div
                     className="main__section5-title"
                     style={{ opacity: visible ? 1 : 0, transition: `opacity ${FADE_MS}ms ease` }}
-                    onMouseEnter={handleEnter}
-                    onMouseLeave={handleLeave}
                 >
+                    <div
+                        className="main__section5-title__text"
+                        onMouseEnter={handleEnter}
+                        onMouseLeave={handleLeave}
+                    >
                     {showKo ? (
                         <>
                             <span className="main__section5-title--ko-headline">
@@ -57,6 +60,7 @@ const MainSection5 = () => {
                             <span>DERMA SOLUTIONS</span>
                         </>
                     )}
+                    </div>
                 </div>
                 <div className="main__section5-bgImg">
                     <img src={main5_bg} alt="main5_bg" />

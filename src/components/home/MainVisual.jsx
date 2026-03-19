@@ -74,7 +74,7 @@ const MainVisual = () => {
             tl.fromTo(
                 lineRef.current,
                 { scaleY: 0, transformOrigin: 'center center' },
-                { scaleY: 1, duration: 0.7, ease: 'power2.inOut' }
+                { scaleY: 1, duration: 0.4, ease: 'power2.inOut' }
             );
 
             // Phase 2: left·right 텍스트가 line 방향에서 바깥으로 슬라이드 (동시)
@@ -92,7 +92,7 @@ const MainVisual = () => {
             );
 
             // Phase 3: dsc가 아래에서 위로 등장
-            tl.fromTo(dscRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
+            tl.fromTo(dscRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 });
         },
         { scope: containerRef }
     );
