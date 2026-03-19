@@ -14,6 +14,8 @@ const MainVisual = () => {
     const [rightVisible, setRightVisible] = useState(true);
     const leftTimer = useRef(null);
     const rightTimer = useRef(null);
+    const leftKoRef = useRef(false);
+    const rightKoRef = useRef(false);
 
     const containerRef = useRef(null);
     const lineRef = useRef(null);
@@ -23,8 +25,10 @@ const MainVisual = () => {
 
     const handleLeftEnter = () => {
         clearTimeout(leftTimer.current);
+        if (leftKoRef.current) { setLeftVisible(true); return; }
         setLeftVisible(false);
         leftTimer.current = setTimeout(() => {
+            leftKoRef.current = true;
             setLeftKo(true);
             setLeftVisible(true);
         }, FADE_MS);
@@ -32,8 +36,10 @@ const MainVisual = () => {
 
     const handleLeftLeave = () => {
         clearTimeout(leftTimer.current);
+        if (!leftKoRef.current) { setLeftVisible(true); return; }
         setLeftVisible(false);
         leftTimer.current = setTimeout(() => {
+            leftKoRef.current = false;
             setLeftKo(false);
             setLeftVisible(true);
         }, FADE_MS);
@@ -41,8 +47,10 @@ const MainVisual = () => {
 
     const handleRightEnter = () => {
         clearTimeout(rightTimer.current);
+        if (rightKoRef.current) { setRightVisible(true); return; }
         setRightVisible(false);
         rightTimer.current = setTimeout(() => {
+            rightKoRef.current = true;
             setRightKo(true);
             setRightVisible(true);
         }, FADE_MS);
@@ -50,8 +58,10 @@ const MainVisual = () => {
 
     const handleRightLeave = () => {
         clearTimeout(rightTimer.current);
+        if (!rightKoRef.current) { setRightVisible(true); return; }
         setRightVisible(false);
         rightTimer.current = setTimeout(() => {
+            rightKoRef.current = false;
             setRightKo(false);
             setRightVisible(true);
         }, FADE_MS);
@@ -109,18 +119,17 @@ const MainVisual = () => {
                                 opacity: leftVisible ? 1 : 0,
                                 transition: `opacity ${FADE_MS}ms ease`,
                             }}
-                            onMouseEnter={handleLeftEnter}
                             onMouseLeave={handleLeftLeave}
                         >
                             {leftKo ? (
                                 <>
-                                    <span>성분을 만나는</span>
-                                    <span>순간</span>
+                                    <span onMouseEnter={handleLeftEnter}>성분을 만나는</span>
+                                    <span onMouseEnter={handleLeftEnter}>순간</span>
                                 </>
                             ) : (
                                 <>
-                                    <span>When ingredients</span>
-                                    <span>meet,</span>
+                                    <span onMouseEnter={handleLeftEnter}>When ingredients</span>
+                                    <span onMouseEnter={handleLeftEnter}>meet,</span>
                                 </>
                             )}
                         </h2>
@@ -133,18 +142,17 @@ const MainVisual = () => {
                                 opacity: rightVisible ? 1 : 0,
                                 transition: `opacity ${FADE_MS}ms ease`,
                             }}
-                            onMouseEnter={handleRightEnter}
                             onMouseLeave={handleRightLeave}
                         >
                             {rightKo ? (
                                 <>
-                                    <span>진짜 피부 회복이</span>
-                                    <span>시작된다</span>
+                                    <span onMouseEnter={handleRightEnter}>진짜 피부 회복이</span>
+                                    <span onMouseEnter={handleRightEnter}>시작된다</span>
                                 </>
                             ) : (
                                 <>
-                                    <span>Real skin</span>
-                                    <span>repair begins.</span>
+                                    <span onMouseEnter={handleRightEnter}>Real skin</span>
+                                    <span onMouseEnter={handleRightEnter}>repair begins.</span>
                                 </>
                             )}
                         </h2>

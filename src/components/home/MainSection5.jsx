@@ -9,11 +9,14 @@ const MainSection5 = () => {
     const [visible, setVisible] = useState(true);
     const [showKo, setShowKo] = useState(false);
     const timer = useRef(null);
+    const showKoRef = useRef(false);
 
     const handleEnter = () => {
         clearTimeout(timer.current);
+        if (showKoRef.current) { setVisible(true); return; }
         setVisible(false);
         timer.current = setTimeout(() => {
+            showKoRef.current = true;
             setShowKo(true);
             setVisible(true);
         }, FADE_MS);
@@ -21,8 +24,10 @@ const MainSection5 = () => {
 
     const handleLeave = () => {
         clearTimeout(timer.current);
+        if (!showKoRef.current) { setVisible(true); return; }
         setVisible(false);
         timer.current = setTimeout(() => {
+            showKoRef.current = false;
             setShowKo(false);
             setVisible(true);
         }, FADE_MS);

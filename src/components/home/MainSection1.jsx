@@ -15,6 +15,7 @@ const MainSection1 = () => {
     const [visible, setVisible] = useState(true);
     const [showKo, setShowKo] = useState(false);
     const timer = useRef(null);
+    const showKoRef = useRef(false);
     const containerRef = useRef(null);
     const listRef = useRef(null);
 
@@ -43,22 +44,26 @@ const MainSection1 = () => {
 
     const handleEnter = () => {
         clearTimeout(timer.current);
+        if (showKoRef.current) { setVisible(true); return; }
         setVisible(false);
+        setHovered(true);
         timer.current = setTimeout(() => {
+            showKoRef.current = true;
             setShowKo(true);
             setVisible(true);
         }, FADE_MS);
-        setHovered(true);
     };
 
     const handleLeave = () => {
         clearTimeout(timer.current);
+        if (!showKoRef.current) { setVisible(true); return; }
         setVisible(false);
+        setHovered(false);
         timer.current = setTimeout(() => {
+            showKoRef.current = false;
             setShowKo(false);
             setVisible(true);
         }, FADE_MS);
-        setHovered(false);
     };
 
     return (
