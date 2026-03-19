@@ -1,3 +1,10 @@
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const TIERS = [
     {
         name: 'YELLOW',
@@ -25,39 +32,70 @@ const TIERS = [
     },
 ];
 
-const MembershipSection2 = () => (
-    <section className="membership-sec2" data-header-theme="dark">
-        <div className="membership-sec2__inner">
-            <div className="membership-sec2__left">
-                <h2 className="membership-sec2__title">
-                    MEDIHEAL<br />MEMBERSHIP
-                </h2>
-                <p className="membership-sec2__desc">
-                    메디힐 멤버십과 함께 한 단계 높은 피부 해답을 만나보세요.<br />
-                    차별화된 등급별 혜택이 특별한 경험을 완성합니다.
-                </p>
-            </div>
-            <div className="membership-sec2__cards">
-                {TIERS.map((tier) => (
-                    <div
-                        key={tier.name}
-                        className="membership-sec2__card"
-                        style={{ background: tier.bg }}
-                    >
-                        <div className="membership-sec2__card-top">
-                            <span className="membership-sec2__card-name">{tier.name}</span>
-                            <span className="membership-sec2__card-condition">{tier.condition}</span>
+const MembershipSection2 = () => {
+    const sectionRef = useRef(null);
+
+    useGSAP(
+        () => {
+            const cards = sectionRef.current.querySelectorAll('.membership-sec2__card');
+
+            gsap.set(cards, { x: 400, autoAlpha: 0 });
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: '20% bottom',
+                    end: '100% bottom',
+                    scrub: 1,
+                },
+            });
+
+            cards.forEach((card) => {
+                tl.to(card, { x: 0, autoAlpha: 1, duration: 1 }, '<0.3');
+            });
+        },
+        { scope: sectionRef }
+    );
+
+    return (
+        <section className="membership-sec2" data-header-theme="dark" ref={sectionRef}>
+            <div className="membership-sec2__inner">
+                <div className="membership-sec2__left">
+                    <h2 className="membership-sec2__title">
+                        MEDIHEAL
+                        <br />
+                        MEMBERSHIP
+                    </h2>
+                    <p className="membership-sec2__desc">
+                        메디힐 멤버십과 함께 한 단계 높은 피부 해답을 만나보세요.
+                        <br />
+                        차별화된 등급별 혜택이 특별한 경험을 완성합니다.
+                    </p>
+                </div>
+                <div className="membership-sec2__cards">
+                    {TIERS.map((tier) => (
+                        <div
+                            key={tier.name}
+                            className="membership-sec2__card"
+                            style={{ background: tier.bg }}
+                        >
+                            <div className="membership-sec2__card-top">
+                                <span className="membership-sec2__card-name">{tier.name}</span>
+                                <span className="membership-sec2__card-condition">
+                                    {tier.condition}
+                                </span>
+                            </div>
+                            <div className="membership-sec2__card-benefits">
+                                {tier.benefits.map((b, i) => (
+                                    <span key={i}>{b}</span>
+                                ))}
+                            </div>
                         </div>
-                        <div className="membership-sec2__card-benefits">
-                            {tier.benefits.map((b, i) => (
-                                <span key={i}>{b}</span>
-                            ))}
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
-    </section>
-);
+        </section>
+    );
+};
 
 export default MembershipSection2;
