@@ -1,6 +1,7 @@
 ﻿import { Route, Routes } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/app/routes/paths';
 import RootLayout from '@/app/layouts/RootLayout';
+import NotFound from '@/app/routes/NotFound';
 import Home from '@/pages/home/Home';
 import Ready from '@/pages/ready/Ready';
 import Products from '@/pages/shop/Products';
@@ -29,6 +30,7 @@ const AppRoutes = () => {
                 <Route path={ROUTE_PATHS.READY} element={<Ready />} />
             </Route>
             <Route path={ROUTE_PATHS.LOGIN} element={<Login />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };
