@@ -230,7 +230,7 @@
             font-size: 90px;
             font-weight: 600;
             letter-spacing: -2.7px;
-            display: none; //수정
+            overflow: hidden;
             span {
                 white-space: nowrap;
                 padding-top: 10px;

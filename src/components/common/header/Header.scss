@@ -1,5 +1,8 @@
-.header {
+:root {
     --header-height: 80px;
+}
+
+.header {
     width: 100%;
     max-width: 1920px;
     height: var(--header-height);
@@ -289,8 +292,7 @@
 
 .header--visible {
     opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
+    filter: none;
 }
 
 .intro-playing .header {
@@ -319,13 +321,11 @@
 }
 
 @media (max-width: 999px) {
-    .header {
+    :root {
         --header-height: 72px;
+    }
 
-        &__inner {
-            height: 100%;
-        }
-
+    .header {
         &__logo-img {
             height: 22px;
         }
@@ -333,13 +333,14 @@
 }
 
 @media (max-width: 799px) {
-    .header {
+    :root {
         --header-height: 64px;
+    }
 
+    .header {
         &__inner {
             padding: 0 14px;
             gap: 14px;
-            height: 100%;
         }
 
         &__actions {

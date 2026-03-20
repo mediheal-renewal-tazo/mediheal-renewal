@@ -22,6 +22,7 @@ const MainVisual = () => {
     const leftWrapRef = useRef(null);
     const rightWrapRef = useRef(null);
     const dscRef = useRef(null);
+    const middleRef = useRef(null);
 
     const handleLeftEnter = () => {
         clearTimeout(leftTimer.current);
@@ -103,6 +104,13 @@ const MainVisual = () => {
 
             // Phase 3: dsc가 아래에서 위로 등장
             tl.fromTo(dscRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 });
+
+            // Phase 4: middle 배너가 왼쪽에서 페인트칠하듯 오른쪽으로 리빌
+            tl.fromTo(
+                middleRef.current,
+                { clipPath: 'inset(0 100% 0 0)' },
+                { clipPath: 'inset(0 0% 0 0)', duration: 1.0, ease: 'power2.inOut' }
+            );
         },
         { scope: containerRef }
     );
@@ -158,7 +166,7 @@ const MainVisual = () => {
                         </h2>
                     </div>
                 </div>
-                <div className="main__visual-middle">
+                <div className="main__visual-middle" ref={middleRef}>
                     <span>MEDIHEAL LAB</span>
                     <span>MEDIHEAL LAB</span>
                     <span>MEDIHEAL LAB</span>
