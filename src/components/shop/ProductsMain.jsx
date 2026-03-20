@@ -31,9 +31,7 @@ const ProductsMain = () => {
 
     const toggleFilter = (value) => {
         setSelectedFilters((prev) =>
-            prev.includes(value)
-                ? prev.filter((item) => item !== value)
-                : [...prev, value]
+            prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
         );
     };
 
@@ -53,7 +51,6 @@ const ProductsMain = () => {
         selectRef.current.click();
         setIsOpen(true);
     };
-
 
     const filteredProducts = useMemo(() => {
         let result = [...productsData];
@@ -126,7 +123,6 @@ const ProductsMain = () => {
         return sortedProducts.slice(startIndex, endIndex);
     }, [sortedProducts, currentPage]);
 
-    
     return (
         <div className="product__main">
             <ProductFilter
@@ -156,7 +152,6 @@ const ProductsMain = () => {
                         <option value="name">상품명</option>
                         <option value="lowPrice">낮은 가격</option>
                         <option value="highPrice">높은 가격</option>
-                        <option value="brand">제조사</option>
                         <option value="popular">인기상품</option>
                         <option value="review">사용후기</option>
                     </select>
