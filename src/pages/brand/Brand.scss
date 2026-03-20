@@ -462,6 +462,7 @@
 $tablet: 1200px;
 $mobile: 768px;
 
+
 @media (max-width: $tablet) {
     // ------------------------------------------
     // 태블릿 (max-width: 1200px) 기준 (Screen margin 60px)
@@ -477,14 +478,14 @@ $mobile: 768px;
         padding-right: 60px;
     }
 
-    // --- Brand Intro 태블릿 폰트 조절 ---
+
     .brand-intro {
         &__sub-title {
             font-size: rem(24);
         }
 
         &__main-title {
-            font-size: clamp(rem(56), 8vw, rem(90)); // 하단 HISTORY 타이틀과 동기화하여 웅장한 비율 유지
+            font-size: clamp(rem(56), 8vw, rem(90));
             letter-spacing: rem(-2);
         }
     }
@@ -509,12 +510,11 @@ $mobile: 768px;
         &__inner {
             gap: rem(80);
             max-width: 100%;
-            // brand-history와 동일하게 16px 적용
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-left: 60px; // 기존 16px에서 60px로 여백 확대
+            padding-right: 60px;
         }
 
-        // con1 전용 폰트 크기 조절
+
         &__sub-title {
             font-size: rem(64);
             letter-spacing: rem(-2);
@@ -542,7 +542,7 @@ $mobile: 768px;
         // con2, con3 영역 (PC 레이아웃 유지, 이미지만 유연하게 축소)
         &__container {
             margin-top: rem(80);
-            gap: rem(20);
+            gap: rem(60); // 기존 20px에서 60px로 간격 확대
             padding: 0; // PC버전의 185px 마진 초기화
 
             >.brand-contents__box:nth-child(1),
@@ -554,107 +554,259 @@ $mobile: 768px;
                     gap: rem(40);
                 }
 
-                // 고정 px 이미지를 컨테이너에 맞게 유연하게
+
                 .brand-contents__item .brand-contents__img-mask {
                     width: 100% !important;
                     height: auto !important;
                 }
             }
 
-            // con3 마진도 PC 비율에 맞게 축소
+
             >.brand-contents__box:nth-child(2) {
                 margin-top: rem(200);
             }
         }
 
         // con2, con3 텍스트 크기 & 간격 축소
+        &__box {
+            text-align: left; // 태블릿에서는 좌측 정렬로 변경
+        }
+
         &__item {
-            gap: rem(24); // 이미지↔텍스트 간격 (PC: 50px)
+            gap: rem(24);
         }
 
         &__text-wrap {
-            gap: rem(10); // 제목↔설명 간격 (PC: 20px)
+            gap: rem(10);
         }
 
         &__item-title {
-            font-size: rem(24);
+            font-size: rem(22);
         }
 
         &__item-desc {
             font-size: rem(14);
             line-height: 1.4;
+
         }
     }
+}
 
-    // --- Brand History 태블릿 폰트/이미지 조절 ---
+
+@media (max-width: 1440px) {
     .brand-history {
         padding: rem(120) 0;
 
+        &__container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
         &__inner {
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-left: 0;
+            padding-right: 0;
         }
 
         &__label {
-            font-size: clamp(rem(14), 1.75vw, rem(24)); // PC 버전의 대비감(작은 글씨) 유지
+            font-size: rem(18); // PC 비율에 맞춰 약간 키움
             margin-bottom: rem(12);
         }
 
         &__sticky-wrap {
-            top: rem(200);
-            column-gap: 38vw; // PC 비율(약 35%)과 시각적 여백에 맞춘 정밀 조정
-            row-gap: 0;
+            position: relative;
+            width: 100%;
+            height: auto;
+            top: 0 !important;
+            margin-bottom: rem(8);
         }
 
         &__title {
-            font-size: clamp(rem(56), 8vw, rem(90)); // 인트로 타이틀과 동일한 비율로 확 키움
+            font-size: clamp(rem(64), 8vw, rem(90)); // PC 비율(115px)에 근접하게 스케일 조정
             letter-spacing: rem(-1);
-            margin-bottom: rem(24);
-        }
-
-        // 상단 desc와 리스트 사이 간격 축소
-        &__desc {
-            font-size: rem(18);
-            margin-bottom: rem(150);
-        }
-
-        &__list-wrap {
-            gap: rem(40);
-        }
-
-        // 리스트 간격 축소 & 영역 확대
-        &__list {
-            gap: rem(80);
-            max-width: 28vw; // 간격(38vw)에 비해 10vw 정도 작게 설정해 양옆 시원한 여백(5vw) 확보
+            margin-bottom: rem(20);
         }
 
         &__item {
             gap: rem(20);
+            flex-direction: column;
             align-items: center;
+            text-align: center;
         }
 
-        // 이미지 가운데 정렬
-        &__img {
+        // 간격 대폭 축소 (800px 등 태블릿 대응)
+        &__desc {
+            font-size: rem(18); // 태블릿에 맞는 비례감으로 축소 (PC 24px)
+            margin-bottom: rem(60);
+            line-height: 1.5;
+        }
+
+        &__list {
+            padding-top: 0;
+            gap: rem(80);
             max-width: 100%;
+        }
+
+        &__img {
+            max-width: rem(300);
             height: auto;
             display: block;
             margin: 0 auto;
         }
 
+        &__desc-box {
+            gap: rem(8);
+        }
+
         &__year {
-            font-size: clamp(rem(24), 3.5vw, rem(36));
+            font-size: clamp(rem(22), 3vw, rem(32));
+            margin-bottom: rem(10);
         }
 
         &__achievement {
-            font-size: clamp(rem(18), 3vw, rem(28));
+            font-size: clamp(rem(16), 2.5vw, rem(24));
         }
 
         &__detail {
-            font-size: rem(16);
+            font-size: rem(14);
+        }
+    }
+}
+
+
+@media (max-width: $tablet) {
+    // ------------------------------------------
+    // 태블릿 (max-width: 1200px) 기준 (Screen margin 60px)
+    // ------------------------------------------
+
+    // 공통: 좌우 화면 여백 60px 적용
+    .brand-intro__inner,
+    .brand-research__inner,
+    .brand-contents__inner,
+    .brand-banner__inner,
+    .brand-history__inner {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+
+    .brand-intro {
+        &__sub-title {
+            font-size: rem(24);
+        }
+
+        &__main-title {
+            font-size: clamp(rem(56), 8vw, rem(90));
+            letter-spacing: rem(-2);
         }
     }
 
-    // --- Brand Banner 태블릿 조절 ---
+    // 태블릿에서는 화면 높이에 맞추기보다 콘텐츠 양에 맞게 풀어서 통일감 부여 (Intro 제외)
+    .brand-research {
+        min-height: 100vh;
+        padding: rem(120) 0;
+
+        &__title {
+            font-size: rem(48);
+        }
+
+        &__desc {
+            font-size: rem(18);
+        }
+    }
+
+    .brand-contents {
+        padding: rem(120) 0;
+
+        &__inner {
+            gap: rem(80);
+            max-width: 100%;
+            padding-left: 60px; // 기존 16px에서 60px로 여백 확대
+            padding-right: 60px;
+        }
+
+
+        &__sub-title {
+            font-size: rem(64);
+            letter-spacing: rem(-2);
+        }
+
+        &__text {
+            font-size: rem(16);
+        }
+
+        // con1 영역 조율
+        &__box--primary {
+            overflow: hidden;
+
+            .brand-contents__text-wrap {
+                flex: 1;
+                width: 40%;
+            }
+
+            .brand-contents__list {
+                flex: 1;
+                width: 55%;
+            }
+        }
+
+        // con2, con3 영역 (PC 레이아웃 유지, 이미지만 유연하게 축소)
+        &__container {
+            margin-top: rem(80);
+            gap: rem(60); // 기존 20px에서 60px로 간격 확대
+            padding: 0; // PC버전의 185px 마진 초기화
+
+            >.brand-contents__box:nth-child(1),
+            >.brand-contents__box:nth-child(2) {
+                min-width: 0;
+                overflow: hidden;
+
+                .brand-contents__list {
+                    gap: rem(40);
+                }
+
+
+                .brand-contents__item .brand-contents__img-mask {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+            }
+
+
+            >.brand-contents__box:nth-child(2) {
+                margin-top: rem(200);
+            }
+        }
+
+        // con2, con3 텍스트 크기 & 간격 축소
+        &__box {
+            text-align: left; // 태블릿에서는 좌측 정렬로 변경
+        }
+
+        &__item {
+            gap: rem(24);
+        }
+
+        &__text-wrap {
+            gap: rem(10);
+        }
+
+        &__item-title {
+            font-size: rem(22);
+        }
+
+        &__item-desc {
+            font-size: rem(14);
+            line-height: 1.4;
+
+            br {
+                display: none;
+            }
+        }
+    }
+
+
     .brand-banner {
         height: rem(600);
 
@@ -683,7 +835,7 @@ $mobile: 768px;
 
     // --- 1. Brand Intro ---
     .brand-intro {
-        min-height: 100vh;
+        height: rem(500);
         display: flex;
         align-items: center;
         // padding: rem(120) 0;
@@ -705,8 +857,8 @@ $mobile: 768px;
 
     // --- 2. Brand Research ---
     .brand-research {
-        min-height: 100vh;
-        padding: rem(100) 0;
+        height: rem(500);
+        padding: 0;
 
         &__inner {
             gap: rem(30);
@@ -797,7 +949,7 @@ $mobile: 768px;
 
     // --- 4. Brand Banner ---
     .brand-banner {
-        height: rem(500); // 1080px -> 500px
+        height: rem(500);
 
         &__inner {
             padding: 0 16px;
@@ -814,23 +966,23 @@ $mobile: 768px;
         padding: rem(100) 0;
 
         &__sticky-wrap {
-            position: relative; // 모바일에서는 스티키 효과 해제
+            position: relative;
             top: auto;
-            gap: 0; // 이중 간격(gap+margin) 방지
+            gap: 0;
         }
 
         &__label {
-            font-size: rem(16); // PC 대비 비율(작은 글씨)에 맞게 축소
-            margin-bottom: rem(12); // 위아래 간격 축소
+            font-size: rem(16);
+            margin-bottom: rem(12);
         }
 
         &__title {
-            font-size: rem(48); // 시안 비율에 맞춘 모바일 HISTORY 글씨크기
+            font-size: rem(48);
             margin-bottom: rem(20); // HISTORY 텍스트 아래 여백 축소
         }
 
         &__desc {
-            font-size: rem(16);
+            font-size: rem(14);
             line-height: 1.25; // PC 버전(24px 폰트/30px 줄간격) 비율 시안에 맞게 줄간격 축소
             margin-bottom: rem(60);
 
@@ -850,7 +1002,7 @@ $mobile: 768px;
         &__list {
             max-width: 100%;
             gap: rem(100);
-            padding-top: 0; // 모바일은 스티키 겹침이 없으므로 추가 패딩 제거
+            padding-top: 0;
         }
 
         &__item {
@@ -858,21 +1010,21 @@ $mobile: 768px;
         }
 
         &__img {
-            max-width: 100%;
+            max-width: 90%;
             height: auto;
         }
 
         &__year {
-            font-size: rem(36);
+            font-size: rem(30);
             margin-bottom: rem(10);
         }
 
         &__achievement {
-            font-size: rem(26);
+            font-size: rem(22);
         }
 
         &__detail {
-            font-size: rem(16);
+            font-size: rem(14);
         }
     }
 }

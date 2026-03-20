@@ -103,22 +103,23 @@ const Brand = () => {
 
         if (!labelEl || !titleEl || !wrapper) return;
 
+        // 1440px 이하(태블릿, 모바일)에서는 모든 GSAP 애니메이션 비활성화 (순수 CSS 스타일만 적용)
+        if (window.innerWidth <= 1440) return;
+
         const mm = gsap.matchMedia();
 
-        // 769px 이상 (태블릿, PC) 스크린에서만 텍스트 변환 애니메이션 적용
-        mm.add("(min-width: 769px)", () => {
+        // 1441px 이상 (안정적인 데스크탑) 스크린에서만 텍스트 변환 애니메이션 적용
+        mm.add("(min-width: 1441px)", () => {
             const morphTl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: wrapper, // 애니메이션 기준점을 전체 컨테이너가 아닌 글씨 박스(wrapper)로 변경
+                    trigger: wrapper,
                     start: () => `top top+=${parseFloat(window.getComputedStyle(wrapper).top) || 250}px`,
-                    // 글씨 박스가 CSS에서 지정한 sticky top 위치에 도달하고 나서 쪼개짐 시작
-                    end: '+=120vh', // 스크롤 60vh에서 120vh로 두 배 늘려 쪼개지는 시간을 엄청 여유롭고 등속감 있게 만듦!
+                    end: '+=120vh',
                     scrub: 1,
                     invalidateOnRefresh: true,
                 }
             });
 
-            // 애니메이션 도중이나 리사이징 시마다 CSS 원본에서 새 좌표를 실시간 산출
             morphTl.to(labelEl, {
                 x: () => {
                     const targetFs = parseFloat(window.getComputedStyle(titleEl).fontSize) || 115;
@@ -133,7 +134,7 @@ const Brand = () => {
                 y: () => {
                     const y1 = labelEl.offsetTop + (labelEl.offsetHeight / 2);
                     const y2 = titleEl.offsetTop + (titleEl.offsetHeight / 2);
-                    return (y2 - y1) / 2; // 둘의 중심을 하나로 모음
+                    return (y2 - y1) / 2;
                 },
                 scale: () => {
                     const targetFs = parseFloat(window.getComputedStyle(titleEl).fontSize) || 115;
@@ -141,7 +142,7 @@ const Brand = () => {
                     return targetFs / currentFs;
                 },
                 duration: 1,
-                ease: 'power2.inOut', // 갑자기 확 커지는 느낌을 부드럽게 진입/진출시키기 위해 이징 함수 변경
+                ease: 'power2.inOut',
                 transformOrigin: 'center center'
             }, 0)
                 .to(titleEl, {
@@ -157,26 +158,49 @@ const Brand = () => {
                         const y2 = titleEl.offsetTop + (titleEl.offsetHeight / 2);
                         return -(y2 - y1) / 2;
                     },
-                    duration: 1,
-                    ease: 'power2.inOut', // 양쪽 요소 모두 동일한 이징 적용
+                    ease: 'power2.inOut',
                     transformOrigin: 'center center'
                 }, 0);
+
+            // 가운데 올라오는 이미지들 순차 등장 효과 (PC 전용)
+            const items = gsap.utils.toArray('.brand-history__item');
+            items.forEach((item) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 85%',
+                    },
+                    y: 100,
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: 'power3.out'
+                });
+            });
+
+            // 클린업: 해당 미디어 쿼리를 벗어날 때 실행
+            return () => {
+                gsap.set([labelEl, titleEl], { clearProps: "all" });
+                // 아이템 트윈도 클린업
+                gsap.killTweensOf('.brand-history__item');
+            };
         });
 
-        // 가운데 올라오는 이미지들 순차 등장 효과
-        const items = gsap.utils.toArray('.brand-history__item');
-        items.forEach((item) => {
-            gsap.from(item, {
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                },
-                y: 100,
-                opacity: 0,
-                duration: 1.2,
-                ease: 'power3.out'
+        // 1440px 이하 (태블릿, 소형 노트북 포함)에서는 애니메이션 절대 금지 및 모든 진행 중인 트윈 강제 중단
+        mm.add("(max-width: 1440px)", () => {
+            gsap.killTweensOf([labelEl, titleEl]);
+            gsap.set([labelEl, titleEl], {
+                clearProps: "all",
+                x: 0,
+                y: 0,
+                scale: 1,
+                opacity: 1,
+                transform: "none"
             });
         });
+
+
+
+
     }, { scope: historyRef });
 
     return (
@@ -204,7 +228,7 @@ const Brand = () => {
                     </div>
                     <div className="brand-research__mask">
                         <p className="brand-research__desc">
-                            독자적인 성분과 제형 연구를 통해 단순한 제조
+                            독자적인 성분과 제형 연구를 통해 단순한 제조{" "}
                             <br />그 이상의 피부 해답을 제안합니다.
                         </p>
                     </div>
@@ -242,7 +266,8 @@ const Brand = () => {
                                     <div className="brand-contents__text-wrap">
                                         <h3 className="brand-contents__item-title">연구는 더 깊게, 해답은 더 쉽게</h3>
                                         <p className="brand-contents__item-desc">
-                                            메디힐의 노하우가 당신의 일상이 되도록 <br /> 메디힐은 복잡한
+                                            메디힐의 노하우가 당신의 일상이 되도록{" "}
+                                            <br /> 메디힐은 복잡한
                                             연구의 결과물을 명확한 해답으로 제안합니다.
                                         </p>
                                     </div>
@@ -254,7 +279,8 @@ const Brand = () => {
                                     <div className="brand-contents__text-wrap">
                                         <h3 className="brand-contents__item-title">모든 피부를 위한, 메디힐의 연구</h3>
                                         <p className="brand-contents__item-desc">
-                                            피부 타입과 환경의 차이를 넘어 <br /> 다양한 피부 고민에 대한 솔루션을 탐구합니다.
+                                            피부 타입과 환경의 차이를 넘어{" "}
+                                            <br /> 다양한 피부 고민에 대한 솔루션을 탐구합니다.
                                         </p>
                                     </div>
                                 </li>
@@ -271,7 +297,8 @@ const Brand = () => {
                                     <div className="brand-contents__text-wrap">
                                         <h3 className="brand-contents__item-title">31억 장의 기록, 데이터가 증명하는 확신</h3>
                                         <p className="brand-contents__item-desc">
-                                            전세계 40여 개국 31억 번의 선택이 메디힐의 데이터가 되었습니다.<br />
+                                            전세계 40여 개국 31억 번의 선택이 메디힐의 데이터가 되었습니다.{" "}
+                                            <br />
                                             치밀한 피부 분석을 바탕으로 명확한 기준을 제시합니다.
                                         </p>
                                     </div>
@@ -282,7 +309,8 @@ const Brand = () => {
                                     </div>
                                     <div className="brand-contents__text-wrap">
                                         <h3 className="brand-contents__item-title">정밀 과학으로 완성한 건강한 변화</h3>
-                                        <p className="brand-contents__item-desc">똑똑한 피부 과학으로 건강한 <br /> 변화를 이끌어냅니다.</p>
+                                        <p className="brand-contents__item-desc">똑똑한 피부 과학으로 건강한{" "}
+                                            <br /> 변화를 이끌어냅니다.</p>
                                     </div>
                                 </li>
                             </ul>
@@ -318,8 +346,8 @@ const Brand = () => {
                     </div>
 
                     <p className="brand-history__desc">
-                        2009년 마스크팩의 혁신으로 시작하여 전 세계인의 피부 고민을 해결하는 <br />글로벌
-                        코스메틱 브랜드로 거듭나기까지의 기록입니다.
+                        2009년 마스크팩의 혁신으로 시작하여 전 세계인의 피부 고민을 해결하는{" "}
+                        <br />글로벌 코스메틱 브랜드로 거듭나기까지의 기록입니다.
                     </p>
 
                     <div className="brand-history__list-wrap">
