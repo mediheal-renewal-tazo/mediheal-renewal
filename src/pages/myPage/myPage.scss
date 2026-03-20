@@ -2,7 +2,7 @@
 .mypage-wrapper {
     width: 100%;
     padding: 160px 0;
-    background-color: #fff; // 전체 배경색 (필요시 조절)
+    background-color: #fff;
     box-sizing: border-box;
 
     &__inner {
@@ -42,7 +42,7 @@
         flex-direction: column;
     }
 
-    
+
 }
 
 /* 2. 마이 프로필 컴포넌트 (Top Bar) */
@@ -190,7 +190,7 @@
 
     &__link {
         display: block;
-        /* 피그마의 top: 24px, left: 40px 수치를 패딩으로 적용 */
+
         padding: 24px 40px;
 
         text-decoration: none;
@@ -345,7 +345,7 @@
     &__empty {
         /* 전체 주문 박스 너비와 동일하게 설정 */
         width: 1045px;
-        padding: 120px 0; // 시안의 높이감을 고려한 상하 패딩
+        padding: 120px 0;
         border: 1px solid #c6c6c6;
         background-color: #fff;
 
@@ -374,264 +374,416 @@
     }
 }
 
-/* 1. 태블릿 (max-width: 800px) */
-@media screen and (max-width: 800px) {
-    .mypage-wrapper {
-        padding: 80px 0;
+// 1. rem 변환 함수
+@function rem($px) {
+    @return ($px / 16) * 1rem;
+}
 
-        &__inner {
-            padding: 0 60px;
+$tablet: 1024px;
+$mobile: 768px;
+
+// ------------------------------------------
+// 1. 태블릿 (max-width: 800px)
+// ------------------------------------------
+@media screen and (max-width: $tablet) {
+
+    .mypage-wrapper {
+        padding: rem(120) 0;
+
+        .mypage-wrapper__inner {
+            padding: 0 rem(60);
         }
 
-        // 피그마 Screen Margin 60
-        &__content {
+        .mypage-wrapper__title {
+            font-size: rem(28);
+            margin-bottom: rem(30);
+        }
+
+        .mypage-wrapper__content {
             flex-direction: column;
             align-items: center;
             width: 100%;
-            margin-top: 20px;
+            margin-top: rem(20);
         }
 
-        &__side,
-        &__main {
+        .mypage-wrapper__side,
+        .mypage-wrapper__main {
             width: 100%;
             flex: none;
+        }
+
+
+        .mypage-orders .mypage-orders__empty {
+            width: 100%;
+            max-width: 100%;
+            padding: rem(80) rem(20);
+            box-sizing: border-box;
         }
     }
 
     .mypage-profile {
         width: 100%;
         height: auto;
-        padding: 30px;
-        margin-bottom: 8px;
+        padding: rem(20) rem(16);
+        margin-bottom: rem(8);
+
+        .mypage-profile__avatar {
+            width: rem(48);
+            height: rem(48);
+        }
+
+        .mypage-profile__name {
+            font-size: rem(15);
+        }
+
+        .mypage-profile__count {
+            font-size: rem(15);
+        }
+
+        .mypage-profile__label {
+            font-size: rem(12);
+        }
+
+        .mypage-profile__link {
+            font-size: rem(11);
+        }
+
+        .mypage-profile__badge {
+            font-size: rem(11);
+            width: auto;
+            height: auto;
+            padding: rem(2) rem(8);
+        }
+
+        .mypage-profile__asset-item {
+            padding: 0 rem(14);
+        }
     }
 
-    .mypage-orders__box {
-        width: 100%;
-        height: auto;
-        padding: 30px;
+    .mypage-orders {
+        .mypage-orders__title {
+            font-size: rem(22);
+            margin-bottom: rem(24);
+        }
+
+        .mypage-orders__box {
+            width: 100%;
+            height: auto;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .mypage-orders__status-list {
+            display: flex;
+            justify-content: space-between;
+            gap: 0;
+            padding: rem(52) 0;
+            height: auto;
+        }
+
+        .mypage-orders__status-item {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: rem(16); // 아이콘과 텍스트 사이 간격 확보
+
+            &:not(:last-child)::after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: rem(35);
+                left: calc(50% + #{rem(35)} + #{rem(5)});
+                width: calc(100% - #{rem(70)} - #{rem(10)});
+                height: 1px;
+                background-color: #c6c6c6;
+            }
+        }
+
+        .mypage-orders__circle {
+            width: rem(70);
+            height: rem(70);
+
+            img {
+                width: rem(20);
+                height: rem(20);
+            }
+
+            .mypage-orders__number {
+                font-size: rem(14);
+            }
+        }
+
+        .mypage-orders__label {
+            font-size: rem(12);
+        }
+
+        .mypage-orders__summary {
+            width: 90%;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin: 0 auto;
+            padding: 0 rem(20);
+            height: rem(70);
+
+            .mypage-orders__summary-left {
+                gap: rem(20);
+            }
+
+            .mypage-orders__summary-text,
+            .mypage-orders__summary-text strong,
+            .mypage-orders__detail-link {
+                font-size: rem(13);
+            }
+        }
+
+        .mypage-orders__empty {
+            width: 100%;
+            height: auto; // 고정 높이 해제
+            box-sizing: border-box;
+            padding: rem(60) rem(16);
+
+            .mypage-orders__empty-icon {
+                width: rem(36);
+                height: rem(28);
+                margin-bottom: rem(16);
+            }
+
+            .mypage-orders__empty-text {
+                font-size: rem(13);
+            }
+        }
     }
 
-    .mypage-profile__asset-item {
-        padding: 0 20px;
-    }
-
-    .mypage-orders__status-list {
-        justify-content: space-around;
-        gap: 20px;
-        padding: 40px 20px;
-        // 태블릿에서도 너무 좁으면 가로스크롤 활성화
-        overflow-x: auto;
-    }
-
-    .mypage-orders__status-item:not(:last-child)::after {
-        display: none;
-    }
-
-    // 선 제거 (복잡함 방지)
-    .mypage-orders__summary {
-        width: 100%;
-    }
-
-    .mypage-orders__empty {
-
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 80px 20px !important;
-        box-sizing: border-box;
-    }
-
-    /* 태블릿/모바일: 사이드 메뉴를 4행 2열 그리드로 변환 */
     .mypage-menu {
         width: 100%;
         min-height: auto;
-    }
 
-    .mypage-menu__list {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        border-top: 1px solid #c6c6c6;
-        border-left: 1px solid #c6c6c6;
-    }
-
-    .mypage-menu__item {
-        border-bottom: 1px solid #c6c6c6;
-        border-right: 1px solid #c6c6c6;
-
-
-        &:nth-child(4n) {
-            border-right: none;
+        &__list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid #c6c6c6;
+            border-left: 1px solid #c6c6c6;
         }
 
+        &__item {
+            border-bottom: 1px solid #c6c6c6;
+            border-right: 1px solid #c6c6c6;
 
-        &:nth-last-child(-n+4) {
-            border-bottom: none;
+            &:nth-child(4n) {
+                border-right: none;
+            }
+
+            &:nth-last-child(-n+4) {
+                border-bottom: none;
+            }
         }
-    }
 
-    .mypage-menu__link {
-        padding: 16px 20px;
-        font-size: 14px;
-        text-align: center;
+        &__link {
+            padding: rem(12) rem(8);
+            font-size: rem(12);
+            text-align: center;
+            word-break: keep-all;
+            line-height: 1.4;
+        }
     }
 }
 
-/* 2. 모바일 (max-width: 360px) */
-@media screen and (max-width: 360px) {
+// ------------------------------------------
+// 2. 모바일 (max-width: 360px)
+// ------------------------------------------
+@media screen and (max-width: $mobile) {
+
     body .mypage-wrapper {
-        padding: 60px 0;
+        padding: rem(100) 0;
 
         .mypage-wrapper__inner {
-            padding: 0 16px;
+            padding: 0 rem(16);
         }
 
-        // 피그마 Screen Margin 16
         .mypage-wrapper__title {
-            font-size: 28px;
-            margin-bottom: 30px;
+            font-size: rem(22);
+            margin-bottom: rem(20);
         }
 
         .mypage-profile {
-            flex-direction: column;
-            gap: 24px;
-            text-align: center;
+            // 태블릿과 동일한 가로 배치, 크기만 모바일용으로 축소
+            flex-direction: row;
+            gap: rem(10);
+            text-align: left;
+            padding: rem(14) rem(12);
 
-            &__user {
-                flex-direction: column;
-                gap: 10px;
+            .mypage-profile__avatar {
+                width: rem(36);
+                height: rem(36);
             }
 
-            &__assets {
-                width: 100%;
-                border-top: 1px solid #eee;
-                padding-top: 20px;
-                justify-content: space-around;
+            .mypage-profile__user {
+                flex-direction: row;
+                gap: rem(10);
             }
 
-            &__asset-item {
-                padding: 0;
+            .mypage-profile__name {
+                font-size: rem(13);
+            }
 
-                &::after {
-                    display: none;
-                }
+            .mypage-profile__name-group {
+                gap: rem(6);
+            }
+
+            .mypage-profile__badge {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: rem(10);
+                padding: rem(1) rem(6) rem(3); // 아래로 쏠리는 느낌을 해결하기 위해 하단 패딩 소폭 증설
+                line-height: 1;
+                height: auto;
+                vertical-align: middle;
+            }
+
+            .mypage-profile__link {
+                font-size: rem(10);
+            }
+
+            .mypage-profile__assets {
+                border-top: none;
+                padding-top: 0;
+                justify-content: flex-end;
+            }
+
+            .mypage-profile__asset-item {
+                padding: 0 rem(10);
+            }
+
+            .mypage-profile__label {
+                font-size: rem(10);
+                margin-bottom: rem(4);
+            }
+
+            .mypage-profile__count {
+                font-size: rem(13);
             }
         }
 
-        /* 모바일: 사이드 메뉴를 4행 2열 그리드로 변환 */
-        // .mypage-menu {
-        //     width: 100%;
-        //     min-height: auto;
+        .mypage-menu {
+            .mypage-menu__list {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-        //     &__list {
-        //         display: grid;
-        //         grid-template-columns: repeat(2, 1fr);
-        //     }
+            .mypage-menu__item {
+                &:nth-child(4n) {
+                    border-right: 1px solid #c6c6c6;
+                }
 
-        //     &__item {
-        //         border-bottom: 1px solid #c6c6c6;
+                &:nth-child(2n) {
+                    border-right: none;
+                }
 
-        //         &:nth-child(odd) {
-        //             border-right: 1px solid #c6c6c6;
-        //         }
+                &:nth-last-child(-n+4) {
+                    border-bottom: 1px solid #c6c6c6;
+                }
 
-        //         &:nth-last-child(-n+2) {
-        //             border-bottom: none;
-        //         }
-        //     }
-
-        //     &__link {
-        //         padding: 16px 20px;
-        //         font-size: 14px;
-        //         text-align: center;
-        //     }
-        // }
-
+                &:nth-last-child(-n+2) {
+                    border-bottom: none;
+                }
+            }
+        }
 
         .mypage-menu__link {
-            font-size: 12px;
-            padding: 14px 16px;
-
+            font-size: rem(12);
+            padding: rem(14) rem(16);
+            word-break: keep-all;
+            line-height: 1.4;
         }
 
+
         .mypage-orders {
-            &__box {
-                width: 100% !important;
-                overflow: hidden !important;
+            .mypage-orders__title {
+                font-size: rem(18);
+                margin-bottom: rem(16);
             }
 
-            &__status-list {
-                padding: 30px 5px !important;
-                justify-content: space-between !important;
+            .mypage-orders__box {
+                width: 100%;
+                height: auto;
+                overflow: hidden;
+                padding: 0 rem(8);
             }
 
-            &__status-item {
+            .mypage-orders__status-list {
+                padding: rem(36) 0;
+                gap: 0;
+                justify-content: space-between;
+                height: auto; // 고정 높이 해제
+            }
+
+            .mypage-orders__status-item {
                 flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: rem(12); // 아이콘과 텍스트 사이 간격 확보
 
                 &:not(:last-child)::after {
-                    content: '' !important;
-                    display: block !important;
-                    top: 25px !important;
-                    left: calc(50% + 25px) !important;
-                    width: calc(100% - 50px) !important;
-                    background: #c6c6c6 !important;
+                    content: '';
+                    display: block;
+                    top: rem(25);
+                    left: calc(50% + #{rem(25)} + #{rem(4)});
+                    width: calc(100% - #{rem(50)} - #{rem(8)});
+                    background: #c6c6c6;
                 }
             }
 
-            &__circle {
-                // 🌟 원형 크기 축소 
-                width: 50px !important;
-                height: 50px !important;
-                min-width: 50px !important;
-                min-height: 50px !important;
+            .mypage-orders__circle {
+                width: rem(50);
+                height: rem(50);
+                min-width: rem(50);
+                min-height: rem(50);
 
                 img {
-                    width: 16px !important;
-                    height: 16px !important;
+                    width: rem(16);
+                    height: rem(16);
                 }
 
                 .mypage-orders__number {
-                    font-size: 11px !important;
+                    font-size: rem(11);
                 }
             }
 
-            &__label {
-                font-size: 10px !important;
-                white-space: nowrap;
-                margin-top: 8px !important;
+            .mypage-orders__label {
+                font-size: rem(10);
+                margin-top: 0; // gap으로 조절
             }
 
-            &__summary {
-                flex-direction: column;
+            .mypage-orders__summary {
+                width: 92%;
                 height: auto;
-                padding: 20px 10px;
-                gap: 12px;
+                margin: 0 auto;
+                padding: rem(22) rem(8);
+                gap: rem(8);
 
-                &-left {
-                    gap: 15px;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                }
-
-                &-text,
-                &-text strong,
+                .mypage-orders__summary-text,
+                .mypage-orders__summary-text strong,
                 .mypage-orders__detail-link {
-                    font-size: 14px !important;
+                    font-size: rem(12);
                 }
             }
 
-            body .mypage-wrapper .mypage-orders__empty {
-                width: 100% !important;
-                padding: 60px 16px !important;
+            .mypage-orders__empty {
+                width: 100%;
+                height: auto; // 고정 높이 해제
+                padding: rem(60) rem(16);
 
-                &-icon {
-                    width: 32px !important;
-                    height: auto !important;
-                    margin-bottom: 16px !important;
+                .mypage-orders__empty-icon {
+                    width: rem(36);
+                    height: rem(28);
+                    margin-bottom: rem(16);
                 }
 
-                &-text {
-                    font-size: 13px !important;
-                    line-height: 1.4 !important;
-                    word-break: keep-all;
+                .mypage-orders__empty-text {
+                    font-size: rem(13);
                 }
             }
         }
