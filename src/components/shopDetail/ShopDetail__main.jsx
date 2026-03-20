@@ -13,7 +13,6 @@ const ShopDetail__main = () => {
     const product = productsData.find((item) => item.id === id);
 
     const [mainImage, setMainImage] = useState(product?.images?.[0] ?? '');
-    const [isSelectedOpen, setIsSelectedOpen] = useState(false);
     const [quantity, setQuantity] = useState(1);
     const [inputValue, setInputValue] = useState('1');
 
@@ -27,12 +26,14 @@ const ShopDetail__main = () => {
         return <div>상품 없음</div>;
     }
 
-    const unitPrice = product.discountPrice ?? product.price ?? 0;
-    const totalPrice = isSelectedOpen ? unitPrice * quantity : 0;
+    const thumbImages = [
+        product.images?.[0],
+        ...(product.sub_img1 ?? []),
+        ...(product.sub_img2 ?? []),
+    ].filter(Boolean);
 
-    const handleOpenSelected = () => {
-        setIsSelectedOpen(true);
-    };
+    const unitPrice = product.discountPrice ?? product.price ?? 0;
+    const totalPrice = unitPrice * quantity;
 
     const handleIncrease = () => {
         const next = quantity + 1;
@@ -42,7 +43,6 @@ const ShopDetail__main = () => {
 
     const handleDecrease = () => {
         if (quantity <= 1) return;
-
         const next = quantity - 1;
         setQuantity(next);
         setInputValue(String(next));
@@ -50,8 +50,6 @@ const ShopDetail__main = () => {
 
     const handleInputChange = (e) => {
         const value = e.target.value;
-
-        // 숫자만 입력 허용
         if (/^\d*$/.test(value)) {
             setInputValue(value);
         }
@@ -59,13 +57,11 @@ const ShopDetail__main = () => {
 
     const handleInputBlur = () => {
         const parsed = parseInt(inputValue, 10);
-
         if (Number.isNaN(parsed) || parsed < 1) {
             setQuantity(1);
             setInputValue('1');
             return;
         }
-
         setQuantity(parsed);
         setInputValue(String(parsed));
     };
@@ -84,7 +80,7 @@ const ShopDetail__main = () => {
                 </div>
 
                 <div className="img-set">
-                    {product.images?.map((img, index) => (
+                    {thumbImages.map((img, index) => (
                         <button
                             type="button"
                             key={`${product.id}-thumb-${index}`}
@@ -137,45 +133,46 @@ const ShopDetail__main = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className="shopDetail__mainBox">
-                    {isSelectedOpen && (
-                        <div className="shopDetail__Selected">
-                            <div className="shopDetail__Selected-left">
-                                <div className="Selected_title">{product.name}</div>
+                    <div className="shopDetail__Selected">
+                        <div className="shopDetail__Selected-left">
+                            <div className="Selected_title">{product.name}</div>
 
-                                <div className="shopDetail__Quantity">
-                                    <button
-                                        type="button"
-                                        className="Quantity_btn"
-                                        onClick={handleDecrease}
-                                    >
-                                        <img src={minus} alt="수량감소" />
-                                    </button>
+                            <div className="shopDetail__Quantity">
+                                <button
+                                    type="button"
+                                    className="Quantity_btn"
+                                    onClick={handleDecrease}
+                                >
+                                    <img src={minus} alt="수량감소" />
+                                </button>
 
-                                    <input
-                                        className="Quantity_number"
-                                        type="text"
-                                        inputMode="numeric"
-                                        value={inputValue}
-                                        onChange={handleInputChange}
-                                        onBlur={handleInputBlur}
-                                        onKeyDown={handleInputKeyDown}
-                                    />
+                                <input
+                                    className="Quantity_number"
+                                    type="text"
+                                    inputMode="numeric"
+                                    value={inputValue}
+                                    onChange={handleInputChange}
+                                    onBlur={handleInputBlur}
+                                    onKeyDown={handleInputKeyDown}
+                                />
 
-                                    <button
-                                        type="button"
-                                        className="Quantity_btn"
-                                        onClick={handleIncrease}
-                                    >
-                                        <img src={plus} alt="수량증가" />
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="shopDetail__Selected-right">
-                                {(unitPrice * quantity).toLocaleString()}원
+                                <button
+                                    type="button"
+                                    className="Quantity_btn"
+                                    onClick={handleIncrease}
+                                >
+                                    <img src={plus} alt="수량증가" />
+                                </button>
                             </div>
                         </div>
-                    )}
+
+                        <div className="shopDetail__Selected-right">
+                            {(unitPrice * quantity).toLocaleString()}원
+                        </div>
+                    </div>
+
                     <div className="PaymentAmount">
                         <span>총 상품금액</span>
                         <div className="PaymentAmount-box">
@@ -188,11 +185,7 @@ const ShopDetail__main = () => {
                     <div className="shopDetail__button">
                         <div className="shopDetail__cart-button">장바구니</div>
 
-                        <button
-                            type="button"
-                            className="shopDetail__Buy-button"
-                            onClick={handleOpenSelected}
-                        >
+                        <button type="button" className="shopDetail__Buy-button">
                             구매하기
                         </button>
 

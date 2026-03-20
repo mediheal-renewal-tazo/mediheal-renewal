@@ -24,10 +24,6 @@
     gap: 40px;
 }
 
-.shopDetail__imgbox {
-    flex: 1 1 55%;
-}
-
 .shopDetail__textbox {
     flex: 1 1 45%;
     min-width: 0;
@@ -44,39 +40,37 @@
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-}
 
-.shopDetail__target .chip {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4px 16px;
-    background: #ededed;
+    .chip {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 16px;
+        background: #ededed;
+    }
 }
 
 .shopDetail__title {
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
 
-.shopDetail__title .name {
-    color: #272727;
-    font-family: Pretendard, sans-serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 150%;
-    letter-spacing: 1px;
-}
+    .name {
+        color: #272727;
+        font-family: Pretendard, sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 150%;
+        letter-spacing: 1px;
+    }
 
-.shopDetail__title .description {
-    color: #aaa;
-    font-family: Pretendard, sans-serif;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
+    .description {
+        color: #aaa;
+        font-family: Pretendard, sans-serif;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 150%;
+    }
 }
 
 .shopDetail__middle {
@@ -166,6 +160,7 @@
         color: #888;
     }
 }
+
 // ============================================================
 // 결제칸
 // ============================================================
@@ -176,22 +171,30 @@
     justify-content: flex-start;
     gap: 40px;
     box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 690px;
+    }
 }
 
 // ============================================================
-// Selected — 한 줄 가로 정렬
+// Selected
 // ============================================================
-
 .shopDetail__Selected {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
     width: 100%;
-    border-bottom: 1px solid var(--grey-scale-grey-200, #aaa);
-    padding-bottom: 16px;
+    // ✅ border-bottom 없음 — PaymentAmount에만 있어야 함
+
+    @media (max-width: 768px) {
+        gap: 12px;
+    }
 }
+
 .shopDetail__Selected-left {
     display: flex;
     flex-direction: column;
@@ -199,50 +202,37 @@
     gap: 20px;
     min-width: 0;
     flex: 1 1 auto;
+
+    @media (max-width: 768px) {
+        gap: 12px;
+    }
 }
+
 .shopDetail__Selected-right {
     flex-shrink: 0;
+    align-self: center;
     color: #272727;
     font-family: Pretendard, sans-serif;
     font-size: 19px;
     font-weight: 700;
     line-height: 150%;
     white-space: nowrap;
-}
-@media (max-width: 768px) {
-    .shopDetail__Selected {
-        gap: 12px;
-        padding-bottom: 12px;
-    }
 
-    .shopDetail__Selected-left {
-        gap: 12px;
-    }
-
-    .shopDetail__Selected-right {
+    @media (max-width: 768px) {
         font-size: 17px;
     }
 }
 
 .Selected_title {
-    flex: 1 1 auto;
     min-width: 0;
     color: #272727;
     font-family: Pretendard, sans-serif;
     font-size: 19px;
     font-weight: 400;
     line-height: 150%;
-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.shopDetail__Selected-bottom {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-shrink: 0;
 }
 
 .shopDetail__Quantity {
@@ -287,15 +277,9 @@
     }
 }
 
-.Selected_total {
-    color: #272727;
-    font-family: Pretendard, sans-serif;
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 150%;
-    flex-shrink: 0;
-}
-
+// ============================================================
+// 총 상품금액 — 여기에만 border-bottom ✅
+// ============================================================
 .PaymentAmount {
     width: 100%;
     display: flex;
@@ -311,6 +295,11 @@
         font-size: 17px;
         font-weight: 700;
         line-height: 150%;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: row;
+        align-items: center;
     }
 }
 
@@ -330,6 +319,9 @@
     white-space: nowrap;
 }
 
+// ============================================================
+// 버튼 영역
+// ============================================================
 .shopDetail__button {
     width: 100%;
     display: grid;
@@ -344,6 +336,12 @@
         align-items: center;
         box-sizing: border-box;
         cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        > * {
+            min-width: 0;
+        }
     }
 }
 
@@ -368,13 +366,14 @@
 }
 
 .Npay-info {
-    padding: 0 16px;
-    background: #fff;
-    border: none;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 2px;
+    padding: 0 16px;
+    background: #fff;
+    border: none;
     cursor: pointer;
 
     span {
@@ -439,39 +438,571 @@
     }
 }
 
+// ============================================================
+// 이미지 박스
+// ============================================================
+.shopDetail__imgbox {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 592px;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        align-self: auto;
+    }
+}
+
+.main-img {
+    width: 100%;
+    flex: 1 1 auto;
+    overflow: hidden;
+    background: #f8f8f8;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        flex: none;
+        aspect-ratio: 592 / 560;
+    }
+}
+
+.img-set {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    flex-shrink: 0;
+
+    .img-thumb {
+        all: unset;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        aspect-ratio: 157 / 146;
+        overflow: hidden;
+        background: #f8f8f8;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.15s ease;
+        }
+
+        &:hover img {
+            opacity: 0.85;
+        }
+    }
+}
+.wrap {
+    padding-top: 160px;
+}
+
+.Products__detail-inner {
+    margin: 0 auto;
+    padding: 0 260px;
+}
+
 @media (max-width: 768px) {
-    .shopDetail__mainBox {
+    .wrap {
+        padding-top: 120px;
+    }
+
+    .Products__detail-inner {
+        padding: 0 16px;
+    }
+}
+
+.shopDetail__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.shopDetail__textbox {
+    flex: 1 1 45%;
+    min-width: 0;
+}
+
+.shopDetail__textbox-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.shopDetail__target {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    .chip {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 16px;
+        background: #ededed;
+    }
+}
+
+.shopDetail__title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .name {
+        color: #272727;
+        font-family: Pretendard, sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 150%;
+        letter-spacing: 1px;
+    }
+
+    .description {
+        color: #aaa;
+        font-family: Pretendard, sans-serif;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 150%;
+    }
+}
+
+.shopDetail__middle {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.shopDetail__rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .star-icon {
+        width: 16px;
+        height: 16px;
+        display: block;
+    }
+
+    .rating-value {
+        color: #272727;
+        font-family: Pretendard, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 150%;
+    }
+
+    .reviewBox {
+        color: #474747;
+        font-family: Pretendard, sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 150%;
+    }
+}
+
+.shopDetail__priceBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .price {
+        color: #c6c6c6;
+        font-family: Pretendard, sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 150%;
+        text-decoration: line-through;
+    }
+}
+
+.price-sale {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.discountRate {
+    color: #151789;
+    font-family: Pretendard, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+.discountPrice {
+    color: #272727;
+    font-family: Pretendard, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+.delivery {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    color: #474747;
+    font-family: Pretendard, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 150%;
+
+    span:first-child {
+        flex-shrink: 0;
+        color: #888;
+    }
+}
+
+// ============================================================
+// 결제칸
+// ============================================================
+.shopDetail__mainBox {
+    width: 690px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 40px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
         width: 100%;
         max-width: 690px;
-        height: auto;
     }
+}
 
-    .shopDetail__Selected {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        border-bottom: 1px solid var(--grey-scale-grey-200, #aaa);
-    }
+// ============================================================
+// Selected
+// ============================================================
+.shopDetail__Selected {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    // ✅ border-bottom 없음 — PaymentAmount에만 있어야 함
 
-    .shopDetail__Selected-bottom {
+    @media (max-width: 768px) {
         gap: 12px;
     }
+}
 
-    .PaymentAmount {
-        flex-direction: row;
-        align-items: center;
+.shopDetail__Selected-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    min-width: 0;
+    flex: 1 1 auto;
+
+    @media (max-width: 768px) {
+        gap: 12px;
     }
+}
 
-    .shopDetail__button {
-        grid-template-columns: 1fr 1fr;
+.shopDetail__Selected-right {
+    flex-shrink: 0;
+    align-self: center;
+    color: #272727;
+    font-family: Pretendard, sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 150%;
+    white-space: nowrap;
 
-        > * {
-            min-width: 0;
-            height: 60px;
+    @media (max-width: 768px) {
+        font-size: 17px;
+    }
+}
+
+.Selected_title {
+    min-width: 0;
+    color: #272727;
+    font-family: Pretendard, sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 150%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.shopDetail__Quantity {
+    display: flex;
+    align-items: center;
+
+    .Quantity_btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ededed;
+        background: #fff;
+        padding: 0;
+        cursor: pointer;
+        box-sizing: border-box;
+
+        img {
+            display: block;
+            width: 16px;
+            height: 16px;
         }
     }
 
-    .kakaocoupon {
+    .Quantity_number {
+        width: 48px;
+        height: 40px;
+        border-top: 1px solid #ededed;
+        border-bottom: 1px solid #ededed;
+        border-left: 0;
+        border-right: 0;
+        outline: none;
+        background: #fff;
+        text-align: center;
+        box-sizing: border-box;
+        color: #272727;
+        font-family: Pretendard, sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 150%;
+    }
+}
+
+// ============================================================
+// 총 상품금액 — 여기에만 border-bottom ✅
+// ============================================================
+.PaymentAmount {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--grey-scale-grey-200, #aaa);
+    padding-bottom: 10px;
+    gap: 16px;
+
+    > span {
+        color: #272727;
+        font-family: Pretendard, sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 150%;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.PaymentAmount-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.PaymentAmount-total {
+    color: #151789;
+    font-family: Pretendard, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 150%;
+    white-space: nowrap;
+}
+
+// ============================================================
+// 버튼 영역
+// ============================================================
+.shopDetail__button {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    > * {
         width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        > * {
+            min-width: 0;
+        }
+    }
+}
+
+.shopDetail__cart-button {
+    border: 1px solid #c6c6c6;
+    background: #fff;
+    color: #272727;
+    font-family: Pretendard, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+.shopDetail__Buy-button {
+    border: none;
+    background: #151789;
+    color: #fff;
+    font-family: Pretendard, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+.Npay-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    padding: 0 16px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+
+    span {
+        color: #272727;
+        font-family: Pretendard, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 150%;
+    }
+
+    p {
+        margin: 0;
+        color: #888;
+        font-family: Pretendard, sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 150%;
+    }
+}
+
+.Npay-button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.kakaocoupon {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid #c6c6c6;
+    background: #fff;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    span {
+        color: #474747;
+        text-align: center;
+        font-family: Pretendard, sans-serif;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 150%;
+    }
+
+    img {
+        width: 20px;
+        height: 20px;
+        display: block;
+        flex-shrink: 0;
+    }
+}
+
+// ============================================================
+// 이미지 박스
+// ============================================================
+.shopDetail__imgbox {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 592px;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        align-self: auto;
+    }
+}
+
+.main-img {
+    width: 100%;
+    flex: 1 1 auto;
+    overflow: hidden;
+    background: #f8f8f8;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        flex: none;
+        aspect-ratio: 592 / 560;
+    }
+}
+
+.img-set {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    flex-shrink: 0;
+
+    .img-thumb {
+        all: unset;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        aspect-ratio: 157 / 146;
+        overflow: hidden;
+        background: #f8f8f8;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.15s ease;
+        }
+
+        &:hover img {
+            opacity: 0.85;
+        }
     }
 }
