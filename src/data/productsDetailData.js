@@ -1,8 +1,8 @@
 import img_70 from '@/assets/images/products/pad/pad_03vitamin.jpg';
-import p032_02 from '@/assets/images/product_details/details/image/Frame2524.png';
-import p032_03 from '@/assets/images/product_details/details/image/Frame2077.png';
-import p085_02 from '@/assets/images/product_details/details/image/Frame2060.png';
-import p085_03 from '@/assets/images/product_details/details/image/Frame2064.png';
+import p032_02 from '@/assets/images/product_details/details/teatree01.png';
+import p032_03 from '@/assets/images/product_details/details/teatree02.png';
+import p085_02 from '@/assets/images/product_details/details/pdrn01.png';
+import p085_03 from '@/assets/images/product_details/details/pdrn02.png';
 
 import ShopDetailsec01 from '@/assets/images/product_details/madecassoside_pad/sec01.gif';
 import ShopDetailsec02 from '@/assets/images/product_details/madecassoside_pad/sec02.png';
@@ -28,6 +28,18 @@ const productsDetailData = [
         sub_img1: [img_70],
         sub_img2: [img_70],
         target: ['트러블', '수부지', '잡티있는피부'],
+        distribution: {
+            5: 95,
+            4: 45,
+            3: 18,
+            2: 7,
+            1: 3,
+        },
+        reviewTag: [
+           { label: '트러블케어', score: 75 },
+           { label: '잡티제거', score: 82 },
+           { label: '진정케어', score: 68 },
+        ],
         details_img: [
             ShopDetailsec01,
             ShopDetailsec02,
@@ -52,12 +64,36 @@ const productsDetailData = [
         id: 'p032',
         sub_img: [p032_02, p032_03],
         target: ['붉어진피부', '트러블', '예민한피부'],
+        distribution: {
+            5: 80,
+            4: 60,
+            3: 35,
+            2: 15,
+            1: 10,
+        },
+        reviewTag: [
+           { label: '피부케어', score: 78 },
+           { label: '진정효과', score: 92 },
+           { label: '트러블완화', score: 89 },
+        ],
         details: [],
     },
     {
         id: 'p085',
         sub_img: [p085_02, p085_03],
         target: ['팔자주름', '늘어진모공', '티존모공'],
+        distribution: {
+            5: 60,
+            4: 40,
+            3: 25,
+            2: 20,
+            1: 18,
+        },
+        reviewTag: [
+            { label: '피부케어', score: 88 },
+            { label: '탄력개선', score: 90 },
+            { label: '광채', score: 86 },
+        ],
         details: [],
     },
 ];

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import productsData from '@/data/productsData';
+import productsDetailData from '@/data/productsDetailData';
 import Products__HeartButton from '@/components/shop/Products__HeartButton';
 import Npay_button from '@/assets/images/product_details/icon/Npay-button.png';
 import minus from '@/assets/images/product_details/icon/icon_3.png';
@@ -8,9 +9,11 @@ import plus from '@/assets/images/product_details/icon/icon_4.png';
 import right_arrow from '@/assets/images/product_details/icon/icon_5.png';
 import star from '@/assets/images/product_details/icon/star.svg';
 
-const ShopDetail__main = () => {
+const ShopDetail__main = ({ moveToReview }) => {
     const { id } = useParams();
+
     const product = productsData.find((item) => item.id === id);
+    const detailProduct = productsDetailData.find((item) => item.id === id);
 
     const [mainImage, setMainImage] = useState(product?.images?.[0] ?? '');
     const [quantity, setQuantity] = useState(1);
@@ -94,42 +97,55 @@ const ShopDetail__main = () => {
             </div>
 
             <div className="shopDetail__textbox">
-                <div className="shopDetail__textbox-top">
-                    <div className="shopDetail__target">
-                        {(product.target ?? []).map((item, index) => (
-                            <span key={`${product.id}-target-${index}`} className="chip">
-                                {item}
-                            </span>
-                        ))}
-                    </div>
-                    <Products__HeartButton />
-                </div>
-
-                <div className="shopDetail__title">
-                    <div className="name">{product.name}</div>
-                    <div className="description">{product.description}</div>
-                </div>
-
-                <div className="shopDetail__middle">
-                    <div className="shopDetail__rating">
-                        <img src={star} alt="별점" className="star-icon" />
-                        <span className="rating-value">{(product.rating ?? 0).toFixed(1)}</span>
-                        <span className="reviewBox">리뷰 {product.reviewCount ?? 0}개</span>
-                    </div>
-
-                    <div className="shopDetail__priceBox">
-                        <div className="price">{product.price?.toLocaleString()}원</div>
-
-                        <div className="price-sale">
-                            <div className="discountRate">{product.discountRate}%</div>
-                            <div className="discountPrice">
-                                {product.discountPrice?.toLocaleString()}원
+                <div className="shopDetail__topBox">
+                    <div className="shopDetail__textbox-top">
+                        <div className="shopDetail__tagHeart">
+                            <div className="shopDetail__target">
+                                {(detailProduct?.target ?? []).map((item, index) => (
+                                    <span key={`${id}-target-${index}`} className="chip">
+                                        {item}
+                                    </span>
+                                ))}
                             </div>
+                            <Products__HeartButton />
                         </div>
 
-                        <div className="delivery">
-                            <span>배송비</span>
-                            <span>3,000원 (20,000원 이상 구매 시 무료배송)</span>
+                        <div className="shopDetail__titleBox">
+                            <p className="shopDetail__description">
+                                {product.description?.trim() || '\u00A0'}
+                            </p>
+                            <h3 className="shopDetail__title">{product.name}</h3>
+                        </div>
+                    </div>
+
+                    <div className="shopDetail__middle">
+                        <div className="shopDetail__rating">
+                            <img src={star} alt="별점" className="star-icon" />
+                            <span className="rating-value">{(product.rating ?? 0).toFixed(1)}</span>
+                            <button type="button" className="reviewBox" onClick={moveToReview}>
+                                리뷰 {product.reviewCount ?? 0}개
+                            </button>
+                        </div>
+
+                        <div className="shopDetail__priceBox">
+                            <div className="shopDetail__mainprice">
+                                {product.price?.toLocaleString()}원
+                            </div>
+
+                            <div className="shopDetail__price-sale">
+                                {product.discountRate ? (
+                                    <div className="discountRate">{product.discountRate}%</div>
+                                ) : null}
+
+                                <div className="discountPrice">
+                                    {(product.discountPrice ?? product.price)?.toLocaleString()}원
+                                </div>
+                            </div>
+
+                            <div className="delivery">
+                                <span>배송비</span>
+                                <span>3,000원 (20,000원 이상 구매 시 무료배송)</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,7 +153,7 @@ const ShopDetail__main = () => {
                 <div className="shopDetail__mainBox">
                     <div className="shopDetail__Selected">
                         <div className="shopDetail__Selected-left">
-                            <div className="Selected_title">{product.name}</div>
+                            <span className="Selected_title">{product.name}</span>
 
                             <div className="shopDetail__Quantity">
                                 <button
@@ -150,7 +166,7 @@ const ShopDetail__main = () => {
 
                                 <input
                                     className="Quantity_number"
-                                    type="text"
+                                    type="number"
                                     inputMode="numeric"
                                     value={inputValue}
                                     onChange={handleInputChange}
@@ -173,17 +189,17 @@ const ShopDetail__main = () => {
                         </div>
                     </div>
 
-                    <div className="PaymentAmount">
-                        <span>총 상품금액</span>
-                        <div className="PaymentAmount-box">
-                            <span className="PaymentAmount-total">
-                                {totalPrice.toLocaleString()}원
-                            </span>
-                        </div>
+                    <div className="shopDetail__PaymentAmount">
+                        <span className="PaymentAmount-text">총 상품금액</span>
+                        <span className="PaymentAmount-total">
+                            {totalPrice.toLocaleString()}원
+                        </span>
                     </div>
 
                     <div className="shopDetail__button">
-                        <div className="shopDetail__cart-button">장바구니</div>
+                        <button type="button" className="shopDetail__cart-button">
+                            장바구니
+                        </button>
 
                         <button type="button" className="shopDetail__Buy-button">
                             구매하기

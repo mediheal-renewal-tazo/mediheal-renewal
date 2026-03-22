@@ -2,19 +2,25 @@
 // Variables
 // ============================================================
 $primary-blue: #151789;
-$text-dark: #272727;
-$text-base: #1e1e1e;
-$text-muted: #474747;
-$text-light: #aaa;
+$text-dark:    #272727;
+$text-base:    #1e1e1e;
+$text-muted:   #474747;
+$text-light:   #aaa;
 $text-lighter: #c6c6c6;
-$bg-light: #f4f6fa;
-$bg-image: #f8f8f8;
+$bg-light:     #f4f6fa;
+$bg-image:     #f8f8f8;
 $border-color: #aaa;
-$white: #fff;
+$white:        #fff;
 
 $font-family: 'Pretendard', sans-serif;
+$bp-tablet:   768px;
 
-$bp-tablet: 768px;
+@mixin mo {
+    @media (max-width: $bp-tablet) {
+        @content;
+    }
+}
+
 
 // ============================================================
 // Layout
@@ -22,36 +28,25 @@ $bp-tablet: 768px;
 .product {
     &__wrap {
         width: 100%;
-        max-width: 100%;
+        max-width: 1920px;
         margin: 0 auto;
-        padding: 80px 0;
-
-        @media (min-width: $bp-tablet) {
-            max-width: 1920px;
-            padding: 160px 0;
-        }
+        padding: 160px 0;
+        @include mo { max-width: 100%; padding: 80px 0; }
     }
 
     &__inner {
         width: 100%;
+        max-width: 1400px;
         margin: 0 auto;
-        padding: 0 16px;
-
-        @media (min-width: $bp-tablet) {
-            max-width: 1400px;
-            padding: 0 24px;
-        }
+        padding: 0 24px;
+        @include mo { max-width: 100%; padding: 0 16px; }
     }
 
     &__main-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 28px 16px;
-
-        @media (min-width: $bp-tablet) {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        @include mo { grid-template-columns: repeat(3, 1fr); gap: 28px 16px; }
     }
 
     &__main-top {
@@ -59,64 +54,46 @@ $bp-tablet: 768px;
         width: 100%;
         justify-content: space-between;
         align-items: center;
-        margin-top: 24px;
-        margin-bottom: 16px;
-
-        @media (min-width: $bp-tablet) {
-            margin-top: 40px;
-            margin-bottom: 24px;
-        }
+        margin-top: 40px;
+        margin-bottom: 24px;
+        @include mo { margin-top: 24px; margin-bottom: 16px; }
     }
 
-    // ============================================================
-    // Top Bar
-    // ============================================================
     &__total {
         color: $text-muted;
         font-family: $font-family;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 400;
         line-height: 150%;
-
-        @media (min-width: $bp-tablet) {
-            font-size: 13px;
-        }
+        @include mo { font-size: 12px; }
     }
 
     &__array {
         position: relative;
         display: flex;
         align-items: center;
-        width: 100px;
-        padding: 8px 0;
+        width: 118px;
+        padding: 10px 0;
         background: $white;
         border-bottom: 1px solid $border-color;
         cursor: pointer;
-
-        @media (min-width: $bp-tablet) {
-            width: 118px;
-            padding: 10px 0;
-        }
+        @include mo { width: 100px; padding: 8px 0; }
     }
 
     &__sort-select {
         all: unset;
         width: 100%;
         cursor: pointer;
-        padding-right: 20px;
+        padding-right: 24px;
         color: $text-dark;
         font-family: $font-family;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 700;
         line-height: 150%;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
-
-        @media (min-width: $bp-tablet) {
-            font-size: 15px;
-            padding-right: 24px;
-        }
+        @include mo { font-size: 13px; padding-right: 20px; }
     }
 
     &__array-icon {
@@ -124,19 +101,12 @@ $bp-tablet: 768px;
         top: 50%;
         right: 0;
         transform: translateY(-50%);
-        width: 18px;
-        height: 18px;
+        width: 21px;
+        height: 21px;
         pointer-events: none;
-
-        @media (min-width: $bp-tablet) {
-            width: 21px;
-            height: 21px;
-        }
+        @include mo { width: 18px; height: 18px; }
     }
 
-    // ============================================================
-    // Filter — Category
-    // ============================================================
     &__filter {
         .product__category {
             > ul {
@@ -146,11 +116,7 @@ $bp-tablet: 768px;
                 padding: 0;
                 margin: 0;
                 list-style: none;
-                gap: 8px;
-
-                @media (min-width: $bp-tablet) {
-                    gap: 0;
-                }
+                @include mo { gap: 8px; }
             }
 
             > ul > li {
@@ -158,43 +124,29 @@ $bp-tablet: 768px;
                 flex-direction: column;
                 align-items: center;
                 cursor: pointer;
-                transition:
-                    transform 0.2s ease,
-                    box-shadow 0.2s ease;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+                &:hover  { transform: scale(1.05); }
+                &:active { transform: scale(0.95); }
 
                 img {
-                    width: clamp(48px, 12vw, 80px);
-                    height: clamp(48px, 12vw, 80px);
+                    width: clamp(80px, 6vw, 120px);
+                    height: clamp(80px, 6vw, 120px);
                     object-fit: contain;
                     display: block;
-
-                    @media (min-width: $bp-tablet) {
-                        width: clamp(80px, 6vw, 120px);
-                        height: clamp(80px, 6vw, 120px);
-                    }
+                    @include mo { width: clamp(48px, 12vw, 80px); height: clamp(48px, 12vw, 80px); }
                 }
 
                 span {
-                    margin-top: 6px;
+                    margin-top: 8px;
                     color: $text-base;
                     text-align: center;
                     font-family: $font-family;
-                    font-size: clamp(11px, 2.5vw, 13px);
+                    font-size: clamp(13px, 1vw, 17px);
                     font-style: normal;
                     font-weight: 400;
                     line-height: 150%;
-
-                    @media (min-width: $bp-tablet) {
-                        margin-top: 8px;
-                        font-size: clamp(13px, 1vw, 17px);
-                    }
-                }
-
-                &:hover {
-                    transform: scale(1.05);
-                }
-                &:active {
-                    transform: scale(0.95);
+                    @include mo { margin-top: 6px; font-size: clamp(11px, 2.5vw, 13px); }
                 }
             }
         }
@@ -203,75 +155,53 @@ $bp-tablet: 768px;
     &__filter-floor {
         display: flex;
         flex-direction: column;
-        margin: 24px 0;
-
-        @media (min-width: $bp-tablet) {
-            margin: 40px 0;
-        }
+        margin: 40px 0;
+        @include mo { margin: 24px 0; }
     }
 
-    // ============================================================
-    // Selected Chips
-    // ============================================================
     &__selected-chip {
         display: flex;
         flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 24px;
-
-        @media (min-width: $bp-tablet) {
-            gap: 8px;
-            margin-top: 40px;
-        }
+        gap: 8px;
+        margin-top: 40px;
+        @include mo { gap: 6px; margin-top: 24px; }
 
         .chip {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 3px 8px;
+            gap: 8px;
+            padding: 4px 10px;
             border-radius: 60px;
             background: $primary-blue;
             cursor: pointer;
             transition: all 0.2s ease;
+            @include mo { gap: 6px; padding: 3px 8px; }
 
-            &:hover {
-                opacity: 0.85;
-            }
-
-            @media (min-width: $bp-tablet) {
-                gap: 8px;
-                padding: 4px 10px;
-            }
+            &:hover { opacity: 0.85; }
 
             &__label {
                 color: $white;
                 font-family: $font-family;
-                font-size: 13px;
+                font-size: 15px;
                 font-weight: 600;
                 line-height: 150%;
-
-                @media (min-width: $bp-tablet) {
-                    font-size: 15px;
-                }
+                @include mo { font-size: 13px; }
             }
 
             &__close {
-                width: 18px;
-                height: 18px;
+                width: 21px;
+                height: 21px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 flex-shrink: 0;
                 color: $white;
-
-                @media (min-width: $bp-tablet) {
-                    width: 21px;
-                    height: 21px;
-                }
+                @include mo { width: 18px; height: 18px; }
             }
         }
     }
 }
+
 
 // ============================================================
 // Filter Floor — Function / Line
@@ -286,35 +216,26 @@ $bp-tablet: 768px;
         flex-wrap: wrap;
         align-items: center;
         align-content: center;
-        gap: 12px;
-        padding: 14px 0 14px 16px;
+        gap: 24px;
+        padding: clamp(18px, 2vw, 30px) 0 clamp(18px, 2vw, 30px) 32px;
         margin: 0;
         list-style: none;
         flex: 1;
         box-sizing: border-box;
-
-        @media (min-width: $bp-tablet) {
-            gap: 24px;
-            padding: clamp(18px, 2vw, 30px) 0 clamp(18px, 2vw, 30px) 32px;
-        }
+        @include mo { gap: 12px; padding: 14px 0 14px 16px; }
     }
 
     li {
         cursor: pointer;
         color: $text-light;
         font-family: $font-family;
-        font-size: 13px;
+        font-size: 19px;
         font-style: normal;
         font-weight: 400;
         line-height: 150%;
         letter-spacing: 0;
-        transition:
-            color 0.2s ease,
-            font-weight 0.2s ease;
-
-        @media (min-width: $bp-tablet) {
-            font-size: 19px;
-        }
+        transition: color 0.2s ease, font-weight 0.2s ease;
+        @include mo { font-size: 13px; }
 
         &.is-active {
             color: $primary-blue;
@@ -335,40 +256,63 @@ $bp-tablet: 768px;
 }
 
 .filter-title {
-    width: 80px;
-    min-width: 80px;
+    width: clamp(140px, 14vw, 217px);
+    min-width: clamp(140px, 14vw, 217px);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 14px 0;
+    padding: clamp(18px, 2vw, 30px) 0;
     background: $bg-light;
     color: $text-base;
     font-family: $font-family;
-    font-size: 13px;
+    font-size: 19px;
     font-style: normal;
     font-weight: 700;
     line-height: 150%;
     box-sizing: border-box;
     flex-shrink: 0;
-
-    @media (min-width: $bp-tablet) {
-        width: clamp(140px, 14vw, 217px);
-        min-width: clamp(140px, 14vw, 217px);
-        padding: clamp(18px, 2vw, 30px) 0;
-        font-size: 19px;
-    }
+    @include mo { width: 80px; min-width: 80px; padding: 14px 0; font-size: 13px; }
 }
+
 
 // ============================================================
 // Product Card
 // ============================================================
+%product-text-base {
+    margin: 0;
+    font-family: $font-family;
+    line-height: 150%;
+    word-break: keep-all;
+}
+
 .ProductsCard {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     aspect-ratio: 335 / 504;
     min-width: 0;
-    cursor: pointer;
+    overflow: hidden;
+}
+
+.ProductsLink {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+// 이미지 + 텍스트 묶음 — gap: 12px
+.Products__card-wrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    gap: 12px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .ProductsImage {
@@ -378,11 +322,6 @@ $bp-tablet: 768px;
     overflow: hidden;
     background: $bg-image;
     flex-shrink: 0;
-    margin-bottom: 8px;
-
-    @media (min-width: $bp-tablet) {
-        margin-bottom: 12px;
-    }
 
     img {
         width: 100%;
@@ -393,126 +332,129 @@ $bp-tablet: 768px;
 
     .ProductsMark {
         position: absolute;
-        top: 8px;
-        left: 8px;
+        top: 12px;
+        left: 12px;
         z-index: 2;
-
-        @media (min-width: $bp-tablet) {
-            top: 12px;
-            left: 12px;
-        }
+        display: inline-flex;
+        padding: 0 8px;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+        background: $primary-blue;
+        font-family: $font-family;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 150%;
+        @include mo { top: 8px; left: 8px; }
     }
 }
 
+// 텍스트 + 가격 묶음 — gap: 8px (title ↔ priceBox)
 .Productstext {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 8px;
     min-width: 0;
-
-    @media (min-width: $bp-tablet) {
-        gap: 4px;
-    }
+    overflow: hidden;
 }
 
-%product-text-base {
-    margin: 0;
-    font-family: $font-family;
-    line-height: 150%;
-    word-break: keep-all;
+// 상품명 + 설명 — gap: 0
+.Products__title {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
 }
 
-.ProductsName {
+.Products__Name {
     @extend %product-text-base;
-    color: $text-dark;
-    font-size: 13px;
+    color: #272727;
+    font-size: 17px;
+    font-style: normal;
     font-weight: 700;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-
-    @media (min-width: $bp-tablet) {
-        font-size: 17px;
-    }
+    @include mo { font-size: 13px; }
 }
 
-.description {
+.Products__description {
     @extend %product-text-base;
-    color: $text-light;
-    font-size: 11px;
+    color: #aaa;
+    font-size: 15px;
+    font-style: normal;
     font-weight: 400;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-
-    @media (min-width: $bp-tablet) {
-        font-size: 15px;
-    }
+    min-height: 1lh;
+    @include mo { font-size: 11px; }
 }
 
-.price {
+// 가격 영역 outer
+.Products__priceBox {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+// 정가 + 할인율/판매가 묶음 — gap: 0
+.Products__priceBox2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
+}
+
+.Products__price {
     @extend %product-text-base;
     color: $text-lighter;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 400;
     text-decoration: line-through;
-
-    @media (min-width: $bp-tablet) {
-        font-size: 13px;
-    }
+    @include mo { font-size: 11px; }
 }
 
-.ProductsBottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 4px;
-    margin-top: 2px;
-
-    @media (min-width: $bp-tablet) {
-        gap: 12px;
-        margin-top: 4px;
-    }
-}
-
-.realprice {
+// 할인율 + 판매가 — gap: 8px
+.Products__realprice {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
     min-width: 0;
-
-    @media (min-width: $bp-tablet) {
-        gap: 8px;
-    }
+    @include mo { gap: 4px; }
 }
 
-.discountRate {
-    color: $primary-blue;
+.Products__discountRate {
+    color: #151789;
     font-family: $font-family;
-    font-size: 15px;
+    font-size: 24px;
+    font-style: normal;
     font-weight: 700;
     line-height: 150%;
     flex-shrink: 0;
-
-    @media (min-width: $bp-tablet) {
-        font-size: 24px;
-    }
+    @include mo { font-size: 15px; }
 }
 
-.discountPrice {
-    color: $text-dark;
+.Products__discountPrice {
+    color: #272727;
     font-family: $font-family;
-    font-size: 13px;
+    font-size: 19px;
+    font-style: normal;
     font-weight: 700;
     line-height: 150%;
     min-width: 0;
-
-    @media (min-width: $bp-tablet) {
-        font-size: 19px;
-    }
+    @include mo { font-size: 13px; }
 }
+
+.Products__heart {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
 
 // ============================================================
 // Favorites Button
@@ -524,48 +466,29 @@ $bp-tablet: 768px;
     justify-content: center;
     cursor: pointer;
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-
-    @media (min-width: $bp-tablet) {
-        width: 32px;
-        height: 32px;
-    }
+    width: 32px;
+    height: 32px;
+    @include mo { width: 24px; height: 24px; }
 
     .heart-icon {
-        width: 16px;
-        height: 16px;
+        width: 21px;
+        height: 21px;
         display: block;
         transition: transform 0.15s ease;
-
-        @media (min-width: $bp-tablet) {
-            width: 21px;
-            height: 21px;
-        }
+        @include mo { width: 16px; height: 16px; }
     }
 
-    &:hover .heart-icon {
-        transform: scale(1.1);
-    }
-    &.is-animating .heart-icon {
-        animation: heartPop 0.2s ease;
-    }
+    &:hover .heart-icon        { transform: scale(1.1); }
+    &.is-animating .heart-icon { animation: heartPop 0.2s ease; }
 }
 
 @keyframes heartPop {
-    0% {
-        transform: scale(1);
-    }
-    40% {
-        transform: scale(1.3);
-    }
-    70% {
-        transform: scale(0.9);
-    }
-    100% {
-        transform: scale(1);
-    }
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.3); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
 }
+
 
 // ============================================================
 // Pagination
@@ -574,20 +497,16 @@ $bp-tablet: 768px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    margin: 32px 0;
-
-    @media (min-width: $bp-tablet) {
-        gap: 16px;
-        margin: 40px 0;
-    }
+    gap: 16px;
+    margin: 40px 0;
+    @include mo { gap: 12px; margin: 32px 0; }
 
     .page-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 20px;
-        height: 20px;
+        min-width: 24px;
+        height: 24px;
         padding: 0;
         border: none;
         background: transparent;
@@ -595,41 +514,29 @@ $bp-tablet: 768px;
         color: $text-lighter;
         text-align: center;
         font-family: $font-family;
-        font-size: 13px;
+        font-size: 15px;
         font-style: normal;
         font-weight: 400;
         line-height: 150%;
         transition: color 0.2s ease;
+        @include mo { min-width: 20px; height: 20px; font-size: 13px; }
 
-        @media (min-width: $bp-tablet) {
-            min-width: 24px;
-            height: 24px;
-            font-size: 15px;
-        }
-
-        &.active {
-            color: $primary-blue;
-        }
-        &:disabled {
-            cursor: not-allowed;
-        }
+        &.active   { color: $primary-blue; }
+        &:disabled { cursor: not-allowed; }
 
         &.icon {
             min-width: auto;
 
             img {
                 display: block;
-                width: 20px;
-                height: 20px;
-
-                @media (min-width: $bp-tablet) {
-                    width: 24px;
-                    height: 24px;
-                }
+                width: 24px;
+                height: 24px;
+                @include mo { width: 20px; height: 20px; }
             }
         }
     }
 }
+
 
 // ============================================================
 // Reset
