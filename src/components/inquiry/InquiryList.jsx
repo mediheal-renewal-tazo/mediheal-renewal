@@ -1,8 +1,10 @@
 import { CiCircleAlert } from 'react-icons/ci';
-import inquiriesData from '@/data/inquiriesData';
+import { getInquiries } from '@/utils/inquiryStorage';
 import InquiryItem from './InquiryItem';
 
-const InquiryList = () => {
+const InquiryList = ({ userId, onSelect }) => {
+    const myInquiries = getInquiries().filter((item) => item.userId === userId);
+
     return (
         <table className="inquiry__table">
             <thead>
@@ -15,17 +17,19 @@ const InquiryList = () => {
                 </tr>
             </thead>
             <tbody>
-                {inquiriesData.length > 0 ? (
-                    inquiriesData.map((item) => (
-                        <InquiryItem key={item.id} {...item} />
+                {myInquiries.length > 0 ? (
+                    myInquiries.map((item) => (
+                        <InquiryItem key={item.id} {...item} onSelect={onSelect} />
                     ))
                 ) : (
                     <tr>
-                        <td colSpan={5} className="inquiry__empty">
-                            <div className="inquiry__empty-icon">
-                                <CiCircleAlert />
+                        <td colSpan={5} className="inquiry__empty-cell">
+                            <div className="inquiry__empty">
+                                <div className="inquiry__empty-icon">
+                                    <CiCircleAlert />
+                                </div>
+                                <p className="inquiry__empty-text">문의결과가 없습니다.</p>
                             </div>
-                            <p className="inquiry__empty-text">문의결과가 없습니다.</p>
                         </td>
                     </tr>
                 )}

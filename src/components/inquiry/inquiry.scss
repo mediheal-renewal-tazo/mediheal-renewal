@@ -98,9 +98,13 @@ $white: #ffffff;
         }
     }
 
+    &__empty-cell {
+        border-bottom: 1px solid $grey-100;
+        padding: 0;
+    }
+
     &__empty {
         align-items: center;
-        border-bottom: 1px solid $grey-100;
         display: flex;
         flex-direction: column;
         height: 400px;
@@ -112,8 +116,6 @@ $white: #ffffff;
             display: flex;
             flex-direction: column;
             gap: 16px;
-            position: relative;
-            width: 150px;
             margin-bottom: 10px;
 
             svg {
@@ -246,6 +248,22 @@ $white: #ffffff;
         display: flex;
         justify-content: flex-end;
         gap: 12px;
+    }
+
+    &__detail-value {
+        border-bottom: 1px solid $grey-100;
+        color: $grey-800;
+        font-size: $font-size-body;
+        min-height: 48px;
+        padding: 12px 8px;
+        line-height: 1.6;
+
+        &--content {
+            border: 1px solid $grey-100;
+            min-height: 250px;
+            padding: 16px;
+            white-space: pre-wrap;
+        }
     }
 
     &__write-btn {
