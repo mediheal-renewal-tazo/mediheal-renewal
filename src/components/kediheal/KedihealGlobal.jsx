@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const GlobalCityRow = ({ city, isActive, isAnyActive, onMouseEnter }) => {
+const GlobalCityRow = ({ city, isActive, isAnyActive, onMouseEnter, onClick }) => {
     const countRef = useRef(null);
     const targetValue = parseInt(city.stat);
 
@@ -30,6 +30,7 @@ const GlobalCityRow = ({ city, isActive, isAnyActive, onMouseEnter }) => {
         <div
             className={`kediheal__global-row ${isActive ? 'is-active' : ''} ${isAnyActive && !isActive ? 'is-dimmed' : ''}`}
             onMouseEnter={onMouseEnter}
+            onClick={onClick}
         >
             <div className="kediheal__global-city-name">
                 <span className="kediheal__global-name-kr">{city.kr}</span>
@@ -48,6 +49,10 @@ const GlobalCityRow = ({ city, isActive, isAnyActive, onMouseEnter }) => {
 
 const KedihealGlobal = () => {
     const [hoveredCity, setHoveredCity] = useState(null);
+
+    const handleCityClick = (cityId) => {
+        setHoveredCity(prev => prev === cityId ? null : cityId);
+    };
 
     const globalCities = [
         {
@@ -117,6 +122,7 @@ const KedihealGlobal = () => {
                             isActive={hoveredCity === city.id}
                             isAnyActive={hoveredCity !== null}
                             onMouseEnter={() => setHoveredCity(city.id)}
+                            onClick={() => handleCityClick(city.id)}
                         />
                     ))}
                 </div>
