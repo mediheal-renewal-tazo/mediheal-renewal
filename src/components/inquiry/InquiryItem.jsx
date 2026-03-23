@@ -1,6 +1,6 @@
-const InquiryItem = ({ id, userId, title, status, createdAt }) => {
+const InquiryItem = ({ id, userId, title, content, status, createdAt, onSelect }) => {
     return (
-        <tr className="inquiry__row">
+        <tr className="inquiry__row" onClick={() => onSelect({ id, userId, title, content, status, createdAt })}>
             <td className="inquiry__td inquiry__td--num">{id}</td>
             <td className="inquiry__td inquiry__td--title">{title}</td>
             <td className="inquiry__td inquiry__td--author">{userId}</td>

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { HEADER_NAV_ITEMS, ROUTE_PATHS } from '@/app/routes/paths';
 import { GiHamburgerMenu } from "react-icons/gi";
 import logoImg1 from '@/assets/logos/logo_1.png';
 import logoImg2 from '@/assets/logos/logo_2.png';
+import { getAuthUser } from '@/utils/auth';
 import HeaderSearch from './HeaderSearch';
 import './Header.scss';
 
@@ -12,7 +14,18 @@ const Header = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isOverDark, setIsOverDark] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(() => !!getAuthUser());
     const location = useLocation();
+
+    useEffect(() => {
+        const handleAuthChange = () => setIsLoggedIn(!!getAuthUser());
+        window.addEventListener('authChange', handleAuthChange);
+        window.addEventListener('storage', handleAuthChange);
+        return () => {
+            window.removeEventListener('authChange', handleAuthChange);
+            window.removeEventListener('storage', handleAuthChange);
+        };
+    }, []);
 
     const logoSrc = isOverDark ? logoImg2 : logoImg1;
     const headerClassName = [
@@ -95,35 +108,36 @@ const Header = () => {
     }, [location.pathname]);
 
     return (
-        <header className={headerClassName}>
-            {/* Hero 위에 있을 때만: 이미지(밝은 배경) 영역에 네이비 버튼을 클립패스로 표시 */}
-            {isOverDark && (
-                <div className="header__clip-overlay" aria-hidden="true">
-                    <div className="header__inner header__inner--dark">
-                        <div className="header__brand">
-                            <button className="header__menu-btn" type="button" tabIndex={-1}>
-                                <GiHamburgerMenu className="header__menu-line" />
-                            </button>
-                            <span className="header__logo">
-                                <img className="header__logo-img" src={logoImg1} alt="" />
-                            </span>
+        <>
+        {isOverDark && location.pathname === '/' && createPortal(
+            <div className="header__clip-overlay" aria-hidden="true">
+                <div className="header__inner header__inner--dark">
+                    <div className="header__brand">
+                        <button className="header__menu-btn" type="button" tabIndex={-1}>
+                            <GiHamburgerMenu className="header__menu-line" />
+                        </button>
+                        <span className="header__logo">
+                            <img className="header__logo-img" src={logoImg1} alt="" />
+                        </span>
+                    </div>
+                    <div className="header__actions">
+                        <button className="header__icon-btn" type="button" tabIndex={-1}>
+                            <div className="header__search-btn">SEARCH</div>
+                        </button>
+                        <div className="header__icon-btn">
+                            <div className="header__login-btn">{isLoggedIn ? 'MY PAGE' : 'LOGIN'}</div>
                         </div>
-                        <div className="header__actions">
-                            <button className="header__icon-btn" type="button" tabIndex={-1}>
-                                <div className="header__search-btn">SEARCH</div>
-                            </button>
+                        <div className="header__cart-wrap">
                             <div className="header__icon-btn">
-                                <div className="header__login-btn">LOGIN</div>
-                            </div>
-                            <div className="header__cart-wrap">
-                                <div className="header__icon-btn">
-                                    <div className="header__cart-btn">CART</div>
-                                </div>
+                                <div className="header__cart-btn">CART</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            )}
+            </div>,
+            document.body
+        )}
+        <header className={headerClassName}>
             <div className="header__inner">
                 <div className="header__brand">
                     <button
@@ -149,8 +163,12 @@ const Header = () => {
                     >
                         <div className="header__search-btn">SEARCH</div>
                     </button>
-                    <Link className="header__icon-btn" to={ROUTE_PATHS.LOGIN} aria-label="My page">
-                        <div className="header__login-btn">LOGIN</div>
+                    <Link
+                        className="header__icon-btn"
+                        to={isLoggedIn ? ROUTE_PATHS.MY_PAGE : ROUTE_PATHS.LOGIN}
+                        aria-label={isLoggedIn ? 'My page' : 'Login'}
+                    >
+                        <div className="header__login-btn">{isLoggedIn ? 'MY PAGE' : 'LOGIN'}</div>
                     </Link>
                     <div className="header__cart-wrap">
                         <Link className="header__icon-btn" to={ROUTE_PATHS.CART} aria-label="Cart">
@@ -183,6 +201,7 @@ const Header = () => {
                 </nav>
             ) : null}
         </header>
+        </>
     );
 };
 

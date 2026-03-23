@@ -10,21 +10,27 @@ import MainSection3 from '../../components/home/MainSection3';
 import MainSection4 from '../../components/home/MainSection4';
 import MainSection5 from '../../components/home/MainSection5';
 
+const INTRO_KEY = 'mediheal_intro_seen';
+
 const Home = () => {
-    const [introFinished, setIntroFinished] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
+    const alreadySeen = sessionStorage.getItem(INTRO_KEY) === 'true';
+
+    const [introFinished, setIntroFinished] = useState(alreadySeen);
+    const [isVisible, setIsVisible] = useState(alreadySeen);
 
     const handleFadeStart = useCallback(() => {
         setIsVisible(true);
     }, []);
 
     const handleIntroFinish = useCallback(() => {
+        sessionStorage.setItem(INTRO_KEY, 'true');
         setIntroFinished(true);
         document.body.classList.remove('intro-playing');
     }, []);
 
     // 인트로 재생 중 헤더 숨김
     useEffect(() => {
+        if (alreadySeen) return;
         document.body.classList.add('intro-playing');
         return () => document.body.classList.remove('intro-playing');
     }, []);

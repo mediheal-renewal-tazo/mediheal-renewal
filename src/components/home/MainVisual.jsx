@@ -14,17 +14,22 @@ const MainVisual = () => {
     const [rightVisible, setRightVisible] = useState(true);
     const leftTimer = useRef(null);
     const rightTimer = useRef(null);
+    const leftKoRef = useRef(false);
+    const rightKoRef = useRef(false);
 
     const containerRef = useRef(null);
     const lineRef = useRef(null);
     const leftWrapRef = useRef(null);
     const rightWrapRef = useRef(null);
     const dscRef = useRef(null);
+    const middleRef = useRef(null);
 
     const handleLeftEnter = () => {
         clearTimeout(leftTimer.current);
+        if (leftKoRef.current) { setLeftVisible(true); return; }
         setLeftVisible(false);
         leftTimer.current = setTimeout(() => {
+            leftKoRef.current = true;
             setLeftKo(true);
             setLeftVisible(true);
         }, FADE_MS);
@@ -32,8 +37,10 @@ const MainVisual = () => {
 
     const handleLeftLeave = () => {
         clearTimeout(leftTimer.current);
+        if (!leftKoRef.current) { setLeftVisible(true); return; }
         setLeftVisible(false);
         leftTimer.current = setTimeout(() => {
+            leftKoRef.current = false;
             setLeftKo(false);
             setLeftVisible(true);
         }, FADE_MS);
@@ -41,8 +48,10 @@ const MainVisual = () => {
 
     const handleRightEnter = () => {
         clearTimeout(rightTimer.current);
+        if (rightKoRef.current) { setRightVisible(true); return; }
         setRightVisible(false);
         rightTimer.current = setTimeout(() => {
+            rightKoRef.current = true;
             setRightKo(true);
             setRightVisible(true);
         }, FADE_MS);
@@ -50,8 +59,10 @@ const MainVisual = () => {
 
     const handleRightLeave = () => {
         clearTimeout(rightTimer.current);
+        if (!rightKoRef.current) { setRightVisible(true); return; }
         setRightVisible(false);
         rightTimer.current = setTimeout(() => {
+            rightKoRef.current = false;
             setRightKo(false);
             setRightVisible(true);
         }, FADE_MS);
@@ -93,6 +104,13 @@ const MainVisual = () => {
 
             // Phase 3: dsc가 아래에서 위로 등장
             tl.fromTo(dscRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 });
+
+            // Phase 4: middle 배너가 왼쪽에서 페인트칠하듯 오른쪽으로 리빌
+            tl.fromTo(
+                middleRef.current,
+                { clipPath: 'inset(0 100% 0 0)' },
+                { clipPath: 'inset(0 0% 0 0)', duration: 1.0, ease: 'power2.inOut' }
+            );
         },
         { scope: containerRef }
     );
@@ -109,18 +127,17 @@ const MainVisual = () => {
                                 opacity: leftVisible ? 1 : 0,
                                 transition: `opacity ${FADE_MS}ms ease`,
                             }}
-                            onMouseEnter={handleLeftEnter}
                             onMouseLeave={handleLeftLeave}
                         >
                             {leftKo ? (
                                 <>
-                                    <span>성분을 만나는</span>
-                                    <span>순간</span>
+                                    <span onMouseEnter={handleLeftEnter}>성분을 만나는</span>
+                                    <span onMouseEnter={handleLeftEnter}>순간</span>
                                 </>
                             ) : (
                                 <>
-                                    <span>When ingredients</span>
-                                    <span>meet,</span>
+                                    <span onMouseEnter={handleLeftEnter}>When ingredients</span>
+                                    <span onMouseEnter={handleLeftEnter}>meet,</span>
                                 </>
                             )}
                         </h2>
@@ -133,24 +150,23 @@ const MainVisual = () => {
                                 opacity: rightVisible ? 1 : 0,
                                 transition: `opacity ${FADE_MS}ms ease`,
                             }}
-                            onMouseEnter={handleRightEnter}
                             onMouseLeave={handleRightLeave}
                         >
                             {rightKo ? (
                                 <>
-                                    <span>진짜 피부 회복이</span>
-                                    <span>시작된다</span>
+                                    <span onMouseEnter={handleRightEnter}>진짜 피부 회복이</span>
+                                    <span onMouseEnter={handleRightEnter}>시작된다</span>
                                 </>
                             ) : (
                                 <>
-                                    <span>Real skin</span>
-                                    <span>repair begins.</span>
+                                    <span onMouseEnter={handleRightEnter}>Real skin</span>
+                                    <span onMouseEnter={handleRightEnter}>repair begins.</span>
                                 </>
                             )}
                         </h2>
                     </div>
                 </div>
-                <div className="main__visual-middle">
+                <div className="main__visual-middle" ref={middleRef}>
                     <span>MEDIHEAL LAB</span>
                     <span>MEDIHEAL LAB</span>
                     <span>MEDIHEAL LAB</span>

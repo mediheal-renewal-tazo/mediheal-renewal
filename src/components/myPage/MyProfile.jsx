@@ -1,6 +1,10 @@
 import myProfileImg from '@/assets/images/mypage/mypage_img1.jpg';
+import { getAuthUser } from '@/utils/auth';
 
 const MyProfile = () => {
+  const user = getAuthUser();
+  const userName = user?.name ?? '게스트';
+
   return (
     
     <section className="mypage-profile">
@@ -14,7 +18,7 @@ const MyProfile = () => {
         <div className="mypage-profile__info">         
           <div className="mypage-profile__name-group">
            <strong className="mypage-profile__name">
-        홍길동 <span className="mypage-profile__name-suffix">님</span>
+        {userName} <span className="mypage-profile__name-suffix">님</span>
     </strong>
             
             <span className="mypage-profile__badge mypage-profile__badge--blue">BLUE</span>

@@ -26,17 +26,24 @@ const KedihealTransition = () => {
             const updateLine = (ref, text, val) => {
                 if (!ref) return;
                 const count = Math.floor(val.char);
-                let currentText = text.slice(0, count);
 
-                // "메디힐" 포인트 컬러 처리
+                // "메디힐" 포인트 컬러 처리 (타이핑 도중 실시간 적용)
                 if (ref === statement2Ref.current) {
-                    currentText = currentText.replace(
-                        '메디힐',
-                        '<span class="kediheal__point-text">메디힐</span>'
-                    );
-                    ref.innerHTML = currentText;
+                    const target = '메디힐';
+                    const startIndex = text.indexOf(target); // '메'의 시작 인덱스
+                    const endIndex = startIndex + target.length; // '힐'의 종료 인덱스
+
+                    if (count > startIndex) {
+                        const before = text.slice(0, startIndex);
+                        const middle = text.slice(startIndex, Math.min(count, endIndex));
+                        const after = count > endIndex ? text.slice(endIndex, count) : '';
+
+                        ref.innerHTML = `${before}<span class="kediheal__point-text">${middle}</span>${after}`;
+                    } else {
+                        ref.textContent = text.slice(0, count);
+                    }
                 } else {
-                    ref.textContent = currentText;
+                    ref.textContent = text.slice(0, count);
                 }
 
                 // 커서 위치 이동
