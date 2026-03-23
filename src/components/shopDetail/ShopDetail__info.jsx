@@ -8,7 +8,6 @@ const ShopDetail__info = () => {
     const { id } = useParams();
     const [isOpen, setIsOpen] = useState(false);
     const infoRef = useRef(null);
-    const imgRef = useRef(null);
 
     const detailProduct = productsDetailData.find((item) => item.id === id);
 
@@ -38,16 +37,10 @@ const ShopDetail__info = () => {
 
     const detailImages = detailProduct.details_img ?? [];
 
-    const wrapStyle = isOpen
-        ? {
-              maxHeight: imgRef.current ? `${imgRef.current.scrollHeight + 60}px` : 'none',
-          }
-        : { maxHeight: '474px' };
-
     return (
         <div className="shopDetail__info" ref={infoRef}>
-            <div className={`shopDetail__imgWrap ${isOpen ? 'open' : ''}`} style={wrapStyle}>
-                <div className="shopDetail__img" ref={imgRef}>
+            <div className={`shopDetail__imgWrap ${isOpen ? 'open' : ''}`}>
+                <div className="shopDetail__img">
                     {detailImages.map((media, index) => {
                         const mediaSrc = typeof media === 'string' ? media : '';
                         const isVideo = mediaSrc.endsWith('.mp4');
