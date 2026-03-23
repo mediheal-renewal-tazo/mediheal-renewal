@@ -652,6 +652,10 @@ $fs-13: clamp(11px, 0.6875rem + 0.278vw, 13px);
         margin-bottom: 80px;
     }
 
+    &.open {
+        max-height: 500000px;
+    }
+
     &:not(.open)::after {
         content: '';
         position: absolute;
