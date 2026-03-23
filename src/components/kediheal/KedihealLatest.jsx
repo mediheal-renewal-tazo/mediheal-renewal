@@ -5,7 +5,6 @@ import lastestLeftImg from '../../assets/images/kediheal/kediheal__pdrn_left.png
 import lastestRightImg from '../../assets/images/kediheal/kediheal__pdrn_right.png';
 import finalCtaBg from '../../assets/images/kediheal/final_cta_bg.png';
 
-
 const KedihealLatest = () => {
     const [concern, setConcern] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -51,8 +50,9 @@ const KedihealLatest = () => {
                     <div className="kediheal__latest-right-block">
                         <div className="kediheal__latest-pdrn-box">
                             <h3
-                                className={`kediheal__latest-pdrn-title ${isProductHovered ? 'is-hovered' : ''
-                                    }`}
+                                className={`kediheal__latest-pdrn-title ${
+                                    isProductHovered ? 'is-hovered' : ''
+                                }`}
                             >
                                 PDRN
                             </h3>

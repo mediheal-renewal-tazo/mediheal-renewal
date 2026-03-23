@@ -18,6 +18,7 @@
         }
 
         &--care {
+            width: 100%;
             background-color: #fff;
             display: block;
             height: auto;
@@ -78,7 +79,10 @@
             align-items: flex-start;
             margin-bottom: clamp(60px, 15vw, 200px);
         }
-
+        &--final-cta {
+            min-width: auto;
+            min-height: unset;
+        }
         &--latest {
             width: 100%;
             min-height: 800px;
@@ -182,11 +186,12 @@
         display: block;
 
         @media screen and (max-width: 1024px) {
-            min-height: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: clamp(60px, 8vw, 100px) 20px;
+            min-height: clamp(600px, 100vw, 800px);
+            padding: clamp(40px, 5vw, 80px) 20px;
+        }
+
+        @media screen and (max-width: 767px) {
+            min-height: clamp(500px, 120vw, 600px);
         }
     }
 
@@ -204,11 +209,12 @@
         z-index: 10;
 
         @media screen and (max-width: 1024px) {
-            position: relative;
-            left: auto;
-            top: auto;
-            text-align: center;
-            margin-bottom: clamp(60px, 10vw, 100px);
+            font-size: clamp(50px, 12vw, 120px);
+            left: clamp(20px, 5vw, 100px);
+        }
+
+        @media screen and (max-width: 767px) {
+            font-size: clamp(40px, 12vw, 80px);
         }
     }
 
@@ -225,12 +231,15 @@
         z-index: 10;
 
         @media screen and (max-width: 1024px) {
-            position: relative;
-            top: auto;
-            left: auto;
-            text-align: center;
-            margin-bottom: clamp(80px, 15vw, 140px);
-            margin-top: 0;
+            top: clamp(100px, 14vw, 160px);
+            left: clamp(20px, 5vw, 100px);
+            font-size: clamp(28px, 6vw, 60px);
+            letter-spacing: -1.5px;
+        }
+
+        @media screen and (max-width: 767px) {
+            top: clamp(80px, 15vw, 120px);
+            font-size: clamp(24px, 6vw, 40px);
         }
     }
 
@@ -251,15 +260,14 @@
         z-index: 10;
 
         @media screen and (max-width: 1024px) {
-            position: relative;
-            top: auto;
-            right: auto;
-            transform: none;
-            width: 100%;
-            max-width: 600px;
-            margin-bottom: clamp(60px, 10vw, 120px);
-            padding: 0 20px;
-            box-sizing: border-box;
+            width: clamp(260px, 38vw, 400px);
+            right: clamp(-20px, -2vw, -10px);
+        }
+
+        @media screen and (max-width: 767px) {
+            width: clamp(200px, 50vw, 300px);
+            right: clamp(-10px, -1vw, 0px);
+            top: 45%;
         }
     }
 
@@ -306,6 +314,13 @@
         p {
             margin: 0;
         }
+        @media screen and (max-width: 1024px) {
+            font-size: clamp(16px, 1.5vw, 22px);
+        }
+
+        @media screen and (max-width: 767px) {
+            font-size: clamp(8px, 1.5vw, 12px);
+        }
     }
 
     &__latest-bottom-wrap {
@@ -321,11 +336,11 @@
         z-index: 10;
 
         @media screen and (max-width: 1024px) {
-            position: relative;
-            bottom: auto;
-            left: auto;
-            transform: none;
-            margin-top: 40px;
+            bottom: clamp(20px, 4vw, 40px);
+        }
+
+        @media screen and (max-width: 767px) {
+            bottom: clamp(10px, 4vw, 30px);
         }
     }
 
@@ -375,6 +390,14 @@
         &:hover {
             background: #f8f8f8;
         }
+        @media screen and (max-width: 767px) {
+            width: clamp(80px, 30vw, 130px);
+            height: clamp(25px, 5vw, 30px);
+            padding: 10px 20px;
+            background: #fff;
+            cursor: pointer;
+            // position: relative;
+        }
 
         &__text {
             position: absolute;
@@ -384,6 +407,12 @@
             font-weight: 700;
             line-height: 1;
             left: clamp(15px, 2vw, 20px);
+            @media screen and (max-width: 767px) {
+                font-size: clamp(3px, 1.5vw, 6px);
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
         }
 
         &__arrow {
@@ -393,14 +422,18 @@
             transform: translateY(-50%);
             width: clamp(10px, 1vw, 12px);
             height: auto;
+            @media screen and (max-width: 767px) {
+                display: none;
+            }
         }
     }
 
     // Final CTA Section
     &__section--final-cta {
-        margin-top: clamp(60px, 10vw, 120px);
+        background: #000;
         width: 100%;
-        height: clamp(400px, 50vh, 618px);
+        margin: auto;
+        height: clamp(300px, 50vh, 618px);
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -408,31 +441,24 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        top: 0;
 
         @media screen and (max-width: 1024px) {
+            height: clamp(280px, 45vh, 500px);
             background-size: cover;
+            background-position: center;
         }
 
         @media screen and (max-width: 767px) {
-            height: clamp(300px, 50vh, 400px);
+            min-height: auto;
+            height: clamp(240px, 42vh, 360px);
             background-size: cover;
             background-position: 70% center;
             margin-top: 60px;
         }
 
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 1;
-        }
-
         .kediheal__final-cta-inner {
-            position: relative;
+            position: absolute;
             z-index: 2;
             display: flex;
             flex-direction: column;
@@ -455,7 +481,10 @@
             word-break: keep-all;
 
             @media screen and (max-width: 767px) {
-                font-size: clamp(16px, 4.5vw, 22px);
+                font-size: clamp(8px, 14vw, 16px);
+            }
+            @media screen and (max-width: 1024px) {
+                font-size: clamp(10px, 16vw, 20px);
             }
         }
 
@@ -585,13 +614,13 @@
         box-sizing: border-box;
 
         @media screen and (max-width: 1024px) {
-            height: auto;
+            height: clamp(900px, 120vw, 1300px);
             min-height: auto;
-            display: flex;
-            flex-direction: column;
-            gap: clamp(40px, 8vw, 80px);
-            padding: clamp(80px, 12vw, 120px) 20px;
-            align-items: center;
+            padding: clamp(40px, 8vw, 80px) 20px;
+        }
+
+        @media screen and (max-width: 767px) {
+            height: clamp(700px, 140vw, 900px);
         }
     }
 
@@ -604,12 +633,8 @@
             left: clamp(20px, 10vw, 150px);
 
             @media screen and (max-width: 1024px) {
-                position: relative;
-                top: auto;
-                left: auto;
-                text-align: center;
-                order: 1;
-                width: 100%;
+                top: clamp(60px, 10vw, 120px);
+                left: clamp(20px, 5vw, 60px);
             }
         }
 
@@ -621,13 +646,9 @@
             text-align: right;
 
             @media screen and (max-width: 1024px) {
-                position: relative;
-                bottom: auto;
-                right: auto;
-                text-align: center;
-                margin: 0 auto;
-                max-width: 600px;
-                order: 3;
+                bottom: clamp(80px, 15vw, 150px);
+                right: clamp(20px, 5vw, 60px);
+                max-width: clamp(200px, 35vw, 300px);
             }
         }
     }
@@ -661,12 +682,12 @@
         word-break: keep-all;
 
         @media screen and (max-width: 1024px) {
-            font-size: clamp(16px, 2.5vw, 20px);
+            font-size: clamp(16px, 2.5vw, 18px);
             font-weight: 400;
         }
 
         @media screen and (max-width: 767px) {
-            font-size: clamp(14px, 3.5vw, 16px);
+            font-size: clamp(10px, 3.5vw, 12px);
         }
     }
 
@@ -684,14 +705,9 @@
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 
             @media screen and (max-width: 1024px) {
-                position: relative;
-                top: auto;
-                right: auto;
-                width: 50%;
-                max-width: 300px;
-                transform: rotate(4deg);
-                order: 2;
-                margin: 0 auto;
+                width: clamp(150px, 30vw, 300px);
+                top: clamp(40px, 8vw, 80px);
+                right: clamp(10px, 3vw, 40px);
             }
 
             &:hover {
@@ -723,14 +739,10 @@
             margin-top: 100px;
 
             @media screen and (max-width: 1024px) {
-                position: relative;
-                top: auto;
-                left: auto;
-                width: 45%;
-                max-width: 250px;
-                transform: rotate(-8deg);
-                margin: 0 auto;
-                order: 4;
+                width: clamp(120px, 25vw, 250px);
+                top: clamp(500px, 60vw, 800px);
+                left: clamp(10px, 5vw, 60px);
+                margin-top: 0;
             }
 
             &:hover {
@@ -787,12 +799,7 @@
         justify-content: center;
 
         @media screen and (max-width: 1024px) {
-            position: relative;
-            top: auto;
-            left: auto;
-            transform: none;
-            order: 5;
-            margin-top: clamp(30px, 6vw, 60px);
+            top: clamp(350px, 45vw, 600px);
         }
     }
 
@@ -812,66 +819,67 @@
         letter-spacing: -3px;
 
         @media screen and (max-width: 1024px) {
-            font-size: clamp(52px, 12vw, 120px);
-            letter-spacing: -1px;
+            font-size: clamp(55px, 20vw, 140px);
+            letter-spacing: 3px;
         }
 
         @media screen and (max-width: 767px) {
-            font-size: clamp(40px, 12vw, 80px);
+            font-size: clamp(40px, 16vw, 100px);
         }
     }
 
     // Global Section
     &__global-inner {
         width: 100%;
-        max-width: 926px;
-        min-height: clamp(800px, 100vh, 1040px);
+        max-width: clamp(600px, 60vw, 926px);
+        min-height: clamp(600px, 80vh, 1040px);
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: clamp(60px, 10vw, 120px) 20px;
+        padding: clamp(60px, 8vw, 120px) clamp(20px, 4vw, 40px);
         box-sizing: border-box;
 
         @media screen and (max-width: 1024px) {
+            max-width: 90%;
             min-height: auto;
-            padding: clamp(60px, 10vw, 100px) 20px;
+            padding: clamp(50px, 8vw, 80px) clamp(20px, 3vw, 30px);
         }
     }
 
     &__global-header {
-        margin-bottom: clamp(40px, 8vw, 60px);
+        margin-bottom: clamp(30px, 5vw, 60px);
     }
 
     &__global-main-title {
         color: var(--Bk_Wh-Bk, #000);
         text-align: center;
         font-family: Pretendard;
-        font-size: clamp(32px, 6vw, 64px);
+        font-size: clamp(26px, 5vw, 64px);
         font-weight: 700;
         line-height: 1.2;
-        margin-bottom: clamp(15px, 3vw, 30px);
+        margin-bottom: clamp(10px, 2vw, 30px);
     }
 
     &__global-main-desc {
         color: var(--GreyScale-grey-400, #6c6c6c);
         text-align: center;
         font-family: Pretendard;
-        font-size: clamp(16px, 2.5vw, 24px);
+        font-size: clamp(14px, 1.8vw, 24px);
         font-weight: 400;
         line-height: 1.5;
-        margin-bottom: clamp(40px, 8vw, 117px);
+        margin-bottom: clamp(30px, 8vw, 117px);
         word-break: keep-all;
 
         @media screen and (max-width: 1024px) {
-            font-size: clamp(14px, 2.5vw, 20px);
-            margin-bottom: clamp(30px, 8vw, 80px);
+            font-size: clamp(13px, 2vw, 18px);
+            margin-bottom: clamp(20px, 6vw, 60px);
         }
 
         @media screen and (max-width: 767px) {
-            font-size: clamp(13px, 3.5vw, 18px);
-            margin-bottom: clamp(20px, 10vw, 50px);
+            font-size: clamp(12px, 3.5vw, 15px);
+            margin-bottom: clamp(15px, 8vw, 40px);
             letter-spacing: -0.5px;
         }
     }
@@ -881,7 +889,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: clamp(10px, 2vw, 15px);
+        gap: clamp(8px, 1.2vw, 15px);
     }
 
     &__global-row {
@@ -890,7 +898,7 @@
         flex-direction: column;
         align-items: center;
         transition: all 0.4s ease;
-        padding: clamp(8px, 2vw, 10px) 0;
+        padding: clamp(6px, 1.2vw, 10px) 0;
         width: 100%;
 
         &.is-dimmed {
@@ -908,9 +916,9 @@
             }
 
             .kediheal__global-city-desc {
-                max-height: 300px;
+                max-height: 500px;
                 opacity: 1;
-                margin-top: clamp(15px, 3vw, 25px);
+                margin-top: clamp(12px, 2vw, 25px);
             }
         }
     }
@@ -923,16 +931,16 @@
         color: var(--primary-blue, #151789);
         text-align: center;
         font-family: Pretendard;
-        font-size: clamp(40px, 8vw, 115px);
+        font-size: clamp(28px, 7.5vw, 115px);
         font-weight: 700;
         line-height: 1;
         height: auto;
-        min-height: clamp(40px, 8vw, 115px);
+        min-height: clamp(28px, 7.5vw, 115px);
 
         @media screen and (max-width: 767px) {
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: clamp(6px, 1.5vw, 10px);
         }
     }
 
@@ -950,11 +958,11 @@
         position: absolute;
         top: 0;
         left: 100%;
-        margin-left: 15px;
+        margin-left: clamp(8px, 1.2vw, 20px);
         color: var(--primary-blue, #151789);
         text-align: left;
         font-family: Pretendard;
-        font-size: clamp(16px, 3.5vw, 40px);
+        font-size: clamp(12px, 3vw, 40px);
         font-weight: 500;
         line-height: 1;
         white-space: nowrap;
@@ -964,12 +972,13 @@
             left: 0;
             margin-left: 0;
             text-align: center;
+            font-size: clamp(11px, 4vw, 18px);
         }
     }
 
     &__global-city-desc {
         color: #151789;
-        font-size: clamp(14px, 2vw, 26px);
+        font-size: clamp(12px, 1.8vw, 26px);
         font-weight: 400;
         line-height: 1.5;
         margin-top: 0;
@@ -980,22 +989,22 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        gap: clamp(4px, 1vw, 8px);
+        gap: clamp(4px, 0.8vw, 8px);
         word-break: keep-all;
 
         @media screen and (max-width: 767px) {
-            font-size: clamp(12px, 3.5vw, 16px);
+            font-size: clamp(11px, 3.2vw, 14px);
         }
     }
 
     &__global-search {
-        margin-top: clamp(40px, 8vw, 80px);
+        margin-top: clamp(30px, 5vw, 80px);
         width: 100%;
-        max-width: 500px;
+        max-width: clamp(260px, 45vw, 500px);
 
         @media screen and (max-width: 767px) {
             max-width: 100%;
-            padding: 0 10px;
+            padding: 0 5%;
             box-sizing: border-box;
         }
     }
@@ -1004,15 +1013,15 @@
         color: var(--GreyScale-grey-400, #6c6c6c);
         text-align: center;
         font-family: Pretendard;
-        font-size: clamp(16px, 3vw, 24px);
+        font-size: clamp(14px, 1.8vw, 24px);
         font-weight: 400;
         line-height: normal;
-        margin-bottom: clamp(16px, 3vw, 24px);
+        margin-bottom: clamp(12px, 1.8vw, 24px);
         word-break: keep-all;
 
         @media screen and (max-width: 767px) {
-            font-size: clamp(13px, 3.5vw, 16px);
-            margin-bottom: 20px;
+            font-size: clamp(12px, 3.2vw, 14px);
+            margin-bottom: clamp(10px, 2.5vw, 16px);
         }
     }
 
@@ -1027,8 +1036,8 @@
     &__global-search-input {
         flex: 1;
         border: none;
-        padding: clamp(10px, 2vw, 15px) clamp(16px, 3vw, 20px);
-        font-size: clamp(14px, 2vw, 18px);
+        padding: clamp(8px, 1.2vw, 15px) clamp(12px, 2vw, 20px);
+        font-size: clamp(13px, 1.5vw, 18px);
         color: #000;
         outline: none;
 
@@ -1036,16 +1045,16 @@
             color: var(--grey-scale-grey-100, #c6c6c6);
             text-align: left;
             font-family: Pretendard;
-            font-size: clamp(14px, 2vw, 20px);
+            font-size: clamp(13px, 1.5vw, 20px);
             font-weight: 600;
             line-height: normal;
 
             @media screen and (max-width: 1024px) {
-                font-size: clamp(13px, 2.5vw, 18px);
+                font-size: clamp(12px, 2vw, 16px);
             }
 
             @media screen and (max-width: 767px) {
-                font-size: clamp(12px, 3.5vw, 14px);
+                font-size: clamp(11px, 3.2vw, 13px);
             }
         }
     }
@@ -1053,30 +1062,34 @@
     &__global-search-btn {
         background: none;
         border: none;
-        padding: 0 clamp(20px, 4vw, 30px);
+        padding: 0 clamp(15px, 2.5vw, 30px);
         cursor: pointer;
         transition: background-color 0.2s;
 
         color: var(--primary-blue, #151789);
         text-align: center;
         font-family: Pretendard;
-        font-size: clamp(16px, 2.5vw, 20px);
+        font-size: clamp(14px, 1.8vw, 20px);
         font-weight: 600;
         line-height: normal;
 
         &:hover {
             background-color: #f0f4ff;
         }
+
+        @media screen and (max-width: 767px) {
+            padding: 0 clamp(10px, 3vw, 15px);
+            font-size: clamp(12px, 3.2vw, 14px);
+        }
     }
 
     &__care-inner {
         width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
+        max-width: 1500px;
+        margin: auto;
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
-        gap: clamp(40px, 6vw, 60px);
+        gap: 0;
         padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 60px);
         box-sizing: border-box;
 
@@ -1085,12 +1098,15 @@
             align-items: center;
             gap: clamp(60px, 10vw, 80px);
         }
+
+        @media screen and (max-width: 767px) {
+        }
     }
 
     &__care-left {
-        width: 100%;
+        width: 660px;
         max-width: 662px;
-        // height: auto;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -1157,11 +1173,11 @@
     }
 
     &__care-right {
-        width: 100%;
+        width: 630px;
         max-width: 690px;
         height: 830px;
         overflow-y: auto;
-        overflow-x: hidden;
+
         padding-right: 15px;
 
         @media screen and (max-width: 1024px) {
