@@ -1,118 +1,8 @@
-﻿import img_1 from '@/assets/images/products/mask/mask06_04_00.jpg';
-import img_2 from '@/assets/images/products/mask/mask01_01.jpg';
-import img_3 from '@/assets/images/products/mask/mask01_ape.jpg';
-import img_4 from '@/assets/images/products/mask/mask01_rna.jpg';
-import img_5 from '@/assets/images/products/mask/mask09_01nose.jpg';
-import img_6 from '@/assets/images/products/mask/mask06_02.jpg';
-import img_7 from '@/assets/images/products/mask/mask06_01.jpg';
-import img_8 from '@/assets/images/products/mask/mask06_06_00.jpg';
-import img_9 from '@/assets/images/products/mask/mask06_03.jpg';
-import img_10 from '@/assets/images/products/mask/mask08_00.jpeg';
-import img_11 from '@/assets/images/products/mask/mask02_05.png';
-import img_12 from '@/assets/images/products/mask/mask10_redcamellia.jpg';
-import img_13 from '@/assets/images/products/mask/mask06_00.jpg';
-import img_14 from '@/assets/images/products/mask/mask02_03.jpg';
-import img_15 from '@/assets/images/products/mask/mask02_04.jpg';
-import img_16 from '@/assets/images/products/mask/mask02_02.jpg';
-import img_17 from '@/assets/images/products/mask/mask02_01.jpg';
-import img_18 from '@/assets/images/products/mask/mask05_05.jpg';
-import img_19 from '@/assets/images/products/mask/mask05_01.jpg';
-import img_20 from '@/assets/images/products/mask/mask05_06.jpg';
-import img_21 from '@/assets/images/products/mask/mask01_00.jpg';
-import img_22 from '@/assets/images/products/mask/mask10_propolis.jpg';
-import img_23 from '@/assets/images/products/mask/mask061_06.jpg';
-import img_24 from '@/assets/images/products/mask/mask061_04.jpg';
-import img_25 from '@/assets/images/products/mask/mask061_01.jpg';
-import img_26 from '@/assets/images/products/mask/mask03_13.jpg';
-import img_27 from '@/assets/images/products/mask/mask01_05.jpg';
-import img_28 from '@/assets/images/products/mask/mask01_06.jpg';
-import img_29 from '@/assets/images/products/mask/mask01_03.jpg';
-import img_30 from '@/assets/images/products/mask/mask01_04.jpg';
-import img_31 from '@/assets/images/products/mask/mask01_02.jpg';
-import img_32 from '@/assets/images/products/mask/mask09_04_steam.jpg';
-import img_33 from '@/assets/images/products/mask/mask01_12.jpg';
-import img_34 from '@/assets/images/products/mask/mask07_11.jpg';
-import img_35 from '@/assets/images/products/mask/mask07_04.jpg';
-import img_36 from '@/assets/images/products/mask/mask07_03.jpg';
-import img_37 from '@/assets/images/products/mask/mask01_03.jpg';
-import img_38 from '@/assets/images/products/mask/mask06_06_00.jpg';
-import img_39 from '@/assets/images/products/mask/mask06_02.jpg';
-import img_40 from '@/assets/images/products/mask/mask06_01.jpg';
-import img_41 from '@/assets/images/products/mask/mask03_14.jpg';
-import img_42 from '@/assets/images/products/mask/mask03_15.jpg';
-import img_43 from '@/assets/images/products/mask/mask03_04.jpg';
-import img_44 from '@/assets/images/products/mask/mask10_06.jpg';
-import img_45 from '@/assets/images/products/mask/mask06_04.jpg';
-import img_46 from '@/assets/images/products/mask/mask02_synergy.jpg';
-import img_47 from '@/assets/images/products/mask/mask02_synergy03.jpg';
-import img_48 from '@/assets/images/products/mask/mask09_03_ampoulelifting.jpg';
-import img_49 from '@/assets/images/products/mask/mask09_02_creamlifting.jpg';
-import img_50 from '@/assets/images/products/mask/mask10_aloe.jpg';
-import img_51 from '@/assets/images/products/mask/mask10_birchtree.jpg';
-import img_52 from '@/assets/images/products/mask/mask10_greentanerine.jpg';
-import img_53 from '@/assets/images/products/mask/mask10_cica.jpg';
-import img_54 from '@/assets/images/products/mask/mask02_synergy02.jpg';
-import img_55 from '@/assets/images/products/mask/mask02_synergy04.jpg';
-import img_56 from '@/assets/images/products/mask/mask04_04.jpg';
-import img_57 from '@/assets/images/products/pad/pad_09chestnut.jpg';
-import img_58 from '@/assets/images/products/pad/pad_08carrot.jpg';
-import img_59 from '@/assets/images/products/pad/pad_refill_03.jpg';
-import img_60 from '@/assets/images/products/pad/pad_refill_07.jpg';
-import img_61 from '@/assets/images/products/pad/pad_refill_05.jpg';
-import img_62 from '@/assets/images/products/pad/pad_refill_04.jpg';
-import img_63 from '@/assets/images/products/pad/pad_refill_01.jpg';
-import img_64 from '@/assets/images/products/pad/pad_refill_02.jpg';
-import img_65 from '@/assets/images/products/pad/pad_01madecassoside.jpg';
-import img_66 from '@/assets/images/products/pad/pad07phyto-enzyme.jpg';
-import img_67 from '@/assets/images/products/pad/pad_06hyalluronate.jpg';
-import img_68 from '@/assets/images/products/pad/pad_05pdrn.jpg';
-import img_69 from '@/assets/images/products/pad/pad_04collagen.jpg';
-import img_70 from '@/assets/images/products/pad/pad_03vitamin.jpg';
-import img_71 from '@/assets/images/products/pad/pad_02teatree.jpg';
-import img_72 from '@/assets/images/products/pad/pad_10vitamin.jpg';
-import img_73 from '@/assets/images/products/pad/pad_11retinol.jpg';
-import img_74 from '@/assets/images/products/skincare/oil_02.jpg';
-import img_75 from '@/assets/images/products/skincare/toner_02.jpg';
-import img_76 from '@/assets/images/products/skincare/serum_100_01.jpg';
-import img_77 from '@/assets/images/products/skincare/cream_01.jpg';
-import img_78 from '@/assets/images/products/skincare/patch_capsule.jpg';
-import img_79 from '@/assets/images/products/skincare/patch_stretching.jpg';
-import img_80 from '@/assets/images/products/skincare/serum_40_04.jpg';
-import img_81 from '@/assets/images/products/skincare/serum_40_04.jpg';
-import img_82 from '@/assets/images/products/skincare/serum_40_06.jpg';
-import img_83 from '@/assets/images/products/mask/mask09_05spicule.jpg';
-import img_84 from '@/assets/images/products/skincare/set_00.jpg';
-import img_85 from '@/assets/images/products/skincare/set_01.jpg';
-import img_86 from '@/assets/images/products/skincare/set_02.jpg';
-import img_87 from '@/assets/images/products/skincare/set_03.jpg';
-import img_88 from '@/assets/images/products/skincare/serum02_01.jpg';
-import img_89 from '@/assets/images/products/skincare/serum02_03.jpg';
-import img_90 from '@/assets/images/products/skincare/serum_40_01.jpg';
-import img_91 from '@/assets/images/products/skincare/serum_40_02.jpg';
-import img_92 from '@/assets/images/products/skincare/patch_03.jpg';
-import img_93 from '@/assets/images/products/skincare/patch_02_160.jpg';
-import img_94 from '@/assets/images/products/skincare/patch_01_132.jpg';
-import img_95 from '@/assets/images/products/skincare/patch_01_44.jpg';
-import img_96 from '@/assets/images/products/skincare/patch_02_132.jpg';
-import img_97 from '@/assets/images/products/skincare/patch_02_44.jpg';
-import img_98 from '@/assets/images/products/skincare/serum02_02barrier.jpg';
-import img_99 from '@/assets/images/products/skincare/serum_40_03.jpg';
-import img_100 from '@/assets/images/products/skincare/serum02_02moisture.jpg';
-import img_101 from '@/assets/images/products/cleanser/cleanser_03_02.jpg';
-import img_102 from '@/assets/images/products/cleanser/cleanser_03_02porepowder.jpg';
-import img_103 from '@/assets/images/products/cleanser/cleanser_03_02calmingpowder.jpg';
-import img_104 from '@/assets/images/products/cleanser/cleanser_01_04.jpg';
-import img_105 from '@/assets/images/products/cleanser/cleanser_01_01.jpg';
-import img_106 from '@/assets/images/products/cleanser/cleanser_01_06.jpg';
-import img_107 from '@/assets/images/products/cleanser/cleanser_01_02.jpg';
-import img_108 from '@/assets/images/products/cleanser/cleanser_01_03.jpg';
-import img_109 from '@/assets/images/products/sun/sun_01.jpg';
-import img_110 from '@/assets/images/products/sun/sun_cream_03.jpg';
-import img_111 from '@/assets/images/products/sun/sun_spray_06.jpg';
-import img_112 from '@/assets/images/products/sun/sun_patch_03.jpg';
-import img_113 from '@/assets/images/products/sun/sun_patch_01.jpg';
-import img_114 from '@/assets/images/products/sun/sun_cream_02.jpg';
-import img_115 from '@/assets/images/products/skincare/serum_100_03.jpg';
+const _imgs = import.meta.glob(
+    '/src/assets/images/products/**/*.{jpg,jpeg,png}',
+    { eager: true, import: 'default' }
+);
+const img = (path) => _imgs[`/src/assets/images/products/${path}`];
 
 const productsData = [
     {
@@ -125,7 +15,7 @@ const productsData = [
         category: 'mask',
         function: ['영양'],
         ingredient: '콜라겐',
-        images: [img_1],
+        images: [img('mask/mask06_04_00.jpg')],
 
         createdAt: '2021-07-11',
         best: false,
@@ -143,7 +33,7 @@ const productsData = [
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
         ingredient: '마데카소사이드',
-        images: [img_2],
+        images: [img('mask/mask01_01.jpg')],
 
         createdAt: '2021-12-04',
         best: false,
@@ -160,7 +50,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['수분보습', '영양'],
-        images: [img_3],
+        images: [img('mask/mask01_ape.jpg')],
 
         createdAt: '2025-03-01',
         best: false,
@@ -178,7 +68,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['영양', '윤광'],
-        images: [img_4],
+        images: [img('mask/mask01_rna.jpg')],
 
         createdAt: '2024-03-25',
         best: false,
@@ -196,7 +86,7 @@ const productsData = [
         discountRate: 8,
         category: 'mask',
         function: ['모공', '각질제거', '피지연화'],
-        images: [img_5],
+        images: [img('mask/mask09_01nose.jpg')],
 
         createdAt: '2024-04-02',
         best: false,
@@ -214,7 +104,7 @@ const productsData = [
         discountRate: 22,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: [img_6],
+        images: [img('mask/mask06_02.jpg')],
 
         createdAt: '2021-01-06',
         best: false,
@@ -232,7 +122,7 @@ const productsData = [
         discountRate: 22,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_7],
+        images: [img('mask/mask06_01.jpg')],
 
         createdAt: '2021-01-02',
         best: false,
@@ -250,7 +140,7 @@ const productsData = [
         discountRate: 22,
         category: 'mask',
         function: ['수분보습'],
-        images: [img_8],
+        images: [img('mask/mask06_06_00.jpg')],
 
         createdAt: '2020-07-19',
         best: false,
@@ -268,7 +158,7 @@ const productsData = [
         discountRate: 22,
         category: 'mask',
         function: ['미백', '영양'],
-        images: [img_9],
+        images: [img('mask/mask06_03.jpg')],
 
         createdAt: '2025-09-12',
         best: false,
@@ -286,7 +176,7 @@ const productsData = [
         discountRate: 31,
         category: 'mask',
         function: ['진정', '흔적', '수분보습'],
-        images: [img_10],
+        images: [img('mask/mask08_00.jpeg')],
 
         createdAt: '2024-12-13',
         best: false,
@@ -304,7 +194,7 @@ const productsData = [
         discountRate: 37,
         category: 'mask',
         function: ['모공'],
-        images: [img_11],
+        images: [img('mask/mask02_05.png')],
 
         createdAt: '2025-02-09',
         best: false,
@@ -322,7 +212,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['탄력', '영양'],
-        images: [img_12],
+        images: [img('mask/mask10_redcamellia.jpg')],
 
         createdAt: '2023-11-08',
         best: false,
@@ -340,7 +230,7 @@ const productsData = [
         discountRate: 20,
         category: 'mask',
         function: ['영양', '탄력', '모공', '진정', '흔적', '수분보습'],
-        images: [img_13],
+        images: [img('mask/mask06_00.jpg')],
 
         createdAt: '2024-03-19',
         best: false,
@@ -358,7 +248,7 @@ const productsData = [
         discountRate: 37,
         category: 'mask',
         function: ['미백', '영양'],
-        images: [img_14],
+        images: [img('mask/mask02_03.jpg')],
 
         createdAt: '2023-10-12',
         best: false,
@@ -376,7 +266,7 @@ const productsData = [
         discountRate: 37,
         category: 'mask',
         function: ['영양'],
-        images: [img_15],
+        images: [img('mask/mask02_04.jpg')],
 
         createdAt: '2021-07-06',
         best: false,
@@ -394,7 +284,7 @@ const productsData = [
         discountRate: 37,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: [img_16],
+        images: [img('mask/mask02_02.jpg')],
 
         createdAt: '2024-01-29',
         best: false,
@@ -412,7 +302,7 @@ const productsData = [
         discountRate: 37,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_17],
+        images: [img('mask/mask02_01.jpg')],
 
         createdAt: '2020-03-11',
         best: false,
@@ -430,7 +320,7 @@ const productsData = [
         discountRate: 46,
         category: 'mask',
         function: ['모공'],
-        images: [img_18],
+        images: [img('mask/mask05_05.jpg')],
 
         createdAt: '2021-05-16',
         best: false,
@@ -448,7 +338,7 @@ const productsData = [
         discountRate: 46,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_19],
+        images: [img('mask/mask05_01.jpg')],
 
         createdAt: '2023-05-26',
         best: false,
@@ -466,7 +356,7 @@ const productsData = [
         discountRate: 46,
         category: 'mask',
         function: ['수분보습'],
-        images: [img_20],
+        images: [img('mask/mask05_06.jpg')],
 
         createdAt: '2020-02-12',
         best: false,
@@ -484,7 +374,7 @@ const productsData = [
         discountRate: 46,
         category: 'mask',
         function: ['수분보습', '탄력', '윤광', '미백', '진정'],
-        images: [img_21],
+        images: [img('mask/mask01_00.jpg')],
 
         createdAt: '2024-05-16',
         best: false,
@@ -502,7 +392,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['탄력', '윤광', '보습'],
-        images: [img_22],
+        images: [img('mask/mask10_propolis.jpg')],
 
         createdAt: '2021-09-18',
         best: false,
@@ -520,7 +410,7 @@ const productsData = [
         discountRate: 9,
         category: 'mask',
         function: ['수분보습'],
-        images: [img_23],
+        images: [img('mask/mask061_06.jpg')],
 
         createdAt: '2026-01-09',
         best: false,
@@ -538,7 +428,7 @@ const productsData = [
         discountRate: 9,
         category: 'mask',
         function: ['영양'],
-        images: [img_24],
+        images: [img('mask/mask061_04.jpg')],
 
         createdAt: '2024-02-10',
         best: false,
@@ -556,7 +446,7 @@ const productsData = [
         discountRate: 9,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_25],
+        images: [img('mask/mask061_01.jpg')],
 
         createdAt: '2024-10-16',
         best: false,
@@ -574,7 +464,7 @@ const productsData = [
         discountRate: 22,
         category: 'mask',
         function: ['수분보습', '진정', '영양', '탄력', '흔적'],
-        images: [img_13],
+        images: [img('mask/mask06_00.jpg')],
 
         createdAt: '2022-05-29',
         best: false,
@@ -592,7 +482,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['수분보습', '탄력'],
-        images: [img_26],
+        images: [img('mask/mask03_13.jpg')],
 
         createdAt: '2024-06-01',
         best: false,
@@ -610,7 +500,7 @@ const productsData = [
         discountRate: 40,
         category: 'mask',
         function: ['결광', '윤광', '모공', '탄력'],
-        images: [img_27],
+        images: [img('mask/mask01_05.jpg')],
 
         createdAt: '2021-09-10',
         best: false,
@@ -628,7 +518,7 @@ const productsData = [
         discountRate: 40,
         category: 'mask',
         function: ['수분보습'],
-        images: [img_28],
+        images: [img('mask/mask01_06.jpg')],
 
         createdAt: '2023-05-22',
         best: false,
@@ -646,7 +536,7 @@ const productsData = [
         discountRate: 40,
         category: 'mask',
         function: ['미백', '영양'],
-        images: [img_29],
+        images: [img('mask/mask01_03.jpg')],
 
         createdAt: '2023-10-17',
         best: false,
@@ -664,7 +554,7 @@ const productsData = [
         discountRate: 40,
         category: 'mask',
         function: ['영양'],
-        images: [img_30],
+        images: [img('mask/mask01_04.jpg')],
 
         createdAt: '2020-09-23',
         best: false,
@@ -682,7 +572,7 @@ const productsData = [
         discountRate: 40,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: [img_31],
+        images: [img('mask/mask01_02.jpg')],
 
         createdAt: '2022-07-08',
         best: true,
@@ -700,7 +590,7 @@ const productsData = [
         discountRate: 3,
         category: 'mask',
         function: ['수분보습'],
-        images: [img_32],
+        images: [img('mask/mask09_04_steam.jpg')],
 
         createdAt: '2024-10-27',
         best: false,
@@ -718,7 +608,7 @@ const productsData = [
         discountRate: 40,
         category: 'mask',
         function: ['보습', '장벽'],
-        images: [img_33],
+        images: [img('mask/mask01_12.jpg')],
 
         createdAt: '2023-11-26',
         best: false,
@@ -736,7 +626,7 @@ const productsData = [
         discountRate: 20,
         category: 'mask',
         function: ['미백', '광채', '윤광'],
-        images: [img_34],
+        images: [img('mask/mask07_11.jpg')],
 
         createdAt: '2024-08-26',
         best: false,
@@ -754,7 +644,7 @@ const productsData = [
         discountRate: 20,
         category: 'mask',
         function: ['리프팅', '탄력', '수분보습'],
-        images: [img_35],
+        images: [img('mask/mask07_04.jpg')],
 
         createdAt: '2020-08-20',
         best: false,
@@ -772,7 +662,7 @@ const productsData = [
         discountRate: 20,
         category: 'mask',
         function: ['미백', '탄력', '콜라겐'],
-        images: [img_36],
+        images: [img('mask/mask07_03.jpg')],
 
         createdAt: '2021-05-16',
         best: false,
@@ -790,7 +680,7 @@ const productsData = [
         discountRate: 40,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_2],
+        images: [img('mask/mask01_01.jpg')],
 
         createdAt: '2025-09-30',
         best: false,
@@ -808,7 +698,7 @@ const productsData = [
         discountRate: 37,
         category: 'mask',
         function: ['미백', '영양'],
-        images: [img_37],
+        images: [img('mask/mask01_03.jpg')],
 
         createdAt: '2022-04-13',
         best: false,
@@ -826,7 +716,7 @@ const productsData = [
         discountRate: 16,
         category: 'mask',
         function: ['수분보습'],
-        images: [img_38],
+        images: [img('mask/mask06_06_00.jpg')],
 
         createdAt: '2021-01-07',
         best: false,
@@ -844,7 +734,7 @@ const productsData = [
         discountRate: 16,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: [img_39],
+        images: [img('mask/mask06_02.jpg')],
 
         createdAt: '2023-07-11',
         best: false,
@@ -862,7 +752,7 @@ const productsData = [
         discountRate: 16,
         category: 'mask',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_40],
+        images: [img('mask/mask06_01.jpg')],
 
         createdAt: '2024-09-17',
         best: false,
@@ -880,7 +770,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['매끈', '모공', '윤광'],
-        images: [img_41],
+        images: [img('mask/mask03_14.jpg')],
 
         createdAt: '2022-07-19',
         best: false,
@@ -898,7 +788,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['미백', '광채', '잡티'],
-        images: [img_42],
+        images: [img('mask/mask03_15.jpg')],
 
         createdAt: '2024-11-11',
         best: false,
@@ -916,7 +806,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['영양', '탄력'],
-        images: [img_43],
+        images: [img('mask/mask03_04.jpg')],
 
         createdAt: '2023-11-15',
         best: false,
@@ -934,7 +824,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['수분보습'],
-        images: [img_44],
+        images: [img('mask/mask10_06.jpg')],
 
         createdAt: '2020-03-05',
         best: false,
@@ -952,7 +842,7 @@ const productsData = [
         discountRate: 22,
         category: 'mask',
         function: ['영양'],
-        images: [img_45],
+        images: [img('mask/mask06_04.jpg')],
 
         createdAt: '2021-06-05',
         best: false,
@@ -970,7 +860,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['수분보습', '진정'],
-        images: [img_46],
+        images: [img('mask/mask02_synergy.jpg')],
 
         createdAt: '2023-02-03',
         best: false,
@@ -988,7 +878,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: [img_47],
+        images: [img('mask/mask02_synergy03.jpg')],
 
         createdAt: '2025-03-05',
         best: false,
@@ -1006,7 +896,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['보습', '탄력'],
-        images: [img_48],
+        images: [img('mask/mask09_03_ampoulelifting.jpg')],
 
         createdAt: '2024-11-23',
         best: false,
@@ -1024,7 +914,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['보습', '탄력'],
-        images: [img_49],
+        images: [img('mask/mask09_02_creamlifting.jpg')],
 
         createdAt: '2023-08-08',
         best: false,
@@ -1042,7 +932,7 @@ const productsData = [
         discountRate: 37,
         category: 'mask',
         function: ['진정', '수분보습'],
-        images: [img_31],
+        images: [img('mask/mask01_02.jpg')],
 
         createdAt: '2020-01-05',
         best: false,
@@ -1060,7 +950,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['수분보습', '진정'],
-        images: [img_50],
+        images: [img('mask/mask10_aloe.jpg')],
 
         createdAt: '2025-12-07',
         best: false,
@@ -1078,7 +968,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['진정', '장벽강화'],
-        images: [img_50],
+        images: [img('mask/mask10_aloe.jpg')],
 
         createdAt: '2021-12-25',
         best: false,
@@ -1096,7 +986,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['수분보습'],
-        images: [img_51],
+        images: [img('mask/mask10_birchtree.jpg')],
 
         createdAt: '2022-06-22',
         best: false,
@@ -1114,7 +1004,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['미백', '영양'],
-        images: [img_52],
+        images: [img('mask/mask10_greentanerine.jpg')],
 
         createdAt: '2025-06-17',
         best: false,
@@ -1132,7 +1022,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['진정'],
-        images: [img_53],
+        images: [img('mask/mask10_cica.jpg')],
 
         createdAt: '2024-03-12',
         best: false,
@@ -1150,7 +1040,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['영양', '미백', '윤광'],
-        images: [img_54],
+        images: [img('mask/mask02_synergy02.jpg')],
 
         createdAt: '2025-07-03',
         best: false,
@@ -1168,7 +1058,7 @@ const productsData = [
         discountRate: 43,
         category: 'mask',
         function: ['모공리프팅', '탄력'],
-        images: [img_55],
+        images: [img('mask/mask02_synergy04.jpg')],
 
         createdAt: '2021-07-17',
         best: false,
@@ -1186,7 +1076,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['영양', '부스팅'],
-        images: [img_56],
+        images: [img('mask/mask04_04.jpg')],
 
         createdAt: '2021-02-11',
         best: false,
@@ -1204,7 +1094,7 @@ const productsData = [
         discountRate: 50,
         category: 'mask',
         function: ['수분보습', '탄력', '모공리프팅', '부스팅'],
-        images: [img_26],
+        images: [img('mask/mask03_13.jpg')],
 
         createdAt: '2025-03-23',
         best: false,
@@ -1222,7 +1112,7 @@ const productsData = [
         discountRate: 43,
         category: 'pad',
         function: ['매끈', '각질제거'],
-        images: [img_57],
+        images: [img('pad/pad_09chestnut.jpg')],
 
         createdAt: '2025-05-17',
         best: false,
@@ -1240,7 +1130,7 @@ const productsData = [
         discountRate: 43,
         category: 'pad',
         function: ['진정', '수분보습'],
-        images: [img_58],
+        images: [img('pad/pad_08carrot.jpg')],
 
         createdAt: '2020-09-18',
         best: false,
@@ -1258,7 +1148,7 @@ const productsData = [
         discountRate: 24,
         category: 'pad',
         function: ['미백', '영양'],
-        images: [img_59],
+        images: [img('pad/pad_refill_03.jpg')],
 
         createdAt: '2022-04-18',
         best: false,
@@ -1276,7 +1166,7 @@ const productsData = [
         discountRate: 24,
         category: 'pad',
         function: ['피지연화', '모공', '각질제거', '매끈'],
-        images: [img_60],
+        images: [img('pad/pad_refill_07.jpg')],
 
         createdAt: '2025-04-24',
         best: false,
@@ -1294,7 +1184,7 @@ const productsData = [
         discountRate: 24,
         category: 'pad',
         function: ['모공'],
-        images: [img_61],
+        images: [img('pad/pad_refill_05.jpg')],
 
         createdAt: '2025-09-10',
         best: false,
@@ -1312,7 +1202,7 @@ const productsData = [
         discountRate: 24,
         category: 'pad',
         function: ['영양'],
-        images: [img_62],
+        images: [img('pad/pad_refill_04.jpg')],
 
         createdAt: '2024-04-06',
         best: false,
@@ -1330,7 +1220,7 @@ const productsData = [
         discountRate: 24,
         category: 'pad',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_63],
+        images: [img('pad/pad_refill_01.jpg')],
 
         createdAt: '2025-05-10',
         best: false,
@@ -1348,7 +1238,7 @@ const productsData = [
         discountRate: 24,
         category: 'pad',
         function: ['진정', '수분보습'],
-        images: [img_64],
+        images: [img('pad/pad_refill_02.jpg')],
 
         createdAt: '2025-04-27',
         best: false,
@@ -1366,7 +1256,7 @@ const productsData = [
         discountRate: 22,
         category: 'pad',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_65],
+        images: [img('pad/pad_01madecassoside.jpg')],
 
         createdAt: '2022-05-22',
         best: true,
@@ -1384,7 +1274,7 @@ const productsData = [
         discountRate: 22,
         category: 'pad',
         function: ['모공', '매끈', '각질제거', '피지연화'],
-        images: [img_66],
+        images: [img('pad/pad07phyto-enzyme.jpg')],
 
         createdAt: '2021-11-09',
         best: false,
@@ -1403,7 +1293,7 @@ const productsData = [
         discountRate: 22,
         category: 'pad',
         function: ['수분보습'],
-        images: [img_67],
+        images: [img('pad/pad_06hyalluronate.jpg')],
 
         createdAt: '2020-11-24',
         best: false,
@@ -1421,7 +1311,7 @@ const productsData = [
         discountRate: 22,
         category: 'pad',
         function: ['모공'],
-        images: [img_68],
+        images: [img('pad/pad_05pdrn.jpg')],
 
         createdAt: '2024-05-03',
         best: false,
@@ -1439,7 +1329,7 @@ const productsData = [
         discountRate: 22,
         category: 'pad',
         function: ['영양'],
-        images: [img_69],
+        images: [img('pad/pad_04collagen.jpg')],
 
         createdAt: '2020-01-01',
         best: false,
@@ -1457,7 +1347,7 @@ const productsData = [
         discountRate: 22,
         category: 'pad',
         function: ['미백', '영양'],
-        images: [img_70],
+        images: [img('pad/pad_03vitamin.jpg')],
 
         createdAt: '2021-08-25',
         best: false,
@@ -1475,7 +1365,7 @@ const productsData = [
         discountRate: 22,
         category: 'pad',
         function: ['진정', '수분보습'],
-        images: [img_71],
+        images: [img('pad/pad_02teatree.jpg')],
 
         createdAt: '2024-09-27',
         best: false,
@@ -1493,7 +1383,7 @@ const productsData = [
         discountRate: 43,
         category: 'pad',
         function: ['미백', '영양'],
-        images: [img_72],
+        images: [img('pad/pad_10vitamin.jpg')],
 
         createdAt: '2022-06-04',
         best: false,
@@ -1511,7 +1401,7 @@ const productsData = [
         discountRate: 43,
         category: 'pad',
         function: ['보습', '탄력'],
-        images: [img_73],
+        images: [img('pad/pad_11retinol.jpg')],
 
         createdAt: '2023-07-12',
         best: false,
@@ -1530,7 +1420,7 @@ const productsData = [
         category: 'skincare',
         function: ['진정', '수분보습'],
         ingredient: '티트리',
-        images: [img_74],
+        images: [img('skincare/Oil_02.jpg')],
 
         createdAt: '2020-04-03',
         best: false,
@@ -1547,7 +1437,7 @@ const productsData = [
         discountRate: 29,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: [img_75],
+        images: [img('skincare/toner_02.jpg')],
 
         createdAt: '2021-01-29',
         best: false,
@@ -1565,7 +1455,7 @@ const productsData = [
         discountRate: 34,
         category: 'skincare',
         function: ['미백', '영양'],
-        images: [img_115],
+        images: [img('skincare/serum_100_03.jpg')],
 
         createdAt: '2025-11-19',
         best: false,
@@ -1583,7 +1473,7 @@ const productsData = [
         discountRate: 13,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_77],
+        images: [img('skincare/cream_01.jpg')],
 
         createdAt: '2022-02-12',
         best: false,
@@ -1601,7 +1491,7 @@ const productsData = [
         discountRate: 27,
         category: 'skincare',
         function: ['영양', '탄력'],
-        images: [img_78],
+        images: [img('skincare/patch_capsule.jpg')],
 
         createdAt: '2021-09-15',
         best: false,
@@ -1619,7 +1509,7 @@ const productsData = [
         discountRate: 16,
         category: 'skincare',
         function: ['탄력', '리프팅'],
-        images: [img_79],
+        images: [img('skincare/patch_stretching.jpg')],
 
         createdAt: '2022-05-01',
         best: false,
@@ -1637,7 +1527,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['모공'],
-        images: [img_80],
+        images: [img('skincare/serum_40_04.jpg')],
 
         createdAt: '2022-06-14',
         best: true,
@@ -1655,7 +1545,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['영양'],
-        images: [img_81],
+        images: [img('skincare/serum_40_04.jpg')],
 
         createdAt: '2022-03-07',
         best: false,
@@ -1673,7 +1563,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['수분보습'],
-        images: [img_82],
+        images: [img('skincare/serum_40_06.jpg')],
 
         createdAt: '2021-08-31',
         best: false,
@@ -1691,7 +1581,7 @@ const productsData = [
         discountRate: 34,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_76],
+        images: [img('skincare/serum_100_01.jpg')],
 
         createdAt: '2022-01-24',
         best: false,
@@ -1709,7 +1599,7 @@ const productsData = [
         discountRate: 15,
         category: 'skincare',
         function: ['모공', '부스팅', '탄력'],
-        images: [img_83],
+        images: [img('mask/mask09_05spicule.jpg')],
 
         createdAt: '2024-05-24',
         best: false,
@@ -1727,7 +1617,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['간편', '세정'],
-        images: [img_84, img_85, img_86, img_87],
+        images: [img('skincare/set_00.jpg'), img('skincare/set_01.jpg'), img('skincare/set_02.jpg'), img('skincare/set_03.jpg')],
         createdAt: '2022-12-17',
         best: false,
         reviewCount: 2571,
@@ -1744,7 +1634,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_88],
+        images: [img('skincare/serum02_01.jpg')],
 
         createdAt: '2023-02-24',
         best: false,
@@ -1762,7 +1652,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['미백', '영양'],
-        images: [img_89],
+        images: [img('skincare/serum02_03.jpg')],
 
         createdAt: '2024-09-24',
         best: false,
@@ -1780,7 +1670,7 @@ const productsData = [
         discountRate: 20,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_90],
+        images: [img('skincare/serum_40_01.jpg')],
 
         createdAt: '2025-12-12',
         best: false,
@@ -1798,7 +1688,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: [img_91],
+        images: [img('skincare/serum_40_02.jpg')],
 
         createdAt: '2021-06-22',
         best: false,
@@ -1816,7 +1706,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_90],
+        images: [img('skincare/serum_40_01.jpg')],
 
         createdAt: '2021-10-07',
         best: false,
@@ -1834,7 +1724,7 @@ const productsData = [
         discountRate: 26,
         category: 'skincare',
         function: ['영양'],
-        images: [img_92],
+        images: [img('skincare/patch_03.jpg')],
 
         createdAt: '2025-07-12',
         best: false,
@@ -1852,7 +1742,7 @@ const productsData = [
         discountRate: 26,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: [img_93],
+        images: [img('skincare/patch_02_160.jpg')],
 
         createdAt: '2024-02-06',
         best: false,
@@ -1870,7 +1760,7 @@ const productsData = [
         discountRate: 26,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_94],
+        images: [img('skincare/patch_01_132.jpg')],
 
         createdAt: '2024-04-07',
         best: false,
@@ -1888,7 +1778,7 @@ const productsData = [
         discountRate: 20,
         category: 'skincare',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_95],
+        images: [img('skincare/patch_01_44.jpg')],
 
         createdAt: '2020-09-02',
         best: false,
@@ -1906,7 +1796,7 @@ const productsData = [
         discountRate: 26,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: [img_96],
+        images: [img('skincare/patch_02_132.jpg')],
 
         createdAt: '2024-11-13',
         best: false,
@@ -1924,7 +1814,7 @@ const productsData = [
         discountRate: 20,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: [img_97],
+        images: [img('skincare/patch_02_44.jpg')],
 
         createdAt: '2022-10-28',
         best: false,
@@ -1942,7 +1832,7 @@ const productsData = [
         discountRate: 0,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: [img_98],
+        images: [img('skincare/serum02_02barrier.jpg')],
 
         createdAt: '2024-07-05',
         best: false,
@@ -1960,7 +1850,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['미백', '영양'],
-        images: [img_99],
+        images: [img('skincare/serum_40_03.jpg')],
 
         createdAt: '2025-12-24',
         best: false,
@@ -1978,7 +1868,7 @@ const productsData = [
         discountRate: 25,
         category: 'skincare',
         function: ['진정', '수분보습'],
-        images: [img_100],
+        images: [img('skincare/serum02_02moisture.jpg')],
 
         createdAt: '2022-09-15',
         best: false,
@@ -1997,7 +1887,7 @@ const productsData = [
         category: 'cleanser',
         function: ['진정', '수분보습'],
         ingredient: '티트리',
-        images: [img_101],
+        images: [img('cleanser/cleanser_03_02.jpg')],
 
         createdAt: '2022-03-07',
         best: false,
@@ -2014,7 +1904,7 @@ const productsData = [
         discountRate: 48,
         category: 'cleanser',
         function: ['진정', '수분보습'],
-        images: [img_102],
+        images: [img('cleanser/cleanser_03_02porepowder.jpg')],
 
         createdAt: '2025-09-14',
         best: false,
@@ -2032,7 +1922,7 @@ const productsData = [
         discountRate: 48,
         category: 'cleanser',
         function: ['진정', '수분보습'],
-        images: [img_103],
+        images: [img('cleanser/cleanser_03_02calmingpowder.jpg')],
 
         createdAt: '2026-01-25',
         best: false,
@@ -2050,7 +1940,7 @@ const productsData = [
         discountRate: 22,
         category: 'cleanser',
         function: ['모공'],
-        images: [img_104],
+        images: [img('cleanser/cleanser_01_04.jpg')],
 
         createdAt: '2024-04-07',
         best: false,
@@ -2068,7 +1958,7 @@ const productsData = [
         discountRate: 22,
         category: 'cleanser',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_105],
+        images: [img('cleanser/cleanser_01_01.jpg')],
 
         createdAt: '2024-07-26',
         best: false,
@@ -2086,7 +1976,7 @@ const productsData = [
         discountRate: 24,
         category: 'cleanser',
         function: ['수분보습'],
-        images: [img_106],
+        images: [img('cleanser/cleanser_01_06.jpg')],
 
         createdAt: '2024-07-07',
         best: false,
@@ -2104,7 +1994,7 @@ const productsData = [
         discountRate: 24,
         category: 'cleanser',
         function: ['영양'],
-        images: [img_104],
+        images: [img('cleanser/cleanser_01_04.jpg')],
 
         createdAt: '2020-05-20',
         best: false,
@@ -2122,7 +2012,7 @@ const productsData = [
         discountRate: 24,
         category: 'cleanser',
         function: ['진정', '수분보습'],
-        images: [img_107],
+        images: [img('cleanser/cleanser_01_02.jpg')],
 
         createdAt: '2026-03-10',
         best: false,
@@ -2140,7 +2030,7 @@ const productsData = [
         discountRate: 24,
         category: 'cleanser',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_105],
+        images: [img('cleanser/cleanser_01_01.jpg')],
 
         createdAt: '2024-08-02',
         best: false,
@@ -2158,7 +2048,7 @@ const productsData = [
         discountRate: 24,
         category: 'cleanser',
         function: ['미백', '영양'],
-        images: [img_108],
+        images: [img('cleanser/cleanser_01_03.jpg')],
 
         createdAt: '2024-10-27',
         best: false,
@@ -2177,7 +2067,7 @@ const productsData = [
         category: 'sun',
         function: ['진정', '수분보습', '흔적', '모공'],
         ingredient: '마데카소사이드',
-        images: [img_109],
+        images: [img('sun/sun_01.jpg')],
 
         createdAt: '2020-10-05',
         best: false,
@@ -2194,7 +2084,7 @@ const productsData = [
         discountRate: 1,
         category: 'sun',
         function: ['미백', '영양'],
-        images: [img_110],
+        images: [img('sun/sun_cream_03.jpg')],
 
         createdAt: '2022-03-22',
         best: false,
@@ -2212,7 +2102,7 @@ const productsData = [
         discountRate: 7,
         category: 'sun',
         function: ['자외선차단', '수분보습'],
-        images: [img_111],
+        images: [img('sun/sun_spray_06.jpg')],
 
         createdAt: '2024-05-28',
         best: false,
@@ -2230,7 +2120,7 @@ const productsData = [
         discountRate: 8,
         category: 'sun',
         function: ['자외선차단', '영양'],
-        images: [img_112],
+        images: [img('sun/sun_patch_03.jpg')],
 
         createdAt: '2021-11-28',
         best: false,
@@ -2248,7 +2138,7 @@ const productsData = [
         discountRate: 8,
         category: 'sun',
         function: ['진정', '수분보습', '흔적', '모공'],
-        images: [img_113],
+        images: [img('sun/sun_patch_01.jpg')],
 
         createdAt: '2020-04-01',
         best: false,
@@ -2266,7 +2156,7 @@ const productsData = [
         discountRate: 1,
         category: 'sun',
         function: ['진정', '수분보습'],
-        images: [img_114],
+        images: [img('sun/sun_cream_02.jpg')],
 
         createdAt: '2025-08-15',
         best: false,

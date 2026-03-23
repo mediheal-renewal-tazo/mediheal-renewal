@@ -31,12 +31,13 @@ MEDIHEAL 스킨케어 브랜드의 e-커머스 웹사이트. React + Vite 기반
 | `eslint` | ^9.39.1 | 린터 |
 | `eslint-plugin-react-hooks` | ^7.0.1 | React Hooks 규칙 검사 |
 | `eslint-plugin-react-refresh` | ^0.4.24 | React Refresh 검사 |
+| `globals` | ^16.5.0 | ESLint 전역 변수 정의 |
 
 **모듈 시스템:** `"type": "module"` (ES Modules)
 
 **폰트:**
 - **Pretendard Variable** — 본문, 버튼 (woff2, `/src/styles/font/PretendardVariable.woff2`)
-- **PP Mori** — 헤딩/디스플레이 (외부 CDN, weight 500)
+- **PP Mori** — 헤딩/디스플레이 (외부 CDN, weight 500/600)
 
 ---
 
@@ -75,106 +76,185 @@ src/
 ├── app/
 │   ├── main.jsx              # React 진입점 (StrictMode, _reset.scss import)
 │   ├── App.jsx               # BrowserRouter + ScrollToTop + AppRoutes
+│   ├── App.css
 │   ├── ScrollToTop.jsx       # pathname/search/hash 변경 시 window.scrollTo(0,0)
 │   ├── routes/
-│   │   ├── index.jsx         # <Routes> 정의: RootLayout 아래 대부분, Login은 독립
-│   │   ├── paths.js          # ROUTE_PATHS, HEADER_NAV_ITEMS, DROPDOWN 설정
-│   │   └── guards.jsx        # Protected route (stub)
+│   │   ├── index.jsx         # <Routes> 정의
+│   │   ├── paths.js          # ROUTE_PATHS, HEADER_NAV_ITEMS
+│   │   ├── guards.jsx        # Protected route (stub)
+│   │   ├── NotFound.jsx      # 404 페이지 (구현 완료)
+│   │   └── NotFound.scss
 │   └── layouts/
 │       ├── RootLayout.jsx    # .layout > Header + <main>.layout__content > Outlet + Footer
-│       └── rootlayout.scss
+│       ├── rootlayout.scss
+│       ├── AuthLayout.jsx    # stub (빈 컴포넌트)
+│       ├── CheckoutLayout.jsx # stub
+│       ├── MyPageLayout.jsx  # stub
+│       ├── NoticeLayout.jsx  # stub
+│       └── ProductsLayout.jsx # stub
 ├── pages/
 │   ├── home/
 │   │   ├── Home.jsx          # introFinished + isVisible state, ScrollTrigger.refresh 타이밍
 │   │   ├── Intro.jsx         # 전체화면 인트로 애니메이션
-│   │   └── Home.scss         # Intro + 홈 공통 스타일
+│   │   └── Home.scss
 │   ├── login/
 │   │   ├── Login.jsx         # view state로 LoginForm/GuestForm/SignUp/FindId/FindFw 전환
 │   │   └── login.scss
+│   ├── signup/
+│   │   ├── Signup.jsx        # stub (일반/카카오/구글 회원가입 예정)
+│   │   └── signup.scss
+│   ├── findAccount/
+│   │   ├── FindAccount.jsx   # stub
+│   │   └── FindAccount.scss
 │   ├── cart/
 │   │   ├── Cart.jsx          # step state: 'cart' → 'order' → 'complete' → 'detail'
 │   │   └── cart.scss
+│   ├── shop/
+│   │   ├── Products.jsx      # 상품 목록 페이지 (구현 완료)
+│   │   ├── Products.scss
+│   │   └── shopDetail/
+│   │       ├── shopDetail.jsx # 상품 상세 페이지 래퍼
+│   │       └── shopDetail.scss
+│   ├── brand/
+│   │   ├── Brand.jsx         # GSAP ScrollTrigger 애니메이션 (구현 완료)
+│   │   └── Brand.scss
+│   ├── membership/
+│   │   ├── Membership.jsx    # MembershipSection1~5 조합 (구현 완료)
+│   │   └── membership.scss
+│   ├── kediheal/
+│   │   ├── Kediheal.jsx      # KedihealHero + Transition + Care + Hyaluron + Global + Latest
+│   │   └── Kediheal.scss     # 전체 Kediheal 스타일 (반응형 포함)
+│   ├── myPage/
+│   │   ├── MyPage.jsx        # MyProfile + MyPageMenu + MyOrders (구현 완료)
+│   │   └── myPage.scss
 │   ├── inquiry/
-│   │   ├── Inquiry.jsx       # 1:1 문의 페이지
+│   │   ├── Inquiry.jsx
 │   │   └── Inquiry.scss
 │   ├── notice/
-│   │   ├── Notice.jsx        # 공지사항 페이지
+│   │   ├── Notice.jsx
 │   │   └── notice.scss
-│   ├── ready/
-│   │   ├── Ready.jsx         # 미구현 페이지 플레이스홀더
-│   │   └── ready.scss
-│   └── [shop/brand/membership/kediheal/myPage]  # 모두 stub
+│   └── ready/
+│       ├── Ready.jsx         # 미구현 페이지 플레이스홀더
+│       └── ready.scss
 ├── components/
 │   ├── common/
 │   │   ├── header/
-│   │   │   ├── Header.jsx        # isMenuOpen / isSearchOpen / isVisible / isOverDark state
-│   │   │   ├── HeaderSearch.jsx  # isOpen, onClose props; 자동 포커스, ESC/외부클릭 닫힘
+│   │   │   ├── Header.jsx        # isMenuOpen / isSearchOpen / isVisible / isOverDark
+│   │   │   │                     # createPortal로 홈 dark-clip 오버레이 렌더링
+│   │   │   ├── HeaderSearch.jsx
 │   │   │   └── Header.scss
 │   │   ├── footer/
-│   │   │   ├── Footer.jsx        # data-header-theme="dark" (헤더 색 전환 감지용)
+│   │   │   ├── Footer.jsx        # data-header-theme="dark"
 │   │   │   └── Footer.scss
-│   │   ├── modal/            # stub
-│   │   └── toast/            # stub
+│   │   ├── modal/
+│   │   │   ├── Modal.jsx         # stub
+│   │   │   └── Modal.scss
+│   │   └── toast/
+│   │       ├── Toast.jsx         # stub
+│   │       └── Toast.scss
 │   ├── home/
-│   │   ├── Hero.jsx          # GSAP + Lenis + ScrollTrigger 6단계 스크롤 애니메이션
-│   │   ├── MainVisual.jsx    # GSAP timeline + EN↔KO 호버 페이드
-│   │   ├── MainSection1.jsx  # stagger 아이템 + EN↔KO 호버 페이드
-│   │   ├── MainSection2.jsx  # 수평 스크롤 (scrub pin)
-│   │   ├── MainSection3.jsx  # column-gap expand + 이미지 y 이동 (scrub pin)
-│   │   ├── MainSection4.jsx  # expo.out 바운스 진입 (pin)
-│   │   ├── MainSection5.jsx  # 마키 무한스크롤 + EN↔KO 호버
-│   │   ├── ProductItem.jsx   # className prop으로 BEM 결정하는 범용 상품 카드
-│   │   └── hero.scss         # Hero + MainSection 1~5 통합 스타일
+│   │   ├── Hero.jsx              # GSAP + Lenis + ScrollTrigger 6단계
+│   │   ├── MainVisual.jsx
+│   │   ├── MainSection1~5.jsx
+│   │   ├── ProductItem.jsx       # className prop으로 BEM 결정하는 범용 상품 카드
+│   │   └── hero.scss
+│   ├── shop/
+│   │   ├── ProductsPage.jsx      # Products 페이지 래퍼
+│   │   ├── ProductsMain.jsx      # 필터링/정렬/페이지네이션 로직 (useMemo)
+│   │   ├── ProductsCard.jsx      # 상품 카드 (Link 래핑, /shop/:id 이동)
+│   │   ├── ProductFilter.jsx     # 카테고리 + 기능성 필터 UI
+│   │   ├── ProductsPagination.jsx
+│   │   ├── SortSelect.jsx
+│   │   ├── Products__HeartButton.jsx  # 위시리스트 토글 버튼
+│   │   └── Products.scss
+│   ├── shopDetail/
+│   │   ├── ShopDetail__page.jsx  # 상세 페이지 컨테이너 (useParams → productsData 조회)
+│   │   │                         # IntersectionObserver로 탭 active 감지
+│   │   │                         # 카트 드로어(aside) + 오버레이 포함
+│   │   ├── ShopDetail__main.jsx  # 상단 상품 정보 (이미지, 이름, 가격, 구매)
+│   │   ├── ShopDetail__Tap.jsx   # 고정 탭 바 (상품정보 / 리뷰 / 이용안내)
+│   │   ├── ShopDetail__info.jsx  # 상세 이미지/영상 슬라이드
+│   │   ├── ShopDetail__review.jsx # 리뷰 섹션
+│   │   ├── ShopDetail__Guide.jsx # 이용 안내
+│   │   ├── ShopDetail__Cart.jsx  # 드로어 내 장바구니
+│   │   └── ShopDetail.scss
+│   ├── kediheal/
+│   │   ├── KedihealHero.jsx      # 히어로 섹션 (GSAP 타이핑 애니메이션)
+│   │   ├── KedihealTransition.jsx # 전환 텍스트 라인
+│   │   ├── KedihealCare.jsx      # 케어 솔루션 섹션
+│   │   ├── KedihealHyaluron.jsx  # 히알루론 성분 섹션 + 마스크팩 커서 팔로워
+│   │   ├── KedihealGlobal.jsx    # 글로벌 시장 섹션 (도시 호버 애니메이션)
+│   │   ├── KedihealLatest.jsx    # 최신 제품 + Final CTA 섹션
+│   │   ├── CareCard.jsx          # 케어 솔루션 카드 단위
+│   │   └── CareCard.scss
+│   ├── membership/
+│   │   ├── MembershipSection1~5.jsx
+│   │   └── membership.scss
+│   ├── myPage/
+│   │   ├── MyProfile.jsx         # 유저 정보 + 자산(쿠폰/포인트/리뷰) 표시
+│   │   ├── MyPageMenu.jsx        # 사이드 메뉴 (반응형 그리드)
+│   │   └── MyOrders.jsx          # 주문 현황 + 빈 상태 UI
 │   ├── cart/
-│   │   ├── CartItem.jsx          # 체크박스, 수량, 가격 계산
-│   │   ├── CartSummary.jsx       # 소계 표시
-│   │   ├── CartTotal.jsx         # 최종 합계 + 무료배송 기준
-│   │   ├── OrderStep.jsx         # 결제 정보 폼
-│   │   ├── OrderStep.scss
-│   │   ├── OrderComplete.jsx     # 주문 완료 화면
-│   │   ├── order-complete.scss
+│   │   ├── CartItem.jsx
+│   │   ├── CartSummary.jsx
+│   │   ├── CartTotal.jsx
+│   │   ├── OrderStep.jsx / OrderStep.scss
+│   │   ├── OrderComplete.jsx / order-complete.scss
 │   │   └── order-detail/
 │   │       ├── OrderDetail.jsx
 │   │       └── order-detail.scss
 │   ├── login/
-│   │   ├── LoginForm.jsx     # 소셜 로그인 버튼 (Kakao, Google)
-│   │   ├── SignUp.jsx        # 회원가입 폼
-│   │   ├── FindId.jsx        # 아이디 찾기
-│   │   ├── FindFw.jsx        # 비밀번호 찾기
-│   │   ├── GuestForm.jsx     # 비회원 배송 조회
+│   │   ├── LoginForm.jsx / SignUp.jsx / FindId.jsx / FindFw.jsx / GuestForm.jsx
 │   │   └── loginAll.scss
 │   ├── inquiry/
-│   │   ├── InquiryMain.jsx   # 문의 목록 + 글쓰기 버튼
-│   │   ├── InquiryList.jsx   # <table> 구조
-│   │   ├── InquiryItem.jsx   # <tr> 단위
-│   │   ├── InquiryWrite.jsx  # 문의 작성 폼
+│   │   ├── InquiryMain.jsx / InquiryList.jsx / InquiryItem.jsx / InquiryWrite.jsx
 │   │   └── inquiry.scss
 │   └── notice/
-│       ├── NoticeList.jsx    # <table> + 페이지네이션
-│       ├── NoticeItem.jsx    # <tr> 단위
-│       ├── NoticeSearch.jsx  # 검색 UI
-│       └── notice.scss       # NoticeList + NoticeSearch 통합 (주석으로 섹션 구분)
-├── api/                      # 목업 API 8개 모듈
-├── data/                     # 컴포넌트가 직접 import하는 정적 데이터 (7개 파일)
-├── mock/                     # API 함수가 참조하는 목업 원본 데이터
-├── store/                    # 상태관리 (auth/cart/ui — 모두 stub)
-├── constants/                # 상수 (menu/tabs/steps — 모두 stub)
+│       ├── NoticeList.jsx / NoticeItem.jsx / NoticeSearch.jsx
+│       └── notice.scss
+├── api/                      # 목업 API 8개 모듈 (auth/cart/inquiries/notices/products/reviews/users/wishlist)
+├── data/
+│   ├── homeData.js           # 홈 섹션 1~5 정적 데이터
+│   ├── productsData.js       # 상품 목록 (115개 이미지 모듈 import + 상품 배열)
+│   ├── productsDetailData.js # 상세 페이지 전용 데이터 (sub_img, 리뷰 분포, 태그, 상세 이미지)
+│   ├── productsFilterData.js # categoryList (카테고리 아이콘 + value)
+│   ├── sortOptions.js        # productSortOptions 배열
+│   ├── noticeData.js
+│   ├── inquiriesData.js
+│   ├── reviewData.js         # 리뷰 이미지 데이터
+│   ├── userData.js
+│   └── wishlistData.js
+├── mock/                     # API가 참조하는 목업 원본 배열 (메모리 내 mutate)
+├── store/                    # 모두 빈 파일
+│   ├── auth.store.js
+│   ├── cart.store.js
+│   └── ui.store.js
+├── constants/                # 모두 빈 파일 (1줄짜리 빈 파일)
+│   ├── authProviders.js
+│   ├── checkoutSteps.js
+│   ├── menu.js
+│   └── mypageTabs.js
 ├── styles/
-│   ├── _reset.scss           # CSS 리셋 + 폰트 선언 (main.jsx에서 import)
-│   ├── _variables.scss       # stub
-│   ├── _mixins.scss          # stub
-│   └── global.scss           # stub
+│   ├── _reset.scss           # CSS 리셋 + 폰트 선언
+│   ├── _variables.scss       # 빈 파일
+│   ├── _mixins.scss          # 빈 파일
+│   └── global.scss           # 빈 파일
 ├── utils/
 │   ├── delay.js              # export const delay = (ms=300) => new Promise(resolve => setTimeout(resolve, ms))
-│   ├── format.js             # stub
-│   └── storage.js            # stub
+│   ├── format.js             # 빈 파일
+│   └── storage.js            # 빈 파일
 └── assets/
-    ├── logos/                # logo_1.png (dark bg용), logo_2.png (light bg용)
+    ├── logos/                # logo_1.png (dark bg), logo_2.png (light bg), footer_logo.png
     ├── images/
-    │   ├── home/             # hero00~07_fin.png, sec1/2/3/4/5 이미지
+    │   ├── home/             # hero00~07_fin.png, sec 이미지
     │   ├── common/           # header/footer 아이콘
-    │   └── products/         # pack, pad 이미지
-    └── icons/
+    │   ├── brand/            # brandstory_img1~5, history_img1~5
+    │   ├── kediheal/         # hero, care, hyaluron, latest 이미지, mask_cursor.png
+    │   ├── mypage/           # mypage_img1~6
+    │   ├── products/         # mask/pad/skincare/cleanser/sun/card/category 이미지
+    │   └── product_details/  # pack/pad 상세 이미지, review 이미지, madecassoside_pad 영상/이미지
+    └── videos/
+        └── kediheal/         # kediheal_care.mp4
 ```
 
 ---
@@ -185,28 +265,30 @@ src/
 |------|---------|--------|------|
 | `/` | `HOME` | Home | 구현 완료 |
 | `/login` | `LOGIN` | Login | 구현 완료 (RootLayout 제외) |
-| `/inquiry` | `INQUIRY` | Inquiry | 구현 완료 |
-| `/notice` | `COMMUNITY` | Notice | 구현 완료 |
-| `/cart` | `CART` | Cart | 구현 완료 |
-| `/shop` | `SHOP` | Products | stub |
+| `/shop` | `SHOP` | Products | **구현 완료** |
+| `/shop/:id` | — | ShopDetail | **구현 완료** |
 | `/brand` | `BRAND` | Brand | 구현 완료 |
-| `/membership` | `MEMBERSHIP` | Membership | stub |
-| `/kediheal` | `KEDIHEAL` | Kediheal | 구현 완료 |
-| `/mypage` | `MY_PAGE` | MyPage | 구현 완료 |
+| `/membership` | `MEMBERSHIP` | Membership | **구현 완료** |
+| `/notice` | `COMMUNITY` | Notice | 구현 완료 |
+| `/kediheal` | `KEDIHEAL` | Kediheal | **구현 완료** |
+| `/mypage` | `MY_PAGE` | MyPage | **구현 완료** |
+| `/cart` | `CART` | Cart | 구현 완료 |
+| `/inquiry` | `INQUIRY` | Inquiry | 구현 완료 |
 | `/ready` | `READY` | Ready | 미구현 플레이스홀더 |
+| `*` | — | NotFound | **구현 완료** (404) |
+
+**미라우팅 페이지 (파일만 존재):**
+- `/signup` — `pages/signup/Signup.jsx` (stub)
+- `findAccount` — `pages/findAccount/FindAccount.jsx` (stub)
 
 **Login은 RootLayout 밖** — Header/Footer 없이 독립 렌더링.
 나머지 모든 라우트는 `RootLayout` (Header + Footer) 적용.
-
-### 네비게이션 드롭다운 (paths.js DROPDOWN)
-- **SHOP**: `type: 'mega'`, `width: 'full'`, 3열 구조 (제품/기능/라인)
-- **EVENT, MUSE, COMMUNITY**: `type: 'single'`, 단일 드롭다운
 
 ---
 
 ## 코딩 컨벤션
 
-### CSS 클래스 네이밍 — BEM
+### CSS 클래스 네이밍 — BEM (기준)
 
 ```
 .{block}
@@ -219,39 +301,34 @@ src/
 .hero__main-dsc-wrap          // element
 .hero__main-dsc-wrap--visible // element + modifier
 .header--dark                 // block + modifier
-.cart__col--checkbox          // element + modifier
-.notice-list__th--title       // element + modifier
+.mypage-orders__status-item   // element
+.is-active / .is-visible      // 상태 클래스 (독립 클래스)
 ```
 
-**상태 클래스 (modifier 대신 독립 클래스로):**
-```scss
-.is-visible   // 가시성 토글
-.is-active    // 활성 탭/페이지
-.is-hovered   // 호버 상태
-.intro--fade  // 블록 레벨 modifier도 사용
-```
+**주의: shop 컴포넌트는 BEM을 따르지 않는 부분이 있음**
+- `ProductsCard`, `ShopDetail__*` 컴포넌트는 PascalCase 클래스명 사용 (`Products__card-wrap`, `ProductsImage`, `Products__Name`)
+- `ShopDetail__page`, `ShopDetail__main` 등 컴포넌트 파일명에 더블 언더스코어 사용 — BEM과 다른 별도 네이밍 규칙
 
 ### JavaScript / JSX 컨벤션
 
 - **언어:** 순수 JavaScript (TypeScript 없음, PropTypes 없음)
 - **컴포넌트 파일:** PascalCase `.jsx` (예: `ProductItem.jsx`)
+  - 예외: `ShopDetail__page.jsx` 등 일부 shopDetail 컴포넌트는 더블 언더스코어 패턴 사용
 - **스타일 파일:** 컴포넌트와 같은 디렉토리, 소문자/camelCase `.scss`
-- **데이터 상수:** UPPER_SNAKE_CASE (예: `FADE_MS`, `TITLES`, `ROUTE_PATHS`)
+- **데이터 상수:** UPPER_SNAKE_CASE (예: `FADE_MS`, `ROUTE_PATHS`)
 - **함수형 컴포넌트만** 사용 (class 컴포넌트 없음)
-- **ESLint:** 대문자/언더스코어 시작 미사용 변수 허용 (`^[A-Z_]`)
 - **import 경로:** `@/` 별칭으로 `src/` 기준 절대경로 사용
+  - 예외: `pages/kediheal/Kediheal.jsx`는 상대경로(`../../`) 사용 — 통일 필요
 
-### 이미지 import
-```js
-import img from '@/assets/images/home/hero00_fin.png';
-// Vite가 자동 최적화, URL로 변환
-```
+### SCSS `@use` 규칙
+- `@use 'sass:math'`는 파일 **맨 위**에 선언해야 함 (다른 선언 이전)
+- Dart Sass에서 `/` 나눗셈 연산자는 deprecated → `math.div()` 사용
 
 ### 컴포넌트 분리 원칙 (3단계 패턴)
 ```
-Page (pages/) → List (components/…/List.jsx) → Item (components/…/Item.jsx)
+Page (pages/) → Main/Page (components/…/Main.jsx) → Card/Item (components/…/Card.jsx)
 ```
-예: `Notice.jsx` → `NoticeList.jsx` → `NoticeItem.jsx`
+예: `Products.jsx` → `ProductsMain.jsx` → `ProductsCard.jsx`
 
 ---
 
@@ -259,40 +336,25 @@ Page (pages/) → List (components/…/List.jsx) → Item (components/…/Item.j
 
 Home 페이지 렌더링 순서:
 
-1. **Intro** — 전체화면 인트로 (카운터 1→100 후 TITLES[0]→[1]→[2] 슬라이드업, 900ms 페이드 후 제거)
+1. **Intro** — 전체화면 인트로 (카운터 1→100 후 TITLES 슬라이드업, 900ms 페이드 후 제거)
 2. **Hero** — GSAP + Lenis 6단계 스크롤 애니메이션 + 3D CSS 큐브
 3. **MainVisual** — 텍스트 디자인 섹션 (EN↔KO 호버 페이드)
-4. **MainSection1** — 배경 이미지 + 상품 4개 (EN↔KO 호버 + stagger 진입)
+4. **MainSection1** — 배경 이미지 + 상품 4개
 5. **MainSection2** — MEDIHEAL BEST 5개 상품 (수평 스크롤 scrub)
-6. **MainSection3** — R&D Lab 4개 카드 (column-gap expand + y 이동)
-7. **MainSection4** — 멤버십 4단계 카드 (expo.out 바운스 진입)
-8. **MainSection5** — 성분 마키 무한스크롤 + EN↔KO 호버
-
-### Intro 애니메이션 타임라인
-```
-setInterval(12ms) → count 1~100
-→ count 100 도달 시:
-  → TITLE[0] 슬라이드업 (delay 0ms)
-  → TITLE[1] 슬라이드업 (delay 350ms)
-  → TITLE[2] 슬라이드업 (delay 700ms)
-  → fade-out 시작 (delay 1500ms)
-  → 900ms 페이드 완료 → onFinish 호출
-```
+6. **MainSection3** — R&D Lab 4개 카드
+7. **MainSection4** — 멤버십 4단계 카드
+8. **MainSection5** — 성분 마키 무한스크롤
 
 ### Hero 섹션 6단계 애니메이션 (GSAP ScrollTrigger)
 
-Hero는 이 프로젝트에서 가장 복잡한 컴포넌트. GSAP + Lenis + ScrollTrigger + ResizeObserver 조합.
-
 ```
-Phase 1 (0 ~ 40%):  마스크 shrink + 8개 이미지 weighted 순환 + 메인 텍스트 y:-200px
-Phase 2 (40~55%):   마지막 이미지 scale 1→1.51
-Phase 3 (55~70%):   마스크 페이드아웃 + 3D 큐브 등장
-Phase 4 (70~85%):   큐브 rotateY 0→-90deg
-Phase 5 (85~100%):  character-by-character 텍스트 리빌
-Phase 6 (100%+):    홀드 상태
+Phase 1 (0~40%):  마스크 shrink + 8개 이미지 weighted 순환 + 메인 텍스트 y:-200px
+Phase 2 (40~55%): 마지막 이미지 scale 1→1.51
+Phase 3 (55~70%): 마스크 페이드아웃 + 3D 큐브 등장
+Phase 4 (70~85%): 큐브 rotateY 0→-90deg
+Phase 5 (85~100%): character-by-character 텍스트 리빌
+Phase 6 (100%+):  홀드 상태
 ```
-
-이미지 가중치: `[6, 4, 4, 4, 4, 4, 4, 2]` (8개 hero 이미지)
 
 **Lenis 연동 패턴:**
 ```js
@@ -300,178 +362,153 @@ const lenis = new Lenis();
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
-// cleanup: lenis.destroy(), st.kill()
 ```
 
-**3D 큐브:** CSS `perspective: 50000px`, `transform-style: preserve-3d`, 6면 translateZ 계산.
-**헤더 클립 마스크:** `--hero-mask-clip` CSS 변수를 `style.setProperty()`로 동적 설정.
-
-### EN↔KO 호버 페이드 패턴 (MainVisual, MainSection1, MainSection5 공통)
-
+### EN↔KO 호버 페이드 패턴 (공통)
 ```js
 const FADE_MS = 200;
 const timer = useRef(null);
-
 const handleEnter = () => {
-    clearTimeout(timer.current);       // race condition 방지
-    setVisible(false);                 // opacity 0
-    timer.current = setTimeout(() => {
-        setShowKo(true);               // 텍스트 교체
-        setVisible(true);              // opacity 1
-    }, FADE_MS);
+    clearTimeout(timer.current);
+    setVisible(false);
+    timer.current = setTimeout(() => { setShowKo(true); setVisible(true); }, FADE_MS);
 };
-
-// Leave: 동일 패턴으로 역방향 복원
 ```
 
 ### Header 동적 테마 감지
-
-섹션에 `data-header-theme="dark"` 속성을 부여하면 헤더가 스크롤 위치에 따라 자동으로 색상 전환:
-
-```js
-// scroll 이벤트에서 viewport 내 data-header-theme 섹션 감지
-// isOverDark state → 헤더 로고 및 아이콘 색 전환
-// Footer: data-header-theme="dark" 적용됨
-```
+- 섹션에 `data-header-theme="dark"` 속성 → 헤더가 스크롤 위치에 따라 자동 색상 전환
+- Footer: `data-header-theme="dark"` 적용됨
+- **홈 페이지 전용:** `createPortal`로 `document.body`에 `.header__clip-overlay` 렌더링
+  (Hero의 `--hero-mask-clip` CSS 변수와 연동되어 마스크 클리핑 효과 구현)
 
 ---
 
 ## 컴포넌트 상세
 
-### ProductItem (범용 상품 카드)
-
-```jsx
-<ProductItem
-  className="sec2-1"        // main__productItem-{className} BEM 클래스 결정
-  img={img}
-  hoverImg={hoverImg}       // 있으면 img-wrap + CSS opacity hover, 없으면 img 단독
-  productName={productName} // img-wrap 내 absolute (top:20px left:20px)
-  price={price}             // img-wrap 내 absolute (bottom:20px left:20px)
-  addr={addr}
-  title={title}
-  dsc={dsc}
-  contition={contition}
-  grade={grade}
-  benefit={benefit}
-  num={num}
-  sub={sub}
-/>
-```
-모든 prop은 선택적. falsy면 해당 요소를 렌더링하지 않음 (`{title && <p>...`).
-
-### Header
+### 상품 목록 (Shop / Products)
 
 ```
-State: isMenuOpen / isSearchOpen / isVisible / isOverDark
-닫기 트리거: 버튼 재클릭 / ESC 키 / .header 바깥 클릭
-로고: isOverDark ? logo_2(light) : logo_1(dark)
-장바구니 뱃지: display:none 처리
+ProductsMain
+├── selectedCategory: 'all' | 'new' | 'only' | 'mask' | 'pad' | 'skincare' | 'cleanser' | 'sun'
+├── selectedFilters: string[]  (기능성/성분 다중 선택)
+├── sortType: 'new' | 'name' | 'lowPrice' | 'highPrice' | 'brand' | 'popular' | 'review'
+└── currentPage: number (16개/페이지)
+
+필터 우선순위: category → function/ingredient 필터 → best 제품 앞 정렬 → sortType
 ```
+
+- `productsData.js`의 각 상품 객체: `{ id, name, description, price, discountPrice, discountRate, category, function[], ingredient, images[], best?, only?, salesCount?, reviewCount?, createdAt }`
+- `best: true` 상품은 항상 목록 최상단 고정 (정렬 후에도 유지)
+- `ProductsCard`에서 `p070`, `p032`, `p085` id를 가진 상품만 상세 페이지(`/shop/:id`) 링크 활성화
+
+### 상품 상세 (ShopDetail)
+
+```
+ShopDetail__page (useParams → productsData 조회)
+├── activeTab: 'info' | 'review' | 'guide'  (IntersectionObserver로 자동 감지)
+├── showTopButton: boolean  (탭바 고정 이후 표시)
+└── isCartOpen: boolean  (우측 드로어 장바구니)
+```
+
+- `productsDetailData.js`에서 동일 `id`로 상세 데이터 조회 (sub_img, 리뷰 분포, 상세 이미지 배열)
+- 카트 드로어: `aside.cartDrawer.is-open` + `div.cartOverlay.is-open` 패턴
+- body `overflow: hidden` 드로어 열림 시 적용
+
+### Kediheal 페이지 구성
+
+```
+Kediheal
+├── KedihealHero      — 히어로 이미지 + 타이핑 텍스트
+├── KedihealTransition — 섹션 전환 텍스트
+├── KedihealCare      — CareCard 3개 (이미지, 제목, 설명)
+├── KedihealHyaluron  — 히알루론 성분 + 마스크팩 커서 팔로워 (cursor: none)
+├── KedihealGlobal    — 글로벌 도시 목록 (is-active/is-dimmed 토글)
+└── KedihealLatest    — 최신 제품 + Final CTA(이메일 수집 폼)
+```
+
+`Kediheal.scss`는 `@use 'sass:math'`를 파일 최상단에 선언해야 함.
 
 ### Cart 스텝 플로우
-
 ```
-step = 'cart'     → CartItem 목록, 선택, 수량 변경, 삭제
-step = 'order'    → OrderStep 결제 정보 폼
-step = 'complete' → OrderComplete 완료 화면
-step = 'detail'   → OrderDetail 주문 상세
+step = 'cart' → 'order' → 'complete' → 'detail'
 ```
+배송비: 선택 상품 합계 < 20,000원 → 3,000원, 이상 → 무료
 
-**배송비 계산:** 선택 상품 합계 < 20,000원 → 3,000원, 이상 → 무료
+### MyPage 구성
+```
+MyPage
+├── MyProfile  — 유저 아바타 + 이름/등급 뱃지 + 자산(쿠폰/포인트/리뷰 수)
+├── MyPageMenu — 사이드 메뉴 목록 (태블릿: 4열 그리드, 모바일: 2열 그리드)
+└── MyOrders   — 주문 현황 (결제대기/배송준비/배송중/배송완료 4단계) + 빈 상태 UI
+```
 
 ### Login 뷰 전환
-
-URL 라우트 없이 `view` state로 전환:
-
 ```
-view = 'login'   → LoginForm
-view = 'guest'   → GuestForm
-view = 'signup'  → SignUp
-view = 'findId'  → FindId
-view = 'findFw'  → FindFw
+view = 'login' | 'guest' | 'signup' | 'findId' | 'findFw'
 ```
+URL 라우트 없이 `view` state로 하위 폼 전환.
 
-### Notice / Inquiry — 테이블 패턴
-
+### ProductItem (홈 범용 상품 카드)
 ```jsx
-<table>
-  <thead><tr><th>번호</th><th>제목</th>...</tr></thead>
-  <tbody>
-    {data.map(item => <XxxItem key={item.id} {...item} />)}
-  </tbody>
-</table>
+<ProductItem
+  className="sec2-1"   // main__productItem-{className} BEM 결정
+  img={img} hoverImg={hoverImg}
+  productName={} price={} addr={} title={} dsc={}
+  contition={} grade={} benefit={} num={} sub={}
+/>
 ```
-- 데이터 없을 때: `<tr><td colSpan={N}>빈 상태 메시지</td></tr>`
-- Notice는 `currentPage` state + 페이지네이션 버튼 보유
+모든 prop 선택적 — falsy면 렌더링 생략.
 
 ---
 
 ## 목업 API
 
-모든 API는 `src/api/`에 위치. `delay()` 유틸로 네트워크 지연 시뮬레이션.
+`src/api/`에 위치. `delay()` 유틸로 네트워크 지연 시뮬레이션.
 
 | 파일 | 주요 함수 |
 |------|-----------|
 | `auth.api.js` | `login`, `signup`, `getCurrentUser`, `logout` |
 | `products.api.js` | `getProducts(params)`, `getProductById`, `getRelatedProducts` |
 | `cart.api.js` | `getCart`, `addCartItem`, `updateCartItem`, `removeCartItem`, `clearCart` |
-| `wishlist.api.js` | `getWishlist`, `isWishlisted`, `addWishlist`, `removeWishlist`, `toggleWishlist` |
+| `wishlist.api.js` | `getWishlist`, `toggleWishlist` 등 |
 | `notices.api.js` | `getNotices`, `getNoticeById` |
 | `reviews.api.js` | `getReviewsByProduct`, `createReview`, `deleteReview` |
 | `inquiries.api.js` | `getInquiriesByUser`, `createInquiry`, `deleteInquiry`, `updateInquiry` |
-| `users.api.js` | `getUsers`, `getUserById`, `getUserByEmail`, `updateUserProfile`, `updateUserPoint`, `updateUserMembership` |
+| `users.api.js` | `getUsers`, `getUserById`, `updateUserProfile` 등 |
 
 **데이터 소스 2곳:**
-- `src/data/` — 컴포넌트가 직접 import하는 정적 데이터 (homeData, noticeData, inquiriesData, productsData, reviewsData, wishlistData, userData)
+- `src/data/` — 컴포넌트가 직접 import하는 정적 데이터
 - `src/mock/` — API 함수가 참조하는 목업 원본 배열 (메모리 내 mutate)
-
-**API 패턴 예시:**
-```js
-export const login = async ({ email, password }) => {
-    await delay(300);
-    const user = userData.find(u => u.email === email && u.password === password);
-    if (!user) throw new Error("이메일 또는 비밀번호가 올바르지 않습니다.");
-    return user;
-};
-```
 
 ---
 
 ## 데이터 스키마
 
-### Product
+### Product (productsData.js)
 ```js
-{ id, name, brand, price, discountPrice, discountRate, category, function,
-  thumbnail, images, description, rating, reviewCount, createdAt }
+{ id, name, description, price, discountPrice, discountRate,
+  category, function[], ingredient, images[],
+  best?, only?, salesCount?, reviewCount?, createdAt }
 ```
-- `category`: pad | mask | ampoule | toner | cream | gel | serum | essence | cleanser | suncare
-- `function`: calming | moisture | repair | brightening | elasticity | barrier | cleansing | wrinkle | uv-care | balance
+- `category`: mask | pad | skincare | cleanser | sun
+- `function[]`: 영양 | 진정 | 보습 | 트러블 등 (한국어 문자열)
+
+### ProductDetail (productsDetailData.js)
+```js
+{ id,  // productsData.id와 동일한 키로 연결
+  sub_img1[], sub_img2[],
+  target[],
+  distribution: { 5: N, 4: N, 3: N, 2: N, 1: N },
+  reviewTag: [{ label, score }],
+  details_img[]  // 이미지/mp4 경로 배열 (gif/png/mp4 혼재)
+}
+```
 
 ### User
 ```js
 { id, email, password, name, phone, membership, point, createdAt }
 ```
 - `membership`: yellow | blue | green | vvip
-
-### Cart Item / Wishlist Item
-```js
-{ id, userId, productId, quantity, addedAt, product: Product }
-```
-
-### Inquiry
-```js
-{ id, userId, title, content, status: '답변대기'|'답변완료', createdAt }
-```
-
-### homeData 구조
-```js
-sectionData1:  { id, img, addr }                           // 4개 (배경+상품)
-sectionData2:  { id, img, hoverImg, addr, productName, price }  // 5개 (BEST)
-sectionData3:  { id, img, title, dsc }                     // 4개 (R&D Lab)
-sectionData4:  { id, contition, grade, benefit }            // 4개 (멤버십)
-sectionData5:  { id, ingredient }                           // 11개 (성분 마키)
-sectionData5_1: { id, title, num, sub }                    // 4개 (통계)
-```
 
 ---
 
@@ -483,39 +520,30 @@ sectionData5_1: { id, title, num, sub }                    // 4개 (통계)
 | Primary (네이비) | `#151789` |
 | Background Light | `#f2f4fb` |
 | Text Dark | `#222` / `#272727` |
-| Grey | `#474747` / `#aaaaaa` / `#c6c6c6` |
+| Grey | `#474747` / `#848484` / `#aaaaaa` / `#c6c6c6` |
 | White | `#fff` |
 
 ### 브레이크포인트
 | 크기 | 값 |
 |------|----|
 | 대형 | 1200px |
-| 중형 | 1000px / 999px |
+| 중형 | 1024px / 1000px |
 | 소형 | 800px |
-| 모바일 | 768px |
+| 모바일 | 768px / 767px |
 
 ### CSS 변수 (동적 설정)
-- `--header-height: 80px` — Header.scss에서 선언
-- `--hero-mask-clip` — Hero.jsx가 `style.setProperty()`로 동적 설정
-- `--hero-main-dsc-offset` — Hero 스크롤 진행 중 텍스트 오프셋
+- `--header-height: 80px` — Header.scss
+- `--hero-mask-clip` — Hero.jsx `style.setProperty()`로 동적 설정
+- `--primary-blue: #151789` — Kediheal.scss에서 사용
 
-### 반응형 타이포그래피 clamp 기준 (hero.scss)
+### 반응형 타이포그래피 clamp 기준
 - 영문 기본: `clamp(40px, 8.1vw, 115px)`
-- KO headline: `clamp(21px, 4.2vw, 60px)` (영문 대비 52% 비율)
-- KO body: `clamp(11px, 2.1vw, 30px)` (영문 대비 26% 비율)
+- KO headline: `clamp(21px, 4.2vw, 60px)`
 - 수평 패딩: `clamp(16px, 3vw, 30px)`
-
-### SCSS 관행
-- 각 컴포넌트 `.scss`는 컴포넌트와 **같은 폴더**에 위치
-- `clamp()`로 유동형 타이포그래피
-- Flexbox 기본, Grid는 Footer(4열→1열)에서 사용
-- 여러 컴포넌트 scss 통합 시 `/*ComponentName*/` 주석으로 섹션 구분 (notice.scss 참고)
-- CSS keyframes로 마키 무한 애니메이션 (`hero.scss`)
-- 트랜지션 기본: `0.3s ease` (이미지 hover), `0.7s ease` (페이드), `0.9s ease` (인트로)
 
 ### 아이콘 (react-icons)
 ```js
-import { GiHamburgerMenu } from "react-icons/gi";   // 햄버거 메뉴
+import { GiHamburgerMenu } from "react-icons/gi";
 import { IoArrowBack, IoHomeOutline, IoClose } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
@@ -528,26 +556,102 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 
 | 항목 | 파일 | 상태 |
 |------|------|------|
-| 상품 목록/상세 | `pages/shop/Products.jsx` | stub |
-| 멤버십 페이지 | `pages/membership/Membership.jsx` | stub |
-| 상태관리 | `src/store/auth.store.js` 외 2개 | 모두 빈 파일 |
+| 회원가입 페이지 | `pages/signup/Signup.jsx` | stub (라우트 미연결) |
+| 계정 찾기 페이지 | `pages/findAccount/FindAccount.jsx` | stub (라우트 미연결) |
+| 상태관리 | `src/store/*.js` 3개 | 모두 빈 파일 |
 | Protected route | `routes/guards.jsx` | stub |
-| 모달/토스트 | `Modal.jsx`, `Toast.jsx` | stub (사용 여부 미정) |
+| 모달/토스트 | `Modal.jsx`, `Toast.jsx` | stub (파일만 존재) |
 | CSS 변수/믹스인 | `_variables.scss`, `_mixins.scss` | 빈 파일 |
 | 유틸 함수 | `format.js`, `storage.js` | 빈 파일 |
-| 상수 | `src/constants/*.js` 4개 | 빈 파일 |
+| 상수 | `src/constants/*.js` 4개 | 빈 파일 (1줄) |
+| 레이아웃 | `AuthLayout`, `CheckoutLayout` 등 | stub |
 
 ---
 
 ## 아키텍처 결정사항
 
-1. **전역 상태관리 없음** — store 파일 stub. 현재 로컬 React state + callback props로 동작. Zustand 또는 Context API 도입 예정.
+1. **전역 상태관리 없음** — store 파일 stub. 현재 로컬 state + callback props. Zustand/Context 도입 예정.
 2. **목업 우선 개발** — 백엔드 없이 `src/mock/` 메모리 배열을 API 함수가 직접 mutate.
-3. **이미지 직접 import** — Vite 자동 최적화 처리. CDN/lazy loading 미적용.
+3. **이미지 직접 import** — Vite 자동 최적화. CDN/lazy loading 미적용.
 4. **CSS-in-JS 미사용** — SCSS co-located 방식.
 5. **GSAP + Lenis** — ScrollTrigger pin/scrub에 Lenis smooth scroll 연동. `useGSAP` 훅 사용.
-6. **컴포넌트 분리 원칙** — Page → List → Item 3단계.
+6. **컴포넌트 분리 원칙** — Page → List/Main → Item/Card 3단계.
 7. **로그인 내부 뷰 전환** — URL 라우트 없이 `view` state로 하위 폼 전환.
-8. **헤더 테마** — `data-header-theme` 속성 + scroll 감지로 다크/라이트 자동 전환. Logo도 함께 교체.
-9. **폼 라이브러리 없음** — 순수 React controlled/uncontrolled inputs.
-10. **TypeScript 없음** — 모두 `.js`/`.jsx`. PropTypes도 없음.
+8. **헤더 테마** — `data-header-theme` 속성 + scroll 감지로 다크/라이트 자동 전환.
+9. **홈 헤더 클립 오버레이** — `createPortal`로 `document.body`에 직접 렌더링.
+10. **폼 라이브러리 없음** — 순수 React controlled/uncontrolled inputs.
+11. **TypeScript 없음** — 모두 `.js`/`.jsx`. PropTypes도 없음.
+
+---
+
+## 개선 제안
+
+### 1. productsData.js — 모듈 레벨 이미지 대량 import ✅ 해결됨
+
+~~현재 `productsData.js`는 파일 최상단에서 이미지를 **115개 이상 한꺼번에 import**합니다.~~
+
+**적용된 방법:**
+```js
+// 이전: 115개 개별 import 문
+import img_1 from '@/assets/images/products/mask/mask06_04_00.jpg';
+// ... 115줄
+
+// 현재: Vite glob import 1개 + 경로 헬퍼 함수
+const _imgs = import.meta.glob(
+    '/src/assets/images/products/**/*.{jpg,jpeg,png}',
+    { eager: true, import: 'default' }
+);
+const img = (path) => _imgs[`/src/assets/images/products/${path}`];
+
+// 사용: images: [img('mask/mask06_04_00.jpg')]
+```
+115줄의 import 구문이 4줄로 줄었습니다. 새 상품 이미지 추가 시 파일만 배치하면 됩니다.
+
+### 2. productsData.js / productsDetailData.js — 분리된 데이터 구조
+
+현재 상품 기본 정보(`productsData.js`)와 상세 페이지 데이터(`productsDetailData.js`)가 **같은 `id`를 키로 별도 파일에 분리**되어 있습니다. `ShopDetail__page.jsx`에서 두 파일을 각각 `find()`로 조회해야 하는 불편함이 있습니다.
+
+**권장 방법:**
+```js
+// 방법 A: 단일 파일로 합치고 기본/상세 필드를 함께 관리
+// 방법 B: 상세 데이터를 기본 데이터 안의 detail 키로 중첩
+const productsData = [
+  { id: 'p070', name: '...', price: ..., detail: { sub_img1: [], reviewTag: [], ... } }
+];
+```
+
+### 3. @/ 경로 별칭 통일 ✅ 해결됨
+
+~~`pages/kediheal/Kediheal.jsx`는 상대경로(`../../components/kediheal/...`)를 사용합니다.~~
+
+`Kediheal.jsx`의 모든 import를 `@/` 별칭으로 통일했습니다.
+```js
+// 이전
+import KedihealHero from '../../components/kediheal/KedihealHero';
+// 현재
+import KedihealHero from '@/components/kediheal/KedihealHero';
+```
+
+### 4. 전역 상태관리 부재 — Zustand 도입 권장
+
+현재 store 파일이 모두 빈 파일입니다. 장바구니 수량, 로그인 상태 등이 실제로 연동되지 않아 헤더의 카트 뱃지가 하드코딩(`1`)되어 있습니다.
+
+**권장 방법 (Zustand):**
+```js
+// src/store/cart.store.js
+import { create } from 'zustand';
+export const useCartStore = create((set) => ({
+  items: [],
+  addItem: (item) => set((s) => ({ items: [...s.items, item] })),
+  removeItem: (id) => set((s) => ({ items: s.items.filter(i => i.id !== id) })),
+}));
+```
+Zustand는 기존 Context API 대비 보일러플레이트가 적고, 현재 프로젝트 구조에서 최소 변경으로 도입 가능합니다.
+
+### 5. 상품 상세 페이지 접근 범위 제한
+
+현재 `ProductsCard.jsx`에서 `['p070', 'p032', 'p085']` id만 상세 링크로 연결됩니다. 나머지 상품은 클릭해도 이동하지 않습니다. 상세 데이터가 있는 상품(`productsDetailData`에 포함된 id)은 전부 링크를 활성화하거나, 없는 경우 `/ready` 또는 준비 중 메시지를 표시하는 것이 UX상 적합합니다.
+
+### 6. 빈 constants 파일 활용
+
+`src/constants/`의 4개 파일이 모두 비어 있습니다. 현재 하드코딩된 값들(예: 배송비 기준 `20000`/`3000`, 멤버십 등급 배열, 정렬 옵션 키)을 이 파일들로 이동하면 유지보수가 쉬워집니다.

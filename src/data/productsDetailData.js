@@ -3,7 +3,6 @@ import p032_02 from '@/assets/images/product_details/details/teatree01.png';
 import p032_03 from '@/assets/images/product_details/details/teatree02.png';
 import p085_02 from '@/assets/images/product_details/details/pdrn01.png';
 import p085_03 from '@/assets/images/product_details/details/pdrn02.png';
-
 import ShopDetailsec01 from '@/assets/images/product_details/madecassoside_pad/sec01.gif';
 import ShopDetailsec02 from '@/assets/images/product_details/madecassoside_pad/sec02.png';
 import ShopDetailsec03 from '@/assets/images/product_details/madecassoside_pad/sec03.png';
@@ -36,9 +35,9 @@ const productsDetailData = [
             1: 3,
         },
         reviewTag: [
-           { label: '트러블케어', score: 75 },
-           { label: '잡티제거', score: 82 },
-           { label: '진정케어', score: 68 },
+            { label: '트러블케어', score: 75 },
+            { label: '잡티제거', score: 82 },
+            { label: '진정케어', score: 68 },
         ],
         details_img: [
             ShopDetailsec01,
@@ -72,11 +71,29 @@ const productsDetailData = [
             1: 10,
         },
         reviewTag: [
-           { label: '피부케어', score: 78 },
-           { label: '진정효과', score: 92 },
-           { label: '트러블완화', score: 89 },
+            { label: '피부케어', score: 78 },
+            { label: '진정효과', score: 92 },
+            { label: '트러블완화', score: 89 },
         ],
-        details: [],
+        details_img: [
+            ShopDetailsec01,
+            ShopDetailsec02,
+            ShopDetailsec03,
+            ShopDetailsec04,
+            ShopDetailsec05,
+            ShopDetailsec06,
+            ShopDetailsec07,
+            ShopDetailsec08,
+            ShopDetailsec09,
+            ShopDetailsec10,
+            ShopDetailsec11,
+            ShopDetailsec12,
+            ShopDetailsec13,
+            ShopDetailsec14,
+            ShopDetailsec15,
+            ShopDetailsec16,
+            ShopDetailsec17,
+        ],
     },
     {
         id: 'p085',
@@ -94,7 +111,25 @@ const productsDetailData = [
             { label: '탄력개선', score: 90 },
             { label: '광채', score: 86 },
         ],
-        details: [],
+        details_img: [
+            ShopDetailsec01,
+            ShopDetailsec02,
+            ShopDetailsec03,
+            ShopDetailsec04,
+            ShopDetailsec05,
+            ShopDetailsec06,
+            ShopDetailsec07,
+            ShopDetailsec08,
+            ShopDetailsec09,
+            ShopDetailsec10,
+            ShopDetailsec11,
+            ShopDetailsec12,
+            ShopDetailsec13,
+            ShopDetailsec14,
+            ShopDetailsec15,
+            ShopDetailsec16,
+            ShopDetailsec17,
+        ],
     },
 ];
 
