@@ -19,7 +19,7 @@ const ShopDetail__main = ({ moveToReview }) => {
     const product = productsData.find((item) => item.id === id);
     const detailProduct = productsDetailData.find((item) => item.id === id);
 
-    const [mainImage, setMainImage] = useState(product?.images?.[0] ?? '');
+    const [mainImage, setMainImage] = useState(detailProduct?.main ?? product?.images?.[0] ?? '');
     const [quantity, setQuantity] = useState(1);
     const [inputValue, setInputValue] = useState('1');
     const [showModal, setShowModal] = useState(false);
@@ -47,10 +47,12 @@ const ShopDetail__main = ({ moveToReview }) => {
     };
 
     useEffect(() => {
-        if (product?.images?.[0]) {
+        if (detailProduct?.main) {
+            setMainImage(detailProduct.main);
+        } else if (product?.images?.[0]) {
             setMainImage(product.images[0]);
         }
-    }, [product]);
+    }, [product, detailProduct]);
 
     if (!product) {
         return <div>상품 없음</div>;
@@ -87,11 +89,13 @@ const ShopDetail__main = ({ moveToReview }) => {
 
     const handleInputBlur = () => {
         const parsed = parseInt(inputValue, 10);
+
         if (Number.isNaN(parsed) || parsed < 1) {
             setQuantity(1);
             setInputValue('1');
             return;
         }
+
         setQuantity(parsed);
         setInputValue(String(parsed));
     };
@@ -135,6 +139,7 @@ const ShopDetail__main = ({ moveToReview }) => {
                                     </span>
                                 ))}
                             </div>
+
                             <Products__HeartButton />
                         </div>
 
@@ -219,9 +224,7 @@ const ShopDetail__main = ({ moveToReview }) => {
 
                     <div className="shopDetail__PaymentAmount">
                         <span className="PaymentAmount-text">총 상품금액</span>
-                        <span className="PaymentAmount-total">
-                            {totalPrice.toLocaleString()}원
-                        </span>
+                        <span className="PaymentAmount-total">{totalPrice.toLocaleString()}원</span>
                     </div>
 
                     <div className="shopDetail__button">
