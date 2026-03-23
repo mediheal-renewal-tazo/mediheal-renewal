@@ -9,21 +9,21 @@ const KedihealCare = () => {
         {
             title: '모공 케어',
             subtitle:
-                '모공 결 정돈과 매끈한 피부결을 위한 케어모공<br />결 정돈과 매끈한 피부결을 위한 케어모공 결',
+                '모공 결을 정돈하고 매끈한 피부결을 위한<br />자극 부담을 낮춘 데일리 케어',
             mediaType: 'image',
             mediaSource: poreCareImg,
         },
         {
             title: '열감 반응 케어',
             subtitle:
-                '모공 결 정돈과 매끈한 피부결을 위한 케어모공<br />결 정돈과 매끈한 피부결을 위한 케어모공 결',
+                '열감으로 예민해진 피부를 편안하게 감싸며<br />진정감을 높여주는 밸런스 케어',
             mediaType: 'image',
             mediaSource: heatCareImg,
         },
         {
             title: '저자극 거즈 패드',
             subtitle:
-                '모공 결 정돈과 매끈한 피부결을 위한 케어모공<br />결 정돈과 매끈한 피부결을 위한 케어모공 결',
+                '부드러운 터치와 안정적인 밀착감으로<br />자극 부담 없이 편안한 케어를 돕는 거즈 패드',
             mediaType: 'video',
             mediaSource: gauzePadVideo,
         },

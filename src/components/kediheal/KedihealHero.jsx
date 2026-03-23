@@ -19,7 +19,7 @@ const KedihealHero = () => {
             ScrollTrigger.create({
                 trigger: container.current,
                 start: 'top top',
-                end: '+=1200', // 스크롤 1200px 동안 hero 고정
+                end: () => `+=${window.innerHeight * 1.5}`, // 화면 높이에 따라 유동적으로 조절
                 scrub: true,
                 pin: true,
                 anticipatePin: 1,
