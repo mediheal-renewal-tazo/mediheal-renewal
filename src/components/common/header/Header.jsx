@@ -5,6 +5,7 @@ import { HEADER_NAV_ITEMS, ROUTE_PATHS } from '@/app/routes/paths';
 import { GiHamburgerMenu } from "react-icons/gi";
 import logoImg1 from '@/assets/logos/logo_1.png';
 import logoImg2 from '@/assets/logos/logo_2.png';
+import { getAuthUser } from '@/utils/auth';
 import HeaderSearch from './HeaderSearch';
 import './Header.scss';
 
@@ -13,7 +14,18 @@ const Header = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isOverDark, setIsOverDark] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(() => !!getAuthUser());
     const location = useLocation();
+
+    useEffect(() => {
+        const handleAuthChange = () => setIsLoggedIn(!!getAuthUser());
+        window.addEventListener('authChange', handleAuthChange);
+        window.addEventListener('storage', handleAuthChange);
+        return () => {
+            window.removeEventListener('authChange', handleAuthChange);
+            window.removeEventListener('storage', handleAuthChange);
+        };
+    }, []);
 
     const logoSrc = isOverDark ? logoImg2 : logoImg1;
     const headerClassName = [
@@ -113,7 +125,7 @@ const Header = () => {
                             <div className="header__search-btn">SEARCH</div>
                         </button>
                         <div className="header__icon-btn">
-                            <div className="header__login-btn">LOGIN</div>
+                            <div className="header__login-btn">{isLoggedIn ? 'MY PAGE' : 'LOGIN'}</div>
                         </div>
                         <div className="header__cart-wrap">
                             <div className="header__icon-btn">
@@ -151,8 +163,12 @@ const Header = () => {
                     >
                         <div className="header__search-btn">SEARCH</div>
                     </button>
-                    <Link className="header__icon-btn" to={ROUTE_PATHS.LOGIN} aria-label="My page">
-                        <div className="header__login-btn">LOGIN</div>
+                    <Link
+                        className="header__icon-btn"
+                        to={isLoggedIn ? ROUTE_PATHS.MY_PAGE : ROUTE_PATHS.LOGIN}
+                        aria-label={isLoggedIn ? 'My page' : 'Login'}
+                    >
+                        <div className="header__login-btn">{isLoggedIn ? 'MY PAGE' : 'LOGIN'}</div>
                     </Link>
                     <div className="header__cart-wrap">
                         <Link className="header__icon-btn" to={ROUTE_PATHS.CART} aria-label="Cart">
