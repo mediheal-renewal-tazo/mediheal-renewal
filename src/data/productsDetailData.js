@@ -118,7 +118,6 @@ const productsDetailData = [
             Tsec02,
             Tsec03,
             Tsec04,
-            Tsec05,
             Tsec06,
             Tsec07,
             Tsec08,
