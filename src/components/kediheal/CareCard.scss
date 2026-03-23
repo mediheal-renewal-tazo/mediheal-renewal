@@ -90,14 +90,15 @@
         font-weight: 400;
         line-height: 1.4;
         text-align: right;
-        word-break: keep-all;
+        // white-space: nowrap;
 
         @media screen and (max-width: 1024px) {
+            font-size: clamp(12px, 1vw, 13px);
             max-width: 100%;
         }
 
         @media screen and (max-width: 767px) {
-            font-size: clamp(11px, 3vw, 13px);
+            font-size: clamp(8px, 3vw, 10px);
         }
     }
 }

@@ -607,7 +607,7 @@
         width: 100%;
         max-width: 1400px;
         min-height: clamp(800px, 100vh, 1800px);
-        height: 1700px;
+        height: 1744px;
         margin: 0 auto;
         position: relative;
         padding: clamp(60px, 10vw, 120px) 20px;
@@ -639,7 +639,7 @@
         }
 
         &--bottom-right {
-            bottom: clamp(100px, 20vw, 250px);
+            bottom: clamp(75px, 20vw, 150px);
             right: clamp(20px, 10vw, 160px);
             width: 100%;
             max-width: clamp(250px, 30vw, 400px);
@@ -649,6 +649,9 @@
                 bottom: clamp(80px, 15vw, 150px);
                 right: clamp(20px, 5vw, 60px);
                 max-width: clamp(200px, 35vw, 300px);
+            }
+            @media screen and (max-width: 767px) {
+                bottom: clamp(150px, 50vw, 300px);
             }
         }
     }
@@ -687,7 +690,7 @@
         }
 
         @media screen and (max-width: 767px) {
-            font-size: clamp(10px, 3.5vw, 12px);
+            font-size: clamp(8px, 3vw, 10px);
         }
     }
 
@@ -744,6 +747,9 @@
                 left: clamp(10px, 5vw, 60px);
                 margin-top: 0;
             }
+            @media screen and (max-width: 767px) {
+                top: clamp(30px, 10vw, 550px);
+            }
 
             &:hover {
                 transform: rotate(-15.917deg) scale(1.05);
@@ -789,7 +795,7 @@
 
     &__hyaluron-wrap {
         position: absolute;
-        top: clamp(600px, 45vw, 733px);
+        top: clamp(600px, 45vw, 640px);
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
@@ -799,7 +805,10 @@
         justify-content: center;
 
         @media screen and (max-width: 1024px) {
-            top: clamp(350px, 45vw, 600px);
+            top: clamp(150px, 45vw, 400px);
+        }
+        @media screen and (max-width: 767px) {
+            top: clamp(200px, 60vw, 300px);
         }
     }
 
