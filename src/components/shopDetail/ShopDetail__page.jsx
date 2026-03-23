@@ -7,9 +7,10 @@ import ShopDetail__info from '@/components/shopDetail/ShopDetail__info';
 import ShopDetail__review from '@/components/shopDetail/ShopDetail__review';
 import ShopDetail__Guide from '@/components/shopDetail/ShopDetail__Guide';
 import topButton from '@/assets/images/product_details/icon/up_btn.svg';
-import OpenCart from'@/assets/images/product_details/icon/openCart.svg';
-import CloseCart from'@/assets/images/product_details/icon/closeCart.svg';
+import OpenCart from '@/assets/images/product_details/icon/openCart.svg';
+import CloseCart from '@/assets/images/product_details/icon/closeCart.svg';
 import ShopDetail__Cart from '@/components/shopDetail/ShopDetail__Cart';
+import ShopDetail__Essentialinfo from '@/components/shopDetail/ShopDetail__Essentialinfo';
 import '@/components/shopDetail/ShopDetail.scss';
 
 const ShopDetail__page = () => {
@@ -28,10 +29,7 @@ const ShopDetail__page = () => {
     const scrollToRef = (ref, offset = 120) => {
         if (!ref.current) return;
 
-        const top =
-            ref.current.getBoundingClientRect().top +
-            window.pageYOffset -
-            offset;
+        const top = ref.current.getBoundingClientRect().top + window.pageYOffset - offset;
 
         window.scrollTo({
             top,
@@ -172,6 +170,8 @@ const ShopDetail__page = () => {
                     <ShopDetail__info />
                 </section>
 
+                <ShopDetail__Essentialinfo />
+
                 <section ref={reviewRef} className="shopDetail__section">
                     <ShopDetail__review />
                 </section>
@@ -196,7 +196,6 @@ const ShopDetail__page = () => {
             />
 
             <aside className={`cartDrawer ${isCartOpen ? 'is-open' : ''}`}>
-
                 <button
                     type="button"
                     className="cartTriggerButton"

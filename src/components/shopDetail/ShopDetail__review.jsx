@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import productsData from '@/data/productsData';
 import productsDetailData from '@/data/productsDetailData';
@@ -18,6 +18,9 @@ const ShopDetail__review = () => {
     const [reviewSort, setReviewSort] = useState('recommend');
     const [currentPage, setCurrentPage] = useState(1);
 
+    const reviewFilterRef = useRef(null);
+    const isFirstRender = useRef(true);
+
     const reviewTags = detailProduct?.reviewTag ?? [];
     const distribution = detailProduct?.distribution ?? {};
     const rating = product?.rating ?? 0;
@@ -29,6 +32,25 @@ const ShopDetail__review = () => {
         if (score >= 55) return '보통이에요';
         if (score >= 40) return '모르겠어요';
         return '별로예요';
+    };
+
+    const getTimeAgo = (dateString) => {
+        const now = new Date();
+        const target = new Date(dateString);
+
+        if (Number.isNaN(target.getTime())) {
+            return dateString;
+        }
+
+        const diffMs = now - target;
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+        if (diffDays < 1) return '오늘';
+        if (diffDays < 7) return `${diffDays}일 전`;
+        if (diffDays < 30) return `${Math.floor(diffDays / 7)}주 전`;
+        if (diffDays < 365) return `${Math.floor(diffDays / 30)}개월 전`;
+
+        return `${Math.floor(diffDays / 365)}년 전`;
     };
 
     const handleChangeReviewFilter = (e) => {
@@ -44,8 +66,8 @@ const ShopDetail__review = () => {
     const ratingRows = useMemo(() => {
         return [5, 4, 3, 2, 1].map((star) => {
             const percent = distribution[star] ?? 0;
-            
-            return {star,percent,};
+
+            return { star, percent };
         });
     }, [distribution]);
 
@@ -68,9 +90,7 @@ const ShopDetail__review = () => {
         }
 
         if (reviewSort === 'latest') {
-            reviews = [...reviews].sort(
-                (a, b) => new Date(b.date) - new Date(a.date)
-            );
+            reviews = [...reviews].sort((a, b) => new Date(b.date) - new Date(a.date));
         }
 
         if (reviewSort === 'highRating') {
@@ -78,9 +98,7 @@ const ShopDetail__review = () => {
         }
 
         if (reviewSort === 'recommend') {
-            reviews = [...reviews].sort(
-                (a, b) => (b.helpful ?? 0) - (a.helpful ?? 0)
-            );
+            reviews = [...reviews].sort((a, b) => (b.helpful ?? 0) - (a.helpful ?? 0));
         }
 
         return reviews;
@@ -95,6 +113,20 @@ const ShopDetail__review = () => {
         return filteredReviews.slice(startIndex, endIndex);
     }, [filteredReviews, currentPage]);
 
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
+        if (reviewFilterRef.current) {
+            reviewFilterRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
+    }, [currentPage]);
+
     return (
         <div className="shopDetail__review">
             <div className="review_statistic">
@@ -104,9 +136,7 @@ const ShopDetail__review = () => {
                     <div className="ratingScore-detail">
                         <div className="ratingScore-star">
                             <img src={BigStar} alt="별점" />
-                            <span className="ratingScore-value">
-                                {rating.toFixed(1)}
-                            </span>
+                            <span className="ratingScore-value">{rating.toFixed(1)}</span>
                         </div>
 
                         <div className="ratingScore-count">
@@ -124,10 +154,7 @@ const ShopDetail__review = () => {
                             const isTop = topTwoStars.includes(item.star);
 
                             return (
-                                <div
-                                    className="ratingDistribution-item"
-                                    key={item.star}
-                                >
+                                <div className="ratingDistribution-item" key={item.star}>
                                     <span
                                         className={`ratingDistribution-percent ${
                                             !isTop ? 'is-zero' : ''
@@ -157,14 +184,9 @@ const ShopDetail__review = () => {
 
                     <div className="ratingTag-list">
                         {reviewTags.map((tag, index) => (
-                            <div
-                                className="ratingTag-item"
-                                key={`${tag.label}-${index}`}
-                            >
+                            <div className="ratingTag-item" key={`${tag.label}-${index}`}>
                                 <div className="ratingTag-chip-wrap">
-                                    <div className="ratingTag-chip">
-                                        {tag.label}
-                                    </div>
+                                    <div className="ratingTag-chip">{tag.label}</div>
                                 </div>
 
                                 <div className="ratingTagExp">
@@ -172,9 +194,7 @@ const ShopDetail__review = () => {
                                         {getScoreText(tag.score)}
                                     </span>
 
-                                    <span className="ratingTag-score">
-                                        {tag.score}%
-                                    </span>
+                                    <span className="ratingTag-score">{tag.score}%</span>
                                 </div>
                             </div>
                         ))}
@@ -182,7 +202,7 @@ const ShopDetail__review = () => {
                 </div>
             </div>
 
-            <div className="reviewFilter">
+            <div className="reviewFilter" ref={reviewFilterRef}>
                 <div className="reviewType">
                     <SortSelect
                         value={reviewFilter}
@@ -217,12 +237,12 @@ const ShopDetail__review = () => {
 
             <div className="reviewWrap">
                 <div className="reviewBox">
-                    {pagedReviews.map((review) => (
-                        <div className="reviewCard" key={review.id}>
+                    {pagedReviews.map((review, index) => (
+                        <div className="reviewCard" key={`${review.id}-${index}`}>
                             <div className="review__userProfile">
                                 <div className="review__userlog">
                                     <span className="review__name">{review.author}</span>
-                                    <span className="review__date">{review.date}</span>
+                                    <span className="review__date">{getTimeAgo(review.date)}</span>
                                 </div>
 
                                 <div className="review__userType">
@@ -235,7 +255,7 @@ const ShopDetail__review = () => {
                                         <p>{review.skinType}</p>
                                     </div>
                                     <div>
-                                        <span>피부타입</span>
+                                        <span>피부고민</span>
                                         <p>{review.skinConcern}</p>
                                     </div>
                                 </div>
@@ -245,28 +265,23 @@ const ShopDetail__review = () => {
                                 <div className="review__text">
                                     <div className="review__star">
                                         {'★'.repeat(Math.floor(review.rating))}
-                                        {'☆'.repeat(
-                                            5 - Math.floor(review.rating)
-                                        )}
+                                        {'☆'.repeat(5 - Math.floor(review.rating))}
                                     </div>
 
-                                    <span className="review__comment">
-                                        {review.content}
-                                    </span>
+                                    <span className="review__comment">{review.content}</span>
                                 </div>
 
-                                {review.reviewType === 'img' &&
-                                    review.images?.length > 0 && (
-                                        <div className="review__imgBox">
-                                            {review.images.map((img, i) => (
-                                                <img
-                                                    key={`${review.id}-${i}`}
-                                                    src={img}
-                                                    alt="리뷰이미지"
-                                                />
-                                            ))}
-                                        </div>
-                                    )}
+                                {review.reviewType === 'img' && review.images?.length > 0 && (
+                                    <div className="review__imgBox">
+                                        {review.images.map((img, i) => (
+                                            <img
+                                                key={`${review.id}-img-${i}`}
+                                                src={img}
+                                                alt="리뷰이미지"
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
