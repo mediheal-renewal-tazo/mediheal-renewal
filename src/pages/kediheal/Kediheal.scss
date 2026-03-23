@@ -634,7 +634,7 @@
 
             @media screen and (max-width: 1024px) {
                 top: clamp(60px, 10vw, 120px);
-                left: clamp(20px, 5vw, 60px);
+                left: clamp(80px, 20vw, 150px);
             }
         }
 
@@ -646,8 +646,8 @@
             text-align: right;
 
             @media screen and (max-width: 1024px) {
-                bottom: clamp(80px, 15vw, 150px);
-                right: clamp(20px, 5vw, 60px);
+                bottom: clamp(100px, 30vw, 250px);
+                right: clamp(80px, 20vw, 150px);
                 max-width: clamp(200px, 35vw, 300px);
             }
             @media screen and (max-width: 767px) {
@@ -710,7 +710,12 @@
             @media screen and (max-width: 1024px) {
                 width: clamp(150px, 30vw, 300px);
                 top: clamp(40px, 8vw, 80px);
-                right: clamp(10px, 3vw, 40px);
+                right: clamp(40px, 10vw, 80px);
+            }
+            @media screen and (max-width: 767px) {
+                width: clamp(150px, 30vw, 300px);
+                top: clamp(40px, 8vw, 80px);
+                right: clamp(40px, 10vw, 80px);
             }
 
             &:hover {
@@ -743,12 +748,11 @@
 
             @media screen and (max-width: 1024px) {
                 width: clamp(120px, 25vw, 250px);
-                top: clamp(500px, 60vw, 800px);
-                left: clamp(10px, 5vw, 60px);
-                margin-top: 0;
+                top: clamp(300px, 60vw, 600px);
+                left: clamp(100px, 14vw, 200px);
             }
             @media screen and (max-width: 767px) {
-                top: clamp(30px, 10vw, 550px);
+                top: clamp(500px, 10vw, 1000px);
             }
 
             &:hover {
