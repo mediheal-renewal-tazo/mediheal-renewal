@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /* 1. 마이페이지 전체 레이아웃 (Layout Block) */
 .mypage-wrapper {
     width: 100%;
@@ -376,7 +378,7 @@
 
 // 1. rem 변환 함수
 @function rem($px) {
-    @return ($px / 16) * 1rem;
+    @return math.div($px, 16) * 1rem;
 }
 
 $tablet: 1024px;
