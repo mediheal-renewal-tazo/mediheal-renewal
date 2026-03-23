@@ -113,7 +113,7 @@ const productsDetailData = [
             { label: '진정효과', score: 92 },
             { label: '트러블완화', score: 89 },
         ],
-        details: [
+        details_img: [
             Tsec01,
             Tsec02,
             Tsec03,
@@ -168,7 +168,7 @@ const productsDetailData = [
             { label: '탄력개선', score: 90 },
             { label: '광채', score: 86 },
         ],
-        details: [],
+        details_img: [],
         volume: '40ml',
         spec: '모든피부용',
         usage: '토너 사용 후, 적당량을 덜어 피부 결을 따라 부드럽게 펴 바른 뒤, 가볍게 두드리며 흡수시켜 줍니다.',

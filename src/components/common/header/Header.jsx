@@ -27,10 +27,15 @@ const Header = () => {
         };
     }, []);
 
-    const logoSrc = isOverDark ? logoImg2 : logoImg1;
+    const THEME_AWARE_PATHS = ['/', '/brand', '/membership', '/kediheal'];
+    const isThemeAwarePage = THEME_AWARE_PATHS.some((p) =>
+        p === '/' ? location.pathname === '/' : location.pathname === p
+    );
+
+    const logoSrc = !isThemeAwarePage ? logoImg2 : isOverDark ? logoImg2 : logoImg1;
     const headerClassName = [
         'header',
-        isOverDark ? '' : 'header--dark',
+        !isThemeAwarePage ? 'header--navy' : isOverDark ? '' : 'header--dark',
         isMenuOpen ? 'header--menu-open' : '',
         isVisible ? 'header--visible' : '',
     ].filter(Boolean).join(' ');
