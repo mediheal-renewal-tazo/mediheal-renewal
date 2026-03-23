@@ -13,6 +13,7 @@ import MyPage from '@/pages/myPage/MyPage';
 import Cart from '@/pages/cart/Cart';
 import Inquiry from '@/pages/inquiry/Inquiry';
 import Login from '@/pages/login/Login';
+import ShopDetail from '@/pages/shop/shopDetail/ShopDetail';
 
 const AppRoutes = () => {
     return (
@@ -28,6 +29,8 @@ const AppRoutes = () => {
                 <Route path={ROUTE_PATHS.CART} element={<Cart />} />
                 <Route path={ROUTE_PATHS.INQUIRY} element={<Inquiry />} />
                 <Route path={ROUTE_PATHS.READY} element={<Ready />} />
+                {/* 임의로 만든 거 */}
+                <Route path="/shop/:id" element={<ShopDetail />} />
             </Route>
             <Route path={ROUTE_PATHS.LOGIN} element={<Login />} />
             <Route path="*" element={<NotFound />} />

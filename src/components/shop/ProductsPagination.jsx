@@ -26,11 +26,7 @@ const ProductsPagination = ({ currentPage, totalPage, limit = 3, onPageChange })
     return (
         <div className="pagination">
             {/* 처음 */}
-            <button
-                className="page-btn icon"
-                onClick={() => onPageChange(1)}
-                disabled={!canGoPrev}
-            >
+            <button className="page-btn icon" onClick={() => onPageChange(1)} disabled={!canGoPrev}>
                 <img src={canGoPrev ? arrowFirstActive : arrowFirst} alt="" />
             </button>
 
