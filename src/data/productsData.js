@@ -77,7 +77,7 @@ import img_76 from '@/assets/images/products/skincare/serum_100_01.jpg';
 import img_77 from '@/assets/images/products/skincare/cream_01.jpg';
 import img_78 from '@/assets/images/products/skincare/patch_capsule.jpg';
 import img_79 from '@/assets/images/products/skincare/patch_stretching.jpg';
-import img_80 from '@/assets/images/products/skincare/serum_40_04.jpg';
+import img_80 from '@/assets/images/products/skincare/serum_40_05.jpg';
 import img_81 from '@/assets/images/products/skincare/serum_40_04.jpg';
 import img_82 from '@/assets/images/products/skincare/serum_40_06.jpg';
 import img_83 from '@/assets/images/products/mask/mask09_05spicule.jpg';

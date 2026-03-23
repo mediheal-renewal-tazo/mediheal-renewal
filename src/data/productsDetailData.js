@@ -3,6 +3,9 @@ import p032_02 from '@/assets/images/product_details/details/teatree01.png';
 import p032_03 from '@/assets/images/product_details/details/teatree02.png';
 import p085_02 from '@/assets/images/product_details/details/pdrn01.png';
 import p085_03 from '@/assets/images/product_details/details/pdrn02.png';
+import main_70 from '@/assets/images/product_details/madecassoside_pad/main_madeca.png';
+import main_32 from '@/assets/images/product_details/teatree_mask/main_Teatree.png';
+import main_85 from '@/assets/images/product_details/pdrn_serum/main_pdrnserum.png';
 
 import ShopDetailsecM01 from '@/assets/images/product_details/madecassoside_pad/sec01.gif';
 import ShopDetailsecM02 from '@/assets/images/product_details/madecassoside_pad/sec02.png';
@@ -44,13 +47,34 @@ import Tsec20 from '@/assets/images/product_details/teatree_mask/sec20.jpeg';
 import Tsec21 from '@/assets/images/product_details/teatree_mask/sec21.jpg';
 import Tsec22 from '@/assets/images/product_details/teatree_mask/sec22.jpg';
 import Tsec23 from '@/assets/images/product_details/teatree_mask/sec23.jpg';
-import Tsec24 from '@/assets/images/product_details/teatree_mask/sec24.jpg';
+
+import Psec02 from '@/assets/images/product_details/pdrn_serum/sec02.jpeg';
+import Psec03 from '@/assets/images/product_details/pdrn_serum/sec03.jpeg';
+import Psec04 from '@/assets/images/product_details/pdrn_serum/sec04.mp4';
+import Psec05 from '@/assets/images/product_details/pdrn_serum/sec05.mp4';
+import Psec06 from '@/assets/images/product_details/pdrn_serum/sec06.jpeg';
+import Psec07 from '@/assets/images/product_details/pdrn_serum/sec07.mp4';
+import Psec08 from '@/assets/images/product_details/pdrn_serum/sec08.mp4';
+import Psec09 from '@/assets/images/product_details/pdrn_serum/sec09.mp4';
+import Psec10 from '@/assets/images/product_details/pdrn_serum/sec10.mp4';
+import Psec11 from '@/assets/images/product_details/pdrn_serum/sec11.mp4';
+import Psec12 from '@/assets/images/product_details/pdrn_serum/sec12.mp4';
+import Psec13 from '@/assets/images/product_details/pdrn_serum/sec13.jpeg';
+import Psec14 from '@/assets/images/product_details/pdrn_serum/sec14.mp4';
+import Psec15 from '@/assets/images/product_details/pdrn_serum/sec15.mp4';
+import Psec16 from '@/assets/images/product_details/pdrn_serum/sec16.mp4';
+import Psec17 from '@/assets/images/product_details/pdrn_serum/sec17.jpeg';
+import Psec18 from '@/assets/images/product_details/pdrn_serum/sec18.mp4';
+import Psec19 from '@/assets/images/product_details/pdrn_serum/sec19.jpeg';
+import Psec20 from '@/assets/images/product_details/pdrn_serum/sec20.jpeg';
+import Psec21 from '@/assets/images/product_details/pdrn_serum/sec21.jpeg';
 
 const productsDetailData = [
     {
         id: 'p070',
-        sub_img1: [img_70],
-        sub_img2: [img_70],
+        main_img: main_70,
+        sub_img1: img_70,
+        sub_img2: img_70,
         target: ['트러블', '수부지', '잡티있는피부'],
         distribution: {
             5: 95,
@@ -99,7 +123,9 @@ const productsDetailData = [
     },
     {
         id: 'p032',
-        sub_img: [p032_02, p032_03],
+        main_img: main_32,
+        sub_img1: p032_02,
+        sub_img2: p032_03,
         target: ['붉어진피부', '트러블', '예민한피부'],
         distribution: {
             5: 80,
@@ -113,7 +139,7 @@ const productsDetailData = [
             { label: '진정효과', score: 92 },
             { label: '트러블완화', score: 89 },
         ],
-        details: [
+        details_img: [
             Tsec01,
             Tsec02,
             Tsec03,
@@ -136,7 +162,7 @@ const productsDetailData = [
             Tsec21,
             Tsec22,
             Tsec23,
-            Tsec24,
+            ShopDetailsecM17,
         ],
         volume: '24ml*10ea',
         spec: '모든피부용',
@@ -154,7 +180,9 @@ const productsDetailData = [
     },
     {
         id: 'p085',
-        sub_img: [p085_02, p085_03],
+        main: main_85,
+        sub_img1: p085_02,
+        sub_img2: p085_03,
         target: ['팔자주름', '늘어진모공', '티존모공'],
         distribution: {
             5: 60,
@@ -168,7 +196,30 @@ const productsDetailData = [
             { label: '탄력개선', score: 90 },
             { label: '광채', score: 86 },
         ],
-        details: [],
+        details_img: [
+            Tsec01,
+            Psec02,
+            Psec03,
+            Psec04,
+            Psec05,
+            Psec06,
+            Psec07,
+            Psec08,
+            Psec09,
+            Psec10,
+            Psec11,
+            Psec12,
+            Psec13,
+            Psec14,
+            Psec15,
+            Psec16,
+            Psec17,
+            Psec18,
+            Psec19,
+            Psec20,
+            Psec21,
+            ShopDetailsecM17,
+        ],
         volume: '40ml',
         spec: '모든피부용',
         usage: '토너 사용 후, 적당량을 덜어 피부 결을 따라 부드럽게 펴 바른 뒤, 가볍게 두드리며 흡수시켜 줍니다.',
