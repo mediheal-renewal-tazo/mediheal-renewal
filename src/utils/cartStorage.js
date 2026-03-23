@@ -11,6 +11,7 @@ const getAll = () => {
 
 const saveAll = (items) => {
     localStorage.setItem(CART_KEY, JSON.stringify(items));
+    window.dispatchEvent(new Event('cartChange'));
 };
 
 /** 현재 유저의 장바구니 항목 반환 */
