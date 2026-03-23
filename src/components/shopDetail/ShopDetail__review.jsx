@@ -19,7 +19,7 @@ const ShopDetail__review = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const reviewFilterRef = useRef(null);
-    const isFirstRender = useRef(true);
+    const prevPageRef = useRef(currentPage);
 
     const reviewTags = detailProduct?.reviewTag ?? [];
     const distribution = detailProduct?.distribution ?? {};
@@ -114,10 +114,8 @@ const ShopDetail__review = () => {
     }, [filteredReviews, currentPage]);
 
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
+        if (prevPageRef.current === currentPage) return;
+        prevPageRef.current = currentPage;
 
         if (reviewFilterRef.current) {
             reviewFilterRef.current.scrollIntoView({
