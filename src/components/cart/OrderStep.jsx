@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { getAuthUser } from '@/utils/auth';
 import './OrderStep.scss';
 
 const OrderStep = ({ orderItems, onPayment, onCancel }) => {
+    const user = getAuthUser();
+
     // 상품 금액 및 기본 정보 계산
     let originalProductPrice = 0;
     let itemDiscounts = 0;
@@ -69,7 +72,7 @@ const OrderStep = ({ orderItems, onPayment, onCancel }) => {
                         <div className="order-payment__section order-payment__delivery">
                             <div className="delivery-header">
                                 <div className="title-area">
-                                    <strong>장규진</strong>
+                                    <strong className="delivery-header__username">{user?.name || '이름 없음'}</strong>
                                     <span className="badge">기본 배송지</span>
                                 </div>
                                 <button type="button" className="btn-change">배송지 변경</button>
@@ -97,7 +100,9 @@ const OrderStep = ({ orderItems, onPayment, onCancel }) => {
                             <div className="product-list">
                                 {orderItems.map((item) => (
                                     <div className="product-item" key={item.id}>
-                                        <div className="thumb"></div>
+                                        <div className="thumb">
+                                            {item.product?.image && <img src={item.product.image} alt={item.product.name} />}
+                                        </div>
                                         <div className="info">
                                             <p className="name">{item.product.name}</p>
                                             <p className="qty">수량 : {item.quantity}개</p>

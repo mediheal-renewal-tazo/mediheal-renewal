@@ -60,7 +60,7 @@ const OrderComplete = ({ orderItems = [], orderSummary, onGoDetail }) => {
                     <div className="order-complete__list-body">
                         {orderItems.map((item) => {
                             const pName = item.product?.name || '';
-                            const pThumb = item.thumbnail || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>';
+                            const pImage = item.product?.image || null;
                             const pQty = item.quantity || 1;
                             const pPrice = item.product?.price || 0;
                             const pItemDiscount = (item.product?.discount || 0) * pQty;
@@ -82,10 +82,9 @@ const OrderComplete = ({ orderItems = [], orderSummary, onGoDetail }) => {
                                 <div className="order-complete__row" key={item.id}>
                                     <div className="order-complete__col order-complete__col--info">
                                         <div className="order-complete__product">
-                                            <div
-                                                className="order-complete__thumb"
-                                                style={{ backgroundImage: `url('${pThumb}')` }}
-                                            />
+                                            <div className="order-complete__thumb">
+                                                {pImage && <img src={pImage} alt={pName} />}
+                                            </div>
                                             <span className="order-complete__name">{pName}</span>
                                         </div>
                                     </div>

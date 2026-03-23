@@ -123,8 +123,14 @@
         height: 79px;
         flex-shrink: 0;
         background-color: #fafafa;
-        background-size: cover;
-        background-position: center;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
     }
 
     &__name {
