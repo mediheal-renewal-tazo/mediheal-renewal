@@ -3,8 +3,8 @@
     background-color: #fff; // 밝은 회색 톤
 
     &__section {
-        width: 1920px;
-        height: 1080px;
+        width: 100%;
+        min-height: 100vh;
         margin: 0 auto;
         display: flex;
         justify-content: center;
@@ -27,77 +27,134 @@
 
         &--hyaluron {
             background-color: #fff;
-            width: 1920px;
-            height: 1744px;
+            width: 100%;
+            max-width: 1920px;
+            height: auto;
+            min-height: 1080px;
             overflow: hidden;
-            margin-bottom: 200px;
+            margin-bottom: clamp(100px, 10vw, 200px);
+            cursor: none; // 기본 커서 숨김
+
+            .kediheal__cursor-follower {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 130px; // 마스크팩 크기 조절
+                height: auto;
+                pointer-events: none;
+                z-index: 9999;
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+                will-change: transform, opacity;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
         }
 
         &--global {
             background-color: #fff;
             height: auto;
-            min-height: 1080px;
-            padding: 120px 0;
+            min-height: 100vh;
+            padding: clamp(60px, 8vw, 120px) 0;
             display: flex;
             align-items: flex-start;
-            margin-bottom: 200px;
+            margin-bottom: clamp(100px, 10vw, 200px);
         }
 
         &--latest {
-            width: 1920px;
-            height: 1080px;
-            background: url('../../assets/images/kediheal/latest_bg.png') no-repeat center / cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            height: clamp(800px, 100vh, 1080px);
+            background-color: #fff;
             position: relative;
             color: #000;
+            overflow: hidden;
+            display: block; // Flex 해제 (absolute 위주)
+        }
+    }
+
+    &__latest-visual {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        &--left {
+            left: 0;
+            width: 571px;
+            height: 857px;
+            aspect-ratio: 569/854;
+
+            img {
+                object-fit: contain;
+                object-position: left center;
+            }
+        }
+
+        &--right {
+            right: 0;
+            width: 595px;
+            height: 1097px;
+            aspect-ratio: 32/59;
+
+            img {
+                object-fit: cover;
+                object-position: right center;
+            }
         }
     }
 
     &__latest-inner {
-        width: 1920px;
-        height: 1000px;
+        width: 100%;
+        max-width: 1920px;
+        height: 100%;
         margin: 0 auto;
-        padding: 80px 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         position: relative;
         z-index: 1;
+        box-sizing: border-box;
     }
 
     &__latest-main-title {
         color: var(--primary-blue, #151789);
-        font-family: 'PP Mori';
+        font-family: "PP Mori";
         font-size: 200px;
         font-weight: 600;
         line-height: 200px;
-        letter-spacing: -6px;
-        margin: 0;
-        padding-left: 270px;
+        letter-spacing: 0px;
+        position: absolute;
+        top: -20px;
+        left: 250px;
     }
 
-    &__latest-content-row {
+    &__latest-middle-wrap {
+        position: absolute;
+        top: 25%;
+        // width: 100%;
         display: flex;
+        gap: 638px;
         justify-content: space-between;
         align-items: flex-start;
-        margin-top: -20px;
+
     }
 
     &__latest-left-block {
-        width: 639px;
-        height: 397px;
         color: var(--primary-blue, #151789);
-        font-family: 'PP Mori';
+        font-family: "PP Mori";
         font-size: 96px;
-        font-style: normal;
         font-weight: 600;
         line-height: 110px;
-        /* 114.583% */
         letter-spacing: -2.88px;
-        margin-left: 8px;
-        padding-left: 270px;
+        margin-left: 250px;
+
 
         span {
             color: #fff;
@@ -105,54 +162,66 @@
     }
 
     &__latest-right-block {
-        width: 580px;
-        height: 350px;
-        text-align: center;
-        opacity: 0.6;
+        width: 595px;
+        max-width: 600px;
         background: #fff;
-        margin-top: 40px;
+        opacity: 0.5;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 44px 0;
     }
 
     &__latest-pdrn-title {
         font-family: 'PP Mori';
-        font-size: 150px;
+        font-size: clamp(80px, 10vw, 180px);
         font-weight: 600;
-        line-height: 110px;
-        letter-spacing: -4.5px;
-        margin-bottom: 24px;
-        text-align: center;
-        padding-top: 70px;
+        line-height: 1;
+        letter-spacing: -5px;
         color: var(--GreyScale-grey-500, #474747);
-        text-decoration: none;
+        text-align: center;
+        margin-bottom: 20px;
+
     }
 
     &__latest-description {
         color: var(--GreyScale-grey-500, #474747);
-        text-decoration: none;
         font-family: Pretendard;
-        font-size: 22px;
+        font-size: clamp(18px, 1.5vw, 24px);
         font-weight: 400;
-        line-height: 30px;
+        line-height: 1.5;
+        text-align: center;
 
         p {
             margin: 0;
         }
     }
 
+    &__latest-bottom-wrap {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
     &__latest-products {
         display: flex;
         justify-content: center;
-        gap: 0;
-        padding-right: 70px;
-        margin-bottom: 10px;
+        gap: 20px;
+        position: relative;
     }
 
     &__latest-product-item {
-        width: 320px;
-        height: 400px;
         display: flex;
         justify-content: center;
         align-items: center;
+
 
         img {
             max-width: 100%;
@@ -167,40 +236,38 @@
     }
 
     .latest-btn {
-        position: relative;
-        left: 750px;
-        bottom: 70px;
         display: flex;
         width: 335px;
         height: 60px;
-        padding: 10px 20px;
-        flex-wrap: wrap;
         justify-content: center;
-        gap: 80px;
         align-items: center;
+        gap: 40px;
         background: transparent;
-        flex-shrink: 0;
         border: 1px solid var(--GreyScale-grey-500, #474747);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
 
         &__text {
             color: var(--GreyScale-grey-500, #474747);
             font-family: Pretendard;
             font-size: 19px;
             font-weight: 700;
-            line-height: 150%;
         }
 
         &__arrow {
-            color: #000;
             width: 12px;
             height: 24px;
-            aspect-ratio: 1/2;
         }
     }
+
     // Final CTA Section
     &__section--final-cta {
         margin-top: 120px;
-        width: 1920px;
+        width: 100%;
         height: 618px;
         background-repeat: no-repeat;
         background-position: center;
@@ -221,19 +288,29 @@
             padding-top: 80px;
             color: #fff;
             font-family: Pretendard;
-            font-size: 40px;
+            font-size: clamp(24px, 5vw, 40px);
             font-weight: 500;
-            line-height: normal;
+            line-height: 1.4;
             margin: 0;
+            padding: 0 20px;
         }
 
         .kediheal__final-cta-form {
             display: flex;
-            width: 900px;
-            height: 90px;
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            min-height: 90px;
             border: 1px solid #fff;
             box-sizing: border-box;
             background: rgba(255, 255, 255, 0.1);
+
+            @media screen and (max-width: 767px) {
+                flex-direction: column;
+                border: none;
+                background: transparent;
+                gap: 15px;
+            }
         }
 
         .kediheal__final-cta-input {
@@ -243,16 +320,23 @@
             padding: 0 40px;
             color: #fff;
             font-family: Pretendard;
-            font-size: 20px;
+            font-size: clamp(16px, 2.5vw, 20px);
             font-style: normal;
             font-weight: 500;
             line-height: normal;
             outline: none;
 
+            @media screen and (max-width: 767px) {
+                width: 100%;
+                height: 60px;
+                border: 1px solid #fff;
+                box-sizing: border-box;
+            }
+
             &::placeholder {
                 color: #fff;
                 font-family: Pretendard;
-                font-size: 20px;
+                font-size: clamp(16px, 2.5vw, 20px);
                 font-weight: 500;
                 line-height: normal;
             }
@@ -260,16 +344,20 @@
 
         .kediheal__final-cta-button {
             width: 178px;
-            height: 100%;
+            height: clamp(60px, 10vw, 90px);
             background: #fff;
             border: none;
             color: #000;
             font-family: Pretendard;
-            font-size: 20px;
+            font-size: clamp(18px, 2.5vw, 20px);
             font-weight: 500;
             line-height: normal;
             cursor: pointer;
             transition: background 0.3s ease;
+
+            @media screen and (max-width: 767px) {
+                width: 100%;
+            }
 
             &:hover {
                 background: #f0f0f0;
@@ -279,10 +367,22 @@
 
     // Hyaluron Section
     &__hyaluron-inner {
-        width: 1400px;
-        height: 1774px;
+        width: 100%;
+        max-width: 1400px;
+        min-height: 1774px;
+        height: auto;
         margin: 0 auto;
         position: relative;
+        padding: 0 20px;
+        box-sizing: border-box;
+
+        @media screen and (max-width: 767px) {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            padding: 100px 20px;
+        }
     }
 
     &__hyaluron-block {
@@ -290,34 +390,51 @@
         z-index: 10;
 
         &--top-left {
-            top: 200px;
-            left: 150px;
+            top: clamp(100px, 15vw, 200px);
+            left: clamp(20px, 10vw, 150px);
+
+            @media screen and (max-width: 767px) {
+                position: relative;
+                top: 0;
+                left: 0;
+                text-align: center;
+            }
         }
 
         &--bottom-right {
-            bottom: 250px;
-            right: 160px;
-            width: 400px;
+            bottom: clamp(150px, 20vw, 250px);
+            right: clamp(20px, 10vw, 160px);
+            width: 100%;
+            max-width: 400px;
             text-align: right;
+
+            @media screen and (max-width: 767px) {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
     }
 
     &__hyaluron-title {
         color: var(--Foundation-Blue-Darker, #050923);
         font-family: Pretendard;
-        font-size: 40px;
+        font-size: clamp(24px, 5vw, 40px);
         font-weight: 700;
-        line-height: 130%;
+        line-height: 1.3;
         letter-spacing: 1px;
-        margin-bottom: 24px;
+        margin-bottom: clamp(12px, 2vw, 24px);
     }
 
     &__hyaluron-subtitle {
         color: #6c6c6c;
         font-family: Pretendard;
-        font-size: 24px;
+        font-size: clamp(16px, 3vw, 24px);
         font-weight: 500;
-        line-height: 30px;
+        line-height: 1.4;
     }
 
     &__hyaluron-image-wrap {
@@ -325,20 +442,64 @@
         z-index: 2;
 
         &--toner {
-            top: 107px;
-            right: 90px;
-            width: 500px;
-            height: 452px;
+            top: clamp(80px, 8vw, 107px);
+            right: clamp(10px, 5vw, 90px);
+            width: clamp(250px, 35vw, 500px);
+            height: auto;
             transform: rotate(8.142deg);
             aspect-ratio: 125/113;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+            @media screen and (max-width: 767px) {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto;
+                width: 80%;
+            }
+
+            &:hover {
+                transform: rotate(8.142deg) scale(1.05);
+
+                .kediheal__hyaluron-img--base {
+                    opacity: 0;
+                }
+
+                .kediheal__hyaluron-img--hover {
+                    opacity: 1;
+                }
+            }
         }
 
         &--mask {
-            top: 1000px;
-            left: 180px;
-            width: 371px;
-            height: 670px;
+            top: clamp(800px, 60vw, 1000px);
+            left: clamp(20px, 10vw, 180px);
+            width: clamp(200px, 25vw, 371px);
+            height: auto;
+            aspect-ratio: 371 / 670;
             transform: rotate(-15.917deg);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+
+            @media screen and (max-width: 767px) {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 0 auto;
+                width: 60%;
+            }
+
+            &:hover {
+                transform: rotate(-15.917deg) scale(1.05);
+
+                .kediheal__hyaluron-img--base {
+                    opacity: 0;
+                }
+
+                .kediheal__hyaluron-img--hover {
+                    opacity: 1;
+                }
+            }
         }
     }
 
@@ -346,22 +507,49 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+        &--base {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        &--hover {
+            opacity: 0;
+            z-index: 2;
+            pointer-events: none;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: opacity;
+        }
     }
 
     &__hyaluron-wrap {
         position: absolute;
-        top: 733px; // 상단으로 올림
+        top: clamp(600px, 45vw, 733px);
         left: 50%;
         transform: translateX(-50%);
-        width: 100vw;
+        width: 100%;
         z-index: 3;
         overflow: visible;
         display: flex;
         justify-content: center;
+
+        @media screen and (max-width: 767px) {
+            position: relative;
+            top: 0;
+            transform: none;
+            left: 0;
+            order: -1; // 모바일에서 텍스트를 위로 올릴 수도 있지만, 시안 유지
+        }
     }
 
     &__hyaluron-track {
-        width: 1622px; // 텍스트 너비 고정
+        width: 100%;
+        max-width: 1622px;
         text-align: center;
     }
 
@@ -369,22 +557,33 @@
         display: block;
         color: var(--Foundation-Blue-Darker, #050923);
         font-family: 'PP Mori';
-        font-size: 274px;
+        font-size: clamp(100px, 18vw, 274px);
         font-style: normal;
         font-weight: 600;
-        line-height: 100%;
-        letter-spacing: -8.22px;
+        line-height: 1;
+        letter-spacing: -3px;
+
+        @media screen and (max-width: 767px) {
+            letter-spacing: -1px;
+        }
     }
 
     // Global Section
     &__global-inner {
-        width: 926px;
+        width: 100%;
+        max-width: 926px;
         min-height: 1040px;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+
+        @media screen and (max-width: 767px) {
+            min-height: auto;
+        }
     }
 
     &__global-header {
@@ -395,20 +594,20 @@
         color: var(--Bk_Wh-Bk, #000);
         text-align: center;
         font-family: Pretendard;
-        font-size: 64px;
+        font-size: clamp(32px, 6vw, 64px);
         font-weight: 700;
-        line-height: normal;
-        margin-bottom: 30px;
+        line-height: 1.2;
+        margin-bottom: clamp(15px, 3vw, 30px);
     }
 
     &__global-main-desc {
         color: var(--GreyScale-grey-400, #6c6c6c);
         text-align: center;
         font-family: Pretendard;
-        font-size: 24px;
+        font-size: clamp(16px, 2.5vw, 24px);
         font-weight: 400;
-        line-height: 30px;
-        margin-bottom: 117px;
+        line-height: 1.4;
+        margin-bottom: clamp(60px, 10vw, 117px);
     }
 
     &__global-list {
@@ -424,8 +623,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        transition: all 0.3s ease;
-        padding-bottom: 5px;
+        transition: all 0.4s ease;
+        padding: 10px 0;
+        width: 100%;
+
+        &.is-dimmed {
+            opacity: 0.4;
+            filter: blur(4px);
+        }
 
         &.is-active {
             .kediheal__global-name-kr {
@@ -435,20 +640,34 @@
             .kediheal__global-name-en {
                 display: block;
             }
+
+            .kediheal__global-city-desc {
+                max-height: 200px;
+                opacity: 1;
+                margin-top: 25px;
+            }
         }
     }
 
     &__global-city-name {
         position: relative;
-        display: flex;
+        display: inline-flex;
         align-items: flex-start;
         justify-content: center;
         color: var(--primary-blue, #151789);
         text-align: center;
         font-family: Pretendard;
-        font-size: 115px;
+        font-size: clamp(40px, 10vw, 115px);
         font-weight: 700;
-        line-height: 100px;
+        line-height: 1;
+        height: auto;
+        min-height: clamp(40px, 10vw, 115px);
+
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
     }
 
     &__global-name-kr {
@@ -457,24 +676,45 @@
 
     &__global-name-en {
         display: none;
+        font-family: 'PP Mori';
+        letter-spacing: -2px;
     }
 
     &__global-stat {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin-left: 15px;
         color: var(--primary-blue, #151789);
-        text-align: center;
+        text-align: left;
         font-family: Pretendard;
-        font-size: 40px;
+        font-size: clamp(18px, 4vw, 40px);
         font-weight: 500;
-        line-height: normal;
-        margin-top: -4px;
+        line-height: 1;
+        white-space: nowrap;
+
+        @media screen and (max-width: 767px) {
+            position: relative;
+            left: 0;
+            margin-left: 0;
+            text-align: center;
+        }
     }
 
     &__global-city-desc {
         color: #151789;
-        font-size: 26px;
+        font-size: clamp(16px, 2.5vw, 26px);
         font-weight: 400;
         line-height: 1.4;
-        margin-top: 9px;
+        margin-top: 0;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
     &__global-search {
@@ -539,26 +779,41 @@
     }
 
     &__care-inner {
-        width: 1400px;
+        width: 100%;
+        max-width: 1400px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        padding: 0 clamp(20px, 5vw, 60px);
+        box-sizing: border-box;
+
+        @media screen and (max-width: 1024px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
     }
 
     &__care-left {
-        width: 662px;
-        height: 808px;
+        width: 100%;
+        max-width: 662px;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        @media screen and (max-width: 1024px) {
+            max-width: 100%;
+            text-align: center;
+        }
     }
 
     &__care-title {
         color: var(--Bk_Wh-Bk, #000);
-        font-size: 40px;
+        font-size: clamp(28px, 5vw, 40px);
         font-weight: 700;
-        line-height: 120%;
+        line-height: 1.2;
         letter-spacing: -1px;
         margin-bottom: 26px;
     }
@@ -566,16 +821,17 @@
     &__care-desc {
         color: #474747;
         font-family: Pretendard;
-        font-size: 22px;
+        font-size: clamp(18px, 2.5vw, 22px);
         font-weight: 400;
-        line-height: 120%;
+        line-height: 1.4;
         letter-spacing: -1px;
         margin-bottom: 40px;
     }
 
     &__care-main-image {
         width: 100%;
-        height: 564px;
+        height: auto;
+        aspect-ratio: 662 / 564;
         border-radius: 12px;
         overflow: hidden;
     }
@@ -588,10 +844,17 @@
     }
 
     &__care-right {
-        width: 690px;
+        width: 100%;
+        max-width: 690px;
         height: 808px;
         overflow-y: auto;
         padding-right: 10px;
+
+        @media screen and (max-width: 1024px) {
+            max-width: 100%;
+            height: auto;
+            overflow: visible;
+        }
 
         &::-webkit-scrollbar {
             width: 4px;
@@ -622,18 +885,20 @@
 
     .kediheal {
         &__hero-title {
-            width: 572px;
-            height: 90px;
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
             color: #000;
             font-family: 'PP Mori', sans-serif;
-            font-size: 100px;
+            font-size: clamp(48px, 8vw, 100px);
             font-weight: 600;
-            line-height: normal;
-            margin-bottom: 26px;
+            line-height: 1.1;
+            margin-bottom: clamp(16px, 3vw, 26px);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0;
+            flex-wrap: wrap;
         }
 
         &__hero-letter-wrap {
@@ -658,15 +923,17 @@
     &__hero-subtitle {
         color: #1e1e1e;
         text-align: center;
-        font-size: 24px;
+        font-size: clamp(18px, 2vw, 24px);
         font-weight: 600;
         line-height: 150%;
-        margin-bottom: 37px;
+        margin-bottom: clamp(24px, 4vw, 37px);
+        padding: 0 20px;
     }
 
     &__hero-image-wrapper {
-        width: 266px;
-        height: 543px;
+        width: clamp(150px, 20vw, 266px);
+        height: auto;
+        aspect-ratio: 266 / 543;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -699,9 +966,10 @@
     &__transition-line {
         color: var(--grey-scale-grey-900, #1e1e1e);
         text-align: center;
-        font-size: 64px;
+        font-size: clamp(32px, 6vw, 64px);
         font-weight: 700;
-        line-height: 100px;
+        line-height: 1.4;
+        padding: 0 20px;
         letter-spacing: -0.64px;
         white-space: pre-wrap;
         display: inline-flex;
@@ -736,6 +1004,7 @@
     }
 
     @keyframes kediheal-cursor-blink {
+
         0%,
         100% {
             opacity: 1;

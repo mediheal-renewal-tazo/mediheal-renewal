@@ -1,7 +1,6 @@
-import React from 'react';
 import CareCard from './CareCard';
 import hyaluronCareMainImg from '../../assets/images/kediheal/care_main.png';
-// import poreCareImg from '../../assets/images/kediheal/pore_care.png';
+import poreCareImg from '../../assets/images/kediheal/pore_care.png';
 import heatCareImg from '../../assets/images/kediheal/heat_care.png';
 import gauzePadVideo from '../../assets/videos/kediheal/kediheal_care.mp4';
 
@@ -12,7 +11,7 @@ const KedihealCare = () => {
             subtitle:
                 '모공 결 정돈과 매끈한 피부결을 위한 케어모공<br />결 정돈과 매끈한 피부결을 위한 케어모공 결',
             mediaType: 'image',
-            mediaSource: 'https://placehold.co/254x188/e0e0e0/414141?text=Pore+Care',
+            mediaSource: poreCareImg,
         },
         {
             title: '열감 반응 케어',

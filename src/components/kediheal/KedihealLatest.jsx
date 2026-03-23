@@ -1,3 +1,5 @@
+import lateLeft from '../../assets/images/kediheal/late_left.png';
+import lateRight from '../../assets/images/kediheal/late_right.png';
 import lastestLeftImg from '../../assets/images/kediheal/kediheal__pdrn_left.png';
 import lastestRightImg from '../../assets/images/kediheal/kediheal__pdrn_right.png';
 import finalCtaBg from '../../assets/images/kediheal/final_cta_bg.png';
@@ -6,11 +8,19 @@ const KedihealLatest = () => {
     return (
         <>
             <section className="kediheal__section kediheal__section--latest">
+                {/* 배경 비주얼 요소 */}
+                <div className="kediheal__latest-visual kediheal__latest-visual--left">
+                    <img src={lateLeft} alt="" />
+                </div>
+                <div className="kediheal__latest-visual kediheal__latest-visual--right">
+                    <img src={lateRight} alt="" />
+                </div>
+
                 <div className="kediheal__latest-inner">
                     {/* 1. 상단 메인 타이포 */}
-                    <h2 className="kediheal__latest-main-title">MEDIHEAL'S</h2>
+                    <h2 className="kediheal__latest-main-title">MEDIHEAL's</h2>
 
-                    <div className="kediheal__latest-content-row">
+                    <div className="kediheal__latest-middle-wrap">
                         {/* 2. 좌측 큰 텍스트 블록 */}
                         <div className="kediheal__latest-left-block">
                             <span>LA</span>TEST
@@ -33,40 +43,42 @@ const KedihealLatest = () => {
                         </div>
                     </div>
 
-                    {/* 3. 하단 제품 이미지 2개 */}
-                    <div className="kediheal__latest-products">
-                        <div className="kediheal__latest-product-item">
-                            <img
-                                src={lastestLeftImg}
-                                alt="Product 01"
-                                className="kediheal__latest-product-img"
-                            />
-                        </div>
-                        <div className="kediheal__latest-product-item">
-                            <img
-                                src={lastestRightImg}
-                                alt="Product 02"
-                                className="kediheal__latest-product-img"
-                            />
-                        </div>
-                    </div>
-                    <button className="latest-btn" type="button">
-                        <span className="latest-btn__text">신제품 라인으로 바로가기</span>
-                        <span className="latest-btn__arrow">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="12"
-                                height="24"
-                                viewBox="0 0 12 24"
-                                fill="none"
-                            >
-                                <path
-                                    d="M2.45199 6.57828L3.51299 5.51828L9.29199 11.2953C9.38514 11.3878 9.45907 11.4979 9.50952 11.6192C9.55997 11.7404 9.58594 11.8705 9.58594 12.0018C9.58594 12.1331 9.55997 12.2631 9.50952 12.3844C9.45907 12.5056 9.38514 12.6157 9.29199 12.7083L3.51299 18.4883L2.45299 17.4283L7.87699 12.0033L2.45199 6.57828Z"
-                                    fill="black"
+                    <div className="kediheal__latest-bottom-wrap">
+                        {/* 3. 하단 제품 이미지 2개 */}
+                        <div className="kediheal__latest-products">
+                            <div className="kediheal__latest-product-item">
+                                <img
+                                    src={lastestLeftImg}
+                                    alt="Product 01"
+                                    className="kediheal__latest-product-img"
                                 />
-                            </svg>
-                        </span>
-                    </button>
+                            </div>
+                            <div className="kediheal__latest-product-item">
+                                <img
+                                    src={lastestRightImg}
+                                    alt="Product 02"
+                                    className="kediheal__latest-product-img"
+                                />
+                            </div>
+                        </div>
+                        <button className="latest-btn" type="button">
+                            <span className="latest-btn__text">신제품 라인으로 바로가기</span>
+                            <span className="latest-btn__arrow">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="24"
+                                    viewBox="0 0 12 24"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M2.45199 6.57828L3.51299 5.51828L9.29199 11.2953C9.38514 11.3878 9.45907 11.4979 9.50952 11.6192C9.55997 11.7404 9.58594 11.8705 9.58594 12.0018C9.58594 12.1331 9.55997 12.2631 9.50952 12.3844C9.45907 12.5056 9.38514 12.6157 9.29199 12.7083L3.51299 18.4883L2.45299 17.4283L7.87699 12.0033L2.45199 6.57828Z"
+                                        fill="black"
+                                    />
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </section>
 

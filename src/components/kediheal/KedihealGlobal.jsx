@@ -1,7 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+const GlobalCityRow = ({ city, isActive, isAnyActive, onMouseEnter }) => {
+    const countRef = useRef(null);
+    const targetValue = parseInt(city.stat);
+
+    useGSAP(() => {
+        if (isActive) {
+            const obj = { value: 1 };
+            gsap.to(obj, {
+                value: targetValue,
+                duration: 0.6,
+                ease: 'power2.out',
+                onUpdate: () => {
+                    if (countRef.current) {
+                        countRef.current.innerText = Math.floor(obj.value);
+                    }
+                },
+            });
+        } else {
+            if (countRef.current) {
+                countRef.current.innerText = targetValue;
+            }
+        }
+    }, [isActive]);
+
+    return (
+        <div
+            className={`kediheal__global-row ${isActive ? 'is-active' : ''} ${isAnyActive && !isActive ? 'is-dimmed' : ''}`}
+            onMouseEnter={onMouseEnter}
+        >
+            <div className="kediheal__global-city-name">
+                <span className="kediheal__global-name-kr">{city.kr}</span>
+                <span className="kediheal__global-name-en">{city.en}</span>
+                <span className="kediheal__global-stat">
+                    <span ref={countRef}>{targetValue}</span>K
+                </span>
+            </div>
+            <div className="kediheal__global-city-desc">
+                <div className="kediheal__global-desc-line">{city.desc[0]}</div>
+                <div className="kediheal__global-desc-line">{city.desc[1]}</div>
+            </div>
+        </div>
+    );
+};
 
 const KedihealGlobal = () => {
-    const [hoveredCity, setHoveredCity] = useState('LOS ANGELES');
+    const [hoveredCity, setHoveredCity] = useState(null);
 
     const globalCities = [
         {
@@ -60,25 +106,18 @@ const KedihealGlobal = () => {
                     </p>
                 </div>
 
-                <div className="kediheal__global-list">
+                <div
+                    className="kediheal__global-list"
+                    onMouseLeave={() => setHoveredCity(null)}
+                >
                     {globalCities.map((city) => (
-                        <div
+                        <GlobalCityRow
                             key={city.id}
-                            className={`kediheal__global-row ${hoveredCity === city.id ? 'is-active' : ''}`}
+                            city={city}
+                            isActive={hoveredCity === city.id}
+                            isAnyActive={hoveredCity !== null}
                             onMouseEnter={() => setHoveredCity(city.id)}
-                        >
-                            <div className="kediheal__global-city-name">
-                                <span className="kediheal__global-name-kr">{city.kr}</span>
-                                <span className="kediheal__global-name-en">{city.en}</span>
-                                <span className="kediheal__global-stat">{city.stat}</span>
-                            </div>
-                            {hoveredCity === city.id && (
-                                <div className="kediheal__global-city-desc">
-                                    <div className="kediheal__global-desc-line">{city.desc[0]}</div>
-                                    <div className="kediheal__global-desc-line">{city.desc[1]}</div>
-                                </div>
-                            )}
-                        </div>
+                        />
                     ))}
                 </div>
 
