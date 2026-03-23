@@ -41,6 +41,28 @@
         margin: auto;
     }
 
+    &__empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 0;
+        gap: 16px;
+
+        &-icon {
+            font-size: 60px;
+            color: #aaaaaa;
+            display: flex;
+            align-items: center;
+        }
+
+        &-text {
+            color: #848484;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+
     &__row {
         display: flex;
         align-items: center;
@@ -162,10 +184,18 @@
     &__thumb {
         width: 139px;
         height: 160px;
+        flex-shrink: 0;
         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>')
             repeat;
         background-color: #fafafa;
-        // border: 1px solid #eee;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
     }
 
     &__name {

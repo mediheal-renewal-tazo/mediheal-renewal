@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { CiCircleAlert } from 'react-icons/ci';
+import { getAuthUser } from '@/utils/auth';
+import {
+    getCartItems,
+    updateCartItemQuantity,
+    removeCartItem,
+} from '@/utils/cartStorage';
 import CartItem from '../../components/cart/CartItem';
 import OrderComplete from '../../components/cart/OrderComplete';
 import CartSummary from '../../components/cart/CartSummary';
@@ -6,49 +13,31 @@ import CartTotal from '../../components/cart/CartTotal';
 import OrderStep from '../../components/cart/OrderStep';
 import OrderDetail from '../../components/cart/order-detail/OrderDetail';
 
-// API 모킹 함수 (필요시 활성화)
-// import { getCart, updateCartItem, removeCartItem } from '../../api/cart.api';
-
 import './cart.scss';
 
-// 초기 더미 데이터 작성
-const initialDummyData = [
-    {
-        id: 'c1',
-        userId: 'user1',
-        productId: 'p1',
-        quantity: 1,
-        product: {
-            id: 'p1',
-            name: '마데카소사이드 흔적 토너패드 100매',
-            price: 26000,
-            discount: 5400,
-            shippingFee: 3000,
-        },
-    },
-    {
-        id: 'c2',
-        userId: 'user1',
-        productId: 'p2',
-        quantity: 1,
-        product: {
-            id: 'p2',
-            name: '티트리 에센셜 마스크 진정 수분 10매',
-            price: 20000,
-            discount: 8100,
-            shippingFee: 3000,
-        },
-    },
-];
-
 const Cart = () => {
-    // 흐름 제어: 'cart' -> 'order' -> 'complete'
     const [step, setStep] = useState('cart');
-    const [orderItems, setOrderItems] = useState([]); // 주문할(결제할) 상품 목록
-    const [orderSummary, setOrderSummary] = useState(null); // 최종 결제 정보 (할인, 적립금 등)
+    const [orderItems, setOrderItems] = useState([]);
+    const [orderSummary, setOrderSummary] = useState(null);
+    const [cartItems, setCartItems] = useState([]);
+    const [selectedIds, setSelectedIds] = useState([]);
 
-    const [cartItems, setCartItems] = useState(initialDummyData);
-    const [selectedIds, setSelectedIds] = useState(initialDummyData.map((item) => item.id));
+    // 현재 유저 카트 로드
+    const loadCart = () => {
+        const user = getAuthUser();
+        if (!user) {
+            setCartItems([]);
+            setSelectedIds([]);
+            return;
+        }
+        const items = getCartItems(user.id);
+        setCartItems(items);
+        setSelectedIds(items.map((item) => item.id));
+    };
+
+    useEffect(() => {
+        loadCart();
+    }, []);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -71,26 +60,29 @@ const Cart = () => {
     };
 
     // 수량 변경
-    const handleUpdateQuantity = async (id, newQuantity) => {
+    const handleUpdateQuantity = (id, newQuantity) => {
         if (newQuantity < 1) return;
+        updateCartItemQuantity(id, newQuantity);
         setCartItems((prev) =>
             prev.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item))
         );
     };
 
     // 아이템 삭제
-    const handleRemove = async (id) => {
+    const handleRemove = (id) => {
+        removeCartItem(id);
         setCartItems((prev) => prev.filter((item) => item.id !== id));
         setSelectedIds((prev) => prev.filter((selId) => selId !== id));
     };
 
     // 선택 항목 삭제
-    const handleRemoveSelected = async () => {
+    const handleRemoveSelected = () => {
+        selectedIds.forEach((id) => removeCartItem(id));
         setCartItems((prev) => prev.filter((item) => !selectedIds.includes(item.id)));
         setSelectedIds([]);
     };
 
-    // 하단 '주문하기': 전체/선택 항목 주문결제 화면으로 전환
+    // 하단 '주문하기': 선택 항목 주문결제 화면으로 전환
     const handleOrder = () => {
         const itemsToOrder = cartItems.filter((item) => selectedIds.includes(item.id));
         if (itemsToOrder.length === 0) {
@@ -113,10 +105,6 @@ const Cart = () => {
         setStep('complete');
     };
 
-    // if (step === 'complete') {
-    //     return <OrderComplete orderItems={orderItems} />;
-    // }
-
     // 계산 로직 (선택된 상품들 기준)
     const selectedItems = cartItems.filter((item) => selectedIds.includes(item.id));
 
@@ -131,7 +119,6 @@ const Cart = () => {
 
     const isFreeShipping = totalOriginalPrice - totalDiscount >= 20000;
     const totalShippingFee = selectedItems.length > 0 && !isFreeShipping ? 3000 : 0;
-
     const totalPayment = totalOriginalPrice - totalDiscount + totalShippingFee;
     const isAllSelected = cartItems.length > 0 && selectedIds.length === cartItems.length;
 
@@ -176,7 +163,12 @@ const Cart = () => {
                                 />
                             ))
                         ) : (
-                            <div className="cart__empty">장바구니에 담긴 상품이 없습니다.</div>
+                            <div className="cart__empty">
+                                <div className="cart__empty-icon">
+                                    <CiCircleAlert />
+                                </div>
+                                <p className="cart__empty-text">장바구니에 상품이 없습니다.</p>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -199,7 +191,6 @@ const Cart = () => {
 
                 <CartTotal totalPayment={totalPayment} freeShippingThreshold={20000} />
 
-                {/* 결제완료로 가는 버튼 */}
                 <div className="cart__all-order">
                     <button
                         type="button"
@@ -214,10 +205,10 @@ const Cart = () => {
     );
 
     const renderOrderDetail = () => (
-        <OrderDetail 
-            orderItems={orderItems} 
+        <OrderDetail
+            orderItems={orderItems}
             orderSummary={orderSummary}
-            onBack={() => setStep('cart')} 
+            onBack={() => setStep('cart')}
         />
     );
 
@@ -235,10 +226,10 @@ const Cart = () => {
                 );
             case 'complete':
                 return (
-                    <OrderComplete 
-                        orderItems={orderItems} 
+                    <OrderComplete
+                        orderItems={orderItems}
                         orderSummary={orderSummary}
-                        onGoDetail={() => setStep('detail')} 
+                        onGoDetail={() => setStep('detail')}
                     />
                 );
             case 'detail':

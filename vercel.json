@@ -3,5 +3,6 @@
         "env": {
             "NODE_VERSION": "24"
         }
-    }
+    },
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
