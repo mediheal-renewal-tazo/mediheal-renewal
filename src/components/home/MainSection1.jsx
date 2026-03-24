@@ -33,6 +33,7 @@ const charLines = (() => {
 const MainSection1 = () => {
     const containerRef = useRef(null);
     const listRef = useRef(null);
+
     useGSAP(
         () => {
             // 상품 리스트 애니메이션
@@ -71,6 +72,9 @@ const MainSection1 = () => {
                 .filter((en) => !en.parentElement.querySelector('.char-ko'))
                 .map((en) => en.parentElement);
 
+            // KO 글자 실제 너비 측정
+            const firstNonSpace = koChars.find((ko) => ko.textContent !== ' ');
+            const koCharWidth = firstNonSpace?.getBoundingClientRect().width || 60;
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -114,7 +118,7 @@ const MainSection1 = () => {
                 const t = STAGGER / 2 + koIdx * STAGGER + CHAR_DUR;
                 tl.to(
                     group,
-                    { width: '1em', duration: CHAR_DUR * 0.8, ease: 'power2.out' },
+                    { width: koCharWidth, duration: CHAR_DUR * 0.8, ease: 'power2.out' },
                     t
                 );
             });
@@ -126,7 +130,7 @@ const MainSection1 = () => {
                 const t = STAGGER / 2 + koIdx * STAGGER + CHAR_DUR;
                 tl.to(
                     group,
-                    { width: '0.3em', duration: CHAR_DUR * 0.8, ease: 'power2.out' },
+                    { width: koCharWidth * 0.3, duration: CHAR_DUR * 0.8, ease: 'power2.out' },
                     t
                 );
             });

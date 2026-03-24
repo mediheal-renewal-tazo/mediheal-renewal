@@ -1,6 +1,9 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 import main5_bg from '@/assets/images/home/main5_bg_img.png';
 import { sectionData5, sectionData5_1 } from '@/data/homeData.js';
 import ProductItem from './ProductItem';
@@ -28,8 +31,8 @@ const charLines5 = (() => {
 })();
 
 const MainSection5 = () => {
+    const sectionRef = useRef(null);
     const containerRef = useRef(null);
-    const tlRef = useRef(null);
 
     useGSAP(
         () => {
@@ -57,7 +60,13 @@ const MainSection5 = () => {
             const KO_STAGGER = 0.08;
             const CHAR_DUR = 0.2;
 
-            const tl = gsap.timeline({ paused: true });
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top center',
+                    toggleActions: 'play none none reverse',
+                },
+            });
 
             // EN: 왼쪽부터 한 글자씩 사라짐
             tl.to(enChars, { opacity: 0, duration: EN_FADE, stagger: EN_STAGGER, ease: 'power1.in' }, 0);
@@ -105,23 +114,17 @@ const MainSection5 = () => {
                 koBodyDelay
             );
 
-            tlRef.current = tl;
         },
         { scope: containerRef }
     );
 
-    const handleEnter = () => tlRef.current?.play();
-    const handleLeave = () => tlRef.current?.reverse();
-
     return (
-        <div className="main__section5" data-header-theme="light">
+        <div className="main__section5" ref={sectionRef} data-header-theme="light">
             <div className="main__section5-inner">
                 <div className="main__section5-title">
                     <div
                         className="main__section5-title__text"
                         ref={containerRef}
-                        onMouseEnter={handleEnter}
-                        onMouseLeave={handleLeave}
                     >
                         {charLines5.map((line, lineIdx) => (
                             <span key={lineIdx} className="main__section5-title__line">
