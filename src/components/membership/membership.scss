@@ -394,6 +394,26 @@
 
 /* ===================== Responsive ===================== */
 
+@media (max-width: 1033px) {
+    .membership-sec5 {
+        padding: clamp(60px, 8.3vw, 160px) clamp(16px, 5.2vw, 60px) 120px;
+
+        &__title {
+            font-size: clamp(36px, 10vw, 115px);
+            line-height: 1.05;
+            letter-spacing: clamp(-1px, -0.26vw, -3px);
+        }
+
+        &__arrow {
+            font-size: clamp(32px, 9vw, 110px);
+        }
+
+        &__sub {
+            font-size: clamp(14px, 2vw, 24px);
+        }
+    }
+}
+
 @media (max-width: 999px) {
     .membership-sec2 {
         &__inner {
