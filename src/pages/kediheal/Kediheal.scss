@@ -632,6 +632,7 @@
         background: #151789;
         border: 1px solid var(--Bk_Wh-Wh, #fff);
         border-right: none;
+        caret-color: transparent;
 
         &::placeholder {
             color: var(--grey-scale-grey-100, #ededed);
@@ -641,6 +642,14 @@
             font-size: clamp(13px, 1.5vw, 20px);
             font-weight: 600;
             line-height: normal;
+            transition:
+                opacity 0.2s ease,
+                color 0.2s ease;
+        }
+
+        &:focus::placeholder {
+            opacity: 0;
+            color: #fff;
         }
     }
 
