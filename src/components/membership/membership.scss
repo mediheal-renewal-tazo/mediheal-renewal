@@ -41,6 +41,7 @@
 .membership-sec2 {
     background: #151789;
     padding: clamp(60px, 6.25vw, 120px) clamp(16px, 9.3vw, 178px);
+    overflow: hidden;
 
     &__inner {
         display: flex;
@@ -317,52 +318,77 @@
 /* MembershipSection5 */
 .membership-sec5 {
     background: #fff;
-    padding: clamp(60px, 8.3vw, 160px) clamp(16px, 9.3vw, 178px) clamp(40px, 2.6vw, 50px);
+    padding: clamp(60px, 8.3vw, 160px) 0 240px 336px;
 
-    &__inner {
-        max-width: 740px;
+    &__top {
+        margin-bottom: 40px;
     }
 
-    &__group {
-        margin-bottom: clamp(12px, 1.25vw, 24px);
+    &__title-link {
+        display: inline-block;
+        text-decoration: none;
     }
 
-    &__section-title {
+    &__title {
+        font-family: 'PP Mori', sans-serif;
+        font-size: 115px;
+        font-weight: 600;
+        line-height: 120px;
+        letter-spacing: -3px;
+        text-transform: uppercase;
+        color: #151789;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    &__arrow {
+        font-size: 110px;
+        padding-bottom: 30px;
+        flex-shrink: 0;
+    }
+
+    &__sub {
+        color: #151789;
+        font-family: Pretendard, sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    &__line {
+        width: 100%;
+        height: 1px;
+        background-color: #151789;
+        margin-bottom: 40px;
+    }
+
+    &__notes {
+        display: flex;
+        gap: 60px;
+    }
+
+    &__note-col {
+        flex: 1;
+    }
+
+    &__note-title {
+        color: #151789;
+        font-family: Pretendard, sans-serif;
         font-size: 13px;
         font-weight: 600;
         line-height: 22px;
-        color: #151789;
-        margin-bottom: 20px;
+        margin-bottom: 8px;
     }
 
-    &__term {
-        display: flex;
-        gap: 20px;
-        margin-bottom: 12px;
-
-        &-title {
-            font-size: 13px;
-            font-weight: 600;
-            line-height: 22px;
+    &__note-body {
+        p {
             color: #151789;
-            flex-shrink: 0;
-            min-width: 130px;
+            font-family: Pretendard, sans-serif;
+            font-size: 13px;
+            line-height: 22px;
         }
-
-        &-lines {
-            p {
-                font-size: 13px;
-                line-height: 22px;
-                color: #151789;
-            }
-        }
-    }
-
-    &__note {
-        font-size: 13px;
-        line-height: 22px;
-        color: rgba(21, 23, 137, 0.4);
-        margin-top: clamp(16px, 1.5vw, 28px);
     }
 }
 
