@@ -1,21 +1,22 @@
 .cart {
-    padding: 100px 0;
-    width: 1400px;
+    padding: clamp(72px, 6.95vw, 100px) 0;
+    width: 100%;
+    max-width: 72.9167vw;
     margin: auto;
 
     &__all-order {
-        margin-top: 60px;
+        margin-top: clamp(40px, 4.2vw, 60px);
         text-align: center;
     }
 
     &__title {
         color: var(--grey-scale-grey-800, #272727);
         text-align: center;
-        font-size: 40px;
+        font-size: clamp(30px, 2.78vw, 40px);
         font-weight: 700;
         line-height: 150%;
-        letter-spacing: 1px;
-        margin-bottom: 60px;
+        letter-spacing: clamp(0px, 0.07vw, 1px);
+        margin-bottom: clamp(40px, 4.2vw, 60px);
     }
 
     &__table {
@@ -24,29 +25,30 @@
     &__head {
         display: flex;
         align-items: center;
-        padding: 24px 0;
-        border-bottom: 1px solid #c6c6c6;
-        border-top: 1px solid #c6c6c6;
-        height: 40px;
+        padding: clamp(18px, 1.67vw, 24px) 0;
+        border-bottom: 0.0521vw solid #c6c6c6;
+        border-top: 0.0521vw solid #c6c6c6;
+        height: clamp(32px, 2.78vw, 40px);
         color: var(--grey-scale-grey-800, #272727);
         text-align: center;
-        font-size: 18px;
+        font-size: clamp(15px, 1.25vw, 18px);
         font-weight: 600;
         line-height: 150%;
     }
 
     &__body {
-        border-bottom: 1px solid #e5e5e5;
-        width: 1400px;
+        border-bottom: 0.0521vw solid #e5e5e5;
+        width: 100%;
+        max-width: 72.9167vw;
         margin: auto;
     }
 
     &__row {
         display: flex;
         align-items: center;
-        padding: 30px 0;
+        padding: clamp(20px, 2.08vw, 30px) 0;
         text-align: center;
-        border-bottom: 1px solid #f2f2f2;
+        border-bottom: 0.0521vw solid #f2f2f2;
 
         &:last-child {
             border-bottom: none;
@@ -56,50 +58,50 @@
     // 컬럼 공통 및 너비
     &__head-col {
         &--info {
-            margin-left: 40px;
+            margin-left: clamp(20px, 2.78vw, 40px);
         }
     }
 
     &__head-col,
     &__col {
         &--checkbox {
-            width: 98px;
+            width: clamp(72px, 6.8vw, 98px);
             // padding: 0 29px;
         }
 
         &--info {
             flex: 1;
             text-align: left;
-            padding: 20px;
+            padding: clamp(12px, 1.39vw, 20px);
         }
 
         &--qty {
-            width: 120px;
-            margin-right: 70px;
+            width: clamp(90px, 8.34vw, 120px);
+            margin-right: clamp(20px, 4.87vw, 70px);
         }
 
         &--price {
-            width: 99px;
-            margin-right: 20px;
+            width: clamp(72px, 6.88vw, 99px);
+            margin-right: clamp(8px, 1.39vw, 20px);
         }
 
         &--discount {
-            width: 99px;
-            margin-right: 20px;
+            width: clamp(72px, 6.88vw, 99px);
+            margin-right: clamp(8px, 1.39vw, 20px);
         }
 
         &--shipping {
-            width: 99px;
-            margin-right: 20px;
+            width: clamp(72px, 6.88vw, 99px);
+            margin-right: clamp(8px, 1.39vw, 20px);
         }
 
         &--total {
-            width: 99px;
-            margin-right: 20px;
+            width: clamp(72px, 6.88vw, 99px);
+            margin-right: clamp(8px, 1.39vw, 20px);
         }
 
         &--action {
-            width: 120px;
+            width: clamp(98px, 8.34vw, 120px);
             display: flex;
             justify-content: flex-end;
         }
@@ -109,8 +111,8 @@
     &__checkbox-label {
         position: relative;
         display: inline-block;
-        width: 20px;
-        height: 20px;
+        width: clamp(18px, 1.39vw, 20px);
+        height: clamp(18px, 1.39vw, 20px);
         cursor: pointer;
     }
 
@@ -133,21 +135,21 @@
         position: absolute;
         top: 0;
         left: 0;
-        height: 20px;
-        width: 20px;
+        height: clamp(18px, 1.39vw, 20px);
+        width: clamp(18px, 1.39vw, 20px);
         background-color: #fff;
-        border: 1px solid #ccc;
+        border: 0.0521vw solid #ccc;
 
         &::after {
             content: '';
             position: absolute;
             display: none;
-            left: 6px;
-            top: 2px;
-            width: 5px;
-            height: 10px;
+            left: clamp(5px, 0.42vw, 6px);
+            top: clamp(1px, 0.14vw, 2px);
+            width: clamp(4px, 0.35vw, 5px);
+            height: clamp(9px, 0.7vw, 10px);
             border: solid white;
-            border-width: 0 2px 2px 0;
+            border-width: 0 0.1042vw 0.1042vw 0;
             transform: rotate(45deg);
         }
     }
@@ -156,12 +158,12 @@
     &__product {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: clamp(14px, 1.39vw, 20px);
     }
 
     &__thumb {
-        width: 139px;
-        height: 160px;
+        width: clamp(104px, 9.66vw, 139px);
+        height: clamp(120px, 11.12vw, 160px);
         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>')
             repeat;
         background-color: #fafafa;
@@ -171,25 +173,25 @@
     &__name {
         color: var(--GreyScale-grey-500, #474747);
         text-align: center;
-        font-size: 19px;
+        font-size: clamp(15px, 1.32vw, 19px);
         font-weight: 600;
         line-height: 150%;
     }
 
     // 수량 조절 버튼
     &__qty {
-        width: 120px;
+        width: clamp(96px, 8.34vw, 120px);
         display: inline-flex;
         background: #f9f9f9;
         border-radius: 2px;
 
         &-btn {
-            width: 40px;
-            height: 40px;
+            width: clamp(32px, 2.78vw, 40px);
+            height: clamp(32px, 2.78vw, 40px);
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 26px;
+            font-size: clamp(18px, 1.81vw, 26px);
             color: #474747;
             display: flex;
             align-items: center;
@@ -201,13 +203,13 @@
         }
 
         &-val {
-            width: 40px;
-            height: 40px;
-            font-size: 15px;
+            width: clamp(32px, 2.78vw, 40px);
+            height: clamp(32px, 2.78vw, 40px);
+            font-size: clamp(13px, 1.05vw, 15px);
             font-weight: 400;
             color: #000;
             background: #fff;
-            line-height: 260%;
+            line-height: clamp(32px, 2.78vw, 40px);
         }
     }
 
@@ -215,13 +217,13 @@
     &__price-num {
         color: var(--GreyScale-grey-500, #474747);
         text-align: center;
-        font-size: 19px;
+        font-size: clamp(15px, 1.32vw, 19px);
         font-weight: 400;
         line-height: 150%;
 
         &--strong {
             color: var(--GreyScale-grey-600, #414141);
-            font-size: 19px;
+            font-size: clamp(15px, 1.32vw, 19px);
             font-weight: 700;
             line-height: 150%;
         }
@@ -231,21 +233,21 @@
     &__actions {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: clamp(4px, 0.42vw, 6px);
         width: 100%;
     }
 
     &__btn {
-        width: 98px;
-        height: 40px;
-        padding: 10px;
+        width: clamp(84px, 6.8vw, 98px);
+        height: clamp(36px, 2.78vw, 40px);
+        padding: clamp(8px, 0.7vw, 10px);
         cursor: pointer;
 
         &--order {
             background: var(--primary-blue, #151789);
             color: var(--Bk_Wh-Wh, #fff);
             text-align: center;
-            font-size: 13px;
+            font-size: clamp(12px, 0.91vw, 13px);
             font-weight: 700;
             line-height: 150%;
         }
@@ -253,14 +255,14 @@
         &--wish,
         &--delete {
             display: flex;
-            width: 98px;
-            height: 40px;
-            padding: 10px;
+            width: clamp(84px, 6.8vw, 98px);
+            height: clamp(36px, 2.78vw, 40px);
+            padding: clamp(8px, 0.7vw, 10px);
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: clamp(6px, 0.7vw, 10px);
             background: #fff;
-            border: 1px solid var(--grey-scale-grey-100, #c6c6c6);
+            border: 0.0521vw solid var(--grey-scale-grey-100, #c6c6c6);
 
             &:hover {
                 background-color: #f7f7f7;
@@ -269,14 +271,14 @@
 
         &--select-delete {
             display: flex;
-            width: 98px;
-            height: 40px;
-            padding: 10px;
+            width: clamp(84px, 6.8vw, 98px);
+            height: clamp(36px, 2.78vw, 40px);
+            padding: clamp(8px, 0.7vw, 10px);
             justify-content: center;
             align-items: center;
             background: #fff;
-            border: 1px solid var(--grey-scale-grey-100, #c6c6c6);
-            margin-top: 24px;
+            border: 0.0521vw solid var(--grey-scale-grey-100, #c6c6c6);
+            margin-top: clamp(16px, 1.67vw, 24px);
 
             &:hover {
                 background-color: #f9f9f9;
@@ -287,12 +289,12 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 400px;
-            height: 60px;
+            width: clamp(280px, 27.8vw, 400px);
+            height: clamp(52px, 4.17vw, 60px);
             background-color: #151789;
 
             color: #fff;
-            font-size: 18px;
+            font-size: clamp(15px, 1.25vw, 18px);
             font-weight: 700;
             border: none;
             cursor: pointer;
@@ -306,39 +308,40 @@
     }
 
     &__empty {
-        padding: 80px 0;
+        padding: clamp(56px, 5.56vw, 80px) 0;
         text-align: center;
         color: #888;
-        font-size: 16px;
+        font-size: clamp(14px, 1.12vw, 16px);
     }
 }
 
 // 요약 영역
 .cart-summary {
-    height: 150px;
+    min-height: clamp(120px, 10.42vw, 150px);
     display: flex;
-    gap: 140px;
+    gap: clamp(40px, 9.73vw, 140px);
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    border-top: 2px solid #333;
-    border-top: 2px solid var(--grey-scale-grey-100, #c6c6c6);
-    border-bottom: 2px solid var(--grey-scale-grey-100, #c6c6c6);
+    margin-top: clamp(12px, 1.39vw, 20px);
+    border-top: 0.1042vw solid #333;
+    border-top: 0.1042vw solid var(--grey-scale-grey-100, #c6c6c6);
+    border-bottom: 0.1042vw solid var(--grey-scale-grey-100, #c6c6c6);
     background-color: #fff;
-    width: 1400px;
+    width: 100%;
+    max-width: 72.9167vw;
 
     &__item {
         text-align: center;
-        padding: 0 40px;
+        padding: 0 clamp(12px, 2.78vw, 40px);
     }
 
     &__title {
         color: var(--GreyScale-grey-500, #474747);
-        font-size: 19px;
+        font-size: clamp(15px, 1.32vw, 19px);
         font-weight: 600;
         line-height: 150%;
         display: block;
-        margin-bottom: 12px;
+        margin-bottom: clamp(8px, 0.84vw, 12px);
     }
 
     &__val {
@@ -347,26 +350,26 @@
         justify-content: center;
         color: var(--grey-scale-grey-800, #272727);
         text-align: center;
-        font-size: 28px;
+        font-size: clamp(20px, 1.95vw, 28px);
         font-weight: 600;
         line-height: 150%;
     }
 
     &__unit {
-        font-size: 17px;
+        font-size: clamp(13px, 1.19vw, 17px);
         font-weight: 600;
         line-height: 150%;
         display: flex;
     }
 
     &__sign {
-        width: 30px;
-        height: 30px;
+        width: clamp(22px, 2.08vw, 30px);
+        height: clamp(22px, 2.08vw, 30px);
         display: flex;
         align-items: center;
         justify-content: center;
         color: #aaa;
-        font-size: 36px;
+        font-size: clamp(24px, 2.5vw, 36px);
         font-weight: 200;
         // background: #000;
     }
@@ -374,16 +377,16 @@
 
 // 최종 금액 영역
 .cart-total {
-    height: 100px;
-    padding: 0 20px;
+    min-height: clamp(84px, 6.95vw, 100px);
+    padding: 0 clamp(12px, 1.39vw, 20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--grey-scale-grey-100, #c6c6c6);
+    border-bottom: 0.0521vw solid var(--grey-scale-grey-100, #c6c6c6);
 
     &__desc {
         color: var(--GreyScale-grey-500, #474747);
-        font-size: 15px;
+        font-size: clamp(13px, 1.05vw, 15px);
         font-weight: 500;
         line-height: 150%;
     }
@@ -391,7 +394,7 @@
     &__point {
         color: var(--primary-blue, #151789);
         text-align: center;
-        font-size: 15px;
+        font-size: clamp(13px, 1.05vw, 15px);
         font-weight: 700;
         line-height: 150%;
     }
@@ -399,29 +402,485 @@
     &__price-wrap {
         display: flex;
         align-items: baseline;
-        gap: 16px;
+        gap: clamp(10px, 1.12vw, 16px);
     }
 
     &__title {
         color: var(--GreyScale-grey-600, #414141);
-        font-size: 24px;
+        font-size: clamp(18px, 1.67vw, 24px);
         font-weight: 700;
         line-height: 150%;
-        padding-right: 20px;
+        padding-right: clamp(8px, 1.39vw, 20px);
     }
 
     &__val {
         color: var(--primary-blue, #151789);
         text-align: right;
-        font-size: 32px;
+        font-size: clamp(24px, 2.22vw, 32px);
         font-weight: 700;
         line-height: 150%;
-        letter-spacing: 1px;
+        letter-spacing: clamp(0px, 0.07vw, 1px);
     }
 
     &__unit {
-        font-size: 24px;
+        font-size: clamp(18px, 1.67vw, 24px);
         font-weight: 600;
         line-height: 150%;
     }
+}
+
+@media screen and (max-width: 1400px) {
+    .cart {
+        .inner {
+            width: clamp(50vw, 86vw, 100vw);
+            margin: auto;
+        }
+        padding: clamp(56px, 7.8vw, 80px) clamp(16px, 1.95vw, 20px);
+
+        &__all-order {
+            margin-top: clamp(28px, 3.9vw, 40px);
+        }
+
+        &__title {
+            font-size: clamp(30px, 4vw, 36px);
+            margin-bottom: clamp(28px, 3.9vw, 40px);
+        }
+
+        &__head {
+            display: none;
+        }
+
+        &__body {
+            border-bottom: none;
+        }
+
+        &__row {
+            display: flex;
+            gap: clamp(14px, 1.95vw, 20px);
+            align-items: start;
+            padding: clamp(18px, 2.34vw, 24px) 0;
+            text-align: left;
+            border-top: 0.0714vw solid #e5e5e5;
+            border-bottom: none;
+        }
+
+        &__head-col,
+        &__col {
+            &--checkbox {
+                width: clamp(2vw, 2.3vw, 2.8vw);
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            &--info {
+                grid-column: 2 / 4;
+                grid-row: 1;
+                width: 100%;
+                padding: 0;
+                text-align: left;
+            }
+
+            &--qty {
+                grid-column: 2;
+                grid-row: 2;
+                width: auto;
+                margin-right: 0;
+                text-align: left;
+            }
+
+            &--price,
+            &--discount,
+            &--shipping,
+            &--total {
+                width: auto;
+                margin-right: 0;
+                text-align: left;
+            }
+
+            &--price {
+                grid-column: 2;
+                grid-row: 3;
+            }
+
+            &--discount {
+                grid-column: 2;
+                grid-row: 4;
+            }
+
+            &--shipping {
+                grid-column: 2;
+                grid-row: 5;
+            }
+
+            &--total {
+                grid-column: 2;
+                grid-row: 6;
+            }
+
+            &--action {
+                grid-column: 3;
+                grid-row: 2 / 7;
+                width: clamp(96px, 11.72vw, 120px);
+                justify-content: flex-end;
+            }
+        }
+
+        &__product {
+            gap: clamp(12px, 1.56vw, 16px);
+            align-items: flex-start;
+        }
+
+        &__thumb {
+            width: clamp(92px, 10.74vw, 110px);
+            height: clamp(104px, 12.3vw, 126px);
+            flex-shrink: 0;
+        }
+
+        &__name {
+            text-align: center;
+            font-size: clamp(14px, 1.66vw, 17px);
+            line-height: 1.45;
+        }
+
+        &__qty {
+            width: clamp(92px, 10.55vw, 108px);
+
+            &-btn,
+            &-val {
+                width: clamp(30px, 3.52vw, 36px);
+                height: clamp(30px, 3.52vw, 36px);
+            }
+
+            &-btn {
+                font-size: clamp(18px, 2.15vw, 22px);
+            }
+
+            &-val {
+                font-size: clamp(12px, 1.37vw, 14px);
+                line-height: clamp(30px, 3.52vw, 36px);
+            }
+        }
+
+        &__price-num {
+            font-size: clamp(13px, 1.56vw, 16px);
+            line-height: 1.45;
+
+            &--strong {
+                font-size: clamp(14px, 1.66vw, 17px);
+                line-height: 1.45;
+            }
+        }
+
+        &__actions {
+            gap: clamp(6px, 0.78vw, 8px);
+        }
+
+        &__btn {
+            width: clamp(96px, 10.74vw, 110px);
+            height: clamp(34px, 3.71vw, 38px);
+            padding: clamp(6px, 0.78vw, 8px) clamp(8px, 0.98vw, 10px);
+
+            &--order,
+            &--wish,
+            &--delete,
+            &--select-delete {
+                width: clamp(96px, 10.74vw, 110px);
+                height: clamp(34px, 3.71vw, 38px);
+                font-size: clamp(11px, 1.17vw, 12px);
+            }
+
+            &--all-order {
+                width: min(100%, 360px);
+                height: clamp(48px, 5.47vw, 56px);
+                font-size: clamp(15px, 1.66vw, 17px);
+            }
+        }
+
+        &__empty {
+            padding: clamp(44px, 5.86vw, 60px) 0;
+            font-size: clamp(13px, 1.46vw, 15px);
+        }
+    }
+
+    .cart-summary {
+        height: auto;
+        gap: clamp(16px, 2.34vw, 24px);
+        justify-content: space-between;
+        align-items: stretch;
+        margin-top: clamp(12px, 1.56vw, 16px);
+        padding: clamp(18px, 2.34vw, 24px) clamp(16px, 1.95vw, 20px);
+        box-sizing: border-box;
+
+        &__item {
+            flex: 1;
+            padding: 0 clamp(8px, 1.17vw, 12px);
+        }
+
+        &__title {
+            font-size: clamp(14px, 1.56vw, 16px);
+            margin-bottom: clamp(8px, 0.98vw, 10px);
+        }
+
+        &__val {
+            font-size: clamp(18px, 2.15vw, 22px);
+            line-height: 1.4;
+        }
+
+        &__unit {
+            font-size: clamp(12px, 1.37vw, 14px);
+        }
+
+        &__sign {
+            width: clamp(16px, 1.95vw, 20px);
+            height: clamp(16px, 1.95vw, 20px);
+            font-size: clamp(18px, 2.34vw, 24px);
+            align-self: center;
+        }
+    }
+
+    .cart-total {
+        height: auto;
+        padding: clamp(18px, 2.34vw, 24px) clamp(16px, 1.95vw, 20px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(12px, 1.56vw, 16px);
+
+        &__desc {
+            font-size: clamp(12px, 1.37vw, 14px);
+            line-height: 1.45;
+        }
+
+        &__point {
+            font-size: clamp(12px, 1.37vw, 14px);
+            line-height: 1.45;
+        }
+
+        &__price-wrap {
+            width: 100%;
+            justify-content: flex-end;
+            gap: clamp(8px, 0.98vw, 10px);
+        }
+
+        &__title {
+            font-size: clamp(17px, 1.95vw, 20px);
+            padding-right: clamp(4px, 0.78vw, 8px);
+        }
+
+        &__val {
+            font-size: clamp(22px, 2.73vw, 28px);
+            letter-spacing: 0;
+        }
+
+        &__unit {
+            font-size: clamp(17px, 1.95vw, 20px);
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cart {
+        padding: clamp(40px, 11.7vw, 56px) clamp(12px, 3.3vw, 16px);
+
+        &__all-order {
+            margin-top: clamp(24px, 6.7vw, 32px);
+        }
+
+        &__title {
+            font-size: clamp(24px, 6.5vw, 30px);
+            margin-bottom: clamp(20px, 5.8vw, 28px);
+        }
+
+        &__row {
+            grid-template-columns: 24px 1fr;
+            gap: clamp(10px, 3vw, 14px);
+            padding: clamp(14px, 3.8vw, 18px) 0;
+        }
+
+        &__head-col,
+        &__col {
+            &--checkbox {
+                width: clamp(4.5vw, 5vw, 6vw);
+            }
+
+            &--info {
+                grid-column: 2;
+            }
+
+            &--qty,
+            &--price,
+            &--discount,
+            &--shipping,
+            &--total {
+                grid-column: 2;
+            }
+
+            &--action {
+                grid-column: 2;
+                grid-row: auto;
+                width: 100%;
+                justify-content: flex-start;
+                margin-top: clamp(0.8vw, 1vw, 1.2vw);
+            }
+        }
+
+        &__checkbox-label,
+        &__checkbox-custom {
+            width: clamp(16px, 3.8vw, 18px);
+            height: clamp(16px, 3.8vw, 18px);
+        }
+
+        &__checkbox-custom::after {
+            left: clamp(4px, 1vw, 5px);
+            top: clamp(0.5px, 0.2vw, 1px);
+            width: clamp(3px, 0.8vw, 4px);
+            height: clamp(7px, 2vw, 9px);
+            /* No fixed border-widths here, so nothing to change */
+        }
+
+        &__product {
+            gap: clamp(8px, 2.9vw, 12px);
+        }
+
+        &__thumb {
+            width: clamp(72px, 20vw, 84px);
+            height: clamp(82px, 22.9vw, 96px);
+        }
+
+        &__name {
+            font-size: clamp(12px, 3.3vw, 14px);
+            line-height: 1.4;
+        }
+
+        &__qty {
+            width: clamp(84px, 23vw, 96px);
+
+            &-btn,
+            &-val {
+                width: clamp(28px, 7.5vw, 32px);
+                height: clamp(28px, 7.5vw, 32px);
+            }
+
+            &-btn {
+                font-size: clamp(15px, 4.2vw, 18px);
+            }
+
+            &-val {
+                font-size: clamp(11px, 3vw, 13px);
+                line-height: clamp(28px, 7.5vw, 32px);
+            }
+        }
+
+        &__price-num {
+            font-size: clamp(12px, 3.3vw, 14px);
+
+            &--strong {
+                font-size: clamp(13px, 3.5vw, 15px);
+            }
+        }
+
+        &__actions {
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: clamp(4px, 1.7vw, 6px);
+        }
+
+        &__btn {
+            width: auto;
+            min-width: clamp(72px, 24vw, 88px);
+            height: clamp(30px, 9vw, 34px);
+            padding: clamp(5px, 1.7vw, 6px) clamp(8px, 2.5vw, 10px);
+
+            &--order,
+            &--wish,
+            &--delete,
+            &--select-delete {
+                width: auto;
+                min-width: clamp(72px, 24vw, 88px);
+                height: clamp(30px, 9vw, 34px);
+                font-size: clamp(10px, 2.9vw, 11px);
+                gap: clamp(4px, 1.7vw, 6px);
+            }
+
+            &--all-order {
+                width: 100%;
+                height: clamp(44px, 11.7vw, 50px);
+                font-size: clamp(13px, 3.5vw, 15px);
+            }
+        }
+
+        &__empty {
+            padding: clamp(28px, 8.3vw, 40px) 0;
+            font-size: clamp(12px, 3.3vw, 14px);
+        }
+    }
+
+    .cart-summary {
+        flex-direction: column;
+        gap: clamp(8px, 3.3vw, 12px);
+        padding: clamp(14px, 4.2vw, 18px) clamp(12px, 3.3vw, 16px);
+
+        &__item {
+            width: 100%;
+            padding: 0;
+        }
+
+        &__title {
+            font-size: clamp(12px, 3.3vw, 14px);
+            margin-bottom: clamp(4px, 1.7vw, 6px);
+        }
+
+        &__val {
+            font-size: clamp(15px, 4.2vw, 18px);
+        }
+
+        &__unit {
+            font-size: clamp(10px, 2.9vw, 12px);
+        }
+
+        &__sign {
+            width: 100%;
+            height: auto;
+            font-size: clamp(15px, 4.2vw, 18px);
+            justify-content: center;
+        }
+    }
+
+    .cart-total {
+        padding: clamp(14px, 4.2vw, 18px) clamp(12px, 3.3vw, 16px);
+        gap: clamp(8px, 3.3vw, 12px);
+
+        &__desc,
+        &__point {
+            font-size: clamp(11px, 3vw, 13px);
+        }
+
+        &__price-wrap {
+            gap: clamp(6px, 2.1vw, 8px);
+            flex-wrap: wrap;
+        }
+
+        &__title {
+            font-size: clamp(14px, 3.8vw, 16px);
+            padding-right: 0;
+        }
+
+        &__val {
+            font-size: clamp(18px, 5vw, 22px);
+        }
+
+        &__unit {
+            font-size: clamp(14px, 3.8vw, 16px);
+        }
+    }
+}
+
+// Convert any remaining fixed px layout borders or widths
+.cart__thumb {
+    // border: 1px solid #eee; // commented out in original, do not touch
+}
+
+// Convert any missed fixed px border-widths and layout widths
+.cart__qty {
+    border-radius: 0.1042vw;
 }
