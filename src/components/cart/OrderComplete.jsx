@@ -9,7 +9,8 @@ const dummyOrderData = [
         shippingFee: '무료배송',
         discount: 5400,
         totalPrice: 20400,
-        thumbnail: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>',
+        thumbnail:
+            'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>',
     },
     {
         id: 'o2',
@@ -18,7 +19,8 @@ const dummyOrderData = [
         shippingFee: '무료배송',
         discount: 8100,
         totalPrice: 11900,
-        thumbnail: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>',
+        thumbnail:
+            'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>',
     },
 ];
 
@@ -30,7 +32,7 @@ const OrderComplete = ({ orderItems = [], orderSummary, onGoDetail }) => {
         couponDiscountAmount = 0,
         actualPointsToUse = 0,
         shippingFee = 0,
-        totalTotalPayment = 0
+        totalTotalPayment = 0,
     } = orderSummary || {};
 
     const basePriceTotal = originalProductPrice - itemDiscounts; // 전체 상품 합계 (상품할인 적용 후)
@@ -52,20 +54,28 @@ const OrderComplete = ({ orderItems = [], orderSummary, onGoDetail }) => {
                             <span className="order-complete__info-head">제품</span>
                         </div>
                         <div className="order-complete__col order-complete__col--qty">수량</div>
-                        <div className="order-complete__col order-complete__col--shipping">배송비</div>
-                        <div className="order-complete__col order-complete__col--discount">할인 금액</div>
-                        <div className="order-complete__col order-complete__col--total">결제 금액</div>
+                        <div className="order-complete__col order-complete__col--shipping">
+                            배송비
+                        </div>
+                        <div className="order-complete__col order-complete__col--discount">
+                            할인 금액
+                        </div>
+                        <div className="order-complete__col order-complete__col--total">
+                            결제 금액
+                        </div>
                     </div>
 
                     <div className="order-complete__list-body">
                         {orderItems.map((item) => {
                             const pName = item.product?.name || '';
-                            const pThumb = item.thumbnail || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>';
+                            const pThumb =
+                                item.thumbnail ||
+                                'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>';
                             const pQty = item.quantity || 1;
                             const pPrice = item.product?.price || 0;
                             const pItemDiscount = (item.product?.discount || 0) * pQty;
 
-                            const pBasePrice = (pPrice * pQty) - pItemDiscount;
+                            const pBasePrice = pPrice * pQty - pItemDiscount;
 
                             // 전역 할인(쿠폰, 적립금)을 상품 가격 비율에 맞춰 안분 계산 (가장 합리적인 방식)
                             // 단일 품목일 경우 100% 적용됨
@@ -107,21 +117,49 @@ const OrderComplete = ({ orderItems = [], orderSummary, onGoDetail }) => {
                     </div>
                 </div>
 
-                {/* 하단 최종 결제금액 영역 */}
-                <div className="order-complete__summary">
-                    <span className="order-complete__summary-title">최종 결제금액</span>
-                    <span className="order-complete__summary-val">
-                        {totalTotalPayment.toLocaleString()}<span className="order-complete__summary-unit">원</span>
-                    </span>
+                {/* 하단 요약 영역 (상세) */}
+                <div className="order-complete__summary-wrap">
+                    <div className="order-complete__summary-item">
+                        <span className="order-complete__summary-label">판매가</span>
+                        <span className="order-complete__summary-value">
+                            <strong>{originalProductPrice.toLocaleString()}</strong>원
+                        </span>
+                    </div>
+                    <div className="order-complete__summary-oper">-</div>
+                    <div className="order-complete__summary-item">
+                        <span className="order-complete__summary-label">할인금액</span>
+                        <span className="order-complete__summary-value">
+                            <strong>
+                                {(
+                                    itemDiscounts +
+                                    couponDiscountAmount +
+                                    actualPointsToUse
+                                ).toLocaleString()}
+                            </strong>
+                            원
+                        </span>
+                    </div>
+                    <div className="order-complete__summary-oper">+</div>
+                    <div className="order-complete__summary-item">
+                        <span className="order-complete__summary-label">배송비</span>
+                        <span className="order-complete__summary-value">
+                            <strong>{shippingFee.toLocaleString()}</strong>원
+                        </span>
+                    </div>
+
+                    <div className="order-complete__summary-final">
+                        <div className="order-complete__summary-total">
+                            <span className="order-complete__summary-label">최종 결제금액</span>
+                            <span className="order-complete__summary-value">
+                                <strong>{totalTotalPayment.toLocaleString()}</strong>원
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
                 {/* 최하단 버튼 */}
                 <div className="order-complete__actions">
-                    <button
-                        type="button"
-                        className="order-complete__btn"
-                        onClick={onGoDetail}
-                    >
+                    <button type="button" className="order-complete__btn" onClick={onGoDetail}>
                         주문 상세보기
                     </button>
                 </div>

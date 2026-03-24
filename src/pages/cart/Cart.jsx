@@ -210,10 +210,10 @@ const Cart = () => {
     );
 
     const renderOrderDetail = () => (
-        <OrderDetail 
-            orderItems={orderItems} 
+        <OrderDetail
+            orderItems={orderItems}
             orderSummary={orderSummary}
-            onBack={() => setStep('cart')} 
+            onBack={() => setStep('cart')}
         />
     );
 
@@ -231,10 +231,10 @@ const Cart = () => {
                 );
             case 'complete':
                 return (
-                    <OrderComplete 
-                        orderItems={orderItems} 
+                    <OrderComplete
+                        orderItems={orderItems}
                         orderSummary={orderSummary}
-                        onGoDetail={() => setStep('detail')} 
+                        onGoDetail={() => setStep('detail')}
                     />
                 );
             case 'detail':
