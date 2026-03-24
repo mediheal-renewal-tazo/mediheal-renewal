@@ -218,7 +218,7 @@
         &-middle {
             position: absolute;
             left: 0;
-            top: 38.3%;
+            top: 36%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -800,6 +800,9 @@
                 .right {
                     font-size: clamp(36px, 4vw, 40px);
                 }
+            }
+            &-middle {
+                display: none;
             }
             &-line {
                 width: 80%;
