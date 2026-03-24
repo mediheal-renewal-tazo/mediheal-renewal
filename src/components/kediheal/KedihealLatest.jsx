@@ -3,25 +3,32 @@ import pdrnVisual from '../../assets/images/kediheal/kediheal__pdrn.png';
 
 const KedihealLatest = () => {
     return (
-        <section className="kediheal__latest-rebuild">
-            <div className="kediheal__latest-rebuild-inner">
-                <div className="kediheal__latest-rebuild-left">
-                    <h2 className="kediheal__latest-rebuild-title">PDRN</h2>
-
-                    <p className="kediheal__latest-rebuild-subtitle">
-                        메디힐의 최신 연구를 만나보세요
-                    </p>
-
-                    <p className="kediheal__latest-rebuild-desc">
+        <section className="kediheal__latest-research">
+            <div className="kediheal__latest-research-inner">
+                <div className="kediheal__latest-research-header">
+                    <h2 className="kediheal__latest-research-title">MEET THE LATEST RESEARCH</h2>
+                    <p className="kediheal__latest-research-desc">
                         순도 99% 로즈 PDRN과 메디힐만의 공법으로 만들어낸 모공 개선과 리프팅의
                         솔루션.
                     </p>
+                </div>
 
-                    <button type="button" className="kediheal__latest-rebuild-btn">
-                        <span className="kediheal__latest-rebuild-btn-text">
+                <div className="kediheal__latest-research-visual-wrap">
+                    <div className="kediheal__latest-research-visual">
+                        <img
+                            src={pdrnVisual}
+                            alt="PDRN product visual"
+                            className="kediheal__latest-research-image"
+                        />
+                    </div>
+                </div>
+
+                <div className="kediheal__latest-research-action">
+                    <button type="button" className="kediheal__latest-research-btn">
+                        <span className="kediheal__latest-research-btn-text">
                             신제품 라인으로 바로가기
                         </span>
-                        <span className="kediheal__latest-rebuild-btn-arrow" aria-hidden="true">
+                        <span className="kediheal__latest-research-btn-arrow" aria-hidden="true">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="12"
@@ -36,14 +43,6 @@ const KedihealLatest = () => {
                             </svg>
                         </span>
                     </button>
-                </div>
-
-                <div className="kediheal__latest-rebuild-right">
-                    <img
-                        src={pdrnVisual}
-                        alt="PDRN product visual"
-                        className="kediheal__latest-rebuild-image"
-                    />
                 </div>
             </div>
         </section>
