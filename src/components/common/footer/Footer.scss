@@ -61,6 +61,12 @@
         }
     }
 
+    &__col--business {
+        .footer__text {
+            margin-bottom: 4px;
+        }
+    }
+
     &__col--copy {
         text-align: right;
     }
