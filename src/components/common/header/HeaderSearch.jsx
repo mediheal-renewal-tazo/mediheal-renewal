@@ -1,11 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { IoClose } from 'react-icons/io5';
+import productsData from '@/data/productsData';
+import HeaderSearchResults from './HeaderSearchResults';
 
 const HeaderSearch = ({ isOpen, onClose }) => {
     const [query, setQuery] = useState('');
     const inputRef = useRef(null);
     const panelRef = useRef(null);
+
+    const results = useMemo(() => {
+        if (!query.trim()) return [];
+        return productsData
+            .filter((p) =>
+                p.name.toLowerCase().includes(query.trim().toLowerCase())
+            )
+            .slice(0, 6);
+    }, [query]);
 
     useEffect(() => {
         if (!isOpen) {
@@ -53,6 +64,9 @@ const HeaderSearch = ({ isOpen, onClose }) => {
                     />
                 </div>
             </div>
+            {query.trim() && (
+                <HeaderSearchResults results={results} query={query} onClose={onClose} />
+            )}
         </div>
     );
 };
