@@ -19,15 +19,12 @@ const ProductsMain = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const listTopRef = useRef(null);
-    const isFirstRender = useRef(true);
+    const prevPageRef = useRef(currentPage);
     const itemsPerPage = 16;
 
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
-
+        if (prevPageRef.current === currentPage) return;
+        prevPageRef.current = currentPage;
         listTopRef.current?.scrollIntoView({
             behavior: 'smooth',
             block: 'start',

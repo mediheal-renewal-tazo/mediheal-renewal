@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useParams } from 'react-router-dom';
 import productsData from '@/data/productsData';
 import ShopDetail__main from '@/components/shopDetail/ShopDetail__main';
@@ -7,9 +8,10 @@ import ShopDetail__info from '@/components/shopDetail/ShopDetail__info';
 import ShopDetail__review from '@/components/shopDetail/ShopDetail__review';
 import ShopDetail__Guide from '@/components/shopDetail/ShopDetail__Guide';
 import topButton from '@/assets/images/product_details/icon/up_btn.svg';
-import OpenCart from'@/assets/images/product_details/icon/openCart.svg';
-import CloseCart from'@/assets/images/product_details/icon/closeCart.svg';
+import OpenCart from '@/assets/images/product_details/icon/openCart.svg';
+import CloseCart from '@/assets/images/product_details/icon/closeCart.svg';
 import ShopDetail__Cart from '@/components/shopDetail/ShopDetail__Cart';
+import ShopDetail__Essentialinfo from '@/components/shopDetail/ShopDetail__Essentialinfo';
 import '@/components/shopDetail/ShopDetail.scss';
 
 const ShopDetail__page = () => {
@@ -28,10 +30,7 @@ const ShopDetail__page = () => {
     const scrollToRef = (ref, offset = 120) => {
         if (!ref.current) return;
 
-        const top =
-            ref.current.getBoundingClientRect().top +
-            window.pageYOffset -
-            offset;
+        const top = ref.current.getBoundingClientRect().top + window.pageYOffset - offset;
 
         window.scrollTo({
             top,
@@ -156,58 +155,67 @@ const ShopDetail__page = () => {
     }
 
     return (
-        <div className="wrap">
-            <div className="Products__detail-inner">
-                <ShopDetail__main moveToReview={moveToReviewFromMain} />
+        <>
+            <div className="wrap">
+                <div className="Products__detail-inner">
+                    <ShopDetail__main moveToReview={moveToReviewFromMain} />
 
-                <div ref={tapRef}>
-                    <ShopDetail__Tap
-                        activeTab={activeTab}
-                        setActiveTab={moveToSection}
-                        reviewCount={product.reviewCount ?? 0}
-                    />
+                    <div ref={tapRef}>
+                        <ShopDetail__Tap
+                            activeTab={activeTab}
+                            setActiveTab={moveToSection}
+                            reviewCount={product.reviewCount ?? 0}
+                        />
+                    </div>
+
+                    <section ref={infoRef} className="shopDetail__section">
+                        <ShopDetail__info />
+                    </section>
+
+                    <ShopDetail__Essentialinfo />
+
+                    <section ref={reviewRef} className="shopDetail__section">
+                        <ShopDetail__review />
+                    </section>
+
+                    <section ref={guideRef} className="shopDetail__section">
+                        <ShopDetail__Guide />
+                    </section>
                 </div>
-
-                <section ref={infoRef} className="shopDetail__section">
-                    <ShopDetail__info />
-                </section>
-
-                <section ref={reviewRef} className="shopDetail__section">
-                    <ShopDetail__review />
-                </section>
-
-                <section ref={guideRef} className="shopDetail__section">
-                    <ShopDetail__Guide />
-                </section>
-            </div>
-
-            <button
-                type="button"
-                className={`scrollTopButton ${showTopButton ? 'is-visible' : ''}`}
-                onClick={scrollToTop}
-                aria-label="맨 위로 이동"
-            >
-                <img src={topButton} alt="" />
-            </button>
-
-            <div
-                className={`cartOverlay ${isCartOpen ? 'is-open' : ''}`}
-                onClick={closeCartDrawer}
-            />
-
-            <aside className={`cartDrawer ${isCartOpen ? 'is-open' : ''}`}>
 
                 <button
                     type="button"
-                    className="cartTriggerButton"
-                    onClick={isCartOpen ? closeCartDrawer : openCartDrawer}
-                    aria-label="장바구니 패널 열기/닫기"
+                    className={`scrollTopButton ${showTopButton ? 'is-visible' : ''}`}
+                    onClick={scrollToTop}
+                    aria-label="맨 위로 이동"
                 >
-                    <img src={isCartOpen ? CloseCart : OpenCart} alt="" />
+                    <img src={topButton} alt="" />
                 </button>
-                <ShopDetail__Cart />
-            </aside>
-        </div>
+            </div>
+
+            {createPortal(
+                <>
+                    <div
+                        className={`cartOverlay ${isCartOpen ? 'is-open' : ''}`}
+                        onClick={closeCartDrawer}
+                    />
+
+                    <aside className={`cartDrawer ${isCartOpen ? 'is-open' : ''}`}>
+                        <button
+                            type="button"
+                            className="cartTriggerButton"
+                            onClick={isCartOpen ? closeCartDrawer : openCartDrawer}
+                            aria-label="장바구니 패널 열기/닫기"
+                        >
+                            <img src={isCartOpen ? CloseCart : OpenCart} alt="" />
+                        </button>
+
+                        <ShopDetail__Cart />
+                    </aside>
+                </>,
+                document.body
+            )}
+        </>
     );
 };
 

@@ -44,7 +44,7 @@ import review15_1 from '@/assets/images/product_details/review/pic29.jpeg';
 import review15_2 from '@/assets/images/product_details/review/pic30.jpg';
 
 const reviewData = [
-{
+    {
         id: 1,
         reviewType: 'img',
         option: 'p070',
@@ -58,7 +58,7 @@ const reviewData = [
         skinConcern: '트러블',
         images: [review01_1, review01_2],
     },
-{
+    {
         id: 2,
         reviewType: 'img',
         option: 'p070',
@@ -72,7 +72,7 @@ const reviewData = [
         skinConcern: '모공/피지',
         images: [review02_1, review02_2],
     },
-{
+    {
         id: 3,
         reviewType: 'img',
         option: 'p070',
@@ -86,7 +86,7 @@ const reviewData = [
         skinConcern: '건조함',
         images: [review03_1, review03_2],
     },
-{
+    {
         id: 4,
         reviewType: 'img',
         option: 'p070',
@@ -100,7 +100,7 @@ const reviewData = [
         skinConcern: '모공/탄력',
         images: [review04_1, review04_2],
     },
-{
+    {
         id: 5,
         reviewType: 'img',
         option: 'p070',
@@ -115,7 +115,7 @@ const reviewData = [
         skinConcern: '트러블',
         images: [review05_1, review05_2],
     },
-{
+    {
         id: 6,
         reviewType: 'img',
         option: 'p070',
@@ -129,7 +129,7 @@ const reviewData = [
         skinConcern: '속당김/수분부족',
         images: [review06_1, review06_2],
     },
-{
+    {
         id: 7,
         reviewType: 'img',
         option: 'p070',
@@ -143,7 +143,7 @@ const reviewData = [
         skinConcern: '홍조/진정',
         images: [review07_1, review07_2],
     },
-{
+    {
         id: 8,
         reviewType: 'img',
         option: 'p032',
@@ -158,7 +158,7 @@ const reviewData = [
         skinConcern: '유분/피지',
         images: [review08_1, review08_2],
     },
-{
+    {
         id: 9,
         reviewType: 'img',
         option: 'p032',
@@ -173,7 +173,7 @@ const reviewData = [
         skinConcern: '칙칙함/미백',
         images: [review09_1, review09_2],
     },
-{
+    {
         id: 10,
         reviewType: 'img',
         option: 'p032',
@@ -188,7 +188,7 @@ const reviewData = [
         skinConcern: '각질/피부결',
         images: [review10_1, review10_2],
     },
-{
+    {
         id: 11,
         reviewType: 'img',
         option: 'p032',
@@ -202,7 +202,7 @@ const reviewData = [
         skinConcern: '유분/피지',
         images: [review11_1, review11_2],
     },
-{
+    {
         id: 12,
         reviewType: 'img',
         option: 'p032',
@@ -216,7 +216,7 @@ const reviewData = [
         skinConcern: '모공/탄력',
         images: [review12_1, review12_2],
     },
-{
+    {
         id: 13,
         reviewType: 'img',
         option: 'p032',
@@ -230,7 +230,7 @@ const reviewData = [
         skinConcern: '홍조/진정',
         images: [review13_1, review13_2],
     },
-{
+    {
         id: 14,
         reviewType: 'img',
         option: 'p032',
@@ -244,7 +244,7 @@ const reviewData = [
         skinConcern: '속당김/수분부족',
         images: [review14_1, review14_2],
     },
-{
+    {
         id: 15,
         reviewType: 'img',
         option: 'p032',
@@ -587,7 +587,7 @@ const reviewData = [
         usagePeriod: '2개월',
         skinType: '복합성',
         skinConcern: '피부탄력',
-    }
+    },
 ];
 
 export default reviewData;

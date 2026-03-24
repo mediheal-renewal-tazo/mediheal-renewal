@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import productsData from '@/data/productsData';
 import productsDetailData from '@/data/productsDetailData';
+import { getAuthUser } from '@/utils/auth';
+import { addCartItem } from '@/utils/cartStorage';
 import Products__HeartButton from '@/components/shop/Products__HeartButton';
 import Npay_button from '@/assets/images/product_details/icon/Npay-button.png';
 import minus from '@/assets/images/product_details/icon/icon_3.png';
@@ -11,19 +14,45 @@ import star from '@/assets/images/product_details/icon/star.svg';
 
 const ShopDetail__main = ({ moveToReview }) => {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const product = productsData.find((item) => item.id === id);
     const detailProduct = productsDetailData.find((item) => item.id === id);
 
-    const [mainImage, setMainImage] = useState(product?.images?.[0] ?? '');
+    const [mainImage, setMainImage] = useState(detailProduct?.main ?? product?.images?.[0] ?? '');
     const [quantity, setQuantity] = useState(1);
     const [inputValue, setInputValue] = useState('1');
+    const [showModal, setShowModal] = useState(false);
+
+    const handleAddToCart = () => {
+        const user = getAuthUser();
+        if (!user) {
+            alert('로그인이 필요합니다.');
+            navigate('/login');
+            return;
+        }
+        addCartItem({
+            userId: user.id,
+            productId: product.id,
+            quantity,
+            product: {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                discount: (product.price ?? 0) - (product.discountPrice ?? product.price ?? 0),
+                image: product.images?.[0] ?? null,
+            },
+        });
+        setShowModal(true);
+    };
 
     useEffect(() => {
-        if (product?.images?.[0]) {
+        if (detailProduct?.main) {
+            setMainImage(detailProduct.main);
+        } else if (product?.images?.[0]) {
             setMainImage(product.images[0]);
         }
-    }, [product]);
+    }, [product, detailProduct]);
 
     if (!product) {
         return <div>상품 없음</div>;
@@ -60,11 +89,13 @@ const ShopDetail__main = ({ moveToReview }) => {
 
     const handleInputBlur = () => {
         const parsed = parseInt(inputValue, 10);
+
         if (Number.isNaN(parsed) || parsed < 1) {
             setQuantity(1);
             setInputValue('1');
             return;
         }
+
         setQuantity(parsed);
         setInputValue(String(parsed));
     };
@@ -76,6 +107,7 @@ const ShopDetail__main = ({ moveToReview }) => {
     };
 
     return (
+        <>
         <div className="shopDetail__main">
             <div className="shopDetail__imgbox">
                 <div className="main-img">
@@ -107,6 +139,7 @@ const ShopDetail__main = ({ moveToReview }) => {
                                     </span>
                                 ))}
                             </div>
+
                             <Products__HeartButton />
                         </div>
 
@@ -191,13 +224,11 @@ const ShopDetail__main = ({ moveToReview }) => {
 
                     <div className="shopDetail__PaymentAmount">
                         <span className="PaymentAmount-text">총 상품금액</span>
-                        <span className="PaymentAmount-total">
-                            {totalPrice.toLocaleString()}원
-                        </span>
+                        <span className="PaymentAmount-total">{totalPrice.toLocaleString()}원</span>
                     </div>
 
                     <div className="shopDetail__button">
-                        <button type="button" className="shopDetail__cart-button">
+                        <button type="button" className="shopDetail__cart-button" onClick={handleAddToCart}>
                             장바구니
                         </button>
 
@@ -226,6 +257,32 @@ const ShopDetail__main = ({ moveToReview }) => {
                 </div>
             </div>
         </div>
+
+        {showModal && createPortal(
+            <div className="cartModal__overlay">
+                <div className="cartModal">
+                    <p className="cartModal__text">장바구니에 담겼습니다!<br />장바구니로 이동하시겠습니까?</p>
+                    <div className="cartModal__actions">
+                        <button
+                            type="button"
+                            className="cartModal__btn cartModal__btn--confirm"
+                            onClick={() => { setShowModal(false); navigate('/cart'); }}
+                        >
+                            예
+                        </button>
+                        <button
+                            type="button"
+                            className="cartModal__btn cartModal__btn--cancel"
+                            onClick={() => setShowModal(false)}
+                        >
+                            아니오
+                        </button>
+                    </div>
+                </div>
+            </div>,
+            document.body
+        )}
+        </>
     );
 };
 

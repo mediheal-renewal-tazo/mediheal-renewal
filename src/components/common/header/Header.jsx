@@ -5,7 +5,8 @@ import { HEADER_NAV_ITEMS, ROUTE_PATHS } from '@/app/routes/paths';
 import { GiHamburgerMenu } from "react-icons/gi";
 import logoImg1 from '@/assets/logos/logo_1.png';
 import logoImg2 from '@/assets/logos/logo_2.png';
-import { getAuthUser } from '@/utils/auth';
+import { getAuthUser, logoutUser } from '@/utils/auth';
+import { getCartItems } from '@/utils/cartStorage';
 import HeaderSearch from './HeaderSearch';
 import './Header.scss';
 
@@ -15,10 +16,22 @@ const Header = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isOverDark, setIsOverDark] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(() => !!getAuthUser());
+    const [cartCount, setCartCount] = useState(() => {
+        const user = getAuthUser();
+        return user ? getCartItems(user.id).length : 0;
+    });
     const location = useLocation();
 
+    const updateCartCount = () => {
+        const user = getAuthUser();
+        setCartCount(user ? getCartItems(user.id).length : 0);
+    };
+
     useEffect(() => {
-        const handleAuthChange = () => setIsLoggedIn(!!getAuthUser());
+        const handleAuthChange = () => {
+            setIsLoggedIn(!!getAuthUser());
+            updateCartCount();
+        };
         window.addEventListener('authChange', handleAuthChange);
         window.addEventListener('storage', handleAuthChange);
         return () => {
@@ -27,10 +40,20 @@ const Header = () => {
         };
     }, []);
 
-    const logoSrc = isOverDark ? logoImg2 : logoImg1;
+    useEffect(() => {
+        window.addEventListener('cartChange', updateCartCount);
+        return () => window.removeEventListener('cartChange', updateCartCount);
+    }, []);
+
+    const THEME_AWARE_PATHS = ['/', '/brand', '/membership', '/kediheal'];
+    const isThemeAwarePage = THEME_AWARE_PATHS.some((p) =>
+        p === '/' ? location.pathname === '/' : location.pathname === p
+    );
+
+    const logoSrc = !isThemeAwarePage ? logoImg2 : isOverDark ? logoImg2 : logoImg1;
     const headerClassName = [
         'header',
-        isOverDark ? '' : 'header--dark',
+        !isThemeAwarePage ? 'header--navy' : isOverDark ? '' : 'header--dark',
         isMenuOpen ? 'header--menu-open' : '',
         isVisible ? 'header--visible' : '',
     ].filter(Boolean).join(' ');
@@ -127,6 +150,11 @@ const Header = () => {
                         <div className="header__icon-btn">
                             <div className="header__login-btn">{isLoggedIn ? 'MY PAGE' : 'LOGIN'}</div>
                         </div>
+                        {isLoggedIn && (
+                            <div className="header__icon-btn">
+                                <div className="header__login-btn">LOGOUT</div>
+                            </div>
+                        )}
                         <div className="header__cart-wrap">
                             <div className="header__icon-btn">
                                 <div className="header__cart-btn">CART</div>
@@ -137,7 +165,7 @@ const Header = () => {
             </div>,
             document.body
         )}
-        <header className={headerClassName}>
+        <header className={headerClassName} onMouseLeave={() => setIsMenuOpen(false)}>
             <div className="header__inner">
                 <div className="header__brand">
                     <button
@@ -170,13 +198,24 @@ const Header = () => {
                     >
                         <div className="header__login-btn">{isLoggedIn ? 'MY PAGE' : 'LOGIN'}</div>
                     </Link>
+                    {isLoggedIn && (
+                        <button
+                            className="header__icon-btn"
+                            type="button"
+                            onClick={() => logoutUser()}
+                        >
+                            <div className="header__login-btn">LOGOUT</div>
+                        </button>
+                    )}
                     <div className="header__cart-wrap">
                         <Link className="header__icon-btn" to={ROUTE_PATHS.CART} aria-label="Cart">
                             <div className="header__cart-btn">CART</div>
                         </Link>
-                        <span className="header__cart-count">
-                            <span className="header__cart-count-text">1</span>
-                        </span>
+                        {cartCount > 0 && (
+                            <span className="header__cart-count">
+                                <span className="header__cart-count-text">{cartCount}</span>
+                            </span>
+                        )}
                     </div>
                 </div>
             </div>

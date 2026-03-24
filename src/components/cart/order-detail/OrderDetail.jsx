@@ -1,7 +1,10 @@
 import React from 'react';
+import { getAuthUser } from '@/utils/auth';
 import './order-detail.scss';
 
 const OrderDetail = ({ orderItems = [], orderSummary, onBack }) => {
+    const user = getAuthUser();
+
     // 실제 데이터 기반 계산 로직 (orderSummary에서 가져옴)
     const {
         originalProductPrice = 0,
@@ -24,7 +27,7 @@ const OrderDetail = ({ orderItems = [], orderSummary, onBack }) => {
     const orderInfo = {
         date: '26.03.16(일)',
         orderNumber: '20260318123120440001',
-        name: '장*진',
+        name: user?.name || '이름 없음',
         address: '수원시 장안구 창훈로 70-3 ****',
         phone: '010-****-0000',
         memo: '부재 시 집 앞에 놔주세요.',
@@ -60,7 +63,9 @@ const OrderDetail = ({ orderItems = [], orderSummary, onBack }) => {
                     <div className="product-list">
                         {orderItems.map((item) => (
                             <div className="product-item" key={item.id}>
-                                <div className="thumb"></div>
+                                <div className="thumb">
+                                    {item.product?.image && <img src={item.product.image} alt={item.product.name} />}
+                                </div>
                                 <div className="info">
                                     <div className="name">{item.product.name}</div>
                                     <div className="qty">수량 : {item.quantity}개</div>

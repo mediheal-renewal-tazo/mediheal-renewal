@@ -108,10 +108,10 @@
         position: relative;
     }
     &__cart-wrap {
+        position: relative;
         display: flex;
         justify-content: center;
         text-align: center;
-        gap: 5px;
     }
 
     &__clip-overlay {
@@ -144,19 +144,25 @@
     }
 
     &__cart-count {
-        display: none; // 조건으로 열기
-        width: 24px;
-        height: 24px;
+        position: absolute;
+        top: -12px;
+        right: -18px;
+        display: flex;
+        width: 18px;
+        height: 18px;
         background: #fff;
         border-radius: 50%;
         justify-content: center;
         align-items: center;
         color: #151789;
+        font-size: 11px;
+        font-weight: 700;
+        pointer-events: none;
     }
 
     &__cart-count-text {
         display: inline-block;
-        transform: translateX(-0.7px) translateY(0.49px);
+        line-height: 1;
     }
 
     &__menu-btn {
@@ -319,6 +325,10 @@
         background: #151789;
         color: #fff;
     }
+}
+
+.header--navy {
+    background: #151789;
 }
 
 @media (max-width: 999px) {

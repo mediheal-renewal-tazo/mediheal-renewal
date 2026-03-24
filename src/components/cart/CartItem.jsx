@@ -3,7 +3,7 @@ import React from 'react';
 const CartItem = ({ item, isSelected, onToggleSelect, onUpdateQuantity, onRemove, onOrderSingle }) => {
     // 상품 기본 정보 꺼내기
     const { id, product, quantity } = item;
-    const { name, price = 0, discount = 0, shippingFee = 0 } = product;
+    const { name, price = 0, discount = 0, shippingFee = 0, image } = product;
 
     // 계산
     // dummyData 기반으로 볼 때
@@ -28,7 +28,9 @@ const CartItem = ({ item, isSelected, onToggleSelect, onUpdateQuantity, onRemove
             </div>
             <div className="cart__col cart__col--info">
                 <div className="cart__product">
-                    <div className="cart__thumb"></div>
+                    <div className="cart__thumb">
+                        {image && <img src={image} alt={name} />}
+                    </div>
                     <p className="cart__name">{name}</p>
                 </div>
             </div>

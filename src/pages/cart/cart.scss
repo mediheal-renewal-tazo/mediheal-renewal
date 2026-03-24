@@ -1,5 +1,5 @@
 .cart {
-    padding: 100px 0;
+    padding: 160px 0;
     width: 1400px;
     margin: auto;
 
@@ -39,6 +39,28 @@
         border-bottom: 1px solid #e5e5e5;
         width: 1400px;
         margin: auto;
+    }
+
+    &__empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 0;
+        gap: 16px;
+
+        &-icon {
+            font-size: 60px;
+            color: #aaaaaa;
+            display: flex;
+            align-items: center;
+        }
+
+        &-text {
+            color: #848484;
+            font-size: 16px;
+            font-weight: 500;
+        }
     }
 
     &__row {
@@ -162,10 +184,18 @@
     &__thumb {
         width: 139px;
         height: 160px;
+        flex-shrink: 0;
         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="5" height="5" fill="%23f0f0f0"/><rect x="5" y="5" width="5" height="5" fill="%23f0f0f0"/><rect x="5" width="5" height="5" fill="%23ffffff"/><rect y="5" width="5" height="5" fill="%23ffffff"/></svg>')
             repeat;
         background-color: #fafafa;
-        // border: 1px solid #eee;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
     }
 
     &__name {
@@ -403,11 +433,15 @@
     }
 
     &__title {
-        color: var(--GreyScale-grey-600, #414141);
-        font-size: 24px;
+        color: #272727;
+        font-family: 'Pretendard-Bold', Helvetica;
+        font-size: clamp(22px, 2.8vw, 40px);
         font-weight: 700;
-        line-height: 150%;
-        padding-right: 20px;
+        letter-spacing: 1px;
+        line-height: 60px;
+        text-align: center;
+        white-space: nowrap;
+        margin-bottom: 60px;
     }
 
     &__val {

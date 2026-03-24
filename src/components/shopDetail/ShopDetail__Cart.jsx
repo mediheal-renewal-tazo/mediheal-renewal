@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import productsData from '@/data/productsData';
+import { getAuthUser } from '@/utils/auth';
+import { addCartItem } from '@/utils/cartStorage';
 import Npay_button from '@/assets/images/product_details/icon/Npay-button.png';
 import minus from '@/assets/images/product_details/icon/icon_3.png';
 import plus from '@/assets/images/product_details/icon/icon_4.png';
@@ -8,11 +11,13 @@ import right_arrow from '@/assets/images/product_details/icon/icon_5.png';
 
 const ShopDetail__Cart = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const product = productsData.find((item) => item.id === id);
 
     const [quantity, setQuantity] = useState(1);
     const [inputValue, setInputValue] = useState('1');
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         setQuantity(1);
@@ -34,7 +39,6 @@ const ShopDetail__Cart = () => {
 
     const handleDecrease = () => {
         if (quantity <= 1) return;
-
         const next = quantity - 1;
         setQuantity(next);
         setInputValue(String(next));
@@ -42,77 +46,98 @@ const ShopDetail__Cart = () => {
 
     const handleInputChange = (e) => {
         const value = e.target.value;
-
-        if (/^\d*$/.test(value)) {
-            setInputValue(value);
-        }
+        if (/^\d*$/.test(value)) setInputValue(value);
     };
 
     const handleInputBlur = () => {
         const parsed = parseInt(inputValue, 10);
-
         if (Number.isNaN(parsed) || parsed < 1) {
             setQuantity(1);
             setInputValue('1');
             return;
         }
-
         setQuantity(parsed);
         setInputValue(String(parsed));
     };
 
     const handleInputKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            e.currentTarget.blur();
+        if (e.key === 'Enter') e.currentTarget.blur();
+    };
+
+    const handleAddToCart = () => {
+        const user = getAuthUser();
+        if (!user) {
+            alert('로그인이 필요합니다.');
+            navigate('/login');
+            return;
         }
+
+        addCartItem({
+            userId: user.id,
+            productId: product.id,
+            quantity,
+            product: {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                discount: (product.price ?? 0) - (product.discountPrice ?? product.price ?? 0),
+                image: product.images?.[0] ?? null,
+            },
+        });
+
+        setShowModal(true);
+    };
+
+    const handleModalConfirm = () => {
+        setShowModal(false);
+        navigate('/cart');
+    };
+
+    const handleModalCancel = () => {
+        setShowModal(false);
     };
 
     return (
-        <div className="cartPanel">
-            <div className="cartPanel__top">
-                <div className="cartPanel__header">
-                    <div className="cartPanel__titleBox">
-                        <p className="cartPanel__description">
-                            {product.description?.trim() || '\u00A0'}
-                        </p>
-                        <h3 className="cartPanel__title">{product.name}</h3>
-                    </div>
-                </div>
-
-                <div className="cartPanel__meta">
-                    <div className="cartPanel__priceBox">
-                        <div className="cartPanel__originPrice">
-                            {product.price?.toLocaleString()}원
+        <>
+            <div className="cartPanel">
+                <div className="cartPanel__top">
+                    <div className="cartPanel__header">
+                        <div className="cartPanel__titleBox">
+                            <p className="cartPanel__description">
+                                {product.description?.trim() || '\u00A0'}
+                            </p>
+                            <h3 className="cartPanel__title">{product.name}</h3>
                         </div>
+                    </div>
 
-                        <div className="cartPanel__sale">
-                            {product.discountRate ? (
-                                <span className="cartPanel__discount">
-                                    {product.discountRate}%
+                    <div className="cartPanel__meta">
+                        <div className="cartPanel__priceBox">
+                            <div className="cartPanel__originPrice">
+                                {product.price?.toLocaleString()}원
+                            </div>
+
+                            <div className="cartPanel__sale">
+                                {product.discountRate ? (
+                                    <span className="cartPanel__discount">
+                                        {product.discountRate}%
+                                    </span>
+                                ) : null}
+                                <span className="cartPanel__finalPrice">
+                                    {(product.discountPrice ?? product.price)?.toLocaleString()}원
                                 </span>
-                            ) : null}
+                            </div>
 
-                            <span className="cartPanel__finalPrice">
-                                {(
-                                    product.discountPrice ?? product.price
-                                )?.toLocaleString()}
-                                원
-                            </span>
-                        </div>
-
-                        <div className="cartPanel__delivery">
-                            <span>배송비</span>
-                            <span>3,000원 (20,000원 이상 무료)</span>
+                            <div className="cartPanel__delivery">
+                                <span>배송비</span>
+                                <span>3,000원 (20,000원 이상 무료)</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="cartPanel__body">
-                <span className="cartPanel__productName">
-                        {product.name}
-                </span>
-                <div className="cartPanel__selected">
+                <div className="cartPanel__body">
+                    <span className="cartPanel__productName">{product.name}</span>
+                    <div className="cartPanel__selected">
                         <div className="cartPanel__quantity">
                             <button
                                 type="button"
@@ -121,7 +146,6 @@ const ShopDetail__Cart = () => {
                             >
                                 <img src={minus} alt="수량 감소" />
                             </button>
-
                             <input
                                 className="cartPanel__quantityInput"
                                 type="number"
@@ -131,7 +155,6 @@ const ShopDetail__Cart = () => {
                                 onBlur={handleInputBlur}
                                 onKeyDown={handleInputKeyDown}
                             />
-
                             <button
                                 type="button"
                                 className="cartPanel__quantityBtn"
@@ -140,46 +163,72 @@ const ShopDetail__Cart = () => {
                                 <img src={plus} alt="수량 증가" />
                             </button>
                         </div>
-                    <div className="cartPanel__selectedRight">
-                        {(unitPrice * quantity).toLocaleString()}원
+                        <div className="cartPanel__selectedRight">
+                            {(unitPrice * quantity).toLocaleString()}원
+                        </div>
                     </div>
-                </div>
 
-                <div className="cartPanel__total">
-                    <span>총 상품금액</span>
-                    <strong>{totalPrice.toLocaleString()}원</strong>
-                </div>
-
-                <div className="cartPanel__actions">
-                    <button type="button" className="cartPanel__cartBtn">
-                        장바구니
-                    </button>
-
-                    <button type="button" className="cartPanel__buyBtn">
-                        구매하기
-                    </button>
-                    <div className="cartPanel__npayInfo">
-                        <span>
-                           네이버ID로 간편구매
-                            <br />
-                            네이버페이
-                        </span>
-                        <p>이벤트 결제 최대혜택 10% 추가적립</p>
+                    <div className="cartPanel__total">
+                        <span>총 상품금액</span>
+                        <strong>{totalPrice.toLocaleString()}원</strong>
                     </div>
-                    <button type="button" className="cartPanel__npayBtn">
-                        <img src={Npay_button} alt="네이버페이 구매하기" />
+
+                    <div className="cartPanel__actions">
+                        <button
+                            type="button"
+                            className="cartPanel__cartBtn"
+                            onClick={handleAddToCart}
+                        >
+                            장바구니
+                        </button>
+                        <button type="button" className="cartPanel__buyBtn">
+                            구매하기
+                        </button>
+                        <div className="cartPanel__npayInfo">
+                            <span>
+                                네이버ID로 간편구매
+                                <br />
+                                네이버페이
+                            </span>
+                            <p>이벤트 결제 최대혜택 10% 추가적립</p>
+                        </div>
+                        <button type="button" className="cartPanel__npayBtn">
+                            <img src={Npay_button} alt="네이버페이 구매하기" />
+                        </button>
+                    </div>
+
+                    <button type="button" className="cartPanel__kakao">
+                        <span>카카오 채널 친구하고 15% 쿠폰받기</span>
+                        <img src={right_arrow} alt="메디힐 카카오채널 추가하고 쿠폰받기" />
                     </button>
                 </div>
-                
-                <button type="button" className="cartPanel__kakao">
-                    <span>카카오 채널 친구하고 15% 쿠폰받기</span>
-                    <img
-                        src={right_arrow}
-                        alt="메디힐 카카오채널 추가하고 쿠폰받기"
-                    />
-                </button>
             </div>
-        </div>
+
+            {showModal && createPortal(
+                <div className="cartModal__overlay">
+                    <div className="cartModal">
+                        <p className="cartModal__text">장바구니에 담겼습니다!<br />장바구니로 이동하시겠습니까?</p>
+                        <div className="cartModal__actions">
+                            <button
+                                type="button"
+                                className="cartModal__btn cartModal__btn--confirm"
+                                onClick={handleModalConfirm}
+                            >
+                                예
+                            </button>
+                            <button
+                                type="button"
+                                className="cartModal__btn cartModal__btn--cancel"
+                                onClick={handleModalCancel}
+                            >
+                                아니오
+                            </button>
+                        </div>
+                    </div>
+                </div>,
+                document.body
+            )}
+        </>
     );
 };
 
