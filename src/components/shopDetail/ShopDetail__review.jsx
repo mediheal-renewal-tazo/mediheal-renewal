@@ -97,8 +97,8 @@ const ShopDetail__review = () => {
             reviews = [...reviews].sort((a, b) => b.rating - a.rating);
         }
 
-        if (reviewSort === 'recommend') {
-            reviews = [...reviews].sort((a, b) => (b.helpful ?? 0) - (a.helpful ?? 0));
+        if (reviewSort === 'lowRating') {
+            reviews = [...reviews].sort((a, b) => a.rating - b.rating);
         }
 
         return reviews;
@@ -211,13 +211,6 @@ const ShopDetail__review = () => {
 
                 <div className="reviewArray">
                     <div
-                        className={reviewSort === 'recommend' ? 'active' : ''}
-                        onClick={() => handleClickReviewSort('recommend')}
-                    >
-                        <span>추천순</span>
-                    </div>
-
-                    <div
                         className={reviewSort === 'latest' ? 'active' : ''}
                         onClick={() => handleClickReviewSort('latest')}
                     >
@@ -228,7 +221,14 @@ const ShopDetail__review = () => {
                         className={reviewSort === 'highRating' ? 'active' : ''}
                         onClick={() => handleClickReviewSort('highRating')}
                     >
-                        <span>별점 높은순</span>
+                        <span>별점 높은 순</span>
+                    </div>
+
+                    <div
+                        className={reviewSort === 'lowRating' ? 'active' : ''}
+                        onClick={() => handleClickReviewSort('lowRating')}
+                    >
+                        <span>별점 낮은순</span>
                     </div>
                 </div>
             </div>
