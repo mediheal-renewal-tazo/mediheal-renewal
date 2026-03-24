@@ -6,6 +6,7 @@ import KedihealCare from '@/components/kediheal/KedihealCare';
 import KedihealHyaluron from '@/components/kediheal/KedihealHyaluron';
 import KedihealGlobal from '@/components/kediheal/KedihealGlobal';
 import KedihealLatest from '@/components/kediheal/KedihealLatest';
+import KedihealFinalCta from '@/components/kediheal/KedihealFinalCta';
 
 const Kediheal = () => {
     return (
@@ -16,6 +17,7 @@ const Kediheal = () => {
             <KedihealHyaluron />
             <KedihealGlobal />
             <KedihealLatest />
+            <KedihealFinalCta />
         </div>
     );
 };
