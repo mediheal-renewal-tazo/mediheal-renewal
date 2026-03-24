@@ -277,23 +277,57 @@
                 display: flex;
                 flex-direction: column;
                 width: fit-content;
+                position: relative;
             }
 
-            &--ko-headline {
+            &__line {
+                display: block;
+                white-space: nowrap;
+            }
+
+            .char-ko {
                 font-size: clamp(21px, 4.2vw, 60px);
                 font-weight: 700;
                 line-height: 1.67;
                 letter-spacing: -0.6px;
+                color: #ffffff;
             }
 
             &--ko-body {
+                position: absolute;
+                top: calc(clamp(21px, 4.2vw, 60px) * 1.67);
+                left: 0;
+                width: max-content;
                 font-size: clamp(11px, 2.1vw, 30px);
                 font-weight: 500;
                 line-height: 130%;
                 letter-spacing: -0.3px;
-                white-space: pre-line;
+                color: #ffffff;
+
+                .ko-body-char {
+                    display: inline-block;
+                }
             }
         }
+        .char-group {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        .char-en,
+        .char-ko {
+            display: inline-block;
+        }
+
+        .char-ko {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
         &-bgImg {
             position: absolute;
             bottom: 412px;
