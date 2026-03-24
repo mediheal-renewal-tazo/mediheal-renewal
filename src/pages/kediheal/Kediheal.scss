@@ -1,6 +1,10 @@
+@function rem($px, $base: 16) {
+    @return ($px / $base) * 1rem;
+}
+
 .kediheal {
     width: 100%;
-    background-color: #fff; // 밝은 회색 톤
+    background-color: #fff;
 
     &__section {
         width: 100%;
@@ -36,21 +40,13 @@
             overflow: hidden;
             padding: clamp(40px, 8vw, 100px) 0;
             margin-bottom: clamp(60px, 15vw, 200px);
-            cursor: none; // 기본 커서 숨김
-
-            @media screen and (max-width: 1024px) {
-                height: auto;
-            }
-
-            @media (hover: none) {
-                cursor: auto;
-            }
+            cursor: none;
 
             .kediheal__cursor-follower {
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: clamp(80px, 15vw, 130px); // 마스크팩 크기 조절
+                width: clamp(80px, 15vw, 130px);
                 height: auto;
                 pointer-events: none;
                 z-index: 9999;
@@ -63,533 +59,250 @@
                     height: auto;
                     display: block;
                 }
-
-                @media (hover: none) {
-                    display: none;
-                }
             }
         }
 
         &--global {
-            background-color: #fff;
+            background: var(--primary-blue, #151789);
             height: auto;
+            margin: auto;
             min-height: auto;
             padding: clamp(60px, 8vw, 120px) 0;
             display: flex;
             align-items: flex-start;
             margin-bottom: clamp(60px, 15vw, 200px);
         }
+
         &--final-cta {
             min-width: auto;
             min-height: unset;
-        }
-        &--latest {
-            width: 100%;
-            min-height: 800px;
-            height: auto;
-            background-color: #fff;
-            position: relative;
-            color: #000;
-            overflow: hidden;
+            height: 430px;
+            margin: auto;
+            background-color: var(--primary-blue, #151789);
             display: flex;
-            flex-direction: column;
-            padding: clamp(60px, 10vw, 120px) 0;
-            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            position: relative;
+        }
 
-            @media screen and (max-width: 1024px) {
-                height: auto;
-                min-height: auto;
-                padding-bottom: clamp(60px, 8vw, 100px);
-            }
+        &--transition {
+            height: clamp(600px, 80vh, 980px);
+            background-color: #151789;
+            z-index: 5;
         }
     }
 
-    &__latest-visual {
-        position: absolute;
-        top: 0;
-        // left: 0;
+    &__final-cta-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
         width: 100%;
-        height: 100%;
-        z-index: 0;
-        pointer-events: none;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        &--left {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: clamp(300px, 35vw, 571px);
-            height: auto;
-            // aspect-ratio: 569/854;
-
-            img {
-                object-position: left top;
-            }
-
-            @media screen and (max-width: 1024px) {
-                opacity: 0.6;
-                width: 50%;
-                left: 0;
-                top: 0;
-                transform: none;
-            }
-
-            @media screen and (max-width: 767px) {
-                width: 80%;
-                top: 5%;
-            }
-        }
-
-        &--right {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: clamp(350px, 40vw, 547px);
-            height: auto;
-            aspect-ratio: 32/59;
-
-            img {
-                object-fit: cover;
-                object-position: right top;
-            }
-
-            @media screen and (max-width: 1024px) {
-                opacity: 0.4;
-                width: 60%;
-                right: 0;
-                top: 0;
-                transform: none;
-            }
-
-            @media screen and (max-width: 767px) {
-                width: 100%;
-                top: auto;
-                bottom: 0;
-            }
-        }
-    }
-
-    &__latest-inner {
-        width: 100%;
-        max-width: 1920px;
-        min-height: 900px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
+        padding: 0 20px;
         box-sizing: border-box;
-        display: block;
-
-        @media screen and (max-width: 1024px) {
-            min-height: clamp(600px, 100vw, 800px);
-            padding: clamp(40px, 5vw, 80px) 20px;
-        }
-
-        @media screen and (max-width: 767px) {
-            min-height: clamp(500px, 120vw, 600px);
-        }
     }
 
-    &__latest-main-title {
-        color: var(--primary-blue, #151789);
-        font-family: 'PP Mori';
-        font-size: clamp(80px, 12vw, 200px);
-        font-weight: 600;
-        line-height: 1;
-        letter-spacing: -0.03em;
-        position: absolute;
-        top: 0;
-        left: clamp(20px, 12vw, 240px);
-        margin: 0;
-        z-index: 10;
-
-        @media screen and (max-width: 1024px) {
-            font-size: clamp(50px, 12vw, 120px);
-            left: clamp(20px, 5vw, 100px);
-        }
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(40px, 12vw, 80px);
-        }
-    }
-
-    &__latest-left-block {
-        position: absolute;
-        top: clamp(180px, 15vw, 220px);
-        left: clamp(20px, 12vw, 240px);
-        color: var(--primary-blue, #151789);
-        font-family: 'PP Mori';
-        font-size: clamp(40px, 6vw, 96px);
-        font-weight: 600;
-        line-height: 1.1;
-        letter-spacing: -2.88px;
-        z-index: 10;
-
-        @media screen and (max-width: 1024px) {
-            top: clamp(100px, 14vw, 160px);
-            left: clamp(20px, 5vw, 100px);
-            font-size: clamp(28px, 6vw, 60px);
-            letter-spacing: -1.5px;
-        }
-
-        @media screen and (max-width: 767px) {
-            top: clamp(80px, 15vw, 120px);
-            font-size: clamp(24px, 6vw, 40px);
-        }
-    }
-
-    &__latest-white {
+    &__final-cta-title {
         color: #fff;
-
-        @media screen and (max-width: 1024px) {
-            color: inherit; // 가독성을 위해 흰 배경이 아닐 땐 원래 색으로
-        }
+        font-family: Pretendard, sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 30px;
+        text-align: center;
+        margin: 0;
+        letter-spacing: -0.02em;
+        word-break: keep-all;
     }
 
-    &__latest-right-block {
-        position: absolute;
-        top: 50%;
-        right: clamp(-60px, -2vw, -48px);
-        transform: translateY(-50%);
-        width: clamp(350px, 35vw, 595px);
-        z-index: 10;
-
-        @media screen and (max-width: 1024px) {
-            width: clamp(260px, 38vw, 400px);
-            right: clamp(-20px, -2vw, -10px);
-        }
-
-        @media screen and (max-width: 767px) {
-            width: clamp(200px, 50vw, 300px);
-            right: clamp(-10px, -1vw, 0px);
-            top: 45%;
-        }
-    }
-
-    &__latest-pdrn-box {
-        width: 100%;
-        height: auto;
-        min-height: clamp(250px, 20vw, 350px);
-        background: #fff;
-        opacity: 0.6;
-        backdrop-filter: blur(10px);
+    &__final-cta-form {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
+        width: 100%;
+        max-width: 660px;
+        border: 1px solid #fff;
+        padding: 4px;
         box-sizing: border-box;
-        padding: clamp(30px, 4vw, 60px) 20px;
     }
 
-    &__latest-pdrn-title {
-        font-family: 'PP Mori';
-        font-size: clamp(60px, 8vw, 150px);
-        font-weight: 600;
-        line-height: 1;
-        letter-spacing: -0.03em;
-        color: var(--GreyScale-grey-500, #474747);
-        text-align: center;
-        margin-bottom: clamp(10px, 2vw, 20px);
-        text-transform: uppercase;
-        transition: color 0.3s ease;
-
-        &.is-hovered {
-            color: #7b70b3;
-        }
-    }
-
-    &__latest-description {
-        color: var(--GreyScale-grey-500, #474747);
-        font-family: Pretendard;
-        font-size: clamp(16px, 1.5vw, 22px);
+    &__final-cta-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        font-family: Pretendard, sans-serif;
+        font-size: 20px;
+        font-style: normal;
         font-weight: 400;
-        line-height: 1.5;
-        text-align: center;
+        line-height: 30px;
+        padding: 0 20px;
 
-        p {
-            margin: 0;
-        }
-        @media screen and (max-width: 1024px) {
-            font-size: clamp(16px, 1.5vw, 22px);
-        }
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(8px, 1.5vw, 12px);
+        &::placeholder {
+            color: #fff;
         }
     }
 
-    &__latest-bottom-wrap {
-        position: absolute;
-        bottom: clamp(20px, 4vw, 40px);
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        flex-direction: column;
+    &__final-cta-btn {
+        display: inline-flex;
+        padding: 5px 23px 6px 27px;
+        justify-content: flex-end;
         align-items: center;
-        gap: clamp(20px, 3vw, 40px);
-        width: 100%;
-        z-index: 10;
-
-        @media screen and (max-width: 1024px) {
-            bottom: clamp(20px, 4vw, 40px);
-        }
-
-        @media screen and (max-width: 767px) {
-            bottom: clamp(10px, 4vw, 30px);
-        }
-    }
-
-    &__latest-products {
-        display: flex;
-        justify-content: center;
-        gap: clamp(10px, 3vw, 40px);
-        width: 100%;
-        flex-wrap: wrap;
-
-        @media screen and (max-width: 767px) {
-            gap: 20px;
-        }
-    }
-
-    &__latest-product-item {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        width: clamp(150px, 25vw, 400px);
-
-        img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            transition: transform 0.4s ease-out; // Smooth motion
-        }
-
-        &:hover img {
-            transform: translateY(-10px) scale(1.02); // Subtle floating and scale
-        }
-    }
-
-    .latest-btn {
-        display: flex;
-        width: clamp(280px, 30vw, 335px);
-        height: clamp(50px, 5vw, 60px);
-        padding: 10px 20px;
-        justify-content: center;
-        align-items: center;
-        background: #fff;
-        border: 1px solid var(--GreyScale-grey-500, #474747);
+        background-color: #fff;
+        color: var(--primary-blue, #151789);
+        font-family: Pretendard, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        border: none;
         cursor: pointer;
-        position: relative;
-        transition: all 0.3s ease;
+        transition: opacity 0.3s ease;
 
         &:hover {
-            background: #f8f8f8;
-        }
-        @media screen and (max-width: 767px) {
-            width: clamp(80px, 30vw, 130px);
-            height: clamp(25px, 5vw, 30px);
-            padding: 10px 20px;
-            background: #fff;
-            cursor: pointer;
-            // position: relative;
-        }
-
-        &__text {
-            position: absolute;
-            color: var(--GreyScale-grey-500, #474747);
-            font-family: Pretendard;
-            font-size: clamp(16px, 1.5vw, 19px);
-            font-weight: 700;
-            line-height: 1;
-            left: clamp(15px, 2vw, 20px);
-            @media screen and (max-width: 767px) {
-                font-size: clamp(3px, 1.5vw, 6px);
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        &__arrow {
-            position: absolute;
-            right: clamp(15px, 2vw, 20px);
-            top: 50%;
-            transform: translateY(-50%);
-            width: clamp(10px, 1vw, 12px);
-            height: auto;
-            @media screen and (max-width: 767px) {
-                display: none;
-            }
+            opacity: 0.9;
         }
     }
 
-    // Final CTA Section
-    &__section--final-cta {
-        background: #000;
+    &__latest-rebuild {
         width: 100%;
-        margin: auto;
-        height: clamp(300px, 50vh, 618px);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+        min-height: clamp(rem(760), 56.25vw, rem(1080));
+        background: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0 auto;
+        padding: clamp(rem(40), 4vw, rem(80)) 0;
+        box-sizing: border-box;
+    }
+
+    &__latest-rebuild-inner {
+        width: 100%;
+        max-width: rem(1920);
+        min-height: clamp(rem(760), 56.25vw, rem(1080));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: clamp(rem(32), 4.2vw, rem(80));
+        padding: 0 clamp(rem(24), 10.4vw, rem(200));
+        box-sizing: border-box;
+    }
+
+    &__latest-rebuild-left {
+        width: clamp(rem(320), 29.9vw, rem(574));
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-shrink: 0;
+        margin-left: clamp(rem(0), 7.3vw, rem(140));
+    }
+
+    &__latest-rebuild-title {
+        margin: 0;
+        color: var(--primary-blue, #151789);
+        font-family: Pretendard, sans-serif;
+        font-size: clamp(rem(56), 5.99vw, rem(115));
+        font-weight: 600;
+        line-height: clamp(rem(58), 6.25vw, rem(120));
+        letter-spacing: clamp(rem(-1.5), -0.16vw, rem(-3));
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    &__latest-rebuild-subtitle {
+        margin-top: clamp(rem(8), 0.63vw, rem(12));
+        color: var(--primary-blue, #151789);
+        font-family: Pretendard;
+        font-size: clamp(rem(18), 1.56vw, rem(30));
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: clamp(rem(-0.5), -0.05vw, rem(-1));
+        text-transform: uppercase;
+        word-break: keep-all;
+    }
+
+    &__latest-rebuild-desc {
+        margin: clamp(rem(4), 0.21vw, rem(6)) 0 0 0;
+        color: var(--primary-blue, #151789);
+        font-family: Pretendard, sans-serif;
+        font-size: clamp(rem(14), 0.89vw, rem(17));
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: clamp(rem(-0.12), -0.01vw, rem(-0.17));
+        max-width: clamp(rem(280), 28vw, rem(540));
+        word-break: keep-all;
+    }
+
+    &__latest-rebuild-btn {
+        margin-top: clamp(rem(40), 7.3vw, rem(140));
+        display: flex;
+        width: clamp(rem(240), 17.45vw, rem(335));
+        height: clamp(rem(50), 3.13vw, rem(60));
+        padding: clamp(rem(14), 1.04vw, rem(20));
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        gap: clamp(rem(6), 0.52vw, rem(10));
+        border: 1px solid var(--primary-blue, #151789);
+        background: transparent;
+        cursor: pointer;
         position: relative;
-        top: 0;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease;
 
-        @media screen and (max-width: 1024px) {
-            height: clamp(280px, 45vh, 500px);
-            background-size: cover;
-            background-position: center;
+        &:hover {
+            background-color: rgba(21, 23, 137, 0.08);
         }
+    }
 
-        @media screen and (max-width: 767px) {
-            min-height: auto;
-            height: clamp(240px, 42vh, 360px);
-            background-size: cover;
-            background-position: 70% center;
-            margin-top: 60px;
-        }
+    &__latest-rebuild-btn-text {
+        width: 100%;
+        text-align: left;
+        color: var(--primary-blue, #151789);
+        font-family: Pretendard, sans-serif;
+        font-size: clamp(rem(15), 0.99vw, rem(19));
+        font-weight: 700;
+        line-height: 1.5;
+        white-space: nowrap;
+    }
 
-        .kediheal__final-cta-inner {
-            position: absolute;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: clamp(24px, 4vw, 50px);
-            width: 100%;
-            max-width: clamp(300px, 90%, 1200px);
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
+    &__latest-rebuild-btn-arrow {
+        position: absolute;
+        right: clamp(rem(14), 1.04vw, rem(20));
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--primary-blue, #151789);
+        width: clamp(rem(10), 0.63vw, rem(12));
+        height: clamp(rem(20), 1.25vw, rem(24));
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        .kediheal__final-cta-title {
-            color: #fff;
-            font-family: Pretendard;
-            font-size: clamp(20px, 3.5vw, 40px);
-            font-weight: 500;
-            line-height: 1.4;
-            margin: 0;
-            word-break: keep-all;
-
-            @media screen and (max-width: 767px) {
-                font-size: clamp(8px, 14vw, 16px);
-            }
-            @media screen and (max-width: 1024px) {
-                font-size: clamp(10px, 16vw, 20px);
-            }
-        }
-
-        .kediheal__final-cta-form {
-            display: flex;
-            width: 100%;
-            max-width: 917px;
-            height: clamp(50px, 8vw, 70px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-sizing: border-box;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(4px);
-            border-radius: 4px;
-
-            @media screen and (max-width: 767px) {
-                height: clamp(45px, 12vw, 55px);
-            }
-        }
-
-        .kediheal__final-cta-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 0 clamp(16px, 3vw, 30px);
-            color: #fff;
-            height: 100%;
-            outline: none;
-            font-size: clamp(14px, 2vw, 20px);
-
-            &::placeholder {
-                color: rgba(255, 255, 255, 0.7);
-                font-family: Pretendard;
-                font-size: clamp(13px, 1.5vw, 18px);
-                font-weight: 400;
-
-                @media screen and (max-width: 1024px) {
-                    font-size: clamp(12px, 2vw, 14px);
-                }
-
-                @media screen and (max-width: 767px) {
-                    font-size: clamp(11px, 3vw, 13px);
-                }
-            }
-        }
-
-        .kediheal__final-cta-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: auto;
-            min-width: clamp(90px, 15vw, 140px);
-            height: calc(100% - 12px);
-            background: #fff;
-            border: none;
-            color: #000;
-            font-family: Pretendard;
-            font-size: clamp(13px, 2vw, 18px);
-            font-weight: 600;
-            cursor: pointer;
-            margin: 6px;
-            padding: 0 clamp(12px, 2vw, 24px);
-            white-space: nowrap;
-            transition:
-                background 0.2s,
-                color 0.2s;
-            border-radius: 2px;
-
-            &:hover {
-                background: #000;
-                color: #fff;
-            }
-
-            @media screen and (max-width: 767px) {
-                min-width: 70px;
-                height: calc(100% - 8px);
-                margin: 4px;
-                font-size: clamp(12px, 3vw, 14px);
-                padding: 0 10px;
-            }
-        }
-
-        .kediheal__final-cta-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
+        svg {
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            animation: fadeInOverlay 0.4s ease-out forwards;
-            backdrop-filter: blur(4px);
-
-            &-text {
-                color: #fff;
-                font-family: Pretendard;
-                font-size: clamp(20px, 5vw, 36px);
-                font-weight: 500;
-                letter-spacing: -0.5px;
-                text-align: center;
-                padding: 0 20px;
-            }
+            display: block;
         }
+    }
+
+    &__latest-rebuild-right {
+        width: clamp(rem(360), 43.02vw, rem(826));
+        height: auto;
+        aspect-ratio: 186 / 127;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    &__latest-rebuild-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
     }
 
     @keyframes fadeInOverlay {
@@ -602,26 +315,15 @@
         }
     }
 
-    // Hyaluron Section
     &__hyaluron-inner {
         width: 100%;
         max-width: 1400px;
         min-height: clamp(800px, 100vh, 1800px);
         height: 1744px;
-        margin: 0 auto;
+        margin: auto;
         position: relative;
         padding: clamp(60px, 10vw, 120px) 20px;
         box-sizing: border-box;
-
-        @media screen and (max-width: 1024px) {
-            height: clamp(900px, 120vw, 1300px);
-            min-height: auto;
-            padding: clamp(40px, 8vw, 80px) 20px;
-        }
-
-        @media screen and (max-width: 767px) {
-            height: clamp(700px, 140vw, 900px);
-        }
     }
 
     &__hyaluron-block {
@@ -631,67 +333,36 @@
         &--top-left {
             top: clamp(100px, 15vw, 200px);
             left: clamp(20px, 10vw, 150px);
-
-            @media screen and (max-width: 1024px) {
-                top: clamp(60px, 10vw, 120px);
-                left: clamp(80px, 20vw, 150px);
-            }
+            width: 454px;
+            height: 184px;
+            text-align: left;
         }
 
         &--bottom-right {
-            bottom: clamp(75px, 20vw, 150px);
+            top: clamp(500px, 200vw, 1300px);
             right: clamp(20px, 10vw, 160px);
-            width: 100%;
-            max-width: clamp(250px, 30vw, 400px);
+            width: 454px;
+            height: 184px;
             text-align: right;
-
-            @media screen and (max-width: 1024px) {
-                bottom: clamp(100px, 30vw, 250px);
-                right: clamp(80px, 20vw, 150px);
-                max-width: clamp(200px, 35vw, 300px);
-            }
-            @media screen and (max-width: 767px) {
-                bottom: clamp(150px, 50vw, 300px);
-            }
         }
     }
 
     &__hyaluron-title {
         color: var(--Foundation-Blue-Darker, #050923);
         font-family: Pretendard;
-        font-size: clamp(28px, 5vw, 40px);
+        font-size: 40px;
         font-weight: 700;
-        line-height: 1.3;
-        letter-spacing: 1px;
-        margin-bottom: clamp(12px, 2vw, 24px);
-        word-break: keep-all;
-
-        @media screen and (max-width: 1024px) {
-            font-size: clamp(24px, 4.5vw, 32px);
-            letter-spacing: 0;
-        }
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(20px, 5vw, 26px);
-        }
+        line-height: 120%;
+        letter-spacing: -1px;
+        margin-bottom: 24px;
     }
 
     &__hyaluron-subtitle {
         color: #6c6c6c;
         font-family: Pretendard;
-        font-size: clamp(18px, 3vw, 24px);
+        font-size: 24px;
         font-weight: 500;
-        line-height: 1.4;
-        word-break: keep-all;
-
-        @media screen and (max-width: 1024px) {
-            font-size: clamp(16px, 2.5vw, 18px);
-            font-weight: 400;
-        }
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(8px, 3vw, 10px);
-        }
+        line-height: 30px;
     }
 
     &__hyaluron-image-wrap {
@@ -701,29 +372,14 @@
         &--toner {
             top: clamp(80px, 8vw, 107px);
             right: clamp(10px, 5vw, 90px);
-            width: clamp(200px, 25vw, 500px);
-            height: auto;
+            width: 500px;
+            height: 452px;
             transform: rotate(8.142deg);
             aspect-ratio: 125/113;
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 
-            @media screen and (max-width: 1024px) {
-                width: clamp(150px, 30vw, 300px);
-                top: clamp(40px, 8vw, 80px);
-                right: clamp(40px, 10vw, 80px);
-            }
-            @media screen and (max-width: 767px) {
-                width: clamp(150px, 30vw, 300px);
-                top: clamp(40px, 8vw, 80px);
-                right: clamp(40px, 10vw, 80px);
-            }
-
             &:hover {
                 transform: rotate(8.142deg) scale(1.05);
-
-                @media screen and (max-width: 1024px) {
-                    transform: rotate(4deg) scale(1.05);
-                }
 
                 .kediheal__hyaluron-img--base {
                     opacity: 0;
@@ -738,29 +394,16 @@
         &--mask {
             top: clamp(800px, 60vw, 1000px);
             left: clamp(20px, 10vw, 180px);
-            width: clamp(200px, 25vw, 371px);
-            height: auto;
+            width: 371px;
+            height: 670px;
             aspect-ratio: 371 / 670;
             transform: rotate(-15.917deg);
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform;
             margin-top: 100px;
 
-            @media screen and (max-width: 1024px) {
-                width: clamp(120px, 25vw, 250px);
-                top: clamp(300px, 60vw, 600px);
-                left: clamp(100px, 14vw, 200px);
-            }
-            @media screen and (max-width: 767px) {
-                top: clamp(500px, 10vw, 1000px);
-            }
-
             &:hover {
                 transform: rotate(-15.917deg) scale(1.05);
-
-                @media screen and (max-width: 1024px) {
-                    transform: rotate(-8deg) scale(1.05);
-                }
 
                 .kediheal__hyaluron-img--base {
                     opacity: 0;
@@ -807,13 +450,6 @@
         overflow: visible;
         display: flex;
         justify-content: center;
-
-        @media screen and (max-width: 1024px) {
-            top: clamp(150px, 45vw, 400px);
-        }
-        @media screen and (max-width: 767px) {
-            top: clamp(200px, 60vw, 300px);
-        }
     }
 
     &__hyaluron-track {
@@ -830,18 +466,8 @@
         font-weight: 600;
         line-height: 1;
         letter-spacing: -3px;
-
-        @media screen and (max-width: 1024px) {
-            font-size: clamp(55px, 20vw, 140px);
-            letter-spacing: 3px;
-        }
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(40px, 16vw, 100px);
-        }
     }
 
-    // Global Section
     &__global-inner {
         width: 100%;
         max-width: clamp(600px, 60vw, 926px);
@@ -853,12 +479,6 @@
         text-align: center;
         padding: clamp(60px, 8vw, 120px) clamp(20px, 4vw, 40px);
         box-sizing: border-box;
-
-        @media screen and (max-width: 1024px) {
-            max-width: 90%;
-            min-height: auto;
-            padding: clamp(50px, 8vw, 80px) clamp(20px, 3vw, 30px);
-        }
     }
 
     &__global-header {
@@ -866,35 +486,25 @@
     }
 
     &__global-main-title {
-        color: var(--Bk_Wh-Bk, #000);
+        color: var(--Bk_Wh-Wh, #fff);
         text-align: center;
         font-family: Pretendard;
-        font-size: clamp(26px, 5vw, 64px);
+        font-size: 64px;
         font-weight: 700;
-        line-height: 1.2;
+        line-height: normal;
+        letter-spacing: -1px;
         margin-bottom: clamp(10px, 2vw, 30px);
     }
 
     &__global-main-desc {
-        color: var(--GreyScale-grey-400, #6c6c6c);
+        color: var(--Bk_Wh-Wh, #fff);
         text-align: center;
         font-family: Pretendard;
-        font-size: clamp(14px, 1.8vw, 24px);
+        font-size: 24px;
         font-weight: 400;
-        line-height: 1.5;
+        line-height: 30px;
         margin-bottom: clamp(30px, 8vw, 117px);
         word-break: keep-all;
-
-        @media screen and (max-width: 1024px) {
-            font-size: clamp(13px, 2vw, 18px);
-            margin-bottom: clamp(20px, 6vw, 60px);
-        }
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(12px, 3.5vw, 15px);
-            margin-bottom: clamp(15px, 8vw, 40px);
-            letter-spacing: -0.5px;
-        }
     }
 
     &__global-list {
@@ -941,20 +551,14 @@
         display: inline-flex;
         align-items: flex-start;
         justify-content: center;
-        color: var(--primary-blue, #151789);
+        color: var(--primary-blue, #fff);
         text-align: center;
         font-family: Pretendard;
         font-size: clamp(28px, 7.5vw, 115px);
         font-weight: 700;
-        line-height: 1;
+        line-height: 100px;
         height: auto;
         min-height: clamp(28px, 7.5vw, 115px);
-
-        @media screen and (max-width: 767px) {
-            flex-direction: column;
-            align-items: center;
-            gap: clamp(6px, 1.5vw, 10px);
-        }
     }
 
     &__global-name-kr {
@@ -972,28 +576,20 @@
         top: 0;
         left: 100%;
         margin-left: clamp(8px, 1.2vw, 20px);
-        color: var(--primary-blue, #151789);
+        color: var(--primary-blue, #fff);
         text-align: left;
         font-family: Pretendard;
         font-size: clamp(12px, 3vw, 40px);
         font-weight: 500;
-        line-height: 1;
+        line-height: normal;
         white-space: nowrap;
-
-        @media screen and (max-width: 767px) {
-            position: relative;
-            left: 0;
-            margin-left: 0;
-            text-align: center;
-            font-size: clamp(11px, 4vw, 18px);
-        }
     }
 
     &__global-city-desc {
-        color: #151789;
-        font-size: clamp(12px, 1.8vw, 26px);
+        color: #fff;
+        font-size: clamp(12px, 1.8vw, 24px);
         font-weight: 400;
-        line-height: 1.5;
+        line-height: 30px;
         margin-top: 0;
         max-height: 0;
         opacity: 0;
@@ -1004,166 +600,128 @@
         flex-direction: column;
         gap: clamp(4px, 0.8vw, 8px);
         word-break: keep-all;
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(11px, 3.2vw, 14px);
-        }
     }
 
     &__global-search {
         margin-top: clamp(30px, 5vw, 80px);
         width: 100%;
         max-width: clamp(260px, 45vw, 500px);
-
-        @media screen and (max-width: 767px) {
-            max-width: 100%;
-            padding: 0 5%;
-            box-sizing: border-box;
-        }
     }
 
     &__global-search-label {
-        color: var(--GreyScale-grey-400, #6c6c6c);
+        color: var(--GreyScale-grey-400, #ededed);
         text-align: center;
         font-family: Pretendard;
         font-size: clamp(14px, 1.8vw, 24px);
         font-weight: 400;
-        line-height: normal;
+        line-height: 30px;
         margin-bottom: clamp(12px, 1.8vw, 24px);
         word-break: keep-all;
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(12px, 3.2vw, 14px);
-            margin-bottom: clamp(10px, 2.5vw, 16px);
-        }
     }
 
     &__global-search-form {
         display: flex;
-        border: 1px solid #151789;
-        border-radius: 4px;
         overflow: hidden;
-        background-color: #fff;
     }
 
     &__global-search-input {
         flex: 1;
         border: none;
-        padding: clamp(8px, 1.2vw, 15px) clamp(12px, 2vw, 20px);
-        font-size: clamp(13px, 1.5vw, 18px);
-        color: #000;
+        padding: clamp(12px, 2vw, 20px);
+        font-size: clamp(13px, 1.5vw, 20px);
+        color: #ededed;
         outline: none;
+        background: #151789;
+        border: 1px solid var(--Bk_Wh-Wh, #ededed);
+        border-right: none;
 
         &::placeholder {
-            color: var(--grey-scale-grey-100, #c6c6c6);
+            color: var(--grey-scale-grey-100, #ededed);
             text-align: left;
             font-family: Pretendard;
             font-size: clamp(13px, 1.5vw, 20px);
             font-weight: 600;
             line-height: normal;
-
-            @media screen and (max-width: 1024px) {
-                font-size: clamp(12px, 2vw, 16px);
-            }
-
-            @media screen and (max-width: 767px) {
-                font-size: clamp(11px, 3.2vw, 13px);
-            }
         }
     }
 
     &__global-search-btn {
-        background: none;
-        border: none;
+        background: #151789;
+        border: 1px solid var(--Bk_Wh-Wh, #fff);
         padding: 0 clamp(15px, 2.5vw, 30px);
         cursor: pointer;
         transition: background-color 0.2s;
-
-        color: var(--primary-blue, #151789);
+        color: var(--primary-blue, #fff);
         text-align: center;
         font-family: Pretendard;
         font-size: clamp(14px, 1.8vw, 20px);
         font-weight: 600;
         line-height: normal;
+        border-left: none;
 
         &:hover {
-            background-color: #f0f4ff;
-        }
-
-        @media screen and (max-width: 767px) {
-            padding: 0 clamp(10px, 3vw, 15px);
-            font-size: clamp(12px, 3.2vw, 14px);
+            background-color: #151770;
         }
     }
 
     &__care-inner {
-        width: 100%;
-        max-width: 1500px;
+        width: 1400px;
+        height: 830px;
         margin: auto;
         display: flex;
-        justify-content: space-between;
-        gap: 0;
-        padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 60px);
         box-sizing: border-box;
+        gap: 48px;
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1400px) {
+            width: 100%;
+            max-width: 820px;
+            height: auto;
             flex-direction: column;
             align-items: center;
-            gap: clamp(60px, 10vw, 80px);
-        }
-
-        @media screen and (max-width: 767px) {
+            gap: 48px;
+            padding: 0 24px;
         }
     }
 
     &__care-left {
-        width: 660px;
+        width: 100%;
+        height: 830px;
         max-width: 662px;
-        height: auto;
         display: flex;
+        gap: 26px;
         flex-direction: column;
         justify-content: flex-start;
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1400px) {
             max-width: 100%;
+            height: auto;
+            margin: 0;
             text-align: center;
             align-items: center;
+            text-align: center;
         }
     }
 
     &__care-title {
         color: var(--Bk_Wh-Bk, #000);
-        font-size: clamp(28px, 5vw, 40px);
+        font-family: Pretendard;
+        font-size: 40px;
         font-weight: 700;
-        line-height: 1.3;
+        line-height: 120%;
         letter-spacing: -1px;
         margin-bottom: clamp(16px, 3vw, 26px);
-        word-break: keep-all;
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(24px, 6vw, 32px);
-        }
+        white-space: nowrap;
     }
 
     &__care-desc {
         color: #474747;
         font-family: Pretendard;
-        font-size: clamp(16px, 2vw, 22px);
+        font-size: 20px;
         font-weight: 400;
-        line-height: 1.5;
-        letter-spacing: -1px;
+        line-height: 120%;
         margin-bottom: clamp(30px, 5vw, 40px);
-        word-break: keep-all;
-
-        @media screen and (max-width: 1024px) {
-            max-width: 80%;
-            text-align: center;
-        }
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(14px, 3.5vw, 18px);
-            max-width: 100%;
-        }
+        white-space: nowrap;
+        // text-align: center;
     }
 
     &__care-main-image {
@@ -1173,8 +731,8 @@
         border-radius: 12px;
         overflow: hidden;
 
-        @media screen and (max-width: 1024px) {
-            max-width: 600px; // Limit size on tablet so it doesn't stretch infinitely
+        @media screen and (max-width: 1400px) {
+            max-width: 600px;
         }
     }
 
@@ -1187,17 +745,13 @@
 
     &__care-right {
         width: 630px;
-        max-width: 690px;
         height: 830px;
-        overflow-y: auto;
 
-        padding-right: 15px;
-
-        @media screen and (max-width: 1024px) {
-            max-width: 100%;
+        @media screen and (max-width: 1400px) {
+            width: 100%;
+            max-width: 690px;
             height: auto;
-            overflow: visible;
-            padding-right: 0;
+            margin: 0 auto;
         }
 
         &::-webkit-scrollbar {
@@ -1217,10 +771,9 @@
     &__care-list {
         display: flex;
         flex-direction: column;
-        gap: clamp(14px, 2vw, 24px);
+        gap: 10px;
     }
 
-    // Hero Section
     &__hero-content {
         display: flex;
         flex-direction: column;
@@ -1235,22 +788,20 @@
             width: 100%;
             max-width: 1000px;
             height: auto;
-            color: #000;
-            font-family: 'PP Mori', sans-serif;
-            font-size: clamp(38px, 8vw, 100px);
+            color: var(--primary-blue, #151789);
+            text-align: center;
+            font-family: 'PP Mori';
+            font-size: clamp(72px, 8vw, 115px);
             font-weight: 600;
-            line-height: 1.1;
+            line-height: clamp(78px, 8.2vw, 120px);
+            letter-spacing: clamp(-2px, -0.18vw, -3.45px);
             margin-bottom: clamp(16px, 3vw, 26px);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0;
-            flex-wrap: wrap;
-
-            @media screen and (max-width: 767px) {
-                font-size: clamp(32px, 10vw, 48px);
-                line-height: 1.2;
-            }
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
 
         &__hero-letter-wrap {
@@ -1273,18 +824,14 @@
     }
 
     &__hero-subtitle {
-        color: #1e1e1e;
+        color: var(--primary-blue, #151789);
         text-align: center;
         font-family: Pretendard;
-        font-size: clamp(16px, 2.5vw, 24px);
-        font-weight: 500;
-        line-height: 1.5;
+        font-size: clamp(18px, 1.7vw, 24px);
+        font-weight: 600;
+        line-height: clamp(24px, 2vw, 30px);
         margin-bottom: clamp(30px, 5vw, 48px);
-        word-break: keep-all;
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(14px, 3.5vw, 18px);
-        }
+        white-space: nowrap;
     }
 
     &__hero-image-wrapper {
@@ -1294,10 +841,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
-        @media screen and (max-width: 767px) {
-            width: clamp(120px, 40vw, 200px);
-        }
     }
 
     &__dropper-img {
@@ -1305,13 +848,6 @@
         height: 100%;
         object-fit: contain;
         filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
-    }
-
-    // Transition Section (텍스트 세션)
-    &__section--transition {
-        height: clamp(600px, 80vh, 980px);
-        background-color: #fff;
-        z-index: 5;
     }
 
     &__transition-stage {
@@ -1328,7 +864,7 @@
     }
 
     &__transition-line {
-        color: var(--grey-scale-grey-900, #1e1e1e);
+        color: var(--grey-scale-grey-900, #fff);
         font-family: Pretendard;
         text-align: center;
         font-size: clamp(24px, 5vw, 64px);
@@ -1340,11 +876,6 @@
         align-items: center;
         justify-content: center;
         word-break: keep-all;
-
-        @media screen and (max-width: 767px) {
-            font-size: clamp(18px, 6vw, 28px);
-            line-height: 1.3;
-        }
 
         &--intro {
             position: absolute;
@@ -1368,7 +899,7 @@
         display: inline-block;
         width: 2px;
         height: 0.8em;
-        background-color: #1e1e1e;
+        background-color: #fff;
         margin-left: 4px;
         animation: kediheal-cursor-blink 0.8s infinite;
         vertical-align: middle;
@@ -1386,6 +917,733 @@
     }
 
     &__point-text {
-        color: #151789; // 메디힐 브랜드 컬러 유지
+        color: #fff;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .kediheal {
+        &__section {
+            &--hyaluron {
+                height: auto;
+            }
+
+            &--latest {
+                height: auto;
+                min-height: auto;
+            }
+
+            &--final-cta {
+                height: 780px;
+            }
+
+            &--transition {
+                height: 760px;
+            }
+        }
+
+        &__section--hero {
+            min-height: 820px;
+        }
+
+        &__final-cta-inner {
+            gap: 24px;
+            padding: 0 32px;
+        }
+
+        &__final-cta-title {
+            font-size: clamp(18px, 2vw, 22px);
+            line-height: 1.4;
+            max-width: 760px;
+            word-break: keep-all;
+        }
+
+        &__final-cta-form {
+            max-width: 720px;
+        }
+
+        &__final-cta-input {
+            font-size: clamp(15px, 1.8vw, 18px);
+            line-height: 1.4;
+            padding: 0 16px;
+        }
+
+        &__final-cta-btn {
+            font-size: 15px;
+            padding: 6px 18px;
+            flex-shrink: 0;
+        }
+
+        &__latest-rebuild {
+            min-height: auto;
+            padding: clamp(rem(48), 5.9vw, rem(60)) 0;
+        }
+
+        &__latest-rebuild-inner {
+            min-height: auto;
+            padding: 0 clamp(rem(32), 5.9vw, rem(60));
+            gap: clamp(rem(24), 3.9vw, rem(40));
+        }
+
+        &__latest-rebuild-left {
+            width: clamp(rem(280), 35vw, rem(360));
+            margin-left: 0;
+        }
+
+        &__latest-rebuild-title {
+            font-size: clamp(rem(52), 8vw, rem(88));
+            line-height: 0.95;
+            letter-spacing: clamp(rem(-1.5), -0.2vw, rem(-2));
+        }
+
+        &__latest-rebuild-subtitle {
+            margin-top: clamp(rem(8), 1.2vw, rem(12));
+            font-size: clamp(rem(18), 2.6vw, rem(26));
+            line-height: 1.2;
+            letter-spacing: clamp(rem(-0.5), -0.08vw, rem(-0.8));
+            word-break: keep-all;
+        }
+
+        &__latest-rebuild-desc {
+            margin-top: clamp(rem(10), 1.8vw, rem(18));
+            font-size: clamp(rem(13), 1.8vw, rem(16));
+            line-height: 1.45;
+            max-width: clamp(rem(260), 33vw, rem(340));
+        }
+
+        &__latest-rebuild-btn {
+            margin-top: clamp(rem(32), 5vw, rem(52));
+            width: clamp(rem(240), 27vw, rem(280));
+            height: clamp(rem(50), 5.3vw, rem(54));
+            padding: clamp(rem(10), 1.6vw, rem(18));
+        }
+
+        &__latest-rebuild-btn-text {
+            font-size: clamp(rem(14), 1.6vw, rem(16));
+        }
+
+        &__latest-rebuild-btn-arrow {
+            right: clamp(rem(14), 1.8vw, rem(18));
+            width: clamp(rem(10), 1.1vw, rem(12));
+            height: clamp(rem(20), 2.3vw, rem(24));
+        }
+
+        &__latest-rebuild-right {
+            width: clamp(rem(300), 46vw, rem(520));
+            max-width: rem(520);
+            height: auto;
+        }
+
+        &__latest-rebuild-image {
+            width: 100%;
+            height: auto;
+        }
+
+        &__hyaluron-inner {
+            height: clamp(300px, 508vw, 600px);
+            padding: clamp(24px, 3.1vw, 32px) clamp(20px, 2.35vw, 24px);
+        }
+
+        &__hyaluron-block {
+            &--top-left {
+                top: clamp(72px, 8.8vw, 90px);
+                left: clamp(100px, 26vw, 240px);
+                width: clamp(150px, 16.6vw, 170px);
+                height: auto;
+                text-align: left;
+            }
+
+            &--bottom-right {
+                top: clamp(520px, 60vw, 615px);
+                right: clamp(100px, 26vw, 240px);
+                bottom: auto;
+                width: clamp(160px, 17.6vw, 180px);
+                height: auto;
+                text-align: right;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+
+        &__hyaluron-title {
+            font-size: clamp(18px, 2vw, 24px);
+            line-height: 1.18;
+            letter-spacing: -0.4px;
+            margin-bottom: 8px;
+            white-space: nowrap;
+        }
+
+        &__hyaluron-subtitle {
+            font-size: clamp(11px, 1.1vw, 13px);
+            line-height: 1.35;
+            font-weight: 400;
+            white-space: nowrap;
+            max-width: 180px;
+        }
+
+        &__hyaluron-image-wrap {
+            &--toner {
+                width: clamp(210px, 24.4vw, 250px);
+                height: auto;
+                top: clamp(48px, 5.7vw, 58px);
+                right: clamp(108px, 18.6vw, 190px);
+            }
+
+            &--mask {
+                width: clamp(128px, 14.6vw, 150px);
+                height: auto;
+                top: clamp(500px, 57.6vw, 500px);
+                left: clamp(100px, 28vw, 240px);
+                margin-top: 0;
+            }
+        }
+
+        &__hyaluron-wrap {
+            top: clamp(250px, 29.3vw, 300px);
+        }
+
+        &__hyaluron-text {
+            font-size: clamp(70px, 20vw, 120px);
+            line-height: 0.95;
+            letter-spacing: -1px;
+            white-space: nowrap;
+        }
+
+        &__global-inner {
+            max-width: clamp(640px, 88vw, 920px);
+            min-height: auto;
+            padding: clamp(44px, 5.5vw, 56px) clamp(20px, 2.35vw, 24px);
+        }
+
+        &__global-main-title {
+            font-size: clamp(34px, 4.6vw, 52px);
+            line-height: 1.12;
+            margin-bottom: clamp(10px, 1.8vw, 18px);
+            white-space: nowrap;
+        }
+
+        &__global-main-desc {
+            font-size: clamp(14px, 1.7vw, 18px);
+            line-height: 1.5;
+            max-width: clamp(560px, 74vw, 760px);
+            margin-bottom: clamp(28px, 4.7vw, 48px);
+            white-space: nowrap;
+        }
+
+        &__global-city-name {
+            font-size: clamp(34px, 6.8vw, 78px);
+            line-height: 1.02;
+            min-height: auto;
+            gap: clamp(4px, 0.9vw, 10px);
+            text-align: center;
+        }
+
+        &__global-stat {
+            font-size: clamp(14px, 1.9vw, 24px);
+            margin-left: clamp(6px, 1vw, 14px);
+        }
+
+        &__global-city-desc {
+            font-size: clamp(14px, 1.6vw, 18px);
+            line-height: 1.5;
+            max-width: clamp(560px, 72vw, 760px);
+            gap: clamp(4px, 0.8vw, 8px);
+            white-space: nowrap;
+        }
+
+        &__global-search-label {
+            font-size: clamp(15px, 1.7vw, 18px);
+            line-height: 1.4;
+            margin-bottom: clamp(10px, 1.6vw, 18px);
+        }
+
+        &__global-search-input {
+            padding: clamp(12px, 1.5vw, 14px) clamp(14px, 1.7vw, 16px);
+            font-size: clamp(13px, 1.45vw, 15px);
+
+            &::placeholder {
+                font-size: clamp(13px, 1.45vw, 15px);
+            }
+        }
+
+        &__global-search-btn {
+            font-size: clamp(13px, 1.45vw, 15px);
+            padding: 0 clamp(14px, 2vw, 22px);
+        }
+
+        &__care-inner {
+            width: 100%;
+            max-width: 820px;
+            height: auto;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(36px, 4.7vw, 48px);
+            padding: 0 clamp(20px, 2.35vw, 24px);
+        }
+
+        &__care-left {
+            max-width: 100%;
+            height: auto;
+            margin: 0;
+            text-align: center;
+            align-items: center;
+        }
+
+        &__care-title {
+            font-size: clamp(28px, 3.5vw, 34px);
+            line-height: 1.2;
+            word-break: keep-all;
+        }
+
+        &__care-desc {
+            font-size: clamp(16px, 1.8vw, 18px);
+            line-height: 1.5;
+            max-width: 84%;
+            text-align: center;
+            word-break: keep-all;
+        }
+
+        &__care-main-image {
+            max-width: 600px;
+        }
+
+        &__care-right {
+            width: 100%;
+            max-width: 690px;
+            height: auto;
+            overflow: visible;
+        }
+
+        &__hero-title {
+            font-size: clamp(54px, 7.2vw, 84px);
+            line-height: clamp(58px, 7.6vw, 90px);
+            letter-spacing: clamp(-1.6px, -0.14vw, -2.6px);
+            white-space: nowrap;
+        }
+
+        &__hero-subtitle {
+            font-size: clamp(15px, 1.7vw, 20px);
+            line-height: clamp(22px, 2.3vw, 28px);
+            max-width: clamp(320px, 74vw, 760px);
+            white-space: nowrap;
+        }
+
+        &__transition-line {
+            font-size: clamp(38px, 5vw, 48px);
+            line-height: 1.3;
+            word-break: keep-all;
+        }
+    }
+}
+
+@media screen and (max-width: 924px) {
+    .kediheal {
+        &__hyaluron-inner {
+            height: clamp(760px, 98vw, 860px);
+            padding: clamp(24px, 3.4vw, 28px) clamp(18px, 2.8vw, 22px);
+        }
+
+        &__hyaluron-block {
+            &--top-left {
+                top: clamp(64px, 8vw, 74px);
+                left: clamp(100px, 24vw, 240px);
+                width: clamp(140px, 17vw, 158px);
+                text-align: left;
+            }
+
+            &--bottom-right {
+                top: clamp(470px, 61vw, 560px);
+                right: clamp(100px, 24vw, 220px);
+                bottom: auto;
+                width: clamp(150px, 18vw, 168px);
+                text-align: right;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+
+        &__hyaluron-title {
+            font-size: clamp(16px, 2vw, 21px);
+            line-height: 1.18;
+            letter-spacing: -0.3px;
+            margin-bottom: 7px;
+            white-space: nowrap;
+        }
+
+        &__hyaluron-subtitle {
+            font-size: clamp(10px, 1.2vw, 12px);
+            line-height: 1.32;
+            max-width: clamp(140px, 17vw, 168px);
+            white-space: nowrap;
+        }
+
+        &__hyaluron-image-wrap {
+            &--toner {
+                width: clamp(200px, 25vw, 230px);
+                top: clamp(44px, 5vw, 54px);
+                right: clamp(90px, 20vw, 180px);
+            }
+
+            &--mask {
+                width: clamp(118px, 15vw, 136px);
+                top: clamp(250px, 50vw, 500px);
+                left: clamp(100px, 24vw, 220px);
+                margin-top: 0;
+            }
+        }
+
+        &__hyaluron-wrap {
+            top: clamp(250px, 31vw, 290px);
+        }
+
+        &__hyaluron-text {
+            font-size: clamp(62px, 12vw, 92px);
+            line-height: 0.95;
+            letter-spacing: -0.8px;
+            white-space: nowrap;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .kediheal {
+        &__section {
+            &--hero {
+                min-height: 680px;
+            }
+
+            &--care {
+                padding: 40px 0;
+                margin-bottom: 64px;
+            }
+
+            &--hyaluron {
+                padding: 24px 0;
+                cursor: auto;
+
+                .kediheal__cursor-follower {
+                    display: none;
+                }
+            }
+
+            &--global {
+                padding: 40px 0;
+                margin-bottom: 64px;
+            }
+
+            &--latest {
+                min-height: auto;
+                padding: 40px 0 56px;
+            }
+
+            &--final-cta {
+                height: 520px;
+            }
+
+            &--transition {
+                height: 440px;
+            }
+        }
+
+        &__final-cta-inner {
+            gap: 18px;
+            padding: 0 16px;
+        }
+
+        &__final-cta-title {
+            font-size: 14px;
+            line-height: 1.45;
+            max-width: 320px;
+            word-break: keep-all;
+        }
+
+        &__final-cta-form {
+            max-width: 100%;
+            padding: 3px;
+        }
+
+        &__final-cta-input {
+            font-size: 13px;
+            line-height: 1.4;
+            padding: 0 12px;
+
+            &::placeholder {
+                font-size: 13px;
+            }
+        }
+
+        &__final-cta-btn {
+            font-size: 13px;
+            padding: 6px 14px;
+        }
+
+        &__latest-rebuild {
+            min-height: auto;
+            padding: clamp(rem(40), 11.7vw, rem(56)) 0;
+        }
+
+        &__latest-rebuild-inner {
+            min-height: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 clamp(rem(16), 4.2vw, rem(20));
+            gap: clamp(rem(24), 7.5vw, rem(36));
+        }
+
+        &__latest-rebuild-left {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        &__latest-rebuild-title {
+            font-size: clamp(rem(42), 15vw, rem(72));
+            line-height: 0.95;
+            letter-spacing: clamp(rem(-1), -0.3vw, rem(-1.5));
+        }
+
+        &__latest-rebuild-subtitle {
+            margin-top: clamp(rem(8), 2.1vw, rem(10));
+            font-size: clamp(rem(16), 4.6vw, rem(22));
+            line-height: 1.25;
+            letter-spacing: clamp(rem(-0.3), -0.1vw, rem(-0.5));
+            word-break: keep-all;
+        }
+
+        &__latest-rebuild-desc {
+            margin-top: clamp(rem(10), 2.9vw, rem(14));
+            font-size: clamp(rem(12), 3.1vw, rem(15));
+            line-height: 1.5;
+            max-width: 100%;
+        }
+
+        &__latest-rebuild-btn {
+            margin-top: clamp(rem(24), 6.7vw, rem(32));
+            width: clamp(rem(210), 50vw, rem(240));
+            height: clamp(rem(46), 10.4vw, rem(50));
+            padding: clamp(rem(10), 3.3vw, rem(16));
+        }
+
+        &__latest-rebuild-btn-text {
+            font-size: clamp(rem(14), 3.1vw, rem(15));
+        }
+
+        &__latest-rebuild-btn-arrow {
+            right: clamp(rem(12), 3.3vw, rem(16));
+            width: clamp(rem(10), 2.5vw, rem(12));
+            height: clamp(rem(18), 4.6vw, rem(22));
+        }
+
+        &__latest-rebuild-right {
+            width: 100%;
+            max-width: rem(360);
+            height: auto;
+            justify-content: center;
+        }
+
+        &__latest-rebuild-image {
+            width: 100%;
+            max-width: rem(360);
+            height: auto;
+        }
+
+        &__hyaluron-inner {
+            height: clamp(620px, 145.8vw, 700px);
+            padding: clamp(16px, 4.2vw, 20px) clamp(12px, 3.3vw, 16px);
+        }
+
+        &__hyaluron-block {
+            &--top-left {
+                top: clamp(35px, 14vw, 70px);
+                left: clamp(40px, 20vw, 80px);
+                width: clamp(96px, 22.5vw, 108px);
+                text-align: left;
+            }
+
+            &--bottom-right {
+                top: clamp(300px, 97.9vw, 380px);
+                right: clamp(60px, 20vw, 100px);
+                bottom: auto;
+                width: clamp(104px, 25vw, 120px);
+                text-align: right;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+
+        &__hyaluron-title {
+            font-size: 11px;
+            margin-bottom: 5px;
+            line-height: 1.18;
+            word-break: keep-all;
+        }
+
+        &__hyaluron-subtitle {
+            font-size: 6px;
+            line-height: 1.3;
+            word-break: keep-all;
+            max-width: 120px;
+        }
+
+        &__hyaluron-image-wrap {
+            &--toner {
+                width: clamp(132px, 31.3vw, 150px);
+                top: clamp(32px, 8.3vw, 40px);
+                right: clamp(40px, 11.3vw, 54px);
+            }
+
+            &--mask {
+                width: clamp(96px, 22.5vw, 108px);
+                top: clamp(250px, 100vw, 300px);
+                left: clamp(40px, 18vw, 80px);
+                margin-top: 0;
+            }
+        }
+
+        &__hyaluron-wrap {
+            top: clamp(210px, 48.3vw, 232px);
+        }
+
+        &__hyaluron-text {
+            font-size: clamp(34px, 11.5vw, 50px);
+            letter-spacing: -0.5px;
+            line-height: 0.95;
+            white-space: nowrap;
+        }
+
+        &__global-inner {
+            max-width: 100%;
+            padding: clamp(28px, 6.7vw, 32px) clamp(12px, 3.3vw, 16px);
+        }
+
+        &__global-main-title {
+            font-size: clamp(22px, 6.3vw, 26px);
+            margin-bottom: clamp(8px, 2.1vw, 10px);
+            line-height: 1.12;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        &__global-main-desc {
+            font-size: clamp(11px, 3.3vw, 12px);
+            line-height: 1.5;
+            margin-bottom: clamp(20px, 5vw, 24px);
+            letter-spacing: -0.2px;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        &__global-list {
+            gap: clamp(6px, 1.7vw, 8px);
+        }
+
+        &__global-city-name {
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(2px, 1vw, 4px);
+            font-size: clamp(22px, 9.2vw, 34px);
+            line-height: 1.02;
+            min-height: auto;
+            position: relative;
+        }
+
+        &__global-stat {
+            position: absolute;
+            top: 0;
+            right: 2px;
+            margin-left: 0;
+            font-size: clamp(10px, 3vw, 10px);
+        }
+
+        &__global-city-desc {
+            font-size: clamp(11px, 3.1vw, 13px);
+            line-height: 1.5;
+            max-width: clamp(260px, 84vw, 340px);
+            gap: clamp(3px, 1vw, 6px);
+            word-break: keep-all;
+        }
+
+        &__global-search {
+            max-width: 100%;
+            margin-top: clamp(20px, 5vw, 30px);
+        }
+
+        &__global-search-label {
+            font-size: clamp(11px, 3.1vw, 13px);
+            line-height: 1.4;
+            margin-bottom: clamp(8px, 2.1vw, 10px);
+        }
+
+        &__global-search-input {
+            padding: clamp(9px, 2.5vw, 10px) clamp(10px, 2.9vw, 12px);
+            font-size: clamp(11px, 3vw, 12px);
+
+            &::placeholder {
+                font-size: clamp(11px, 3vw, 12px);
+            }
+        }
+
+        &__global-search-btn {
+            padding: 0 clamp(8px, 2.5vw, 10px);
+            font-size: clamp(11px, 3vw, 12px);
+        }
+
+        &__care-inner {
+            gap: clamp(24px, 6.7vw, 32px);
+            padding: 0 clamp(12px, 3.3vw, 16px);
+        }
+
+        &__care-left {
+            height: auto;
+        }
+
+        &__care-title {
+            font-size: 24px;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        &__care-desc {
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 100%;
+            white-space: nowrap;
+        }
+
+        &__care-right {
+            width: 100%;
+            height: auto;
+        }
+
+        &__care-list {
+            gap: 14px;
+        }
+
+        &__hero-title {
+            font-size: clamp(30px, 9.6vw, 42px);
+            line-height: clamp(34px, 10.4vw, 46px);
+            letter-spacing: clamp(-0.8px, -0.12vw, -1.2px);
+            white-space: nowrap;
+        }
+
+        &__hero-subtitle {
+            font-size: clamp(12px, 3.4vw, 14px);
+            line-height: clamp(18px, 4.2vw, 22px);
+            max-width: clamp(220px, 86vw, 320px);
+            white-space: nowrap;
+        }
+
+        &__hero-image-wrapper {
+            width: clamp(110px, 34vw, 180px);
+        }
+
+        &__transition-line {
+            font-size: 22px;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
     }
 }
