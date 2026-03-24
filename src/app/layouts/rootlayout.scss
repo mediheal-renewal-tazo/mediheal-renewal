@@ -1,5 +1,6 @@
 .layout {
     position: relative;
+    overflow-x: hidden;
     &__content {
         position: relative;
         z-index: 1;
