@@ -13,40 +13,40 @@ const MainSection2 = () => {
 
     useGSAP(
         () => {
-            const items = Array.from(panelsRef.current.children);
-            const baseOffset = items[0].offsetLeft;
+            const mm = gsap.matchMedia();
 
-            // 뒤 아이템일수록 위에 쌓이도록 z-index 설정
-            items.forEach((item, i) => {
-                gsap.set(item, { zIndex: i + 1 });
-            });
+            mm.add('(min-width: 768px)', () => {
+                const items = Array.from(panelsRef.current.children);
+                const baseOffset = items[0].offsetLeft;
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    pin: true,
-                    pinType: 'transform',
-                    scrub: 1,
-                    start: 'bottom bottom',
-                    end: () => `+=${panelsRef.current.scrollWidth - panelsRef.current.offsetWidth}`,
-                },
-            });
+                items.forEach((item, i) => {
+                    gsap.set(item, { zIndex: i + 1 });
+                });
 
-            // item2~5 동시에 이동해 각각 이전 아이템에 50%씩 겹침
-            items.forEach((item, i) => {
-                if (i === 0) return;
-                tl.to(
-                    item,
-                    {
-                        x: -(item.offsetLeft - baseOffset) * 0.48,
-                        ease: 'none',
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        pin: true,
+                        pinType: 'transform',
+                        scrub: 1,
+                        start: 'bottom bottom',
+                        end: () =>
+                            `+=${panelsRef.current.scrollWidth - panelsRef.current.offsetWidth}`,
                     },
-                    0
-                );
+                });
 
-                // 모션 완료 후 잠깐 멈춤
-                tl.to({}, { duration: 0.3 });
+                items.forEach((item, i) => {
+                    if (i === 0) return;
+                    tl.to(item, { x: -(item.offsetLeft - baseOffset) * 0.48, ease: 'none' }, 0);
+                    tl.to({}, { duration: 0.3 });
+                });
+
+                return () => {
+                    tl.kill();
+                };
             });
+
+            return () => mm.revert();
         },
         { scope: sectionRef }
     );

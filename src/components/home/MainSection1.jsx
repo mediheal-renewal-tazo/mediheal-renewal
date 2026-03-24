@@ -33,6 +33,7 @@ const charLines = (() => {
 const MainSection1 = () => {
     const containerRef = useRef(null);
     const listRef = useRef(null);
+    const sectionRef = useRef(null);
 
     useGSAP(
         () => {
@@ -48,12 +49,15 @@ const MainSection1 = () => {
                     stagger: 0.2,
                     ease: 'power2.out',
                     scrollTrigger: {
-                        trigger: containerRef.current,
+                        trigger: sectionRef.current,
                         start: '90% bottom',
                         toggleActions: 'play none none reverse',
                     },
                 }
             );
+
+            // 모바일에서는 char 애니메이션 생략
+            if (window.matchMedia('(max-width: 767px)').matches) return;
 
             // 글자 교체 애니메이션
             const enChars = gsap.utils.toArray('.char-en', containerRef.current);
@@ -157,10 +161,10 @@ const MainSection1 = () => {
     );
 
     return (
-        <div className="main__section1" ref={containerRef} data-header-theme="dark">
+        <div className="main__section1" ref={sectionRef} data-header-theme="dark">
             <div className="main__section1-inner">
                 <div className="main__section1-title">
-                    <div className="main__section1-title__text">
+                    <div className="main__section1-title__text" ref={containerRef}>
                         {charLines.map((line, lineIdx) => (
                             <span key={lineIdx} className="main__section1-title__line">
                                 {line.map((charData, charIdx) => (
@@ -185,6 +189,12 @@ const MainSection1 = () => {
                                 </span>
                             ))}
                         </span>
+                    </div>
+                    <div className="main__section1-title__static">
+                        <span className="main__section1-title__static-headline">
+                            저자극 데일리 흔적 케어 솔루션
+                        </span>
+                        <p className="main__section1-title__static-body">{BODY_TEXT}</p>
                     </div>
                 </div>
                 <div className="main__section1-productList" ref={listRef}>

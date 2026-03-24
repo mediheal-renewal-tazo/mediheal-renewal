@@ -308,6 +308,29 @@
                     display: inline-block;
                 }
             }
+
+            &__static {
+                display: none;
+                flex-direction: column;
+                gap: 16px;
+
+                &-headline {
+                    font-size: clamp(28px, 6vw, 60px);
+                    font-weight: 700;
+                    line-height: 1.3;
+                    letter-spacing: -0.6px;
+                    color: #ffffff;
+                }
+
+                &-body {
+                    font-size: clamp(13px, 3vw, 20px);
+                    font-weight: 500;
+                    line-height: 1.6;
+                    letter-spacing: -0.3px;
+                    color: #ffffff;
+                    white-space: pre-line;
+                }
+            }
         }
         .char-group {
             position: relative;
@@ -641,6 +664,7 @@
                 position: absolute;
                 top: 20px;
                 left: 20px;
+                right: 20px;
                 z-index: 1;
                 color: #fff;
                 font-size: 15px;
@@ -962,6 +986,56 @@
             &-title {
                 padding-left: 15px;
                 font-size: clamp(50px, 9.5vw, 70px);
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .main {
+        &__section1 {
+            height: 1100px;
+
+            &-title {
+                &__text {
+                    display: none;
+                }
+
+                &__static {
+                    display: flex;
+                }
+            }
+        }
+
+        &__section2 {
+            height: auto;
+            padding-top: 40px;
+            padding-bottom: 50px;
+
+            &-inner {
+                justify-content: flex-start;
+                padding-bottom: 30px;
+            }
+
+            &-productList {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+                overflow: visible;
+            }
+        }
+
+        &__productItem {
+            &-sec2 {
+                &-1,
+                &-2,
+                &-3,
+                &-4,
+                &-5 {
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 1 / 1;
+                }
             }
         }
     }
