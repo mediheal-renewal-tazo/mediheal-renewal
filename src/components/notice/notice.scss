@@ -70,6 +70,7 @@
         }
 
         &--writer {
+            white-space: nowrap;
         }
 
         &--date {
@@ -115,6 +116,107 @@
         &.is-active {
             color: #333;
             font-weight: 700;
+        }
+    }
+}
+
+/*NoticeDetail*/
+.notice-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    &__title {
+        color: #272727;
+        font-size: clamp(22px, 2.8vw, 40px);
+        font-weight: 700;
+        letter-spacing: 1px;
+        line-height: 60px;
+        text-align: center;
+        white-space: nowrap;
+        margin-bottom: 60px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 40px;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__label {
+        color: #272727;
+        font-size: 19px;
+        font-weight: 700;
+    }
+
+    &__meta {
+        display: flex;
+        gap: 32px;
+        border-bottom: 1px solid #c6c6c6;
+        padding-bottom: 16px;
+    }
+
+    &__meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__meta-label {
+        font-size: 14px;
+        font-weight: 700;
+        color: #474747;
+    }
+
+    &__meta-text {
+        font-size: 14px;
+        color: #848484;
+    }
+
+    &__value {
+        border-bottom: 1px solid #c6c6c6;
+        color: #272727;
+        font-size: 15px;
+        min-height: 48px;
+        padding: 12px 8px;
+        line-height: 1.6;
+
+        &--content {
+            border: 1px solid #c6c6c6;
+            min-height: 250px;
+            padding: 16px;
+            white-space: pre-wrap;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+
+    &__btn {
+        background-color: #c6c6c6;
+        border: none;
+        color: #272727;
+        cursor: pointer;
+        font-size: 19px;
+        font-weight: 700;
+        height: 60px;
+        text-align: center;
+        white-space: nowrap;
+        width: 217px;
+
+        &:hover {
+            background-color: #b0b0b0;
         }
     }
 }

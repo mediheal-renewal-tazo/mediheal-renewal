@@ -1,10 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './notice.scss';
 import noticeData from '@/data/noticeData';
 import NoticeItem from './NoticeItem';
 
-const NoticeList = () => {
+const PAGE_SIZE = 10;
+
+const NoticeList = ({ onSelect, searchTerm }) => {
     const [currentPage, setCurrentPage] = useState(1);
+
+    const filtered = searchTerm
+        ? noticeData.filter((item) =>
+              item.title.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        : noticeData;
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm]);
+
+    const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+    const pageItems = filtered.slice(
+        (currentPage - 1) * PAGE_SIZE,
+        currentPage * PAGE_SIZE
+    );
 
     return (
         <div className="notice-list">
@@ -19,8 +37,8 @@ const NoticeList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {noticeData.map((item) => (
-                        <NoticeItem key={item.num} {...item} />
+                    {pageItems.map((item) => (
+                        <NoticeItem key={item.num} {...item} onSelect={onSelect} />
                     ))}
                 </tbody>
             </table>
@@ -32,7 +50,7 @@ const NoticeList = () => {
                 >
                     &lt;
                 </button>
-                {[1, 2, 3].map((page) => (
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                     <button
                         key={page}
                         className={`notice-list__page-num ${currentPage === page ? 'is-active' : ''}`}
@@ -43,7 +61,7 @@ const NoticeList = () => {
                 ))}
                 <button
                     className="notice-list__page-arrow"
-                    onClick={() => setCurrentPage((p) => Math.min(3, p + 1))}
+                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 >
                     &gt;
                 </button>
