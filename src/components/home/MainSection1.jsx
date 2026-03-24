@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -33,9 +33,15 @@ const charLines = (() => {
 const MainSection1 = () => {
     const containerRef = useRef(null);
     const listRef = useRef(null);
+    const [fontsReady, setFontsReady] = useState(false);
+
+    useEffect(() => {
+        document.fonts.ready.then(() => setFontsReady(true));
+    }, []);
 
     useGSAP(
         () => {
+            if (!fontsReady) return;
             // 상품 리스트 애니메이션
             const items = gsap.utils.toArray(listRef.current.children);
             gsap.fromTo(
@@ -153,7 +159,7 @@ const MainSection1 = () => {
                 koBodyDelay
             );
         },
-        { scope: containerRef }
+        { scope: containerRef, dependencies: [fontsReady] }
     );
 
     return (
