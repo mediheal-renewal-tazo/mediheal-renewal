@@ -8,15 +8,13 @@ const KedihealCare = () => {
     const careData = [
         {
             title: '모공 케어',
-            subtitle:
-                '모공 결을 정돈하고 매끈한 피부결을 위한<br />자극 부담을 낮춘 데일리 케어',
+            subtitle: '모공 결을 정돈하고 매끈한 피부결을 위한<br />자극 부담을 낮춘 데일리 케어',
             mediaType: 'image',
             mediaSource: poreCareImg,
         },
         {
             title: '열감 반응 케어',
-            subtitle:
-                '열감으로 예민해진 피부를 편안하게 감싸며<br />진정감을 높여주는 밸런스 케어',
+            subtitle: '열감으로 예민해진 피부를 편안하게 감싸며<br />진정감을 높여주는 밸런스 케어',
             mediaType: 'image',
             mediaSource: heatCareImg,
         },

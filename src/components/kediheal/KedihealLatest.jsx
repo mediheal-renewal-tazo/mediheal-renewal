@@ -108,37 +108,6 @@ const KedihealLatest = () => {
                     </div>
                 </div>
             </section>
-
-            <section
-                className="kediheal__section kediheal__section--final-cta"
-                style={{ backgroundImage: `url(${finalCtaBg})` }}
-            >
-                <div className="kediheal__final-cta-inner">
-                    <h2 className="kediheal__final-cta-title">
-                        메디힐은 멈추지 않고 세상의 피부고민이 완전히 없어지는 그날까지
-                        고민하겠습니다
-                    </h2>
-                    <form className="kediheal__final-cta-form" onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            placeholder="당신의 피부고민을 들려주세요"
-                            className="kediheal__final-cta-input"
-                            value={concern}
-                            onChange={(e) => {
-                                setConcern(e.target.value);
-                            }}
-                        />
-                        <button type="submit" className="kediheal__final-cta-button">
-                            함께하기
-                        </button>
-                    </form>
-                </div>
-                {isSubmitted && (
-                    <div className="kediheal__final-cta-overlay">
-                        <p className="kediheal__final-cta-overlay-text">고민이 전송되었습니다</p>
-                    </div>
-                )}
-            </section>
         </>
     );
 };
