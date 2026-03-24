@@ -16,7 +16,8 @@ const EN_LINES = [
     'MEDIHEAL LAB',
 ];
 const KO_CHARS = Array.from('저자극 데일리 흔적 케어 솔루션');
-const BODY_TEXT = '메디힐 연구소 테스트를 통과한\n정밀 리포좀 기술 기반의 저자극 데일리 흔적 케어 솔루션을 만나보세요.\n메디힐의 데이터로 증명하는 피부의 변화를 느껴보세요';
+const BODY_TEXT =
+    '메디힐 연구소 테스트를 통과한\n정밀 리포좀 기술 기반의 저자극 데일리 흔적 케어 솔루션을 만나보세요.\n메디힐의 데이터로 증명하는 피부의 변화를 느껴보세요.';
 
 const charLines = (() => {
     let idx = 0;
@@ -85,29 +86,41 @@ const MainSection1 = () => {
 
             const STAGGER = 0.08;
             const CHAR_DUR = 0.2;
+            const EN_FADE = CHAR_DUR * 0.5; // EN 글자 하나당 fade-out 지속시간
+            const EN_STAGGER = 0.045; // EN 삭제 속도 (KO 등장보다 빠르게)
 
-            // EN: 앞 글자부터 순서대로 위로 퇴장
+            // EN: 왼쪽부터 한 글자씩 사라짐 (opacity만, 위로 날아가지 않음)
             tl.to(
                 enChars,
-                { opacity: 0, yPercent: -120, duration: CHAR_DUR, stagger: STAGGER, ease: 'power2.in' },
+                { opacity: 0, duration: EN_FADE, stagger: EN_STAGGER, ease: 'power1.in' },
                 0
             );
 
-            // KO: EN과 약간 엇갈려서 같은 위치에 아래에서 등장
+            // KO: EN과 약간 엇갈려서 아래에서 등장 (기존 유지)
             tl.fromTo(
                 koChars,
                 { opacity: 0, yPercent: 120 },
-                { opacity: 1, yPercent: 0, duration: CHAR_DUR, stagger: STAGGER, ease: 'power2.out' },
+                {
+                    opacity: 1,
+                    yPercent: 0,
+                    duration: CHAR_DUR,
+                    stagger: STAGGER,
+                    ease: 'power2.out',
+                },
                 STAGGER / 2
             );
 
-            // 각 글자별로 EN이 완전히 사라진 직후에 너비 변경 (겹침 없음)
+            // 각 글자별로 EN이 사라진 직후 너비 변경
             koNonSpaceGroups.forEach((group) => {
                 const koChar = group.querySelector('.char-ko');
                 const koIdx = koChars.indexOf(koChar);
                 if (koIdx < 0) return;
                 const t = STAGGER / 2 + koIdx * STAGGER + CHAR_DUR;
-                tl.to(group, { width: koCharWidth, duration: CHAR_DUR * 0.8, ease: 'power2.out' }, t);
+                tl.to(
+                    group,
+                    { width: koCharWidth, duration: CHAR_DUR * 0.8, ease: 'power2.out' },
+                    t
+                );
             });
 
             koSpaceGroups.forEach((group) => {
@@ -115,23 +128,28 @@ const MainSection1 = () => {
                 const koIdx = koChars.indexOf(koChar);
                 if (koIdx < 0) return;
                 const t = STAGGER / 2 + koIdx * STAGGER + CHAR_DUR;
-                tl.to(group, { width: koCharWidth * 0.3, duration: CHAR_DUR * 0.8, ease: 'power2.out' }, t);
+                tl.to(
+                    group,
+                    { width: koCharWidth * 0.3, duration: CHAR_DUR * 0.8, ease: 'power2.out' },
+                    t
+                );
             });
 
+            // EN-only: 글자 사라진 직후 너비 접기
             enOnlyGroups.forEach((group) => {
                 const enChar = group.querySelector('.char-en');
                 const enIdx = enChars.indexOf(enChar);
                 if (enIdx < 0) return;
-                const t = enIdx * STAGGER + CHAR_DUR;
-                tl.to(group, { width: 0, duration: CHAR_DUR * 0.5, ease: 'power2.in' }, t);
+                const t = enIdx * EN_STAGGER + EN_FADE;
+                tl.to(group, { width: 0, duration: CHAR_DUR * 0.3, ease: 'power2.in' }, t);
             });
 
-            // 마지막 KO 글자가 다 올라온 뒤 body 글자 순서대로 등장
+            // BODY_TEXT: KO 글자 다 나온 뒤 왼쪽부터 타이프라이터
             const koBodyDelay = (KO_CHARS.length - 1) * STAGGER + STAGGER / 2 + CHAR_DUR + 0.1;
             tl.fromTo(
                 koBodyChars,
-                { opacity: 0, yPercent: 120 },
-                { opacity: 1, yPercent: 0, duration: 0.3, stagger: 0.015, ease: 'power2.out' },
+                { opacity: 0 },
+                { opacity: 1, duration: 0.06, stagger: 0.019, ease: 'none' },
                 koBodyDelay
             );
         },
