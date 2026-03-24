@@ -13,31 +13,40 @@ const MainSection4 = () => {
 
     useGSAP(
         () => {
-            const items = Array.from(panelsRef.current.children);
+            const mm = gsap.matchMedia();
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    pin: true,
-                    pinType: 'transform',
-                    start: 'top top',
-                    end: '+=600',
-                    toggleActions: 'play none none reverse',
-                },
+            mm.add('(min-width: 768px)', () => {
+                const items = Array.from(panelsRef.current.children);
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        pin: true,
+                        pinType: 'transform',
+                        start: 'top top',
+                        end: '+=600',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
+
+                tl.fromTo(
+                    items,
+                    { y: 160, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.4,
+                        ease: 'expo.out',
+                        stagger: 0.25,
+                    }
+                );
+
+                return () => {
+                    tl.kill();
+                };
             });
 
-            // 1번부터 차례대로 아래에서 박력있게 올라옴
-            tl.fromTo(
-                items,
-                { y: 160, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.4,
-                    ease: 'expo.out',
-                    stagger: 0.25,
-                }
-            );
+            return () => mm.revert();
         },
         { scope: sectionRef }
     );

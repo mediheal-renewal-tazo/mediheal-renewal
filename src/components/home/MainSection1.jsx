@@ -82,7 +82,7 @@ const MainSection1 = () => {
 
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: containerRef.current,
+                    trigger: sectionRef.current,
                     start: 'top top',
                     toggleActions: 'play none none reverse',
                 },

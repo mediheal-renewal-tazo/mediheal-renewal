@@ -13,41 +13,48 @@ const MainSection3 = () => {
 
     useGSAP(
         () => {
-            const brandItems = Array.from(panelsRef.current.children);
-            const imgs = brandItems.map((item) => item.querySelector('img')).filter(Boolean);
+            const mm = gsap.matchMedia();
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    pin: true,
-                    pinType: 'transform',
-                    start: 'bottom bottom',
-                    end: '+=2000',
-                    scrub: 1,
-                },
+            mm.add('(min-width: 768px)', () => {
+                const brandItems = Array.from(panelsRef.current.children);
+                const imgs = brandItems.map((item) => item.querySelector('img')).filter(Boolean);
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        pin: true,
+                        pinType: 'transform',
+                        start: 'bottom bottom',
+                        end: '+=2000',
+                        scrub: 1,
+                    },
+                });
+
+                tl.fromTo(
+                    panelsRef.current,
+                    { columnGap: 0 },
+                    { columnGap: 20, duration: 0.8, ease: 'power3.out' }
+                );
+
+                tl.to(
+                    imgs,
+                    {
+                        y: () => panelsRef.current.offsetHeight * 0.4,
+                        duration: 0.7,
+                        ease: 'none',
+                        stagger: 0.55,
+                    },
+                    '+=0.3'
+                );
+
+                tl.to({}, { duration: 1 });
+
+                return () => {
+                    tl.kill();
+                };
             });
 
-            // brandBox 자식요소들이 gap 20px 만큼 펼쳐짐
-            tl.fromTo(
-                panelsRef.current,
-                { columnGap: 0 },
-                { columnGap: 20, duration: 0.8, ease: 'power3.out' }
-            );
-
-            // img 1→4 순서로 section height 40%만큼 아래로 이동
-            tl.to(
-                imgs,
-                {
-                    y: () => panelsRef.current.offsetHeight * 0.4,
-                    duration: 0.7,
-                    ease: 'none',
-                    stagger: 0.55,
-                },
-                '+=0.3'
-            );
-
-            // img 모션 완료 후 잠깐 멈춤
-            tl.to({}, { duration: 1 });
+            return () => mm.revert();
         },
         { scope: sectionRef }
     );

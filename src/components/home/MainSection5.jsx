@@ -36,84 +36,89 @@ const MainSection5 = () => {
 
     useGSAP(
         () => {
-            const enChars = gsap.utils.toArray('.char-en', containerRef.current);
-            const koChars = gsap.utils.toArray('.char-ko', containerRef.current);
-            const koBodyChars = gsap.utils.toArray('.sec5-ko-body-char', containerRef.current);
+            const mm = gsap.matchMedia();
 
-            gsap.set(koBodyChars, { opacity: 0 });
+            mm.add('(min-width: 768px)', () => {
+                const enChars = gsap.utils.toArray('.char-en', containerRef.current);
+                const koChars = gsap.utils.toArray('.char-ko', containerRef.current);
+                const koBodyChars = gsap.utils.toArray('.sec5-ko-body-char', containerRef.current);
 
-            const koNonSpaceGroups = koChars
-                .filter((ko) => ko.textContent !== ' ')
-                .map((ko) => ko.parentElement);
-            const koSpaceGroups = koChars
-                .filter((ko) => ko.textContent === ' ')
-                .map((ko) => ko.parentElement);
-            const enOnlyGroups = enChars
-                .filter((en) => !en.parentElement.querySelector('.char-ko'))
-                .map((en) => en.parentElement);
+                gsap.set(koBodyChars, { opacity: 0 });
 
-            const firstNonSpace = koChars.find((ko) => ko.textContent !== ' ');
-            const koCharWidth = firstNonSpace?.getBoundingClientRect().width || 60;
+                const koNonSpaceGroups = koChars
+                    .filter((ko) => ko.textContent !== ' ')
+                    .map((ko) => ko.parentElement);
+                const koSpaceGroups = koChars
+                    .filter((ko) => ko.textContent === ' ')
+                    .map((ko) => ko.parentElement);
+                const enOnlyGroups = enChars
+                    .filter((en) => !en.parentElement.querySelector('.char-ko'))
+                    .map((en) => en.parentElement);
 
-            const EN_STAGGER = 0.018;
-            const EN_FADE = 0.043;
-            const KO_STAGGER = 0.030;
-            const CHAR_DUR = 0.07;
+                const firstNonSpace = koChars.find((ko) => ko.textContent !== ' ');
+                const koCharWidth = firstNonSpace?.getBoundingClientRect().width || 60;
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: 'top center',
-                    toggleActions: 'play none none reverse',
-                },
+                const EN_STAGGER = 0.018;
+                const EN_FADE = 0.043;
+                const KO_STAGGER = 0.030;
+                const CHAR_DUR = 0.07;
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top center',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
+
+                tl.to(enChars, { opacity: 0, duration: EN_FADE, stagger: EN_STAGGER, ease: 'power1.in' }, 0);
+
+                tl.fromTo(
+                    koChars,
+                    { opacity: 0, yPercent: 120 },
+                    { opacity: 1, yPercent: 0, duration: CHAR_DUR, stagger: KO_STAGGER, ease: 'power2.out' },
+                    KO_STAGGER / 2
+                );
+
+                koNonSpaceGroups.forEach((group) => {
+                    const koChar = group.querySelector('.char-ko');
+                    const koIdx = koChars.indexOf(koChar);
+                    if (koIdx < 0) return;
+                    const t = KO_STAGGER / 2 + koIdx * KO_STAGGER + CHAR_DUR;
+                    tl.to(group, { width: koCharWidth, duration: CHAR_DUR * 0.8, ease: 'power2.out' }, t);
+                });
+
+                koSpaceGroups.forEach((group) => {
+                    const koChar = group.querySelector('.char-ko');
+                    const koIdx = koChars.indexOf(koChar);
+                    if (koIdx < 0) return;
+                    const t = KO_STAGGER / 2 + koIdx * KO_STAGGER + CHAR_DUR;
+                    tl.to(group, { width: koCharWidth * 0.3, duration: CHAR_DUR * 0.8, ease: 'power2.out' }, t);
+                });
+
+                enOnlyGroups.forEach((group) => {
+                    const enChar = group.querySelector('.char-en');
+                    const enIdx = enChars.indexOf(enChar);
+                    if (enIdx < 0) return;
+                    const t = enIdx * EN_STAGGER + EN_FADE;
+                    tl.to(group, { width: 0, duration: CHAR_DUR * 0.3, ease: 'power2.in' }, t);
+                });
+
+                const koBodyDelay =
+                    (KO_HEADLINE_5.length - 1) * KO_STAGGER + KO_STAGGER / 2 + CHAR_DUR + 0.1;
+                tl.fromTo(
+                    koBodyChars,
+                    { opacity: 0 },
+                    { opacity: 1, duration: 0.04, stagger: 0.019, ease: 'none' },
+                    koBodyDelay
+                );
+
+                return () => {
+                    tl.kill();
+                };
             });
 
-            // EN: 왼쪽부터 한 글자씩 사라짐
-            tl.to(enChars, { opacity: 0, duration: EN_FADE, stagger: EN_STAGGER, ease: 'power1.in' }, 0);
-
-            // KO headline: 아래에서 한 글자씩 등장 (MainSection1과 동일)
-            tl.fromTo(
-                koChars,
-                { opacity: 0, yPercent: 120 },
-                { opacity: 1, yPercent: 0, duration: CHAR_DUR, stagger: KO_STAGGER, ease: 'power2.out' },
-                KO_STAGGER / 2
-            );
-
-            // KO 그룹 너비 정규화
-            koNonSpaceGroups.forEach((group) => {
-                const koChar = group.querySelector('.char-ko');
-                const koIdx = koChars.indexOf(koChar);
-                if (koIdx < 0) return;
-                const t = KO_STAGGER / 2 + koIdx * KO_STAGGER + CHAR_DUR;
-                tl.to(group, { width: koCharWidth, duration: CHAR_DUR * 0.8, ease: 'power2.out' }, t);
-            });
-
-            koSpaceGroups.forEach((group) => {
-                const koChar = group.querySelector('.char-ko');
-                const koIdx = koChars.indexOf(koChar);
-                if (koIdx < 0) return;
-                const t = KO_STAGGER / 2 + koIdx * KO_STAGGER + CHAR_DUR;
-                tl.to(group, { width: koCharWidth * 0.3, duration: CHAR_DUR * 0.8, ease: 'power2.out' }, t);
-            });
-
-            enOnlyGroups.forEach((group) => {
-                const enChar = group.querySelector('.char-en');
-                const enIdx = enChars.indexOf(enChar);
-                if (enIdx < 0) return;
-                const t = enIdx * EN_STAGGER + EN_FADE;
-                tl.to(group, { width: 0, duration: CHAR_DUR * 0.3, ease: 'power2.in' }, t);
-            });
-
-            // KO body: 타이프라이터
-            const koBodyDelay =
-                (KO_HEADLINE_5.length - 1) * KO_STAGGER + KO_STAGGER / 2 + CHAR_DUR + 0.1;
-            tl.fromTo(
-                koBodyChars,
-                { opacity: 0 },
-                { opacity: 1, duration: 0.04, stagger: 0.019, ease: 'none' },
-                koBodyDelay
-            );
-
+            return () => mm.revert();
         },
         { scope: containerRef }
     );
@@ -150,6 +155,12 @@ const MainSection5 = () => {
                                 </span>
                             ))}
                         </div>
+                    </div>
+                    <div className="main__section5-title__static">
+                        <span className="main__section5-title__static-headline">
+                            세계가 인정한 메디힐의 기록
+                        </span>
+                        <p className="main__section5-title__static-body">{KO_BODY_5}</p>
                     </div>
                 </div>
                 <div className="main__section5-bgImg">
