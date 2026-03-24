@@ -55,10 +55,10 @@ const MainSection5 = () => {
             const firstNonSpace = koChars.find((ko) => ko.textContent !== ' ');
             const koCharWidth = firstNonSpace?.getBoundingClientRect().width || 60;
 
-            const EN_STAGGER = 0.045;
-            const EN_FADE = 0.1;
-            const KO_STAGGER = 0.08;
-            const CHAR_DUR = 0.2;
+            const EN_STAGGER = 0.018;
+            const EN_FADE = 0.043;
+            const KO_STAGGER = 0.030;
+            const CHAR_DUR = 0.07;
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -110,7 +110,7 @@ const MainSection5 = () => {
             tl.fromTo(
                 koBodyChars,
                 { opacity: 0 },
-                { opacity: 1, duration: 0.06, stagger: 0.028, ease: 'none' },
+                { opacity: 1, duration: 0.04, stagger: 0.019, ease: 'none' },
                 koBodyDelay
             );
 

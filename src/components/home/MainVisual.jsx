@@ -92,24 +92,24 @@ const MainVisual = () => {
             tl.fromTo(
                 leftWrapRef.current,
                 { x: 120, opacity: 0 },
-                { x: 0, opacity: 1, duration: 0.6 },
+                { x: 0, opacity: 1, duration: 0.4 },
                 '-=0'
             );
             tl.fromTo(
                 rightWrapRef.current,
                 { x: -120, opacity: 0 },
-                { x: 0, opacity: 1, duration: 0.6 },
+                { x: 0, opacity: 1, duration: 0.4 },
                 '<'
             );
 
             // Phase 3: dsc가 아래에서 위로 등장
-            tl.fromTo(dscRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 });
+            tl.fromTo(dscRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 });
 
             // Phase 4: middle 배너가 왼쪽에서 페인트칠하듯 오른쪽으로 리빌
             tl.fromTo(
                 middleRef.current,
                 { clipPath: 'inset(0 100% 0 0)' },
-                { clipPath: 'inset(0 0% 0 0)', duration: 1.0, ease: 'power2.inOut' }
+                { clipPath: 'inset(0 0% 0 0)', duration: 0.5, ease: 'power2.inOut' }
             );
         },
         { scope: containerRef }

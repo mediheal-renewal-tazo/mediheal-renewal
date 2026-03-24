@@ -84,10 +84,10 @@ const MainSection1 = () => {
                 },
             });
 
-            const STAGGER = 0.08;
-            const CHAR_DUR = 0.2;
-            const EN_FADE = CHAR_DUR * 0.5; // EN 글자 하나당 fade-out 지속시간
-            const EN_STAGGER = 0.045; // EN 삭제 속도 (KO 등장보다 빠르게)
+            const STAGGER = 0.036;
+            const CHAR_DUR = 0.082;
+            const EN_FADE = CHAR_DUR * 0.4; // EN 글자 하나당 fade-out 지속시간
+            const EN_STAGGER = 0.020; // EN 삭제 속도 (KO 등장보다 빠르게)
 
             // EN: 왼쪽부터 한 글자씩 사라짐 (opacity만, 위로 날아가지 않음)
             tl.to(
@@ -149,7 +149,7 @@ const MainSection1 = () => {
             tl.fromTo(
                 koBodyChars,
                 { opacity: 0 },
-                { opacity: 1, duration: 0.06, stagger: 0.019, ease: 'none' },
+                { opacity: 1, duration: 0.031, stagger: 0.01, ease: 'none' },
                 koBodyDelay
             );
         },
