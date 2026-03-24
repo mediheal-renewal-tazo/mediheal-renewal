@@ -7,6 +7,7 @@ import SortSelect from '@/components/shop/SortSelect';
 import { reviewFilterOptions } from '@/data/sortOptions';
 import BigStar from '@/assets/images/product_details/icon/review_bigStar.svg';
 import ProductsPagination from '@/components/shop/ProductsPagination';
+import ShopDetail__graph from '@/components/shopDetail/ShopDetail__graph';
 
 const ShopDetail__review = () => {
     const { id } = useParams();
@@ -138,7 +139,6 @@ const ShopDetail__review = () => {
                             <img src={BigStar} alt="별점" />
                             <span className="ratingScore-value">{rating.toFixed(1)}</span>
                         </div>
-
                         <div className="ratingScore-count">
                             <strong className="count">{reviewCount}</strong>
                             <span className="text">개 리뷰</span>
@@ -146,38 +146,7 @@ const ShopDetail__review = () => {
                     </div>
                 </div>
 
-                <div className="ratingDistribution">
-                    <div className="ratingDistribution-title">평점 비율</div>
-
-                    <div className="ratingDistribution-row">
-                        {ratingRows.map((item) => {
-                            const isTop = topTwoStars.includes(item.star);
-
-                            return (
-                                <div className="ratingDistribution-item" key={item.star}>
-                                    <span
-                                        className={`ratingDistribution-percent ${
-                                            !isTop ? 'is-zero' : ''
-                                        }`}
-                                    >
-                                        {Math.round(item.percent)}%
-                                    </span>
-
-                                    <div className="ratingDistribution-bar">
-                                        <div
-                                            className={`ratingDistribution-fill ${
-                                                !isTop ? 'is-zero' : ''
-                                            }`}
-                                            style={{
-                                                height: `${item.percent}%`,
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
+                <ShopDetail__graph ratingRows={ratingRows} topTwoStars={topTwoStars} />
 
                 <div className="ratingTag">
                     <div className="ratingTag-title">사용자 평가</div>

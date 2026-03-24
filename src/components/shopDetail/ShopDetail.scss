@@ -846,8 +846,15 @@ $fs-13: clamp(11px, 0.6875rem + 0.278vw, 13px);
 }
 
 // ============================================================
-// 리뷰 - 별점 분포
+// 리뷰 - 별점 분포 (그래픽 추가함)
 // ============================================================
+.ratingDistribution {
+    width: 100%;
+}
+
+.ratingDistribution-title {
+    margin-bottom: 20px;
+}
 
 .ratingDistribution-row {
     display: grid;
@@ -865,6 +872,8 @@ $fs-13: clamp(11px, 0.6875rem + 0.278vw, 13px);
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    gap: 10px;
+    overflow: visible;
 }
 
 .ratingDistribution-percent {
@@ -887,10 +896,12 @@ $fs-13: clamp(11px, 0.6875rem + 0.278vw, 13px);
 }
 
 .ratingDistribution-bar {
+    position: relative;
     width: 100%;
     height: 120px;
     display: flex;
     align-items: flex-end;
+    overflow: hidden;
 
     @media (max-width: 768px) {
         height: 80px;
@@ -898,13 +909,27 @@ $fs-13: clamp(11px, 0.6875rem + 0.278vw, 13px);
 }
 
 .ratingDistribution-fill {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    min-height: 2px;
+    height: 0%;
     background: var(--primary-blue, #151789);
+    transition: height 1s cubic-bezier(0.22, 1, 0.36, 1);
 
     &.is-zero {
         background: var(--grey-scale-grey-100, #c6c6c6);
     }
+}
+
+.ratingDistributionName {
+    align-self: stretch;
+    color: var(--primary-blue, #151789);
+    text-align: center;
+    font-family: Pretendard, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 150%;
 }
 
 .ratingDistribution-count {
@@ -912,7 +937,6 @@ $fs-13: clamp(11px, 0.6875rem + 0.278vw, 13px);
     font-size: $fs-13;
     font-weight: 600;
 }
-
 // ============================================================
 // 리뷰 - 사용자 평가 태그
 // ============================================================
@@ -1864,6 +1888,101 @@ $fs-13: clamp(11px, 0.6875rem + 0.278vw, 13px);
                 font-size: 12px;
                 line-height: 160%;
             }
+        }
+    }
+}
+
+// ============================================================
+// 360px 모바일 최소 사이즈
+// ============================================================
+
+@media (max-width: 360px) {
+    // 1. 좌우 패딩 / 마진
+    .Products__detail-inner {
+        padding: 0 12px;
+    }
+
+    .ratingDistribution-row {
+        gap: 6px;
+    }
+
+    .ratingTag-chip-wrap {
+        width: 80px;
+    }
+
+    .ratingTag-chip {
+        padding: 4px 8px;
+    }
+
+    .review__imgBox img {
+        width: 72px;
+        height: 72px;
+    }
+
+    .cartPanel {
+        padding: 80px 12px;
+    }
+
+    .ShopDetail__Guide-detail {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .ExchangeRefund-detail {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .reviewArray > div {
+        padding: 8px 4px;
+    }
+
+    // 2. 폰트 크기
+    .ratingDistributionName {
+        font-size: 11px;
+    }
+
+    .ratingDistribution-percent {
+        font-size: 10px;
+        margin-bottom: 6px;
+    }
+
+    .product-info {
+        &__table {
+            th {
+                width: 90px;
+                min-width: 90px;
+                padding: 10px 8px;
+                font-size: 11px;
+            }
+
+            td {
+                padding: 10px 8px;
+                font-size: 11px;
+            }
+        }
+    }
+
+    // 3. 레이아웃
+    .ratingDistribution-bar {
+        height: 60px;
+    }
+
+    .shopDetail__button > * {
+        height: 44px;
+    }
+
+    .kakaocoupon {
+        height: 44px;
+    }
+
+    .cartPanel {
+        .cartPanel__actions > * {
+            height: 44px;
+        }
+
+        .cartPanel__kakao {
+            height: 44px;
         }
     }
 }

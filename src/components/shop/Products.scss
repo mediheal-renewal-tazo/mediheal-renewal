@@ -14,9 +14,16 @@ $white: #fff;
 
 $font-family: 'Pretendard', sans-serif;
 $bp-tablet: 768px;
+$bp-mobile: 360px;
 
 @mixin mo {
     @media (max-width: $bp-tablet) {
+        @content;
+    }
+}
+
+@mixin xs {
+    @media (max-width: $bp-mobile) {
         @content;
     }
 }
@@ -30,23 +37,25 @@ $bp-tablet: 768px;
         max-width: 1920px;
         margin: 0 auto;
         padding: 160px 0;
+        overflow-x: hidden;
 
         @include mo {
             max-width: 100%;
             padding: 80px 0;
+            overflow-x: hidden;
         }
     }
 
-    // ✅ 핵심 수정: 모바일에서도 좌우 패딩 16px 유지
     &__inner {
         width: 100%;
         max-width: 1400px;
         margin: 0 auto;
         padding: 0 24px;
+        box-sizing: border-box;
 
         @include mo {
             max-width: 100%;
-            padding: 0 16px; // 벽에 붙지 않도록 유지
+            padding: 0 20px;
         }
     }
 
@@ -178,7 +187,6 @@ $bp-tablet: 768px;
                     display: block;
 
                     @include mo {
-                        // ✅ 패딩 16px 양쪽 = 32px 제외한 공간에서 균등 분배
                         width: clamp(44px, 11vw, 72px);
                         height: clamp(44px, 11vw, 72px);
                     }
@@ -697,4 +705,103 @@ $bp-tablet: 768px;
 button {
     border: none;
     background: none;
+}
+
+// ============================================================
+// 360px 모바일 최소 사이즈
+// ============================================================
+
+@media (max-width: 360px) {
+    // 1. 좌우 패딩 / 마진
+    .product {
+        &__inner {
+            padding: 0 10px; // 양쪽 10px = 총 20px → 카드 1개당 10px씩 축소
+        }
+
+        &__main-grid {
+            gap: 16px 8px;
+        }
+
+        &__main-top {
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        &__selected-chip {
+            margin-top: 20px;
+            gap: 4px;
+        }
+
+        &__filter-floor {
+            margin: 20px 0;
+        }
+    }
+
+    .filter-title {
+        width: 56px;
+        min-width: 56px;
+        padding: 10px 0;
+
+        // 2. 폰트 크기
+        font-size: 10px;
+    }
+
+    .products__function,
+    .products__line {
+        ul {
+            gap: 6px;
+            padding: 10px 0 10px 8px;
+        }
+
+        // 2. 폰트 크기
+        li {
+            font-size: 10px;
+        }
+    }
+
+    // 2. 폰트 크기
+    .Products__Name {
+        font-size: 11px;
+    }
+
+    .Products__description {
+        font-size: 9px;
+    }
+
+    .Products__price {
+        font-size: 9px;
+    }
+
+    .Products__discountRate {
+        font-size: 13px;
+    }
+
+    .Products__discountPrice {
+        font-size: 11px;
+    }
+
+    // 3. 레이아웃
+    .Products__card-wrap {
+        gap: 6px;
+    }
+
+    .Productstext {
+        gap: 2px;
+    }
+
+    .pagination {
+        gap: 8px;
+        margin: 24px 0;
+
+        .page-btn {
+            min-width: 18px;
+            height: 18px;
+            font-size: 12px;
+
+            &.icon img {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
 }
