@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const MyPageMenu = () => {
     return (
         /* Block: 마이페이지 메뉴 전체 */
@@ -24,9 +26,9 @@ const MyPageMenu = () => {
                     </a>
                 </li>
                 <li className="mypage-menu__item">
-                    <a href="/inquiry" className="mypage-menu__link">
+                    <Link to="/inquiry" className="mypage-menu__link">
                         1:1 맞춤상담
-                    </a>
+                    </Link>
                 </li>
                 <li className="mypage-menu__item">
                     <a href="#" className="mypage-menu__link">
