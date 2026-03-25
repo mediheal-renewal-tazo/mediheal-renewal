@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HEADER_NAV_ITEMS, ROUTE_PATHS } from '@/app/routes/paths';
 import { GiHamburgerMenu } from "react-icons/gi";
 import logoImg1 from '@/assets/logos/logo_1.png';
@@ -20,6 +20,7 @@ const Header = () => {
         const user = getAuthUser();
         return user ? getCartItems(user.id).length : 0;
     });
+    const navigate = useNavigate();
     const location = useLocation();
 
     const updateCartCount = () => {
@@ -202,7 +203,7 @@ const Header = () => {
                         <button
                             className="header__icon-btn"
                             type="button"
-                            onClick={() => logoutUser()}
+                            onClick={() => { logoutUser(); navigate(ROUTE_PATHS.LOGIN); }}
                         >
                             <div className="header__login-btn">LOGOUT</div>
                         </button>
