@@ -61,6 +61,15 @@ plugins: [react()]
 resolve.alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) }
 ```
 
+### .env (환경변수)
+```
+VITE_KAKAO_JAVASCRIPT_KEY=...   # 카카오 JS SDK 키 (현재 미사용)
+VITE_KAKAO_REST_API_KEY=...     # 카카오 REST API 키 (인증 코드 플로우에 사용)
+VITE_KAKAO_REDIRECT_URI=https://mediheal-tazo.vercel.app/oauth/
+```
+- 로컬 개발 시 `.env.local`에 `VITE_KAKAO_REDIRECT_URI=http://localhost:5173/oauth/` 설정 필요
+- 카카오 개발자 콘솔에 로컬 redirect URI 등록도 필요
+
 ### eslint.config.js
 - ESLint 9 **flat config** 형식 사용 (`defineConfig` + `globalIgnores`)
 - 대상: `**/*.{js,jsx}`
@@ -100,6 +109,9 @@ src/
 │   ├── login/
 │   │   ├── Login.jsx         # view state로 LoginForm/GuestForm/SignUp/FindId/FindFw 전환
 │   │   └── login.scss
+│   ├── oauth/
+│   │   └── KakaoCallback.jsx # 카카오 OAuth 콜백 처리 (/oauth 라우트)
+│   │                         # URL ?code= → 토큰 교환 → 유저 정보 → localStorage 저장 → /로 이동
 │   ├── signup/
 │   │   ├── Signup.jsx        # stub (일반/카카오/구글 회원가입 예정)
 │   │   └── signup.scss
@@ -139,9 +151,12 @@ src/
 ├── components/
 │   ├── common/
 │   │   ├── header/
-│   │   │   ├── Header.jsx        # isMenuOpen / isSearchOpen / isVisible / isOverDark
-│   │   │   │                     # createPortal로 홈 dark-clip 오버레이 렌더링
-│   │   │   ├── HeaderSearch.jsx
+│   │   │   ├── Header.jsx            # isMenuOpen / isSearchOpen / isVisible / isOverDark / isLoggedIn
+│   │   │   │                         # createPortal로 홈 dark-clip 오버레이 렌더링
+│   │   │   │                         # 로그아웃 시 logoutUser() + navigate('/login')
+│   │   │   │                         # cartChange 이벤트로 카트 뱃지 실시간 업데이트
+│   │   │   ├── HeaderSearch.jsx      # 검색창 UI + productsData 실시간 필터
+│   │   │   ├── HeaderSearchResults.jsx # 검색 결과 목록 (상품 썸네일 + /shop/:id 링크)
 │   │   │   └── Header.scss
 │   │   ├── footer/
 │   │   │   ├── Footer.jsx        # data-header-theme="dark"
@@ -168,15 +183,17 @@ src/
 │   │   ├── Products__HeartButton.jsx  # 위시리스트 토글 버튼
 │   │   └── Products.scss
 │   ├── shopDetail/
-│   │   ├── ShopDetail__page.jsx  # 상세 페이지 컨테이너 (useParams → productsData 조회)
-│   │   │                         # IntersectionObserver로 탭 active 감지
-│   │   │                         # 카트 드로어(aside) + 오버레이 포함
-│   │   ├── ShopDetail__main.jsx  # 상단 상품 정보 (이미지, 이름, 가격, 구매)
-│   │   ├── ShopDetail__Tap.jsx   # 고정 탭 바 (상품정보 / 리뷰 / 이용안내)
-│   │   ├── ShopDetail__info.jsx  # 상세 이미지/영상 슬라이드
-│   │   ├── ShopDetail__review.jsx # 리뷰 섹션
-│   │   ├── ShopDetail__Guide.jsx # 이용 안내
-│   │   ├── ShopDetail__Cart.jsx  # 드로어 내 장바구니
+│   │   ├── ShopDetail__page.jsx        # 상세 페이지 컨테이너 (useParams → productsData 조회)
+│   │   │                               # IntersectionObserver로 탭 active 감지
+│   │   │                               # 카트 드로어(aside) + 오버레이 포함
+│   │   ├── ShopDetail__main.jsx        # 상단 상품 정보 (이미지, 이름, 가격, 구매)
+│   │   ├── ShopDetail__Tap.jsx         # 고정 탭 바 (상품정보 / 리뷰 / 이용안내)
+│   │   ├── ShopDetail__info.jsx        # 상세 이미지/영상 슬라이드
+│   │   ├── ShopDetail__review.jsx      # 리뷰 섹션
+│   │   ├── ShopDetail__graph.jsx       # 별점 분포 바 그래프 (IntersectionObserver 애니메이션)
+│   │   ├── ShopDetail__Guide.jsx       # 이용 안내
+│   │   ├── ShopDetail__Essentialinfo.jsx # 상품필수정보 테이블 (용량/성분/사용방법 등)
+│   │   ├── ShopDetail__Cart.jsx        # 드로어 내 장바구니
 │   │   └── ShopDetail.scss
 │   ├── kediheal/
 │   │   ├── KedihealHero.jsx      # 히어로 섹션 (GSAP 타이핑 애니메이션)
@@ -184,7 +201,7 @@ src/
 │   │   ├── KedihealCare.jsx      # 케어 솔루션 섹션
 │   │   ├── KedihealHyaluron.jsx  # 히알루론 성분 섹션 + 마스크팩 커서 팔로워
 │   │   ├── KedihealGlobal.jsx    # 글로벌 시장 섹션 (도시 호버 애니메이션)
-│   │   ├── KedihealLatest.jsx    # 최신 제품 + Final CTA 섹션
+│   │   ├── KedihealFinalCta.jsx  # Final CTA — 피부고민 폼 제출 섹션
 │   │   ├── CareCard.jsx          # 케어 솔루션 카드 단위
 │   │   └── CareCard.scss
 │   ├── membership/
@@ -208,9 +225,11 @@ src/
 │   │   └── loginAll.scss
 │   ├── inquiry/
 │   │   ├── InquiryMain.jsx / InquiryList.jsx / InquiryItem.jsx / InquiryWrite.jsx
+│   │   ├── InquiryDetail.jsx  # 상세보기 + 수정/삭제 (작성자 본인만, inquiryStorage 사용)
 │   │   └── inquiry.scss
 │   └── notice/
 │       ├── NoticeList.jsx / NoticeItem.jsx / NoticeSearch.jsx
+│       ├── NoticeDetail.jsx   # 공지사항 상세보기 (제목/작성자/날짜/조회수/내용 + 목록 버튼)
 │       └── notice.scss
 ├── api/                      # 목업 API 8개 모듈 (auth/cart/inquiries/notices/products/reviews/users/wishlist)
 ├── data/
@@ -240,9 +259,16 @@ src/
 │   ├── _mixins.scss          # 빈 파일
 │   └── global.scss           # 빈 파일
 ├── utils/
-│   ├── delay.js              # export const delay = (ms=300) => new Promise(resolve => setTimeout(resolve, ms))
-│   ├── format.js             # 빈 파일
-│   └── storage.js            # 빈 파일
+│   ├── auth.js           # loginUser / logoutUser / getAuthUser + window.dispatchEvent('authChange')
+│   │                     # localStorage 키: 'mediheal_user' → { id, name }
+│   ├── cartStorage.js    # getCartItems / addCartItem / updateCartItemQuantity / removeCartItem
+│   │                     # localStorage 키: 'mediheal_cart' + window.dispatchEvent('cartChange')
+│   │                     # 동일 유저+상품 추가 시 수량 합산
+│   ├── inquiryStorage.js # getInquiries / addInquiry / updateInquiry / deleteInquiry
+│   │                     # localStorage 키: 'mediheal_inquiries'
+│   ├── delay.js          # export const delay = (ms=300) => new Promise(...)
+│   ├── format.js         # 빈 파일
+│   └── storage.js        # 빈 파일
 └── assets/
     ├── logos/                # logo_1.png (dark bg), logo_2.png (light bg), footer_logo.png
     ├── images/
@@ -274,6 +300,7 @@ src/
 | `/mypage` | `MY_PAGE` | MyPage | **구현 완료** |
 | `/cart` | `CART` | Cart | 구현 완료 |
 | `/inquiry` | `INQUIRY` | Inquiry | 구현 완료 |
+| `/oauth` | — | KakaoCallback | **구현 완료** (카카오 로그인 콜백) |
 | `/ready` | `READY` | Ready | 미구현 플레이스홀더 |
 | `*` | — | NotFound | **구현 완료** (404) |
 
@@ -281,7 +308,7 @@ src/
 - `/signup` — `pages/signup/Signup.jsx` (stub)
 - `findAccount` — `pages/findAccount/FindAccount.jsx` (stub)
 
-**Login은 RootLayout 밖** — Header/Footer 없이 독립 렌더링.
+**RootLayout 밖 (Header/Footer 없음):** Login, KakaoCallback(`/oauth`)
 나머지 모든 라우트는 `RootLayout` (Header + Footer) 적용.
 
 ---
@@ -317,8 +344,7 @@ src/
 - **스타일 파일:** 컴포넌트와 같은 디렉토리, 소문자/camelCase `.scss`
 - **데이터 상수:** UPPER_SNAKE_CASE (예: `FADE_MS`, `ROUTE_PATHS`)
 - **함수형 컴포넌트만** 사용 (class 컴포넌트 없음)
-- **import 경로:** `@/` 별칭으로 `src/` 기준 절대경로 사용
-  - 예외: `pages/kediheal/Kediheal.jsx`는 상대경로(`../../`) 사용 — 통일 필요
+- **import 경로:** `@/` 별칭으로 `src/` 기준 절대경로 사용 (프로젝트 전체 통일됨)
 
 ### SCSS `@use` 규칙
 - `@use 'sass:math'`는 파일 **맨 위**에 선언해야 함 (다른 선언 이전)
@@ -381,6 +407,25 @@ const handleEnter = () => {
 - **홈 페이지 전용:** `createPortal`로 `document.body`에 `.header__clip-overlay` 렌더링
   (Hero의 `--hero-mask-clip` CSS 변수와 연동되어 마스크 클리핑 효과 구현)
 
+### Header 인증/카트 상태
+- `authChange` 이벤트 수신 → `isLoggedIn` 재계산 (로그인/로그아웃/카카오 콜백 후 자동 반영)
+- `cartChange` 이벤트 수신 → 카트 뱃지 숫자 실시간 업데이트 (`cartStorage.js` 연동)
+- 로그아웃 버튼: `logoutUser()` 후 `navigate('/login')` 호출
+
+### 카카오 로그인 플로우
+```
+LoginForm 카카오 버튼 클릭
+→ kauth.kakao.com/oauth/authorize (REST_API_KEY + redirect_uri)
+→ 사용자 승인
+→ /oauth?code=... (KakaoCallback)
+→ POST kauth.kakao.com/oauth/token (code → access_token)
+→ GET kapi.kakao.com/v2/user/me (access_token → 닉네임/id)
+→ localStorage 'mediheal_user' = { id: 'kakao_{id}', name: '닉네임' }
+→ authChange 이벤트 dispatch → navigate('/')
+```
+- 환경변수: `VITE_KAKAO_REST_API_KEY`, `VITE_KAKAO_REDIRECT_URI` (`.env`)
+- 로컬 개발 시: 카카오 콘솔에 `http://localhost:5173/oauth/` 추가 + `.env.local` 별도 설정 필요
+
 ---
 
 ## 컴포넌트 상세
@@ -413,6 +458,8 @@ ShopDetail__page (useParams → productsData 조회)
 - `productsDetailData.js`에서 동일 `id`로 상세 데이터 조회 (sub_img, 리뷰 분포, 상세 이미지 배열)
 - 카트 드로어: `aside.cartDrawer.is-open` + `div.cartOverlay.is-open` 패턴
 - body `overflow: hidden` 드로어 열림 시 적용
+- `ShopDetail__graph.jsx` — 별점 분포 바 그래프, IntersectionObserver로 뷰포트 진입 시 높이 애니메이션
+- `ShopDetail__Essentialinfo.jsx` — 상품필수정보 테이블 (용량/사용방법/성분/제조국 등 법적 필수항목)
 
 ### Kediheal 페이지 구성
 
@@ -423,7 +470,7 @@ Kediheal
 ├── KedihealCare      — CareCard 3개 (이미지, 제목, 설명)
 ├── KedihealHyaluron  — 히알루론 성분 + 마스크팩 커서 팔로워 (cursor: none)
 ├── KedihealGlobal    — 글로벌 도시 목록 (is-active/is-dimmed 토글)
-└── KedihealLatest    — 최신 제품 + Final CTA(이메일 수집 폼)
+└── KedihealFinalCta  — 피부고민 텍스트 입력 폼 + 제출 버튼 (Final CTA 섹션)
 ```
 
 `Kediheal.scss`는 `@use 'sass:math'`를 파일 최상단에 선언해야 함.
@@ -447,6 +494,12 @@ MyPage
 view = 'login' | 'guest' | 'signup' | 'findId' | 'findFw'
 ```
 URL 라우트 없이 `view` state로 하위 폼 전환.
+
+**소셜 로그인:**
+- 카카오: `LoginForm`의 카카오 버튼 → Kakao 인증 URL로 `window.location.href` 리다이렉트
+- Google: 버튼만 존재, 미구현
+
+**테스트 계정:** `id: test` / `pw: test1234` (auth.js TEST_ACCOUNTS 하드코딩)
 
 ### ProductItem (홈 범용 상품 카드)
 ```jsx
@@ -476,9 +529,10 @@ URL 라우트 없이 `view` state로 하위 폼 전환.
 | `inquiries.api.js` | `getInquiriesByUser`, `createInquiry`, `deleteInquiry`, `updateInquiry` |
 | `users.api.js` | `getUsers`, `getUserById`, `updateUserProfile` 등 |
 
-**데이터 소스 2곳:**
+**데이터 소스 3곳:**
 - `src/data/` — 컴포넌트가 직접 import하는 정적 데이터
 - `src/mock/` — API 함수가 참조하는 목업 원본 배열 (메모리 내 mutate)
+- `localStorage` — 실제 런타임 영속 데이터 (`auth.js`, `cartStorage.js`, `inquiryStorage.js`)
 
 ---
 
@@ -572,15 +626,17 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 
 1. **전역 상태관리 없음** — store 파일 stub. 현재 로컬 state + callback props. Zustand/Context 도입 예정.
 2. **목업 우선 개발** — 백엔드 없이 `src/mock/` 메모리 배열을 API 함수가 직접 mutate.
-3. **이미지 직접 import** — Vite 자동 최적화. CDN/lazy loading 미적용.
-4. **CSS-in-JS 미사용** — SCSS co-located 방식.
-5. **GSAP + Lenis** — ScrollTrigger pin/scrub에 Lenis smooth scroll 연동. `useGSAP` 훅 사용.
-6. **컴포넌트 분리 원칙** — Page → List/Main → Item/Card 3단계.
-7. **로그인 내부 뷰 전환** — URL 라우트 없이 `view` state로 하위 폼 전환.
-8. **헤더 테마** — `data-header-theme` 속성 + scroll 감지로 다크/라이트 자동 전환.
-9. **홈 헤더 클립 오버레이** — `createPortal`로 `document.body`에 직접 렌더링.
-10. **폼 라이브러리 없음** — 순수 React controlled/uncontrolled inputs.
-11. **TypeScript 없음** — 모두 `.js`/`.jsx`. PropTypes도 없음.
+3. **localStorage 기반 런타임 유틸** — `auth.js`(인증), `cartStorage.js`(장바구니), `inquiryStorage.js`(문의)가 실제 데이터 영속화. 커스텀 이벤트(`authChange`, `cartChange`)로 컴포넌트 간 동기화.
+4. **이미지 직접 import** — Vite 자동 최적화. CDN/lazy loading 미적용.
+5. **CSS-in-JS 미사용** — SCSS co-located 방식.
+6. **GSAP + Lenis** — ScrollTrigger pin/scrub에 Lenis smooth scroll 연동. `useGSAP` 훅 사용.
+7. **컴포넌트 분리 원칙** — Page → List/Main → Item/Card 3단계.
+8. **로그인 내부 뷰 전환** — URL 라우트 없이 `view` state로 하위 폼 전환.
+9. **헤더 테마** — `data-header-theme` 속성 + scroll 감지로 다크/라이트 자동 전환.
+10. **홈 헤더 클립 오버레이** — `createPortal`로 `document.body`에 직접 렌더링.
+11. **폼 라이브러리 없음** — 순수 React controlled/uncontrolled inputs.
+12. **TypeScript 없음** — 모두 `.js`/`.jsx`. PropTypes도 없음.
+13. **소셜 로그인(카카오)** — REST API Authorization Code Flow. 별도 OAuth 콜백 라우트(`/oauth`)에서 처리. JS SDK 미사용.
 
 ---
 
@@ -632,21 +688,13 @@ import KedihealHero from '../../components/kediheal/KedihealHero';
 import KedihealHero from '@/components/kediheal/KedihealHero';
 ```
 
-### 4. 전역 상태관리 부재 — Zustand 도입 권장
+### 4. localStorage 기반 상태 동기화 ✅ 부분 해결됨
 
-현재 store 파일이 모두 빈 파일입니다. 장바구니 수량, 로그인 상태 등이 실제로 연동되지 않아 헤더의 카트 뱃지가 하드코딩(`1`)되어 있습니다.
+~~헤더의 카트 뱃지가 하드코딩(`1`)되어 있습니다.~~
 
-**권장 방법 (Zustand):**
-```js
-// src/store/cart.store.js
-import { create } from 'zustand';
-export const useCartStore = create((set) => ({
-  items: [],
-  addItem: (item) => set((s) => ({ items: [...s.items, item] })),
-  removeItem: (id) => set((s) => ({ items: s.items.filter(i => i.id !== id) })),
-}));
-```
-Zustand는 기존 Context API 대비 보일러플레이트가 적고, 현재 프로젝트 구조에서 최소 변경으로 도입 가능합니다.
+`cartStorage.js`와 `auth.js`를 통해 localStorage + 커스텀 이벤트 방식으로 헤더 카트 뱃지와 로그인 상태가 실시간 연동됩니다.
+
+**미해결:** `src/store/*.js` 3개 파일은 여전히 빈 파일. 전역 상태가 필요한 기능(위시리스트, 알림 등) 추가 시 Zustand 도입 권장.
 
 ### 5. 상품 상세 페이지 접근 범위 제한
 
