@@ -13,6 +13,15 @@ const LoginForm = ({ onGuestClick, onSignUpClick, onFindClick }) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
+    const handleKakaoLogin = () => {
+        const params = new URLSearchParams({
+            client_id: import.meta.env.VITE_KAKAO_REST_API_KEY,
+            redirect_uri: import.meta.env.VITE_KAKAO_REDIRECT_URI,
+            response_type: 'code',
+        });
+        window.location.href = `https://kauth.kakao.com/oauth/authorize?${params}`;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const success = loginUser(id, password);
@@ -86,7 +95,7 @@ const LoginForm = ({ onGuestClick, onSignUpClick, onFindClick }) => {
             </div>
 
             <div className="login__social">
-                <button className="login__social-btn login__social-btn--kakao">
+                <button className="login__social-btn login__social-btn--kakao" onClick={handleKakaoLogin}>
                     <RiKakaoTalkFill className="login__social-icon" />
                     카카오 1초 로그인/회원가입
                 </button>

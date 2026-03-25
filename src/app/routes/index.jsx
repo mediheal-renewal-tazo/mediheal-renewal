@@ -14,6 +14,7 @@ import Cart from '@/pages/cart/Cart';
 import Inquiry from '@/pages/inquiry/Inquiry';
 import Login from '@/pages/login/Login';
 import ShopDetail from '@/pages/shop/shopDetail/ShopDetail';
+import KakaoCallback from '@/pages/oauth/KakaoCallback';
 
 const AppRoutes = () => {
     return (
@@ -33,6 +34,7 @@ const AppRoutes = () => {
                 <Route path="/shop/:id" element={<ShopDetail />} />
             </Route>
             <Route path={ROUTE_PATHS.LOGIN} element={<Login />} />
+            <Route path="/oauth" element={<KakaoCallback />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
