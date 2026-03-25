@@ -19,22 +19,18 @@ const ProductsCard = ({ product }) => {
             <div className="Productstext">
                 <div className="Products__title">
                     <h3 className="Products__Name">{product.name}</h3>
-                    <p className="Products__description">
-                        {product.description?.trim() || '\u00A0'}
-                    </p>
+                    {product.description?.trim() && (
+                        <p className="Products__description">{product.description}</p>
+                    )}
                 </div>
 
                 <div className="Products__priceBox">
                     {discountRate ? (
                         <div className="Products__priceBox2">
-                            <p className="Products__price">
-                                {originalPrice?.toLocaleString()}원
-                            </p>
+                            <p className="Products__price">{originalPrice?.toLocaleString()}원</p>
 
                             <div className="Products__realprice">
-                                <span className="Products__discountRate">
-                                    {discountRate}%
-                                </span>
+                                <span className="Products__discountRate">{discountRate}%</span>
 
                                 <span className="Products__discountPrice">
                                     {salePrice?.toLocaleString()}원

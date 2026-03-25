@@ -383,7 +383,7 @@ $bp-mobile: 360px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    aspect-ratio: 335 / 504;
+    aspect-ratio: 335 / 530;
     min-width: 0;
     overflow: hidden;
 }
@@ -455,6 +455,7 @@ $bp-mobile: 360px;
 .Productstext {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 8px;
     min-width: 0;
     overflow: hidden;
@@ -471,7 +472,7 @@ $bp-mobile: 360px;
     min-width: 0;
 }
 
-// ✅ 상품명 — 모바일에서 잘림 방지, 2줄 유지
+// 상품명
 .Products__Name {
     @extend %product-text-base;
     color: #272727;
@@ -484,25 +485,23 @@ $bp-mobile: 360px;
     overflow: hidden;
 
     @include mo {
-        font-size: 12px; // ✅ 기존 13px → 12px
+        font-size: 12px;
     }
 }
 
-// ✅ 상품 설명 — 모바일에서 1줄 유지, 잘림 방지
+// 상품 설명
 .Products__description {
     @extend %product-text-base;
-    color: #aaa;
+    color: #9a9a9a;
     font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 1lh;
 
     @include mo {
-        font-size: 10px; // ✅ 기존 11px → 10px, 설명 잘림 최소화
+        font-size: 10px;
     }
 }
 
@@ -519,7 +518,7 @@ $bp-mobile: 360px;
     min-width: 0;
 }
 
-// ✅ 정가 (취소선)
+// 정가 (취소선)
 .Products__price {
     @extend %product-text-base;
     color: $text-lighter;
@@ -541,11 +540,11 @@ $bp-mobile: 360px;
 
     @include mo {
         gap: 3px;
-        flex-wrap: wrap; // ✅ 잘리지 않고 줄바꿈
+        flex-wrap: wrap;
     }
 }
 
-// ✅ 할인율 — 모바일에서 크기 줄임
+// 할인율
 .Products__discountRate {
     color: #151789;
     font-family: $font-family;
@@ -560,7 +559,7 @@ $bp-mobile: 360px;
     }
 }
 
-// ✅ 판매가 — 모바일에서 크기 줄임
+// 판매가
 .Products__discountPrice {
     color: #272727;
     font-family: $font-family;
