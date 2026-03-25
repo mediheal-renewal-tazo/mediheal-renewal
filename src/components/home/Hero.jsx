@@ -18,6 +18,15 @@ gsap.registerPlugin(ScrollTrigger);
 // 새로고침 시 ScrollTrigger가 저장한 스크롤 위치 제거
 ScrollTrigger.clearScrollMemory();
 
+// 이미지 가중치 슬롯 — 컴포넌트 외부에서 한 번만 계산
+const _WEIGHTS = [6, 4, 4, 4, 4, 4, 4, 2];
+const _TOTAL_WEIGHT = _WEIGHTS.reduce((a, b) => a + b, 0);
+const _SLOTS = _WEIGHTS.reduce((acc, w, i) => {
+    const start = i === 0 ? 0 : acc[i - 1].end;
+    acc.push({ start, end: start + w / _TOTAL_WEIGHT });
+    return acc;
+}, []);
+
 const Hero = ({ introFinished }) => {
     // ── React Refs ──
     const containerRef = useRef(null);
@@ -77,6 +86,7 @@ const Hero = ({ introFinished }) => {
 
             const images = gsap.utils.toArray('.gallery-img', containerRef.current);
             const totalImages = images.length;
+            const IMG_FADE = 0.25 / totalImages;
             const mainDscs = gsap.utils.toArray('.hero__main-dsc', containerRef.current);
 
             // ────────────────────────────────────
@@ -176,32 +186,21 @@ const Hero = ({ introFinished }) => {
                     gsap.set(darkWrap, { clipPath: clipVal });
                     document.documentElement.style.setProperty('--hero-mask-clip', clipVal);
 
-                    // 각 이미지 표시 시간 가중치 — 값이 클수록 해당 이미지 hold 시간이 길어짐
-                    // hero00: 3, hero01~07: 각 1 → 값을 올리면 hold 증가
-                    const weights = [6, 4, 4, 4, 4, 4, 4, 2];
-                    const totalWeight = weights.reduce((a, b) => a + b, 0);
-                    const slots = weights.reduce((acc, w, i) => {
-                        const start = i === 0 ? 0 : acc[i - 1].end;
-                        acc.push({ start, end: start + w / totalWeight });
-                        return acc;
-                    }, []);
-
-                    const FADE = 0.25 / totalImages;
                     images.forEach((img, i) => {
-                        const { start: slotStart, end: slotEnd } = slots[i];
+                        const { start: slotStart, end: slotEnd } = _SLOTS[i];
                         let opacity;
-                        if (phase1Progress < slotStart - FADE) {
+                        if (phase1Progress < slotStart - IMG_FADE) {
                             opacity = i === 0 ? 1 : 0;
-                        } else if (phase1Progress < slotStart + FADE) {
+                        } else if (phase1Progress < slotStart + IMG_FADE) {
                             opacity =
-                                i === 0 ? 1 : (phase1Progress - (slotStart - FADE)) / (2 * FADE);
-                        } else if (phase1Progress < slotEnd - FADE) {
+                                i === 0 ? 1 : (phase1Progress - (slotStart - IMG_FADE)) / (2 * IMG_FADE);
+                        } else if (phase1Progress < slotEnd - IMG_FADE) {
                             opacity = 1;
-                        } else if (phase1Progress < slotEnd + FADE) {
+                        } else if (phase1Progress < slotEnd + IMG_FADE) {
                             opacity =
                                 i === totalImages - 1
                                     ? 1
-                                    : 1 - (phase1Progress - (slotEnd - FADE)) / (2 * FADE);
+                                    : 1 - (phase1Progress - (slotEnd - IMG_FADE)) / (2 * IMG_FADE);
                         } else {
                             opacity = i === totalImages - 1 ? 1 : 0;
                         }
@@ -278,16 +277,15 @@ const Hero = ({ introFinished }) => {
                         const phase5Progress = (p - PHASE4_END) / (PHASE5_END - PHASE4_END);
                         gsap.set(description, { opacity: 1 });
                         const visibleCount = Math.round(phase5Progress * chars.length);
-                        chars.forEach((char, i) => {
-                            gsap.set(char, { opacity: i < visibleCount ? 1 : 0 });
-                        });
+                        gsap.set(chars.slice(0, visibleCount), { opacity: 1 });
+                        gsap.set(chars.slice(visibleCount), { opacity: 0 });
                     } else if (p > PHASE5_END) {
                         // hold: 모든 글자 표시 유지
                         gsap.set(description, { opacity: 1 });
-                        chars.forEach((char) => gsap.set(char, { opacity: 1 }));
+                        gsap.set(chars, { opacity: 1 });
                     } else if (p <= PHASE4_END) {
                         gsap.set(description, { opacity: 0 });
-                        chars.forEach((char) => gsap.set(char, { opacity: 0 }));
+                        gsap.set(chars, { opacity: 0 });
                     }
                 },
             });
