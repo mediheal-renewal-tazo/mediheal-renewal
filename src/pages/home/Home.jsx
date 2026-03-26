@@ -1,6 +1,6 @@
 import Hero from '../../components/home/Hero';
 import MainVisual from '../../components/home/MainVisual';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Home.scss';
 import Intro from './Intro';
@@ -28,8 +28,8 @@ const Home = () => {
         document.body.classList.remove('intro-playing');
     }, []);
 
-    // 인트로 재생 중 헤더 숨김
-    useEffect(() => {
+    // 인트로 재생 중 헤더 숨김 (useLayoutEffect: 첫 페인트 전에 클래스 추가)
+    useLayoutEffect(() => {
         if (alreadySeen) return;
         document.body.classList.add('intro-playing');
         return () => document.body.classList.remove('intro-playing');
